@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using DatosEMC.Clases;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,12 +8,14 @@ using System.Threading.Tasks;
 
 namespace DatosEMC.DataModels
 {
-    public class AppContext : DbContext
+    public class MyAppContext : DbContext
     {
-        public AppContext(DbContextOptions<AppContext> options)
+        public MyAppContext(DbContextOptions<MyAppContext> options)
            : base(options)
         {
         }
+
+        public virtual DbSet<Usuario> Usuario { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

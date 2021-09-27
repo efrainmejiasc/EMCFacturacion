@@ -17,4 +17,10 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="IRepositorys\" />
+    <Folder Include="DTOs\" />
+    <Folder Include="Repositorys\" />
+  </ItemGroup>
+
 </Project>

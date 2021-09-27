@@ -17,5 +17,7 @@ namespace DatosEMC.Clases
             }
             return valor;
         }
+
+        public static string ConnectionDb { get; set; }
     }
 }
