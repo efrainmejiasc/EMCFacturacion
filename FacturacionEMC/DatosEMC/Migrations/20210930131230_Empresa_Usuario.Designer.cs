@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DatosEMC.Migrations
 {
     [DbContext(typeof(MyAppContext))]
-    [Migration("20210927175125_Init")]
-    partial class Init
+    [Migration("20210930131230_Empresa_Usuario")]
+    partial class Empresa_Usuario
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,37 +23,39 @@ namespace DatosEMC.Migrations
 
             modelBuilder.Entity("DatosEMC.DataModels.Usuario", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INT")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<string>("Email")
+                        .HasColumnType("VARCHAR(50)");
 
                     b.Property<bool>("Activo")
                         .HasColumnType("BIT");
 
                     b.Property<string>("Apellido")
-                        .IsRequired()
                         .HasColumnType("VARCHAR(50)");
 
                     b.Property<DateTime>("Fecha")
                         .HasColumnType("DATETIME");
 
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INT")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
                     b.Property<int>("IdEmpresa")
                         .HasColumnType("INT");
 
                     b.Property<string>("Nombre")
-                        .IsRequired()
                         .HasColumnType("VARCHAR(50)");
 
                     b.Property<string>("Password")
-                        .IsRequired()
+                        .HasColumnType("VARCHAR(50)");
+
+                    b.Property<string>("Password2")
                         .HasColumnType("VARCHAR(50)");
 
                     b.Property<string>("Username")
-                        .IsRequired()
                         .HasColumnType("VARCHAR(50)");
 
-                    b.HasKey("Id");
+                    b.HasKey("Email");
 
                     b.ToTable("Usuario");
                 });

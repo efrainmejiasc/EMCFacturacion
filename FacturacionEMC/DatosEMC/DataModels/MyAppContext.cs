@@ -15,6 +15,7 @@ namespace DatosEMC.DataModels
         {
         }
 
+        public virtual DbSet<Empresa> Empresa { get; set; }
         public virtual DbSet<Usuario> Usuario { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

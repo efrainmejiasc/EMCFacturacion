@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -7,7 +8,7 @@ namespace DatosEMC.DataModels
     [Table("Usuario")]
     public class Usuario
     {
-        [Key]
+      
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column(Order = 1, TypeName = "INT")]
         public int Id { get; set; }
@@ -16,21 +17,28 @@ namespace DatosEMC.DataModels
         public int IdEmpresa { get; set; }
 
         [Column(Order = 3, TypeName = "VARCHAR(50)")]
-        public int Nombre { get; set; }
+        public string Nombre { get; set; }
 
         [Column(Order = 4, TypeName = "VARCHAR(50)")]
-        public int Apellido { get; set; }
+        public string Apellido { get; set; }
 
         [Column(Order = 5, TypeName = "VARCHAR(50)")]
-        public int Username { get; set; }
+        public string Username { get; set; }
 
         [Column(Order = 6, TypeName = "VARCHAR(50)")]
-        public int Password { get; set; }
+        public string Password { get; set; }
 
-        [Column(Order = 7, TypeName = "DATETIME")]
+        [Column(Order = 7, TypeName = "VARCHAR(50)")]
+        public string Password2 { get; set; }
+
+        [Key]
+        [Column(Order = 8, TypeName = "VARCHAR(50)")]
+        public string Email{ get; set; }
+
+        [Column(Order = 9, TypeName = "DATETIME")]
         public DateTime Fecha { get; set; }
 
-        [Column(Order = 8, TypeName = "BIT")]
+        [Column(Order = 10, TypeName = "BIT")]
         public bool Activo { get; set; }
     }
 }
