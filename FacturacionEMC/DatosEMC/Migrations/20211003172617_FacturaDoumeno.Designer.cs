@@ -4,14 +4,16 @@ using DatosEMC.DataModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DatosEMC.Migrations
 {
     [DbContext(typeof(MyAppContext))]
-    partial class MyAppContextModelSnapshot : ModelSnapshot
+    [Migration("20211003172617_FacturaDoumeno")]
+    partial class FacturaDoumeno
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -135,8 +137,9 @@ namespace DatosEMC.Migrations
                     b.Property<DateTime>("FechaModificacion")
                         .HasColumnType("DATETIME");
 
-                    b.Property<int>("IdArticulo")
-                        .HasColumnType("INT");
+                    b.Property<string>("IdArticulo")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(50)");
 
                     b.Property<int>("IdUsuario")
                         .HasColumnType("INT");
@@ -168,118 +171,6 @@ namespace DatosEMC.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("FacturaCompraDetalle");
-                });
-
-            modelBuilder.Entity("DatosEMC.DataModels.FacturaVenta", b =>
-                {
-                    b.Property<string>("NumeroFactura")
-                        .HasColumnType("VARCHAR(50)");
-
-                    b.Property<bool>("Activo")
-                        .HasColumnType("BIT");
-
-                    b.Property<decimal>("Descuento")
-                        .HasColumnType("MONEY");
-
-                    b.Property<DateTime>("Fecha")
-                        .HasColumnType("DATETIME");
-
-                    b.Property<DateTime>("FechaModificacion")
-                        .HasColumnType("DATETIME");
-
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INT")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("IdEmpresa")
-                        .HasColumnType("INT");
-
-                    b.Property<int>("IdProveedor")
-                        .HasColumnType("INT");
-
-                    b.Property<int>("IdUsuario")
-                        .HasColumnType("INT");
-
-                    b.Property<decimal>("Impuesto")
-                        .HasColumnType("MONEY");
-
-                    b.Property<string>("NombreProveedor")
-                        .IsRequired()
-                        .HasColumnType("VARCHAR(100)");
-
-                    b.Property<decimal>("PorcentajeDescuento")
-                        .HasColumnType("MONEY");
-
-                    b.Property<decimal>("PorcentajeImpuesto")
-                        .HasColumnType("MONEY");
-
-                    b.Property<decimal>("Subtotal")
-                        .HasColumnType("MONEY");
-
-                    b.Property<decimal>("Total")
-                        .HasColumnType("MONEY");
-
-                    b.HasKey("NumeroFactura");
-
-                    b.ToTable("FacturaVenta");
-                });
-
-            modelBuilder.Entity("DatosEMC.DataModels.FacturaVentaDetalle", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INT")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<bool>("Activo")
-                        .HasColumnType("BIT");
-
-                    b.Property<int>("Cantidad")
-                        .HasColumnType("INT");
-
-                    b.Property<decimal>("Descuento")
-                        .HasColumnType("MONEY");
-
-                    b.Property<DateTime>("Fecha")
-                        .HasColumnType("DATETIME");
-
-                    b.Property<DateTime>("FechaModificacion")
-                        .HasColumnType("DATETIME");
-
-                    b.Property<int>("IdArticulo")
-                        .HasColumnType("INT");
-
-                    b.Property<int>("IdUsuario")
-                        .HasColumnType("INT");
-
-                    b.Property<decimal>("Impuesto")
-                        .HasColumnType("MONEY");
-
-                    b.Property<int>("Linea")
-                        .HasColumnType("INT");
-
-                    b.Property<string>("NombreArticulo")
-                        .HasColumnType("VARCHAR(50)");
-
-                    b.Property<string>("NumeroFactura")
-                        .HasColumnType("VARCHAR(50)");
-
-                    b.Property<decimal>("PorcentajeDescuento")
-                        .HasColumnType("MONEY");
-
-                    b.Property<decimal>("PorcentajeImpuesto")
-                        .HasColumnType("MONEY");
-
-                    b.Property<decimal>("Subtotal")
-                        .HasColumnType("MONEY");
-
-                    b.Property<decimal>("Total")
-                        .HasColumnType("MONEY");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("FacturaVentaDetalle");
                 });
 
             modelBuilder.Entity("DatosEMC.DataModels.Roles", b =>
@@ -319,8 +210,8 @@ namespace DatosEMC.Migrations
                     b.Property<int>("IdEmpresa")
                         .HasColumnType("INT");
 
-                    b.Property<int>("IdRol")
-                        .HasColumnType("INT");
+                    b.Property<bool>("IdRol")
+                        .HasColumnType("BIT");
 
                     b.Property<string>("Nombre")
                         .HasColumnType("VARCHAR(50)");

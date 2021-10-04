@@ -40,5 +40,9 @@ namespace DatosEMC.DataModels
 
         [Column(Order = 10, TypeName = "BIT")]
         public bool Activo { get; set; }
+
+        [Column(Order = 11, TypeName = "INT")]
+        public bool IdRol { get; set; }
+
     }
 }

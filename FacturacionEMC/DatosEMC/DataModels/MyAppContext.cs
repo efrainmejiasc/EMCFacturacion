@@ -15,8 +15,13 @@ namespace DatosEMC.DataModels
         {
         }
 
+        public virtual DbSet<Roles> Roles { get; set; }
         public virtual DbSet<Empresa> Empresa { get; set; }
         public virtual DbSet<Usuario> Usuario { get; set; }
+        public virtual DbSet<FacturaCompra> FacturaCompra { get; set; }
+        public virtual DbSet<FacturaCompraDetalle> FacturaCompraDetalle { get; set; }
+        public virtual DbSet<FacturaVenta> FacturaVenta { get; set; }
+        public virtual DbSet<FacturaVentaDetalle> FacturaVentaDetalle { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
