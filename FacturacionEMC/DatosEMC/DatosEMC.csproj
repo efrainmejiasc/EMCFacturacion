@@ -18,9 +18,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="IRepositorys\" />
-    <Folder Include="DTOs\" />
-    <Folder Include="Repositorys\" />
+    <Folder Include="IRepositories\" />
+    <Folder Include="Repositories\" />
   </ItemGroup>
 
 </Project>

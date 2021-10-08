@@ -1,11 +1,19 @@
 ﻿
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/scriptsSite/login/jsLogin.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 }
 
+<script>
+    var urlLogin = '@Url.Action("Login", "Home")';
+</script>
 
-<div class="card"  style="margin-top:5%;">
+
+<div class="card" style="margin-top:5%;">
     <div class="card-body">
         <div class="form-horizontal">
             <h1> Acceso </h1>
@@ -32,10 +40,10 @@
             </div>
             <div class="form-group row text-center">
                 <div class="col-md-6 text-md-left">
-                    <input type="button" value="Aceptar" class="btn btn-primary form-control" onclick="" style="width:400px;"/>
+                    <input type="button" value="Aceptar" class="btn btn-primary form-control" onclick="Login()" style="width:400px;" />
                 </div>
                 <div class="col-md-6 text-md-right">
-                    <input type="button" value="Cancelar" class="btn btn-danger form-control" onclick="" style="width:400px;" />
+                    <input type="reset" value="Cancelar" class="btn btn-danger form-control" onclick="" style="width:400px;" />
                 </div>
             </div>
 
