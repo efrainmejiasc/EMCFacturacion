@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+
+
+<div class="container-fluid">
+    <h1 class="h3 mb-0 text-gray-800"> Listado de Facturas </h1>
+    <input type="hidden" id="_id" value="ViewContext.ViewBag.IdUsuario" />
+    <div class="card" style="margin-top:2%;">
+        <div class="card-body">
+            @*@{
+            Html.RenderAction("_Facturas", new { idUsuario = ViewContext.ViewBag.IdUsuario });
+        }*@
+        </div>
+    </div>
+</div>

@@ -35,8 +35,8 @@ namespace FacturacionEMCSite
             services.AddDbContext<MyAppContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 #endif
 
-            services.AddControllersWithViews();
             //**************************************************************************
+            services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddTransient<IHttpContextAccessor, HttpContextAccessor>();
             services.AddDistributedMemoryCache();
             services.AddSession(options =>
@@ -75,13 +75,15 @@ namespace FacturacionEMCSite
 
             app.UseRouting();
 
-            app.UseAuthorization();
+            //app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
+               // endpoints.MapRazorPages();
                 endpoints.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Author}/{action=GetAuthor}/{id?}");
+                pattern: "{controller}/{action}/{id?}",
+                defaults: new { controller = "Home", action = "Index" });
             });
 
             //******************************************************************************

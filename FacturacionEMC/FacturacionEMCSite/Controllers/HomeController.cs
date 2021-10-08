@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FacturacionEMCSite.Controllers
 {
-    public class LoginController : Controller
+    public class HomeController : Controller
     {
         public IActionResult Index()
         {
