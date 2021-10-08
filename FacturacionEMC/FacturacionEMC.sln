@@ -3,13 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31613.86
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacturacionEMCSite", "FacturacionEMCSite\FacturacionEMCSite.csproj", "{A088CE4D-3B66-4BB6-895F-ABC9518EE330}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FacturacionEMCApi", "FacturacionEMCApi\FacturacionEMCApi.csproj", "{A12BAA35-1B3B-4FBC-84E6-F60FD5EA0463}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacturacionEMCApi", "FacturacionEMCApi\FacturacionEMCApi.csproj", "{A12BAA35-1B3B-4FBC-84E6-F60FD5EA0463}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NegocioEMC", "NegocioEMC\NegocioEMC.csproj", "{50E4C53E-999A-47D3-92A3-369AB5420DE6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NegocioEMC", "NegocioEMC\NegocioEMC.csproj", "{50E4C53E-999A-47D3-92A3-369AB5420DE6}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatosEMC", "DatosEMC\DatosEMC.csproj", "{86F09D5F-FF3C-423F-8725-59867F84F4DD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DatosEMC", "DatosEMC\DatosEMC.csproj", "{86F09D5F-FF3C-423F-8725-59867F84F4DD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +15,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{A088CE4D-3B66-4BB6-895F-ABC9518EE330}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A088CE4D-3B66-4BB6-895F-ABC9518EE330}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A088CE4D-3B66-4BB6-895F-ABC9518EE330}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A088CE4D-3B66-4BB6-895F-ABC9518EE330}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A12BAA35-1B3B-4FBC-84E6-F60FD5EA0463}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A12BAA35-1B3B-4FBC-84E6-F60FD5EA0463}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A12BAA35-1B3B-4FBC-84E6-F60FD5EA0463}.Release|Any CPU.ActiveCfg = Release|Any CPU

@@ -79,7 +79,9 @@ namespace FacturacionEMCSite
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapRazorPages();
+                endpoints.MapControllerRoute(
+                name: "default",
+                pattern: "{controller=Author}/{action=GetAuthor}/{id?}");
             });
 
             //******************************************************************************
