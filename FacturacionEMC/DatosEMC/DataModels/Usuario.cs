@@ -42,7 +42,7 @@ namespace DatosEMC.DataModels
         public bool Activo { get; set; }
 
         [Column(Order = 11, TypeName = "INT")]
-        public bool IdRol { get; set; }
+        public int IdRol { get; set; }
 
     }
 }

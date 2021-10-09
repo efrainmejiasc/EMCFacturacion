@@ -24,7 +24,7 @@ namespace FacturacionEMCSite.Controllers
         [HttpPost]
         public async Task<JsonResult> GetEmpresasAsync()
         {
-            var empresas = await this.clientApi.GetEmpresasAsync() ;
+            var empresas = await this.clientApi.GetEmpresasAsync() as List<EmpresaDTO>;
             return Json(empresas);
         }
     }

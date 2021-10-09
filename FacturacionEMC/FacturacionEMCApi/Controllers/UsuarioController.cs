@@ -9,6 +9,7 @@ using DatosEMC.DTOs;
 using NegocioEMC.Commons;
 using NegocioEMC.IServices;
 using DatosEMC.DataModels;
+using FacturacionEMCApi.SecurityToken;
 
 namespace FacturacionEMCApi.Controllers
 {
@@ -44,5 +45,6 @@ namespace FacturacionEMCApi.Controllers
             else
             return BadRequest(EngineService.SetGenericResponse(false, "No se encontró información"));
         }
+  
     }
 }

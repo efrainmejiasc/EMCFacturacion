@@ -11,8 +11,11 @@ function Login() {
     var empresa = $('#empresa').val();
     var userMail = $('#userMail').val();
     var password = $('#password').val();
+    var confirmar = $('#confirmar').val();
 
-    if (empresa === '' || userMail === '' || password === '') {
+    console.log(empresa);
+
+    if (empresa === '' || userMail === '' || password === '' && confirmar != 'on') {
         toastr.warning("Todos los campos son nesesarios");
         return false;
     }
@@ -20,11 +23,12 @@ function Login() {
     $.ajax({
         type: "GET",
         url: urlLogin,
-        data: { empresa: 1, userMail: 'asdas', password: 'dasdasd'},
+        data: { idEmpresa: empresa, userMail: userMail, password: password},
         datatype: "json",
         success: function (data) {
-            if (data.Descripcion === 'OK')
-                window.Location.href = '';
+            console.log(data);
+            if (data.estatus)
+                toastr.success("Loging");
             else
                 toastr.warning("Usuario no autorizado / datos incorrectos");
         }
@@ -40,14 +44,27 @@ function GetEmpresas() {
         datatype: "json",
         success: function (data) {
             $('#empresa').empty();
-            $('#empresa').append('<option value="" disabled selected>Seleccione empresa...</option>');
+            $('#empresa').append('<option value="-1" disabled selected>Seleccione empresa...</option>');
             $.each(data, function (index, item) {
-                $('#empresa').append("<option value=\"" + item.Id + "\">" + item.Empresa + ' - ' + item.Servidor + ':' + item.Puerto + "</option>");
+                $('#empresa').append("<option value=\"" + item.id + "\">" + item.nombreEmpresa + "</option>");
             });
         }
     });
     return false;
 }
+
+function Reset() {
+    $('#empresa').val('-1');
+    $('#userMail').val('');
+    $('#password').val('');
+    $("#confirmar").prop("checked", false);
+}
+
+ function EmailValido(mail){
+    const regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    return regex.test(mail);
+}
+
 
 
 

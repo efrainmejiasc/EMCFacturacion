@@ -2,6 +2,8 @@ using AutoMapper;
 using DatosEMC.DataModels;
 using DatosEMC.IRepositories;
 using DatosEMC.Repositories;
+using FacturacionEMCApi.SecurityToken;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -10,6 +12,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using NegocioEMC;
 using NegocioEMC.IServices;
@@ -17,6 +20,7 @@ using NegocioEMC.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace FacturacionEMCApi
@@ -34,17 +38,7 @@ namespace FacturacionEMCApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "FacturacionEMCApi", Version = "v1" });
-            });
 
-            var mapperConfig = new MapperConfiguration(mc =>
-            {
-                mc.AddProfile(new AutoMapperProfile());
-            });
-            IMapper mapper = mapperConfig.CreateMapper();
-            services.AddSingleton(mapper);
 #if DEBUG
 
             services.AddDbContext<MyAppContext>(op => op.UseSqlServer(Configuration.GetConnectionString("DefaultConnectionLocal"),
@@ -53,6 +47,42 @@ namespace FacturacionEMCApi
             services.AddDbContext<MyAppContext>(op => op.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
                                                       b => b.MigrationsAssembly("DatosEMC")));
 #endif
+            // Asigna la configuracion de la seguridad del JWT
+            var jwtSection = Configuration.GetSection("JwtBearerTokenSettings");
+            services.Configure<JwtBearerTokenSettings>(jwtSection);
+            var jwtBearerTokenSettings = jwtSection.Get<JwtBearerTokenSettings>();
+            var key = Encoding.ASCII.GetBytes(jwtBearerTokenSettings.SecretKey);
+
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(options =>
+            {
+                options.RequireHttpsMetadata = false;
+                options.SaveToken = true;
+                options.TokenValidationParameters = new TokenValidationParameters()
+                {
+                    ValidIssuer = jwtBearerTokenSettings.Issuer,
+                    ValidAudience = jwtBearerTokenSettings.Audience,
+                    IssuerSigningKey = new SymmetricSecurityKey(key),
+                };
+            });
+
+            //AGREGAR SWAGGER
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "FacturacionEMCApi", Version = "v1" });
+            });
+
+            // AGREGAR MAPEO ENTRE CLASES
+            var mapperConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new AutoMapperProfile());
+            });
+            IMapper mapper = mapperConfig.CreateMapper();
+            services.AddSingleton(mapper);
 
             services.AddScoped<IUsuarioService, UsuarioService>();
             services.AddScoped<IUsuarioRepository,UsuarioRepository>();
