@@ -7,6 +7,7 @@ using NegocioEMC.Commons;
 using EMCApi.Client;
 using System.Net.Http;
 
+
 namespace FacturacionEMCSite.Controllers
 {
     public class HomeController : Controller
@@ -15,7 +16,7 @@ namespace FacturacionEMCSite.Controllers
         public HomeController(ClientEMCApi _clienteApi)
         {
             //var httpClient = new HttpClient();
-            //var urlBase = "http://localhost:13170/api/Usuario";
+            //var urlBase = "http://localhost:13170";
             clientApi = _clienteApi;
         }
 
@@ -24,12 +25,11 @@ namespace FacturacionEMCSite.Controllers
             return View();
         }
 
-        [HttpPost]
-
-        public JsonResult Login(int idEmpresa, string userMail, string password)
+        [HttpGet]
+        public async Task<JsonResult> LoginAsync(int idEmpresa, string userMail, string password)
         {
             var passwordEncode = EngineTool.EnCodeBase64(userMail + password);
-            var user = this.clientApi.GetUserDataAsync(idEmpresa, userMail, password).Result;
+            var user = await this.clientApi.GetUserDataAsync(idEmpresa, userMail, passwordEncode);
 
             return Json(user);
         }

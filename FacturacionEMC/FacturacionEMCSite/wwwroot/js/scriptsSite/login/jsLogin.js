@@ -1,7 +1,7 @@
 ﻿$(document).ready(function () {
     console.log("ready!");
-    Login();
-    toastr.warning("PRUEBA TOASTR");
+    GetEmpresas();
+   //toastr.warning("PRUEBA TOASTR");
     //toastr.success("Reinicio de politicas exitoso");
     //toastr.error("Error al reiniciar politicas");
 });
@@ -12,13 +12,13 @@ function Login() {
     var userMail = $('#userMail').val();
     var password = $('#password').val();
 
-    /*if (empresa === '' || userMail === '' || password === '') {
+    if (empresa === '' || userMail === '' || password === '') {
         toastr.warning("Todos los campos son nesesarios");
         return false;
-    }*/
+    }
 
     $.ajax({
-        type: "POST",
+        type: "GET",
         url: urlLogin,
         data: { empresa: 1, userMail: 'asdas', password: 'dasdasd'},
         datatype: "json",
@@ -32,22 +32,24 @@ function Login() {
     return false;
 }
 
+function GetEmpresas() {
 
-function ListaConexiones() {
     $.ajax({
-        type: "GET",
-        url: urlListaConexiones,
+        type: "POST",
+        url: urlGetEmpresas,
         datatype: "json",
         success: function (data) {
-            $('#conexion').empty();
-            $('#conexion').append('<option value="" disabled selected>Seleccione conexion...</option>');
+            $('#empresa').empty();
+            $('#empresa').append('<option value="" disabled selected>Seleccione empresa...</option>');
             $.each(data, function (index, item) {
-                $('#conexion').append("<option value=\"" + item.Id + "\">" + item.Empresa + ' - ' + item.Servidor + ':' + item.Puerto + "</option>");
+                $('#empresa').append("<option value=\"" + item.Id + "\">" + item.Empresa + ' - ' + item.Servidor + ':' + item.Puerto + "</option>");
             });
         }
     });
     return false;
 }
+
+
 
 function GetAlmacenesPorIdConexion() {
     almacenesArray = [];

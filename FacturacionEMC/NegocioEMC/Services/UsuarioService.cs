@@ -3,6 +3,7 @@ using DatosEMC.DataModels;
 using DatosEMC.DTOs;
 using DatosEMC.IRepositories;
 using DatosEMC.Repositories;
+using NegocioEMC.Commons;
 using NegocioEMC.IServices;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,7 @@ namespace NegocioEMC.Services
     {
         private readonly IUsuarioRepository usuarioRepository;
         private readonly IMapper mapper;
+
         public UsuarioService(IUsuarioRepository _usuarioRepository, IMapper _mapper)
         {
             this.usuarioRepository = _usuarioRepository;
@@ -24,17 +26,12 @@ namespace NegocioEMC.Services
 
         public async Task<UsuarioDTO> GetUserDataAsync(int idEmpresa, string userMail, string password)
         {
+            password = EngineTool.DecodeBase64(password);
+
             var usuario = new Usuario();
             usuario = await this.usuarioRepository.GetUserDataAsync(idEmpresa, userMail, password);
-
             var userData = mapper.Map<Usuario, UsuarioDTO>(usuario);
 
-        /*    var userData = new UsuarioDTO()
-            {
-                Id= usuario.Id,
-                Username = usuario.Username,
-                Email = usuario.Email
-            };*/
             return userData;
         }
     }

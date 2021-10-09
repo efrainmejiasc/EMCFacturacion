@@ -45,11 +45,20 @@ namespace FacturacionEMCApi
             });
             IMapper mapper = mapperConfig.CreateMapper();
             services.AddSingleton(mapper);
+#if DEBUG
 
             services.AddDbContext<MyAppContext>(op => op.UseSqlServer(Configuration.GetConnectionString("DefaultConnectionLocal"),
                                                        b => b.MigrationsAssembly("DatosEMC")));
+#else
+            services.AddDbContext<MyAppContext>(op => op.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
+                                                      b => b.MigrationsAssembly("DatosEMC")));
+#endif
+
             services.AddScoped<IUsuarioService, UsuarioService>();
             services.AddScoped<IUsuarioRepository,UsuarioRepository>();
+
+            services.AddScoped<IEmpresaService, EmpresaService>();
+            services.AddScoped<IEmpresaRepository, EmpresaRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -38,8 +38,10 @@ namespace FacturacionEMCSite
         {
 #if DEBUG
             services.AddDbContext<MyAppContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnectionLocal")));
+            EngineData.ConnectionDb = Configuration.GetValue<string>("ConnectionStrings:DefaultConnectionLocal");
 #else
             services.AddDbContext<MyAppContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            EngineData.ConnectionDb = Configuration.GetValue<string>("ConnectionStrings:DefaultConnection");
 #endif
 
             //**************************************************************************
@@ -57,10 +59,7 @@ namespace FacturacionEMCSite
             services.AddMvc();
             //*****************************************************************************
 
-            services.AddScoped<MyAppContext, MyAppContext>();
             services.AddScoped<ClientEMCApi, ClientEMCApi>();
-            services.AddScoped<IUsuarioRepository, UsuarioRepository>();
-            services.AddScoped<IUsuarioService, UsuarioService>();
 
             var mapperConfig = new MapperConfiguration(mc =>
             {
@@ -69,11 +68,6 @@ namespace FacturacionEMCSite
             IMapper mapper = mapperConfig.CreateMapper();
             services.AddSingleton(mapper);
 
-#if DEBUG         
-            EngineData.ConnectionDb = Configuration.GetValue<string>("ConnectionStrings:DefaultConnectionLocal");
-#else
-           EngineData.ConnectionDb = Configuration.GetValue<string>("ConnectionStrings:DefaultConnection");
-#endif
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

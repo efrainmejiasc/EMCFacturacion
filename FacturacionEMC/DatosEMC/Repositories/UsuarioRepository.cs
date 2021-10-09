@@ -21,7 +21,8 @@ namespace DatosEMC.Repositories
         {
             return await db.Usuario.Where(x => x.IdEmpresa == idEmpresa 
                                     && x.Username == userMail || x.Email == userMail
-                                    && x.Password == password || x.Password2 == password).FirstOrDefaultAsync();
+                                    && x.Password == password || x.Password2 == password 
+                                    && x.Activo == true).FirstOrDefaultAsync();
         }
     }
 }

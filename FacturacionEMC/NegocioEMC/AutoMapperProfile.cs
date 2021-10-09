@@ -14,6 +14,7 @@ namespace NegocioEMC
         public AutoMapperProfile()
         {
             CreateMap<UsuarioDTO, Usuario>().ReverseMap();
+            CreateMap<EmpresaDTO, Empresa>().ReverseMap();
         }
     }
 }
