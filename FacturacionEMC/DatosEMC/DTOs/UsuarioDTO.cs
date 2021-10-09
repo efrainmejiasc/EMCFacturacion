@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace DatosEMC.DTOs
 {
-    class UsuarioDTO
+    public class UsuarioDTO
     {
+        public int Id { get; set;}
+        public string Username { get; set; }
+        public string Email { get; set; }
+        public int IdRol { get; set; }
     }
 }

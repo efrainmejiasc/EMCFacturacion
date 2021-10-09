@@ -1,5 +1,9 @@
+using AutoMapper;
 using DatosEMC.Clases;
 using DatosEMC.DataModels;
+using DatosEMC.IRepositories;
+using DatosEMC.Repositories;
+using EMCApi.Client;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -8,6 +12,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using NegocioEMC;
+using NegocioEMC.IServices;
+using NegocioEMC.Services;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -50,7 +57,17 @@ namespace FacturacionEMCSite
             services.AddMvc();
             //*****************************************************************************
 
-            services.AddTransient<MyAppContext, MyAppContext>();
+            services.AddScoped<MyAppContext, MyAppContext>();
+            services.AddScoped<ClientEMCApi, ClientEMCApi>();
+            services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+            services.AddScoped<IUsuarioService, UsuarioService>();
+
+            var mapperConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new AutoMapperProfile());
+            });
+            IMapper mapper = mapperConfig.CreateMapper();
+            services.AddSingleton(mapper);
 
 #if DEBUG         
             EngineData.ConnectionDb = Configuration.GetValue<string>("ConnectionStrings:DefaultConnectionLocal");

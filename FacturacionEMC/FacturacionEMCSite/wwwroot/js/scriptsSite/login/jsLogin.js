@@ -1,6 +1,6 @@
 ﻿$(document).ready(function () {
     console.log("ready!");
-
+    Login();
     toastr.warning("PRUEBA TOASTR");
     //toastr.success("Reinicio de politicas exitoso");
     //toastr.error("Error al reiniciar politicas");
@@ -12,15 +12,15 @@ function Login() {
     var userMail = $('#userMail').val();
     var password = $('#password').val();
 
-    if (empresa === '' || userMail === '' || password === '') {
+    /*if (empresa === '' || userMail === '' || password === '') {
         toastr.warning("Todos los campos son nesesarios");
         return false;
-    }
+    }*/
 
     $.ajax({
         type: "POST",
         url: urlLogin,
-        data: { empresa: empresa, userMail: userMail, password: password},
+        data: { empresa: 1, userMail: 'asdas', password: 'dasdasd'},
         datatype: "json",
         success: function (data) {
             if (data.Descripcion === 'OK')
