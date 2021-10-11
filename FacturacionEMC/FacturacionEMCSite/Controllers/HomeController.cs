@@ -57,6 +57,7 @@ namespace FacturacionEMCSite.Controllers
                 user.Username = claims.GetUsuario();
                 user.IdRol = Convert.ToInt32(claims.GetRoles().FirstOrDefault());
                 user.Email = claims.GetEmail();
+                user.Token = accessToken.Token;
 
                 httpContext.HttpContext.Session.SetString("UserLogin", JsonConvert.SerializeObject(user));
                 respuesta.Estatus = true;

@@ -47,6 +47,8 @@ namespace FacturacionEMCApi
             services.AddDbContext<MyAppContext>(op => op.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
                                                       b => b.MigrationsAssembly("DatosEMC")));
 #endif
+            services.AddDbContext<MyAppContext>();
+
             // Asigna la configuracion de la seguridad del JWT
             var jwtSection = Configuration.GetSection("JwtBearerTokenSettings");
             services.Configure<JwtBearerTokenSettings>(jwtSection);
@@ -84,6 +86,7 @@ namespace FacturacionEMCApi
             IMapper mapper = mapperConfig.CreateMapper();
             services.AddSingleton(mapper);
 
+            services.AddScoped<MyAppContext, MyAppContext>();
             services.AddScoped<IUsuarioService, UsuarioService>();
             services.AddScoped<IUsuarioRepository,UsuarioRepository>();
 

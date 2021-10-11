@@ -26,8 +26,6 @@ namespace NegocioEMC.Services
 
         public async Task<UsuarioDTO> GetUserDataAsync(int idEmpresa, string userMail, string password)
         {
-            password = EngineTool.DecodeBase64(password);
-
             var usuario = new Usuario();
             usuario = await this.usuarioRepository.GetUserDataAsync(idEmpresa, userMail, password);
             var userData = mapper.Map<Usuario, UsuarioDTO>(usuario);

@@ -12,10 +12,9 @@ function Login() {
     var userMail = $('#userMail').val();
     var password = $('#password').val();
     var confirmar = $('#confirmar').val();
-
     console.log(empresa);
 
-    if (empresa === '' || userMail === '' || password === '' && confirmar != 'on') {
+    if (empresa === null || userMail === '' || password === '' && confirmar != 'on') {
         toastr.warning("Todos los campos son nesesarios");
         return false;
     }
@@ -26,9 +25,8 @@ function Login() {
         data: { idEmpresa: empresa, userMail: userMail, password: password},
         datatype: "json",
         success: function (data) {
-            console.log(data);
             if (data.estatus)
-                toastr.success("Loging");
+                window.location.href=urlRedirect
             else
                 toastr.warning("Usuario no autorizado / datos incorrectos");
         }

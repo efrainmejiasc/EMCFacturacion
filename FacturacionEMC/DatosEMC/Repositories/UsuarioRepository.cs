@@ -19,10 +19,9 @@ namespace DatosEMC.Repositories
 
         public async Task<Usuario> GetUserDataAsync (int idEmpresa, string userMail, string password)
         {
-            return await db.Usuario.Where(x => x.IdEmpresa == idEmpresa 
-                                    && x.Username == userMail || x.Email == userMail
-                                    && x.Password == password || x.Password2 == password 
-                                    && x.Activo == true).FirstOrDefaultAsync();
+            return await db.Usuario.Where(x => (x.Password == password || x.Password2 == password ) && (x.Email  == userMail || x.Username == userMail)
+                                            && x.IdEmpresa == idEmpresa && x.Activo == true).FirstOrDefaultAsync();
         }
+
     }
 }

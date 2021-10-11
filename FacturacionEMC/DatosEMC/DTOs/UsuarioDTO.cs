@@ -13,5 +13,6 @@ namespace DatosEMC.DTOs
         public string Email { get; set; }
         public int IdRol { get; set; }
         public int IdEmpresa { get; set; }
+        public string Token { get; set; }
     }
 }

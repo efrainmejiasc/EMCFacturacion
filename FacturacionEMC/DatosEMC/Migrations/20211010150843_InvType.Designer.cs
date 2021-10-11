@@ -4,14 +4,16 @@ using DatosEMC.DataModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DatosEMC.Migrations
 {
     [DbContext(typeof(MyAppContext))]
-    partial class MyAppContextModelSnapshot : ModelSnapshot
+    [Migration("20211010150843_InvType")]
+    partial class InvType
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -295,21 +297,6 @@ namespace DatosEMC.Migrations
                     b.HasKey("Rol");
 
                     b.ToTable("Roles");
-                });
-
-            modelBuilder.Entity("DatosEMC.DataModels.TipoInventario", b =>
-                {
-                    b.Property<string>("Inventario")
-                        .HasColumnType("VARCHAR(50)");
-
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INT")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.HasKey("Inventario");
-
-                    b.ToTable("TipoInventario");
                 });
 
             modelBuilder.Entity("DatosEMC.DataModels.Usuario", b =>

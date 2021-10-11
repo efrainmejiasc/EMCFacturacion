@@ -47,22 +47,14 @@ namespace FacturacionEMCSite.SecurityToken
             dynamic payload = this.DecodePayload(accessToken);
 
             var jwtIdentity = new ClaimsIdentity();
-            try
-            {
-                jwtIdentity = new ClaimsIdentity(new JwtIdentity(true, payload.unique_name.ToObject(typeof(string)), "ApplicationCookie"));
+            jwtIdentity = new ClaimsIdentity(new JwtIdentity(true, payload.unique_name.ToObject(typeof(string)), "ApplicationCookie"));
 
-                //add user id
-                jwtIdentity.AddClaim(new Claim(ClaimTypes.NameIdentifier, payload.nameid.ToObject(typeof(string))));
-                jwtIdentity.AddClaim(new Claim(ClaimTypes.Name, payload.unique_name.ToObject(typeof(string))));
-                jwtIdentity.AddClaim(new Claim(ClaimTypes.Role, payload.role.ToObject(typeof(string))));
-                jwtIdentity.AddClaim(new Claim(ClaimTypes.Email, payload.email.ToObject(typeof(string))));
-                jwtIdentity.AddClaim(new Claim("access_token", accessToken.Replace("\"", string.Empty)));
-            }
-            catch (Exception ex)
-            {
-                var exc = ex.ToString();
-            }
-         
+            //add user id
+            jwtIdentity.AddClaim(new Claim(ClaimTypes.NameIdentifier, payload.nameid.ToObject(typeof(string))));
+            jwtIdentity.AddClaim(new Claim(ClaimTypes.Name, payload.unique_name.ToObject(typeof(string))));
+            jwtIdentity.AddClaim(new Claim(ClaimTypes.Role, payload.role.ToObject(typeof(string))));
+            jwtIdentity.AddClaim(new Claim(ClaimTypes.Email, payload.email.ToObject(typeof(string))));
+            jwtIdentity.AddClaim(new Claim("access_token", accessToken.Replace("\"", string.Empty)));
 
             return jwtIdentity;
         }
