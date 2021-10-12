@@ -12,10 +12,9 @@ function Login() {
     var userMail = $('#userMail').val();
     var password = $('#password').val();
     var confirmar = $('#confirmar').val();
-    console.log(empresa);
 
     if (empresa === null || userMail === '' || password === '' && confirmar != 'on') {
-        toastr.warning("Todos los campos son nesesarios");
+        toastr.warning("All fields are required");
         return false;
     }
 
@@ -28,7 +27,7 @@ function Login() {
             if (data.estatus)
                 window.location.href=urlRedirect
             else
-                toastr.warning("Usuario no autorizado / datos incorrectos");
+                toastr.warning("Unauthorized user / incorrect data");
         }
     });
     return false;
@@ -42,7 +41,7 @@ function GetEmpresas() {
         datatype: "json",
         success: function (data) {
             $('#empresa').empty();
-            $('#empresa').append('<option value="-1" disabled selected>Seleccione empresa...</option>');
+            $('#empresa').append('<option value="-1" disabled selected>Select company...</option>');
             $.each(data, function (index, item) {
                 $('#empresa').append("<option value=\"" + item.id + "\">" + item.nombreEmpresa + "</option>");
             });
