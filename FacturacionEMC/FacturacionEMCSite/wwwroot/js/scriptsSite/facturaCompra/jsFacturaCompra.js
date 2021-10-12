@@ -1,4 +1,5 @@
-﻿$(document).ready(function () {
+﻿
+$(document).ready(function () {
     console.log("ready!");
     $('#subtotal').val('0.00');
     $('#pDescuento').val('0.00');
@@ -22,14 +23,14 @@ function AddLinea()
     var precio = $('#precio').val();
     var subTotalLinea = $('#subTotalLinea').val();
 
-    let ln = `<tr id=r${numero}>
+    let ln = `<tr id='r${numero}' >
                   <td style="display:none;"> ${numero} </td>
-                  <td> ${articulo} </td>
-                  <td> ${unidad} </td>
-                  <td> ${descripcion} </td>
-                  <td> ${cantidad} </td>
-                  <td> ${precio} </td>
-                  <td> ${subTotalLinea} </td>
+                  <td id='r${numero}1' > ${articulo} </td>
+                  <td id='r${numero}2' > ${descripcion} </td>
+                  <td id='r${numero}3' > ${cantidad} </td>
+                  <td id='r${numero}4' > ${unidad} </td>
+                  <td id='r${numero}5' > ${precio} </td>
+                  <td id='r${numero}6' > ${subTotalLinea} </td>
                   <td><a href="javascript:void(0)" class="btn btn-sm btn-danger" onclick="RemoveLinea(${numero})"><small><i class="mdi mdi-delete-forever"></i></small></a></td>
                   </tr>`;
 
@@ -37,6 +38,12 @@ function AddLinea()
     AddLineaArray('r' + numero);
     numero = numero + 1;
     $('#numeroLinea_').val(numero);
+
+    $('#articulo').val('')
+    $('#descripcion').val('')
+    $('#cantidad').val('0');
+    $('#precio').val('0.00');
+    $('#subTotalLinea').val('0.00')
 }
 
 function RemoveLinea(row) {
@@ -50,7 +57,6 @@ function RemoveLinea(row) {
 function AddLineaArray(id) {
     if (!lineasArray.includes(id)) {
         lineasArray.push(id);
-        console.log(lineasArray);
     }
     else {
         return false;
@@ -60,51 +66,96 @@ function AddLineaArray(id) {
 function RemoveLineaArray(id) {
 
     lineasArray.splice(lineasArray.indexOf(id), 1);
-    console.log(lineasArray);
 }
 
-function Guardar() {
-   /* console.log(lineasArray);
-    for (var i = 0; i < lineasArray.length; ++i) {
-        console.log(lineasArray[i]);
-    }
-
-    var html_table_data = "";
-    var bRowStarted = true;
-    $('#tablaLineas tbody > tr').each(function () {
-        $('td', this).each(function () {
-            if (html_table_data.length == 0 || bRowStarted == true) {
-                html_table_data += $(this).text();
-                bRowStarted = false;
-            }
-            else
-                html_table_data += " | " + $(this).text();
-        });
-        html_table_data += "\n";
-        bRowStarted = true;
-    });
-
-    alert(html_table_data);*/
 
 
-    var tabla = document.getElementById('tablaLineas');
-    var filas = tabla.rows.length;
+function SubtotalLinea() {
+    var cantidad = $('#cantidad').val();
+    var precio = $('#precio').val();
+
+    var subtotal = cantidad * precio;
+    $('#subTotalLinea').val(subtotal);
+}
+
+
+function SetTotalesTabla() {
+
     var linea = 0;
     var articulo = '';
     var descripcion = '';
+    var cantidad = 0;
     var unidad = '';
-    var descripcion = '';
+    var precio = 0;
+    var subtotal = 0;
 
-    for (var i = 0; i < filas; i++)
-    {
-        tr = tabla.rows[i];
+    //devulve las filas del body de tu tabla segun el ejemplo que brindaste
+    var nfilas = $("#tablaLinease").find("tr");
+    //Recorre las filas 1 a 1
+    for (i = 0; i <= nfilas.length; i++) {
+        //devolverá las celdas de una fila
+        var celdas = $(nfilas[i]).find("td");
         linea = i + 1;
-        articulo = tr.cells[1].innerHTML;
-        unidad = tr.cells[2].innerHTML;
-        descripcion = tr.cells[3].innerHTML;
+        articulo = $(celdas[1]).text();
+        descripcion = $(celdas[2]).text();
+        cantidad = $(celdas[3]).text();
+        unidad = $(celdas[4]).text();
+        precio = $(celdas[5]).text();
+        subTotal = $(celdas[6]).text();
 
-        console.log(linea + ' ' + articulo + ' ' + unidad + ' ' + descripcion);
-    }    
+        console.log(linea + ' ' + articulo + ' ' + descripcion + ' ' + cantidad + ' ' + unidad + ' ' + precio + ' ' +  subtotal);
+    }
+
+}
+
+
+
+function Guardar() {
+    /*let items = []
+    //let itemObj = {}
+    $('td').each(function () {
+        if ($(this).attr('id')) {
+            items.push($(this).text());
+
+            //Alternativamente con creando un Objeto
+            //itemObj[$(this).attr('id')] = $(this).text();
+        }
+    });
+    console.log(items);
+    //console.log(itemObj);
+
+
+    const porFila = [];
+    while (items.length)
+        porFila.push(items.splice(0, 6));
+
+    console.log(porFila);*/
+
+    var linea = 0;
+    var articulo = '';
+    var descripcion = '';
+    var cantidad = 0;
+    var unidad = '';
+    var precio = 0;
+    var subtotal = 0;
+
+    //devulve las filas del body de tu tabla segun el ejemplo que brindaste
+    var nfilas = $("#tablaLineas").find("tr");
+    console.log(nfilas);
+    //Recorre las filas 1 a 1
+    for (var i = 1; i < nfilas.length ; i++) {
+        //devolverá las celdas de una fila
+        var celdas = $(nfilas[i]).find("td");
+        linea = i ;
+        articulo = $(celdas[1]).text();
+        descripcion = $(celdas[2]).text();
+        cantidad = $(celdas[3]).text();
+        unidad = $(celdas[4]).text();
+        precio = $(celdas[5]).text();
+        subtotal = $(celdas[6]).text();
+
+        console.log(linea + ' -' + articulo + ' -' + descripcion + ' -' + cantidad + '- ' + unidad + '- ' + precio + '- ' + subtotal);
+    }
 }
 
 

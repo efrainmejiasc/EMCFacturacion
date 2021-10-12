@@ -13,6 +13,7 @@
     <div class="card-body">
         <div class="form-horizontal" style="color:dimgray">
             <h1 style="color:dimgray"> Add Vendor Invoice</h1><hr />
+
             <div class="form-group row">
                 <div class="col-md-3 text-md-right">
                     <label class="control-label">Supplier</label>
@@ -26,114 +27,119 @@
                 <div class="col-md-8">
                     <input type="text" id="nFactura" name="nFactura" class="form form-control" />
                 </div>
+             </div>
+
+            </div>
+            <div>
+                <h3 style="color:dimgray">Add Detail </h3>
+                <div class="form-group row">
+                    <div class="col-md-3 text-md-right">
+                        <label class="control-label">Article</label>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="text" id="articulo" name="articulo" class="form form-control" />
+                    </div>
+                    <div class="col-md-3 text-md-right">
+                        <label class="control-label">Unit</label>
+                    </div>
+                    <div class="col-md-8">
+                        <select id="unidad" name="unidad" class="form-control form-control-sm" onchange="" required>
+                            <option value="UNIT">Unit</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3 text-md-right">
+                        <label class="control-label">Description</label>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="text" id="descripcion" name="descripcion" class="form form-control" />
+                    </div>
+                    <div class="col-md-3 text-md-right">
+                        <label class="control-label">Amount</label>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="number" id="cantidad" name="cantidad" class="form form-control" min="0" />
+                    </div>
+                    <div class="col-md-3 text-md-right">
+                        <label class="control-label">Price</label>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="number" id="precio" name="precio" class="form form-control" min="0"  onblur="SubtotalLinea();"/>
+                    </div>
+                    <div class="col-md-3 text-md-right">
+                        <label class="control-label">SubTotal</label>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="number" id="subTotalLinea" name="subTotalLinea" class="form form-control" min="0" disabled/>
+                    </div>
+                    <br /><br />
+                    <div class="col-md-12 text-md-right">
+                        <input type="button" value="Add Line" class="btn btn-success" onclick="AddLinea();" style="width:150px" />
+                    </div>
+                </div>
+            </div>
+
+            <hr />
+            <div class="form-horizontal" style="color:dimgray">
+                <h3 style="color:dimgray">Invoice Detail </h3>
+                <table id="tablaLineas" class="display compact dt-center table table-striped table-light" style="width:100%">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th style="display:none;">Nº</th>
+                            <th>Article</th>
+                            <th>Description</th>
+                            <th>Amount</th>
+                            <th>Unit</th>
+                            <th>Price</th>
+                            <th>Subtotal</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+                <div>
+                    <div class="form-group row text-center">
+                        <div class="col-md-6 text-md-left">
+                            <input type="button" value="Save" class="btn btn-primary form-control" onclick="Guardar();" style="width:200px;" />
+                        </div>
+                        <div class="col-md-6 text-md-right">
+                            <input type="reset" value="Cancel" class="btn btn-danger form-control" onclick="Reset()" style="width:200px;" />
+                        </div>
+                    </div>
+                    <hr />
+                </div>
+            </div>
+
+            <div class="form-group row">
                 <div class="col-md-3 text-md-right">
                     <label class="control-label">SubTotal</label>
                 </div>
                 <div class="col-md-8">
-                    <input type="number" id="subtotal" name="subtotal" class="form form-control" min="0"/>
+                    <input type="number" id="subtotal" name="subtotal" class="form form-control" min="0" />
                 </div>
                 <div class="col-md-3 text-md-right">
                     <label class="control-label">% Discount</label>
                 </div>
                 <div class="col-md-8">
-                    <input type="number" id="pDescuento" name="pDescuento" class="form form-control" min="0"/>
+                    <input type="number" id="pDescuento" name="pDescuento" class="form form-control" min="0" />
                 </div>
                 <div class="col-md-3 text-md-right">
                     <label class="control-label">% Tax</label>
                 </div>
                 <div class="col-md-8">
-                    <input type="number" id="pImpuesto" name="pImpuesto" class="form form-control" min="0"/>
+                    <input type="number" id="pImpuesto" name="pImpuesto" class="form form-control" min="0" />
                 </div>
                 <div class="col-md-3 text-md-right">
                     <label class="control-label">Total</label>
                 </div>
                 <div class="col-md-8">
-                    <input type="number" id="total" name="total" class="form form-control" min="0"/>
+                    <input type="number" id="total" name="total" class="form form-control" min="0" />
                 </div>
             </div>
-        </div class="form-horizontal" style="color:dimgray">
-        <div>
-            <h3 style="color:dimgray">Add Detail </h3>
-            <div class="form-group row">
-                <div class="col-md-3 text-md-right">
-                    <label class="control-label">Article</label>
-                </div>
-                <div class="col-md-8">
-                    <input type="text" id="articulo" name="articulo" class="form form-control" />
-                </div>
-                <div class="col-md-3 text-md-right">
-                    <label class="control-label">Unit</label>
-                </div>
-                <div class="col-md-8">
-                    <select id="unidad" name="unidad" class="form-control form-control-sm" onchange="" required>
-                        <option value="UNIT">Unit</option>
-                    </select>
-                </div>
-                <div class="col-md-3 text-md-right">
-                    <label class="control-label">Description</label>
-                </div>
-                <div class="col-md-8">
-                    <input type="text" id="descripcion" name="descripcion" class="form form-control" />
-                </div>
-                <div class="col-md-3 text-md-right">
-                    <label class="control-label">Amount</label>
-                </div>
-                <div class="col-md-8">
-                    <input type="number" id="cantidad" name="cantidad" class="form form-control" min="0"/>
-                </div>
-                <div class="col-md-3 text-md-right">
-                    <label class="control-label">Price</label>
-                </div>
-                <div class="col-md-8">
-                    <input type="number" id="precio" name="precio" class="form form-control" min="0"/>
-                </div>
-                <div class="col-md-3 text-md-right">
-                    <label class="control-label">SubTotal</label>
-                </div>
-                <div class="col-md-8">
-                    <input type="number" id="subTotalLinea" name="subTotalLinea" class="form form-control" min="0"/>
-                </div>
-                <br /><br />
-                <div class="col-md-12 text-md-right">
-                    <input type="button" value="Add Line" class="btn btn-success" onclick="AddLinea();" style="width:150px" />
-                </div>
-            </div>
-        </div>
 
-        <hr />
-        <div class="form-horizontal" style="color:dimgray">
-            <h3 style="color:dimgray">Invoice Detail </h3>
-            <table id="tablaLineas" class="display compact dt-center table table-striped table-light" style="width:100%">
-                <thead class="thead-dark">
-                    <tr>
-                        <th style="display:none;">Nº</th>
-                        <th>Article</th>
-                        <th>Unit</th>
-                        <th>Description</th>
-                        <th>Amount</th>
-                        <th>Price</th>
-                        <th>Subtotal</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                    </tr>
-                </tbody>
-            </table>
-            <div>
-                <div class="form-group row text-center">
-                    <div class="col-md-6 text-md-left">
-                        <input type="button" value="Save" class="btn btn-primary form-control" onclick="Guardar();" style="width:400px;" />
-                    </div>
-                    <div class="col-md-6 text-md-right">
-                        <input type="reset" value="Cancel" class="btn btn-danger form-control" onclick="Reset()" style="width:400px;" />
-                    </div>
-                </div>
-            </div>
         </div>
-    </div>
-    </div>
+ </div>
 
     <input type="hidden" id="numeroLinea_" />
 
