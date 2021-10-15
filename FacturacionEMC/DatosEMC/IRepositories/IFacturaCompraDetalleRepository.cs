@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace DatosEMC.IRepositories
 {
-    public interface IFacturaCompraRepository
+    public interface IFacturaCompraDetalleRepository
     {
-        FacturaCompra AddFacturaCompra(FacturaCompra factura);
+        List<FacturaCompraDetalle> AddFacturaCompraDetalle(List<FacturaCompraDetalle> facturaDetalle);
     }
 }

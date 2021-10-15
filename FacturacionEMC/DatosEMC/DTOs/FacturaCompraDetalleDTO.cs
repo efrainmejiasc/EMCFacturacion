@@ -6,16 +6,17 @@ using System.Threading.Tasks;
 
 namespace DatosEMC.DTOs
 {
-    public class FacturaDTO
+    public class FacturaCompraDetalleDTO
     {
+        public int Id { get; set; }
         public string NumeroFactura { get; set; }
-
-        public int IdEmpresa { get; set; }
-
-        public string NombreProveedor { get; set; }
-
-        public int IdProveedor { get; set; }
-
+        public int Linea { get; set; }
+        public int IdArticulo { get; set; }
+        public string NombreArticulo { get; set; }
+        public string Descripcion { get; set; }
+        public int Cantidad { get; set; }
+        public string Unidad { get; set; }
+        public decimal PrecioUnitario { get; set; }
         public decimal Subtotal { get; set; }
 
         public decimal PorcentajeImpuesto { get; set; }
@@ -25,6 +26,7 @@ namespace DatosEMC.DTOs
         public decimal PorcentajeDescuento { get; set; }
 
         public decimal Descuento { get; set; }
+
         public decimal Total { get; set; }
 
         public DateTime Fecha { get; set; }
@@ -34,5 +36,7 @@ namespace DatosEMC.DTOs
         public int IdUsuario { get; set; }
 
         public bool Activo { get; set; }
+
+
     }
 }

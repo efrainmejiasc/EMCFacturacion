@@ -8,8 +8,8 @@
 
 }
 <script>
-    var urlGuardarFactura = '@Url.Action("GuardarFactura","FacturaCompra")';
-    var urlGuardarFacturaDetalle = '@Url.Action("GuardarFacturaDetalle","FacturaCompra")';
+    var urlGuardarFactura = '@Url.Action("GuardarFacturaAsync", "FacturaCompra")';
+    var urlGuardarFacturaDetalle = '@Url.Action("GuardarFacturaDetalleAsync", "FacturaCompra")';
     var urlGetProveedores = '@Url.Action("GetProveedores","Proveedor")';
 </script>
 
@@ -48,7 +48,10 @@
                 </div>
                 <div class="col-md-8">
                     <select id="unidad" name="unidad" class="form-control form-control-sm" onchange="" required>
-                        <option value="UNIT">Unit</option>
+                        <option value="Unit">Unit</option>
+                        <option value="Gallon">Gallon</option>
+                        <option value="Foot">Foot</option>
+                        <option value="Pound">Pound</option>
                     </select>
                 </div>
                 <div class="col-md-3 text-md-right">

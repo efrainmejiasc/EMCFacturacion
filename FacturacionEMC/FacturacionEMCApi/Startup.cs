@@ -75,7 +75,7 @@ namespace FacturacionEMCApi
             //AGREGAR SWAGGER
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "FacturacionEMCApi", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Api Facturacion EMC", Version = "v1" });
             });
 
             // AGREGAR MAPEO ENTRE CLASES
@@ -97,8 +97,11 @@ namespace FacturacionEMCApi
             services.AddScoped<IProveedorService, ProveedorService>();
             services.AddScoped<IProveedorRepository, ProveedorRepository>();
 
-           // services.AddScoped<IFacturaComprarService, FacturaCompraService>();
+            services.AddScoped<IFacturaCompraService, FacturaCompraService>();
             services.AddScoped<IFacturaCompraRepository, FacturaCompraRepository>();
+
+            services.AddScoped<IFacturaCompraDetalleService, FacturaCompraDetalleService>();
+            services.AddScoped<IFacturaCompraDetalleRepository, FacturaCompraDetalleRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
