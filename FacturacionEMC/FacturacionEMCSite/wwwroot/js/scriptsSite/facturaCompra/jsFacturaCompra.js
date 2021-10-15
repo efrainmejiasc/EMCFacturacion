@@ -1,6 +1,7 @@
 ﻿
 $(document).ready(function () {
     console.log("ready!");
+    GetProveedores();
     $('#subtotal').val('0.00');
     $('#pDescuento').val('0.00');
     $('#pImpuesto').val('0.00');
@@ -10,6 +11,24 @@ $(document).ready(function () {
     $('#subTotalLinea').val('0.00')
     $('#numeroLinea_').val(0)
 });
+
+function GetProveedores() {
+
+    $.ajax({
+        type: "GET",
+        url: urlGetProveedores,
+        datatype: "json",
+        success: function (data) {
+            $('#proveedor').empty();
+            $('#proveedor').append('<option value="-1" disabled selected>Select supplier...</option>');
+            $.each(data, function (index, item) {
+                $('#proveedor').append("<option value=\"" + item.id + "\">" + item.nombreProveedor + "</option>");
+            });
+        }
+    });
+    return false;
+}
+
 
 var lineasArray = [];
 
@@ -96,7 +115,6 @@ function SetTotalesTabla() {
 
     //devulve las filas del body de tu tabla segun el ejemplo que brindaste
     var nfilas = $("#tablaLineas").find("tr");
-    console.log(nfilas);
 
     for (var i = 1; i < nfilas.length; i++) {
 
@@ -116,18 +134,20 @@ function GuardarFactura() {
 
     var idProveedor = $('#proveedor').val();
     var nFactura = $('#nFactura').val();
-    var subtotal = $('#subtotal').val();
-    var total = $('#total').val();
-    var pImpuesto = $('#pImpuesto').val();
-    var pDescuento = $('#pDescuento').val();
-    var rows = $('#tablaLineas tr').length - 1;
+    var subtotal = parseFloat($('#subtotal').val());
+    var total = parseFloat($('#total').val());
+    var pImpuesto = parseFloat($('#pImpuesto').val());
+    var pDescuento = parseFloat($('#pDescuento').val());
+
+    var rows = $('#tablaLineas tr').length -1;
+    console.log(rows);
 
     if (rows === 0) {
-        toastr.warning("The total must be greater than zero");
+        toastr.warning("You must add invoice detail");
         return false;
     }
-    else if (idProveedor === '' || nFactura === '' || subtotal === 0 || total === 0 || pDescuento == '' || pImpuesto === '') {
-        toastr.warning("The total must be greater than zero");
+    else if (idProveedor === '' || nFactura === '' || subtotal <= 0 || total <= 0 || pDescuento < 0 || pImpuesto < 0) {
+        toastr.warning("All fields are required");
         return false;
     }
 
@@ -159,25 +179,38 @@ function GuardarFacturaDetalle()
         var celdas = $(nfilas[i]).find("td");
         var x = {};
         x.Linea = parseInt(i);
+        x.NumeroFactura = $('#nFactura').val();
         x.NombreArticulo = $(celdas[1]).text();
         x.Descripcion = $(celdas[2]).text();
         x.Cantidad = parseInt($(celdas[3]).text());
         x.Unidad = $(celdas[4]).text();
-        x.Precio = parseFloat($(celdas[5]).text());
+        x.PrecioUnitario = parseFloat($(celdas[5]).text());
         x.Subtotal = parseFloat($(celdas[6]).text());
+        x.NumeroFactura = '';
+        x.IdArticulo = 0;
+        x.PorcentajeImpuesto = parseFloat($('#pImpuesto').val());
+        x.Impuesto = 0;
+        x.PorcentajeDescuento = parseFloat($('#pDescuento').val());
+        x.Descuento = 0;
+        x.Total = parseFloat($(celdas[6]).text());;
+        x.Fecha = FechaActual();
+        x.FechaModificacion = FechaActual();
+        x.IdUsuario = 0;
+        x.Activo = true;
 
         FacturaDetalleDTO.push(x);
     }
-    console.log(FacturaDetalleDTO);
+
+    console.log(JSON.stringify(FacturaDetalleDTO));
 
     $.ajax({
         type: "POST",
         url: urlGuardarFacturaDetalle,
-        data: JSON.stringify(FacturaDetalleDTO),
-        contentType: "application/json; charset=utf-8",
+        //data: { Linea: x.Linea, NombreArticulo: x.NombreArticulo, Descripcion: x.Descripcion, Cantidad: x.Cantidad, Precio: x.Precio, Subtotal: x.Subtotal, Unidad: x.Unidad },
+        data: { facturaDetalle: JSON.stringify(FacturaDetalleDTO) },
         datatype: "json",
         success: function (data) {
-            if (data.estatus) 
+            if (data.estatus)
                 toastr.success("Invoice saved successfully")
             else
                 toastr.error("Unexpected error");
@@ -185,6 +218,13 @@ function GuardarFacturaDetalle()
     });
 
     return false;
+}
+
+
+function FechaActual() {
+    var today = new Date();
+    var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+    return date;
 }
 
 

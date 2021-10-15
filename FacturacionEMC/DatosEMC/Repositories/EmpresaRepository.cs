@@ -19,7 +19,7 @@ namespace DatosEMC.Repositories
 
         public async Task<List<Empresa>> GetEmpresasAsync()
         {
-            return await db.Empresa.Where(x =>  x.Activo == true).ToListAsync();
+            return await this.db.Empresa.Where(x =>  x.Activo == true).ToListAsync();
         }
     }
 }

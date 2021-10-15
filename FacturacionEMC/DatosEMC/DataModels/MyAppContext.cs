@@ -17,6 +17,7 @@ namespace DatosEMC.DataModels
 
         public virtual DbSet<Roles> Roles { get; set; }
         public virtual DbSet<TipoInventario> TipoInventario { get; set; }
+        public virtual DbSet<Proveedor> Proveedor { get; set; }
         public virtual DbSet<Empresa> Empresa { get; set; }
         public virtual DbSet<Usuario> Usuario { get; set; }
         public virtual DbSet<FacturaCompra> FacturaCompra { get; set; }

@@ -4,14 +4,16 @@ using DatosEMC.DataModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DatosEMC.Migrations
 {
     [DbContext(typeof(MyAppContext))]
-    partial class MyAppContextModelSnapshot : ModelSnapshot
+    [Migration("20211014163753_Proveedores")]
+    partial class Proveedores
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -281,48 +283,6 @@ namespace DatosEMC.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("FacturaVentaDetalle");
-                });
-
-            modelBuilder.Entity("DatosEMC.DataModels.Proveedor", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INT")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<bool>("Activo")
-                        .HasColumnType("BIT");
-
-                    b.Property<string>("Direccion")
-                        .HasColumnType("VARCHAR(300)");
-
-                    b.Property<string>("Email")
-                        .HasColumnType("VARCHAR(50)");
-
-                    b.Property<DateTime>("Fecha")
-                        .HasColumnType("DATETIME");
-
-                    b.Property<DateTime>("FechaModificacion")
-                        .HasColumnType("DATETIME");
-
-                    b.Property<int>("IdEmpresa")
-                        .HasColumnType("INT");
-
-                    b.Property<Guid>("Identificador")
-                        .HasColumnType("UNIQUEIDENTIFIER");
-
-                    b.Property<string>("NombreProveedor")
-                        .HasColumnType("VARCHAR(50)");
-
-                    b.Property<string>("Rfc")
-                        .HasColumnType("VARCHAR(50)");
-
-                    b.Property<string>("Telefono")
-                        .HasColumnType("VARCHAR(50)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Proveedor");
                 });
 
             modelBuilder.Entity("DatosEMC.DataModels.Roles", b =>

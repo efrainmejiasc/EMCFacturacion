@@ -12,7 +12,7 @@ namespace DatosEMC.DTOs
 
         public int IdEmpresa { get; set; }
 
-        public int NombreProveedor { get; set; }
+        public string NombreProveedor { get; set; }
 
         public int IdProveedor { get; set; }
 

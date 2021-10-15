@@ -25,10 +25,10 @@ namespace DatosEMC.DataModels
         [Column(Order = 5, TypeName = "VARCHAR(50)")]
         public string Username { get; set; }
 
-        [Column(Order = 6, TypeName = "VARCHAR(50)")]
+        [Column(Order = 6, TypeName = "VARCHAR(100)")]
         public string Password { get; set; }
 
-        [Column(Order = 7, TypeName = "VARCHAR(50)")]
+        [Column(Order = 7, TypeName = "VARCHAR(100)")]
         public string Password2 { get; set; }
 
         [Key]

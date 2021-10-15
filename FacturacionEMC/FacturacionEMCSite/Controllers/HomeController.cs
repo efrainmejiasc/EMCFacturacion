@@ -47,27 +47,35 @@ namespace FacturacionEMCSite.Controllers
             var respuesta = new RespuestaModel();
 
             var accessToken = await jwtProvider.GetTokenAsync(credenciales);
-            if (accessToken != null)
+
+            try
             {
-                ClaimsIdentity claims = jwtProvider.CreateIdentity(accessToken.Token);
 
-                var user = new UsuarioDTO();
-                user.Id = claims.GetId();
-                user.IdEmpresa = idEmpresa;
-                user.Username = claims.GetUsuario();
-                user.IdRol = Convert.ToInt32(claims.GetRoles().FirstOrDefault());
-                user.Email = claims.GetEmail();
-                user.Token = accessToken.Token;
+                if (accessToken != null)
+                {
+                    ClaimsIdentity claims = jwtProvider.CreateIdentity(accessToken.Token);
 
-                httpContext.HttpContext.Session.SetString("UserLogin", JsonConvert.SerializeObject(user));
-                respuesta.Estatus = true;
+                    var user = new UsuarioDTO();
+                    user.Id = claims.GetId();
+                    user.IdEmpresa = idEmpresa;
+                    user.Username = claims.GetUsuario();
+                    user.IdRol = Convert.ToInt32(claims.GetRoles().FirstOrDefault());
+                    user.Email = claims.GetEmail();
+                    user.Token = accessToken.Token;
+
+                    httpContext.HttpContext.Session.SetString("UserLogin", JsonConvert.SerializeObject(user));
+                    respuesta.Estatus = true;
+                }
+                else
+                {
+                    respuesta.Estatus = false;
+                }
             }
-            else
+            catch
             {
                 respuesta.Estatus = false;
             }
 
-            
             return Json(respuesta);
         }
     }

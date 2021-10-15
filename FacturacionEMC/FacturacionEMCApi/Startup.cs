@@ -87,11 +87,18 @@ namespace FacturacionEMCApi
             services.AddSingleton(mapper);
 
             services.AddScoped<MyAppContext, MyAppContext>();
+
             services.AddScoped<IUsuarioService, UsuarioService>();
             services.AddScoped<IUsuarioRepository,UsuarioRepository>();
 
             services.AddScoped<IEmpresaService, EmpresaService>();
             services.AddScoped<IEmpresaRepository, EmpresaRepository>();
+
+            services.AddScoped<IProveedorService, ProveedorService>();
+            services.AddScoped<IProveedorRepository, ProveedorRepository>();
+
+           // services.AddScoped<IFacturaComprarService, FacturaCompraService>();
+            services.AddScoped<IFacturaCompraRepository, FacturaCompraRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

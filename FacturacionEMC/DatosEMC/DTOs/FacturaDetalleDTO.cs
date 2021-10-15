@@ -11,11 +11,11 @@ namespace DatosEMC.DTOs
         public string NumeroFactura { get; set; }
         public int Linea { get; set; }
         public int IdArticulo { get; set; }
-
         public string NombreArticulo { get; set; }
-
+        public string Descripcion { get; set; }
         public int Cantidad { get; set; }
-
+        public string Unidad { get; set; }
+        public decimal PrecioUnitario { get; set; }
         public decimal Subtotal { get; set; }
 
         public decimal PorcentajeImpuesto { get; set; }
@@ -36,6 +36,6 @@ namespace DatosEMC.DTOs
 
         public bool Activo { get; set; }
 
-        public string Unidad { get; set; }
+
     }
 }

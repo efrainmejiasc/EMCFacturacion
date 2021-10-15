@@ -10,6 +10,7 @@
 <script>
     var urlGuardarFactura = '@Url.Action("GuardarFactura","FacturaCompra")';
     var urlGuardarFacturaDetalle = '@Url.Action("GuardarFacturaDetalle","FacturaCompra")';
+    var urlGetProveedores = '@Url.Action("GetProveedores","Proveedor")';
 </script>
 
 <div class="card" style="margin-top:5%;">
@@ -22,7 +23,7 @@
                     <label class="control-label">Supplier</label>
                 </div>
                 <div class="col-md-8">
-                    <select id="proveedor" name="proveedor" class="form-control form-control-sm" onchange="GetProveedores()" required> </select>
+                    <select id="proveedor" name="proveedor" class="form-control form-control-sm" onchange="" required> </select>
                 </div>
                 <div class="col-md-3 text-md-right">
                     <label class="control-label">Nº Invoice</label>
@@ -132,7 +133,7 @@
         <div>
             <div class="form-group row text-center">
                 <div class="col-md-6 text-md-left">
-                    <input type="button" value="Save" class="btn btn-primary form-control" onclick="GuardarFacturaDetalle();" style="width:200px;" />
+                    <input type="button" value="Save" class="btn btn-primary form-control" onclick="GuardarFactura();" style="width:200px;" />
                 </div>
                 <div class="col-md-6 text-md-right">
                     <input type="reset" value="Cancel" class="btn btn-danger form-control" onclick="Reset()" style="width:200px;" />
