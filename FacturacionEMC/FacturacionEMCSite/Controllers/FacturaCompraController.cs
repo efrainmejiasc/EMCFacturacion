@@ -33,7 +33,7 @@ namespace FacturacionEMCSite.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> GuardarFactura(EMCApi.Client.FacturaCompraDTO factura)
+        public async Task<IActionResult> GuardarFacturaAsync(EMCApi.Client.FacturaCompraDTO factura)
         {
             var response = new RespuestaModel();
             response.Estatus = false;
@@ -59,7 +59,7 @@ namespace FacturacionEMCSite.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> GuardarFacturaDetalle(string facturaDetalle)
+        public async Task<IActionResult> GuardarFacturaDetalleAsync(string facturaDetalle)
         {
             var response = new RespuestaModel();
             response.Estatus = false;
