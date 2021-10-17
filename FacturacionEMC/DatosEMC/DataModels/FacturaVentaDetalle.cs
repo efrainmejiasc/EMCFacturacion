@@ -25,11 +25,11 @@ namespace DatosEMC.DataModels
         [Column(Order = 4, TypeName = "INT")]
         public int IdArticulo { get; set; }
 
-        [Column(Order = 5, TypeName = "VARCHAR(50)")]
+        [Column(Order = 5, TypeName = "VARCHAR(100)")]
         public string NombreArticulo { get; set; }
 
-        [Column(Order = 6, TypeName = "INT")]
-        public int Cantidad { get; set; }
+        [Column(Order = 6, TypeName = "MONEY")]
+        public decimal Cantidad { get; set; }
 
         [Column(Order = 7, TypeName = "MONEY")]
         public decimal Subtotal { get; set; }

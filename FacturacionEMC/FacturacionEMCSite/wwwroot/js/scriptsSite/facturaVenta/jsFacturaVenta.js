@@ -1,23 +1,23 @@
 ﻿
 $(document).ready(function () {
     console.log("ready!");
-    GetProveedores();
+    GetClientes();
     $('#pImpuesto').val('0.00');
     $('#pDescuento').val('0.00');
     $('#numeroLinea_').val(0)
 });
 
-function GetProveedores() {
-
+function GetClientes() {
+    console.log(urlGetClientes);
     $.ajax({
         type: "GET",
-        url: urlGetProveedores,
+        url: urlGetClientes,
         datatype: "json",
         success: function (data) {
-            $('#proveedor').empty();
-            $('#proveedor').append('<option value="-1" disabled selected>Select supplier...</option>');
+            $('#cliente').empty();
+            $('#cliente').append('<option value="-1" disabled selected>Select client...</option>');
             $.each(data, function (index, item) {
-                $('#proveedor').append("<option value=\"" + item.id + "\">" + item.nombreProveedor + "</option>");
+                $('#cliente').append("<option value=\"" + item.id + "\">" + item.nombreCliente + "</option>");
             });
         }
     });
@@ -29,9 +29,7 @@ var lineasArray = [];
 
 function AddLinea()
 {
-    var idProveedor = $('#proveedor').val();
-    var nFactura = $('#nFactura').val();
-
+    var idCliente = $('#cliente').val();
     var numero = parseInt($('#numeroLinea_').val());
     var articulo = $('#articulo').val();
     var unidad = $('#unidad').val();
@@ -40,11 +38,7 @@ function AddLinea()
     var precio = $('#precio').val();
     var subTotalLinea = $('#subTotalLinea').val();
 
-    if (idProveedor === '-1' || nFactura === '') {
-        toastr.warning("Select supplier and add invoice number");
-        return false;
-    }
-    else if (articulo === '' || descripcion === '' || subTotalLinea <= 0) {
+    if (idCliente === '-1' || articulo === '' || descripcion === '' || subTotalLinea <= 0) {
         toastr.warning("All fields are required");
         return false;
     }
@@ -136,10 +130,8 @@ function SetTotalesTabla() {
 
     
 function GuardarFactura() {
-
-    var idProveedor = $('#proveedor').val();
-    var nombreProveedor = $("#proveedor option:selected").text();
-    console.log(idProveedor);
+    var idCliente = $('#cliente').val();
+    var nombreCliente = $("#cliente option:selected").text();
     var nFactura = $('#nFactura').val();
     var subtotal = parseFloat($('#subtotal').val());
     var total = parseFloat($('#total').val());
@@ -152,7 +144,7 @@ function GuardarFactura() {
         toastr.warning("You must add invoice detail");
         return false;
     }
-    else if (idProveedor === '-1' || nFactura === '' || subtotal <= 0 || total <= 0 || pDescuento < 0 || pImpuesto < 0) {
+    else if (idCliente === '-1' || nFactura === '' || subtotal <= 0 || total <= 0 || pDescuento < 0 || pImpuesto < 0) {
         toastr.warning("All fields are required");
         return false;
     }
@@ -160,7 +152,7 @@ function GuardarFactura() {
     $.ajax({
         type: "POST",
         url: urlGuardarFactura,
-        data: { NumeroFactura: nFactura, IdProveedor: idProveedor, NombreProveedor: nombreProveedor, Subtotal: subtotal, PorcentajeDescuento: pDescuento, PorcentajeImpuesto: pImpuesto, Total: total },
+        data: { NumeroFactura: nFactura,Subtotal: subtotal, PorcentajeDescuento: pDescuento, PorcentajeImpuesto: pImpuesto, Total: total , IdCliente: idCliente, NombreCliente: nombreCliente},
         datatype: "json",
         success: function (data) {
             if (data.estatus) {
@@ -238,15 +230,13 @@ function FechaActual() {
 }
 
 
-function MostrarModalProveedor() {
-    $('#modalProveedor').show();
+function MostrarModalCliente() {
+    $('#modalCliente').show();
 }
 
-function OcultarModalProveedor() {
-    $('#modalProveedor').hide();
+function OcultarModalCliente() {
+    $('#modalCliente').hide();
 }
-
-
 
 
 

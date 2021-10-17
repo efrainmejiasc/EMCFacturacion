@@ -18,6 +18,12 @@ namespace NegocioEMC
             CreateMap<ProveedorDTO, Proveedor>().ReverseMap();
             CreateMap<FacturaCompraDTO, FacturaCompra>().ReverseMap();
             CreateMap<FacturaCompraDetalleDTO, FacturaCompraDetalle>().ReverseMap();
+            CreateMap<FacturaVentaDTO, FacturaVenta>().ReverseMap();
+            CreateMap<FacturaVentaDetalleDTO, FacturaVentaDetalle>().ReverseMap();
+            CreateMap<ClienteDTO, Cliente>().ReverseMap();
+            CreateMap<StockTotalDTO, StockTotal>().ReverseMap();
+            CreateMap<StockBodegaDTO, StockBodega>().ReverseMap();
+            CreateMap<StockTransitoDTO, StockTransito>().ReverseMap();
         }
     }
 }

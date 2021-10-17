@@ -31,6 +31,11 @@ namespace FacturacionEMCSite.Controllers
             return View();
         }
 
+        public IActionResult About()
+        {
+            return View();
+        }
+
         [HttpGet]
         public async Task<JsonResult> LoginAsync(int idEmpresa, string userMail, string password)
         {

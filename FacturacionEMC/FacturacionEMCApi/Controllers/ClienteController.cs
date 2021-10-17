@@ -13,31 +13,32 @@ namespace FacturacionEMCApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProveedorController : ControllerBase
+    public class ClienteController : ControllerBase
     {
-        IProveedorService proveedorService;
-        public ProveedorController(IProveedorService _proveedorService )
+
+        IClienteService clienteService;
+        public ClienteController(IClienteService _clienteService)
         {
-            proveedorService = _proveedorService;
+            clienteService = _clienteService;
         }
 
         /// <summary>
-        /// Crea un nuevo proveedor
+        /// Crea un nuevo Cliente
         /// </summary>
         /// <returns>Estado de la solicitud</returns>
-        [HttpPost(Name = "PostProveedor")]
+        [HttpPost(Name = "PostCliente")]
         [ProducesResponseType(statusCode: (int)HttpStatusCode.OK, Type = typeof(GenericResponse))]
         [ProducesResponseType(statusCode: (int)HttpStatusCode.BadRequest, Type = typeof(GenericResponse))]
 
-        public IActionResult PostProveedor([FromBody] ProveedorDTO proveedorDTO)
+        public IActionResult PostCliente([FromBody] ClienteDTO clienteDTO)
         {
-            proveedorDTO.Id = 0;
+            clienteDTO.Id = 0;
 
 
-            var genericResponse = this.proveedorService.AddProveedor(proveedorDTO);
+            var genericResponse = this.clienteService.AddCliente(clienteDTO);
 
             if (genericResponse.Ok)
-                return Ok(EngineService.SetGenericResponse(true, "Proveedor agregado correctamente"));
+                return Ok(EngineService.SetGenericResponse(true, "Cliente agregado correctamente"));
 
             else
                 return BadRequest(EngineService.SetGenericResponse(false, "No se encontró información"));
@@ -45,18 +46,18 @@ namespace FacturacionEMCApi.Controllers
         }
 
         /// <summary>
-        /// Obtiene los proveedores por idEmpresa
+        /// Obtiene los Clientes por idEmpresa
         /// </summary>
-        /// <returns>Lista de proveedores por idEmpresa </returns>
-        [HttpGet("id", Name = "GetProveedores")]
-        [ProducesResponseType(statusCode: (int)HttpStatusCode.OK, Type = typeof(List<ProveedorDTO>))]
+        /// <returns>Lista de Clientes por idEmpresa </returns>
+        [HttpGet("id", Name = "GetClientes")]
+        [ProducesResponseType(statusCode: (int)HttpStatusCode.OK, Type = typeof(List<ClienteDTO>))]
         [ProducesResponseType(statusCode: (int)HttpStatusCode.BadRequest, Type = typeof(GenericResponse))]
-        public IActionResult GetProveedores(int id)
+        public IActionResult GetClientes(int id)
         {
-            var proveedores =  this.proveedorService.GetProveedores(id);
+            var clientes = this.clienteService.GetClientes(id);
 
-            if (proveedores.Count > 0)
-                return Ok(proveedores);
+            if (clientes.Count > 0)
+                return Ok(clientes);
 
             else
                 return BadRequest(EngineService.SetGenericResponse(false, "No se encontró información"));

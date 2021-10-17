@@ -22,8 +22,6 @@ namespace FacturacionEMCSite.Controllers
 
             if (!string.IsNullOrEmpty(httpContext.HttpContext.Session.GetString("UserLogin")))
                 this.usuario = JsonConvert.DeserializeObject<UsuarioDTO>(httpContext.HttpContext.Session.GetString("UserLogin"));
-            else
-                RedirectToAction("Index", "Home");
         }
 
         public IActionResult Index()
@@ -34,7 +32,10 @@ namespace FacturacionEMCSite.Controllers
         [HttpGet]
         public async Task<IActionResult> GetProveedores()
         {
-            var proveedores = await this.clientApi.GetProveedoresAsync(this.usuario.IdEmpresa);
+            ICollection<ProveedorDTO> proveedores = new List<ProveedorDTO>();
+
+            if(this.usuario != null)
+               proveedores = await this.clientApi.GetProveedoresAsync(this.usuario.IdEmpresa);
 
             return Json(proveedores);
         }

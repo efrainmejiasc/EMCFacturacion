@@ -20,7 +20,7 @@ namespace DatosEMC.DataModels
         [Column(Order = 2, TypeName = "UNIQUEIDENTIFIER")]
         public Guid Identificador { get; set; }
 
-        [Column(Order = 3, TypeName = "VARCHAR(50)")]
+        [Column(Order = 3, TypeName = "VARCHAR(100)")]
         public string NombreProveedor { get; set; }
 
         [Column(Order = 4, TypeName = "VARCHAR(50)")]

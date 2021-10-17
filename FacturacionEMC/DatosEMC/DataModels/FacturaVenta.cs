@@ -23,10 +23,10 @@ namespace DatosEMC.DataModels
         public int IdEmpresa { get; set; }
 
         [Column(Order = 4, TypeName = "VARCHAR(100)")]
-        public string NombreProveedor { get; set; }
+        public string NombreCliente { get; set; }
 
         [Column(Order = 5, TypeName = "INT")]
-        public int IdProveedor { get; set; }
+        public int IdCliente { get; set; }
 
         [Column(Order = 6, TypeName = "MONEY")]
         public decimal Subtotal { get; set; }

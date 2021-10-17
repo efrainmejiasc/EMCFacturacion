@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DatosEMC.DTOs
 {
-    public class FacturaCompraDetalleDTO
+    public class FacturaVentaDetalleDTO
     {
         public int Id { get; set; }
 

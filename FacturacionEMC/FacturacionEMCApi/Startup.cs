@@ -91,6 +91,9 @@ namespace FacturacionEMCApi
             services.AddScoped<IUsuarioService, UsuarioService>();
             services.AddScoped<IUsuarioRepository,UsuarioRepository>();
 
+            services.AddScoped<IClienteService, ClienteService>();
+            services.AddScoped<IClienteRepository, ClienteRepository>();
+
             services.AddScoped<IEmpresaService, EmpresaService>();
             services.AddScoped<IEmpresaRepository, EmpresaRepository>();
 
@@ -102,6 +105,12 @@ namespace FacturacionEMCApi
 
             services.AddScoped<IFacturaCompraDetalleService, FacturaCompraDetalleService>();
             services.AddScoped<IFacturaCompraDetalleRepository, FacturaCompraDetalleRepository>();
+
+            services.AddScoped<IFacturaVentaService, FacturaVentaService>();
+            services.AddScoped<IFacturaVentaRepository, FacturaVentaRepository>();
+
+            services.AddScoped<IFacturaVentaDetalleService, FacturaVentaDetalleService>();
+            services.AddScoped<IFacturaVentaDetalleRepository, FacturaVentaDetalleRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

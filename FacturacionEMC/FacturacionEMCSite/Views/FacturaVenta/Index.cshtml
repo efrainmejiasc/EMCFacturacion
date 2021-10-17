@@ -2,40 +2,43 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/js/scriptsSite/facturaCompra/jsFacturaCompra.js"></script>
+    <script src="~/js/scriptsSite/facturaVenta/jsFacturaVenta.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <link rel="stylesheet" href="~/css/modalStyle.css" />
+    <link  rel="stylesheet" href="~/css/modalStyle.css" />
+
 }
+<!--FACTURA DE VENTAS-->
 <script>
-    var urlGuardarFactura = '@Url.Action("GuardarFactura", "FacturaCompra")';
-    var urlGuardarFacturaDetalle = '@Url.Action("GuardarFacturaDetalle", "FacturaCompra")';
-    var urlGetProveedores = '@Url.Action("GetProveedores","Proveedor")';
+    var urlGuardarFactura = '@Url.Action("GuardarFactura", "FacturaVenta")';
+    var urlGuardarFacturaDetalle = '@Url.Action("GuardarFacturaDetalle", "FacturaVenta")';
+     var urlGetClientes = '@Url.Action("GetClientes", "Cliente")';
 </script>
 
-<!--FACTURA DE COMPRAS-->
-<div class="card" style="margin-top: 5%; background-color: #ddf6fa; color: dimgray;">
+<div class="card" style="margin-top: 5%; background-color: #e6faea; color: dimgray;">
     <div class="card-body">
         <div class="form-horizontal" style="color: dimgray;">
-            <h1 style="color:dimgray"> Add Purchase Invoice</h1><hr />
+            <h1 style="color:dimgray">Add Sales Invoice</h1><hr />
 
             <div class="form-group row">
                  <div class="col-md-3 text-md-right">
                     <label class="control-label">Nº Invoice</label>
                 </div>
                 <div class="col-md-8">
-                    <input type="text" id="nFactura" name="nFactura" class="form form-control" style="text-transform:uppercase" />
+                    <input type="text" id="nFactura" name="nFactura" class="form form-control" required />
                 </div>
                 <div class="col-md-3 text-md-right">
-                    <label class="control-label">Supplier</label>
+                    <label class="control-label">Client</label>
                 </div>
                 <div class="col-md-8">
-                    <select id="proveedor" name="proveedor" class="form-control form-control-sm" onchange="" required> </select>
+                    <select id="cliente" name="cliente" class="form-control form-control-sm" onchange="" required>
+                    </select>
                 </div><br /><br/>
                <div class="col-md-12 text-md-right">
-                    <input type="button" value="Add Supplier" class="btn btn-success" onclick="MostrarModalProveedor();" style="width:150px" />
+                    <input type="button" value="Add Client" class="btn btn-success" onclick="MostrarModalCliente();" style="width:150px" />
                 </div>
             </div>
+
         </div>
         <div>
             <h3 style="color:dimgray">Add Detail </h3>
@@ -67,7 +70,7 @@
                     <label class="control-label">Amount</label>
                 </div>
                 <div class="col-md-8">
-                    <input type="number" id="cantidad" name="cantidad" class="form form-control" min="0" placeholder="0" />
+                    <input type="number" id="cantidad" name="cantidad" class="form form-control" step="1" min="0" placeholder="0" />
                 </div>
                 <div class="col-md-3 text-md-right">
                     <label class="control-label">Price</label>
@@ -148,13 +151,12 @@
             <hr />
         </div>
 
-
         <div class="container" style="color:dimgray;">
-            <div class="modalTipo" id="modalProveedor">
+            <div class="modalTipo" id="modalCliente">
                 <div class="modal-content2">
                     <div class="row">
                         <div class="col-md-12">
-                            <h3> Add New Supplier</h3>
+                            <h3> Add New Client</h3>
                             <div class="form-group row">
                                 <label class="form form-label">Name / Social Reason </label>
                                 <input type="text" id="nombre" class="form-control text-box single-line" />
@@ -168,8 +170,8 @@
                                 <input type="text" id="telefono" class="form-control text-box single-line" />
                             </div>
                             <div class="col-md-12">
-                                <input type="submit" value="Accept" class="btn btn-primary" style="float:left;" onclick="AgregarProveedor();" />
-                                <input type="submit" value="Cancel" class="btn btn-danger" style="float:right;" onclick="OcultarModalProveedor();" />
+                                <input type="submit" value="Accept" class="btn btn-primary" style="float:left;" onclick="AgregarCliente();" />
+                                <input type="submit" value="Cancel" class="btn btn-danger" style="float:right;" onclick="OcultarModalCliente();" />
                             </div>
                         </div>
                     </div>
@@ -181,10 +183,3 @@
 </div>
 
 <input type="hidden" id="numeroLinea_" />
-
-
-
-@*@{
-        Html.RenderAction("_Facturas", new { idUsuario = ViewContext.ViewBag.IdUsuario });
-    }*@
-

@@ -4,62 +4,22 @@ using DatosEMC.DataModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DatosEMC.Migrations
 {
     [DbContext(typeof(MyAppContext))]
-    partial class MyAppContextModelSnapshot : ModelSnapshot
+    [Migration("20211016102048_cliente")]
+    partial class cliente
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.10")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("DatosEMC.DataModels.Cliente", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INT")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<bool>("Activo")
-                        .HasColumnType("BIT");
-
-                    b.Property<string>("Direccion")
-                        .HasColumnType("VARCHAR(300)");
-
-                    b.Property<string>("Email")
-                        .HasColumnType("VARCHAR(50)");
-
-                    b.Property<DateTime>("Fecha")
-                        .HasColumnType("DATETIME");
-
-                    b.Property<DateTime>("FechaModificacion")
-                        .HasColumnType("DATETIME");
-
-                    b.Property<int>("IdEmpresa")
-                        .HasColumnType("INT");
-
-                    b.Property<Guid>("Identificador")
-                        .HasColumnType("UNIQUEIDENTIFIER");
-
-                    b.Property<string>("NombreCliente")
-                        .HasColumnType("VARCHAR(100)");
-
-                    b.Property<string>("Rfc")
-                        .HasColumnType("VARCHAR(50)");
-
-                    b.Property<string>("Telefono")
-                        .HasColumnType("VARCHAR(50)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Cliente");
-                });
 
             modelBuilder.Entity("DatosEMC.DataModels.Empresa", b =>
                 {
@@ -87,7 +47,7 @@ namespace DatosEMC.Migrations
                         .HasColumnType("UNIQUEIDENTIFIER");
 
                     b.Property<string>("NombreEmpresa")
-                        .HasColumnType("VARCHAR(100)");
+                        .HasColumnType("VARCHAR(50)");
 
                     b.Property<string>("Rfc")
                         .HasColumnType("VARCHAR(50)");
@@ -164,8 +124,8 @@ namespace DatosEMC.Migrations
                     b.Property<bool>("Activo")
                         .HasColumnType("BIT");
 
-                    b.Property<decimal>("Cantidad")
-                        .HasColumnType("MONEY");
+                    b.Property<int>("Cantidad")
+                        .HasColumnType("INT");
 
                     b.Property<decimal>("Descuento")
                         .HasColumnType("MONEY");
@@ -189,7 +149,7 @@ namespace DatosEMC.Migrations
                         .HasColumnType("INT");
 
                     b.Property<string>("NombreArticulo")
-                        .HasColumnType("VARCHAR(100)");
+                        .HasColumnType("VARCHAR(50)");
 
                     b.Property<string>("NumeroFactura")
                         .HasColumnType("VARCHAR(50)");
@@ -278,8 +238,8 @@ namespace DatosEMC.Migrations
                     b.Property<bool>("Activo")
                         .HasColumnType("BIT");
 
-                    b.Property<decimal>("Cantidad")
-                        .HasColumnType("MONEY");
+                    b.Property<int>("Cantidad")
+                        .HasColumnType("INT");
 
                     b.Property<decimal>("Descuento")
                         .HasColumnType("MONEY");
@@ -303,7 +263,7 @@ namespace DatosEMC.Migrations
                         .HasColumnType("INT");
 
                     b.Property<string>("NombreArticulo")
-                        .HasColumnType("VARCHAR(100)");
+                        .HasColumnType("VARCHAR(50)");
 
                     b.Property<string>("NumeroFactura")
                         .HasColumnType("VARCHAR(50)");
@@ -354,7 +314,7 @@ namespace DatosEMC.Migrations
                         .HasColumnType("UNIQUEIDENTIFIER");
 
                     b.Property<string>("NombreProveedor")
-                        .HasColumnType("VARCHAR(100)");
+                        .HasColumnType("VARCHAR(50)");
 
                     b.Property<string>("Rfc")
                         .HasColumnType("VARCHAR(50)");
@@ -382,132 +342,6 @@ namespace DatosEMC.Migrations
                     b.ToTable("Roles");
                 });
 
-            modelBuilder.Entity("DatosEMC.DataModels.StockBodega", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INT")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<bool>("Activo")
-                        .HasColumnType("BIT");
-
-                    b.Property<decimal>("Cantidad")
-                        .HasColumnType("MONEY");
-
-                    b.Property<DateTime>("Fecha")
-                        .HasColumnType("DATETIME");
-
-                    b.Property<DateTime>("FechaModificacion")
-                        .HasColumnType("DATETIME");
-
-                    b.Property<int>("IdEmpresa")
-                        .HasColumnType("INT");
-
-                    b.Property<int>("IdProducto")
-                        .HasColumnType("INT");
-
-                    b.Property<int>("IdUnidad")
-                        .HasColumnType("INT");
-
-                    b.Property<int>("IdUsuario")
-                        .HasColumnType("INT");
-
-                    b.Property<string>("NombreProducto")
-                        .HasColumnType("VARCHAR(100)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("StockBodega");
-                });
-
-            modelBuilder.Entity("DatosEMC.DataModels.StockTotal", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INT")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<bool>("Activo")
-                        .HasColumnType("BIT");
-
-                    b.Property<decimal>("Cantidad")
-                        .HasColumnType("MONEY");
-
-                    b.Property<DateTime>("Fecha")
-                        .HasColumnType("DATETIME");
-
-                    b.Property<DateTime>("FechaModificacion")
-                        .HasColumnType("DATETIME");
-
-                    b.Property<int>("IdEmpresa")
-                        .HasColumnType("INT");
-
-                    b.Property<int>("IdProducto")
-                        .HasColumnType("INT");
-
-                    b.Property<int>("IdUnidad")
-                        .HasColumnType("INT");
-
-                    b.Property<int>("IdUsuario")
-                        .HasColumnType("INT");
-
-                    b.Property<int>("Linea")
-                        .HasColumnType("INT");
-
-                    b.Property<string>("NombreProducto")
-                        .HasColumnType("VARCHAR(100)");
-
-                    b.Property<string>("NumeroFactura")
-                        .HasColumnType("VARCHAR(50)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("StockTotal");
-                });
-
-            modelBuilder.Entity("DatosEMC.DataModels.StockTransito", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INT")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<bool>("Activo")
-                        .HasColumnType("BIT");
-
-                    b.Property<decimal>("Cantidad")
-                        .HasColumnType("MONEY");
-
-                    b.Property<DateTime>("Fecha")
-                        .HasColumnType("DATETIME");
-
-                    b.Property<DateTime>("FechaModificacion")
-                        .HasColumnType("DATETIME");
-
-                    b.Property<int>("IdEmpresa")
-                        .HasColumnType("INT");
-
-                    b.Property<int>("IdProducto")
-                        .HasColumnType("INT");
-
-                    b.Property<int>("IdUnidad")
-                        .HasColumnType("INT");
-
-                    b.Property<int>("IdUsuario")
-                        .HasColumnType("INT");
-
-                    b.Property<int>("IdVendedor")
-                        .HasColumnType("INT");
-
-                    b.Property<string>("NombreProducto")
-                        .HasColumnType("VARCHAR(100)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("StockTransito");
-                });
-
             modelBuilder.Entity("DatosEMC.DataModels.TipoInventario", b =>
                 {
                     b.Property<string>("Inventario")
@@ -521,24 +355,6 @@ namespace DatosEMC.Migrations
                     b.HasKey("Inventario");
 
                     b.ToTable("TipoInventario");
-                });
-
-            modelBuilder.Entity("DatosEMC.DataModels.UnidadMedida", b =>
-                {
-                    b.Property<string>("Unidad")
-                        .HasColumnType("VARCHAR(50)");
-
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INT")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("IdEmpresa")
-                        .HasColumnType("INT");
-
-                    b.HasKey("Unidad");
-
-                    b.ToTable("UnidadMedida");
                 });
 
             modelBuilder.Entity("DatosEMC.DataModels.Usuario", b =>
