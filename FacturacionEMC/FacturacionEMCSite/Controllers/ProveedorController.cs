@@ -1,4 +1,5 @@
 ﻿using EMCApi.Client;
+using FacturacionEMCSite.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -38,6 +39,29 @@ namespace FacturacionEMCSite.Controllers
                proveedores = await this.clientApi.GetProveedoresAsync(this.usuario.IdEmpresa);
 
             return Json(proveedores);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AgregarProveedor (EMCApi.Client.ProveedorDTO proveedor)
+        {
+            var response = new RespuestaModel();
+            response.Estatus = false;
+
+            try
+            {
+                proveedor.IdEmpresa = usuario.IdEmpresa;
+                proveedor.Fecha = proveedor.FechaModificacion = DateTime.Now;
+                proveedor.Activo = true;
+                var saveProveedor = await this.clientApi.PostProveedorAsync(proveedor);
+
+                response.Estatus = saveProveedor.Ok ? true : false;
+            }
+            catch (Exception ex)
+            {
+                var error = ex.Message;
+            }
+
+            return Json(response);
         }
     }
 }

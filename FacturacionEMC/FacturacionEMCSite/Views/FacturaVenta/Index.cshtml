@@ -12,7 +12,8 @@
 <script>
     var urlGuardarFactura = '@Url.Action("GuardarFactura", "FacturaVenta")';
     var urlGuardarFacturaDetalle = '@Url.Action("GuardarFacturaDetalle", "FacturaVenta")';
-     var urlGetClientes = '@Url.Action("GetClientes", "Cliente")';
+    var urlGetClientes = '@Url.Action("GetClientes", "Cliente")';
+    var urlAgregarCliente  = '@Url.Action("AgregarCliente", "Cliente")';
 </script>
 
 <div class="card" style="margin-top: 5%; background-color: #e6faea; color: dimgray;">
@@ -159,15 +160,15 @@
                             <h3> Add New Client</h3>
                             <div class="form-group row">
                                 <label class="form form-label">Name / Social Reason </label>
-                                <input type="text" id="nombre" class="form-control text-box single-line" />
+                                <input type="text" id="_nombre" class="form-control text-box single-line" />
                                 <label class="form form-label">RFC</label>
-                                <input type="text" id="rfc" class="form-control text-box single-line" />
+                                <input type="text" id="_rfc" class="form-control text-box single-line" />
                                 <label class="form form-label">Email</label>
-                                <input type="text" id="email" class="form-control text-box single-line" />
+                                <input type="text" id="_email" class="form-control text-box single-line" />
                                 <label class="form form-label">Address</label>
-                                <input type="text" id="direccion" class="form-control text-box single-line" />
+                                <input type="text" id="_direccion" class="form-control text-box single-line" />
                                 <label class="form form-label">Phone Number</label>
-                                <input type="text" id="telefono" class="form-control text-box single-line" />
+                                <input type="text" id="_telefono" class="form-control text-box single-line" />
                             </div>
                             <div class="col-md-12">
                                 <input type="submit" value="Save" class="btn btn-primary" style="float:left;" onclick="AgregarCliente();" />

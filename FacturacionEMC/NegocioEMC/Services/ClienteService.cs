@@ -27,6 +27,7 @@ namespace NegocioEMC.Services
         {
             var cliente = new Cliente();
             cliente = this._mapper.Map<Cliente>(ClienteDTO);
+            cliente.Identificador = EngineTool.CreateUniqueidentifier();
 
             cliente = this.ClienteRepository.AddClienteAsync(cliente);
 

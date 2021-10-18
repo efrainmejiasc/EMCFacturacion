@@ -1,5 +1,6 @@
 ﻿using DatosEMC.DTOs;
 using EMCApi.Client;
+using FacturacionEMCSite.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -39,6 +40,30 @@ namespace FacturacionEMCSite.Controllers
                 clientes = await this.clientApi.GetClientesAsync(this.usuario.IdEmpresa);
 
             return Json(clientes);
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> Agregarcliente(EMCApi.Client.ClienteDTO cliente)
+        {
+            var response = new RespuestaModel();
+            response.Estatus = false;
+
+            try
+            {
+                cliente.IdEmpresa = usuario.IdEmpresa;
+                cliente.Fecha = cliente.FechaModificacion = DateTime.Now;
+                cliente.Activo = true;
+                var savecliente = await this.clientApi.PostClienteAsync(cliente);
+
+                response.Estatus = savecliente.Ok ? true : false;
+            }
+            catch (Exception ex)
+            {
+                var error = ex.Message;
+            }
+
+            return Json(response);
         }
     }
 }

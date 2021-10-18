@@ -27,6 +27,7 @@ namespace NegocioEMC.Services
         {
             var proveedor = new Proveedor();
             proveedor = this._mapper.Map<Proveedor>(proveedorDTO);
+            proveedor.Identificador = EngineTool.CreateUniqueidentifier();
 
             proveedor = this.proveedorRepository.AddProveedorAsync(proveedor);
 

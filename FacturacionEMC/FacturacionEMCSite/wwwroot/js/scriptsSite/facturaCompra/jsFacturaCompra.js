@@ -21,6 +21,7 @@ function GetProveedores() {
             });
         }
     });
+
     return false;
 }
 
@@ -244,9 +245,58 @@ function MostrarModalProveedor() {
 
 function OcultarModalProveedor() {
     $('#modalProveedor').hide();
+    ResetModal();
 }
 
 
+function AgregarProveedor() {
+    var nombre = $('#_nombre').val();
+    var rfc = $('#_rfc').val();
+    var email = $('#_email').val();
+    var direccion = $('#_direccion').val();
+    var telefono = $('#_telefono').val();
+
+    if (nombre === '' || rfc === '' || email === '' || direccion === '' || telefono === '') {
+        toastr.warning("All fields are required");
+        return false;
+    }
+    else if (!EmailValido(email)){
+        toastr.warning("Email no valid");
+        return false;
+    }
+
+    $.ajax({
+        type: "POST",
+        url: urlAgregarProveedor,
+        data: { nombreProveedor: nombre,  rfc: rfc ,email: email , direccion: direccion, telefono: telefono},
+        datatype: "json",
+        success: function (data) {
+            if (data.estatus) {
+                toastr.success("Supplier saved successfully");
+                GetProveedores();
+                setTimeout(OcultarModalProveedor, 4000);
+            }
+            else
+                toastr.error("Unexpected error");
+        }
+    });
+
+    return false;
+}
+
+function EmailValido(mail) {
+    const regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    return regex.test(mail);
+}
+
+
+function ResetModal() {
+    $('#_nombre').val('');
+    $('#_rfc').val('');
+    $('#_email').val('');
+    $('#_direccion').val('');
+    $('#_telefono').val('');
+}
 
 
 
