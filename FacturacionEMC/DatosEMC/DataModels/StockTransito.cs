@@ -23,13 +23,13 @@ namespace DatosEMC.DataModels
         public decimal Cantidad { get; set; }
 
         [Column(Order = 4, TypeName = "INT")]
-        public int IdProducto { get; set; }
+        public int IdArticulo{ get; set; }
 
         [Column(Order = 5, TypeName = "VARCHAR(100)")]
-        public string NombreProducto { get; set; }
+        public string NombreArticulo { get; set; }
 
         [Column(Order = 6, TypeName = "INT")]
-        public int IdUnidad { get; set; }
+        public int Unidad { get; set; }
 
         [Column(Order = 7, TypeName = "DATETIME")]
         public DateTime Fecha { get; set; }

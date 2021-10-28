@@ -5,13 +5,15 @@
     <script src="~/js/scriptsSite/facturaCompra/jsFacturaCompra.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <link rel="stylesheet" href="~/css/modalStyle.css" />
+
 }
 <script>
     var urlGuardarFactura = '@Url.Action("GuardarFactura", "FacturaCompra")';
     var urlGuardarFacturaDetalle = '@Url.Action("GuardarFacturaDetalle", "FacturaCompra")';
     var urlGetProveedores = '@Url.Action("GetProveedores","Proveedor")';
     var urlAgregarProveedor = '@Url.Action("AgregarProveedor","Proveedor")';
+    var urlGetMetodosPago = '@Url.Action("GetMetodosPago","MetodoPago")';
+    var urlGetUnidadesMedida = '@Url.Action("GetUnidadesMedida","UnidadMedida")';
 </script>
 
 <!--FACTURA DE COMPRAS-->
@@ -21,20 +23,27 @@
             <h1 style="color:dimgray"> Add Purchase Invoice</h1><hr />
 
             <div class="form-group row">
-                 <div class="col-md-3 text-md-right">
+                <div class="col-md-3 text-md-right">
                     <label class="control-label">Nº Invoice</label>
                 </div>
                 <div class="col-md-8">
                     <input type="text" id="nFactura" name="nFactura" class="form form-control" style="text-transform:uppercase" />
                 </div>
                 <div class="col-md-3 text-md-right">
+                    <label class="control-label">Payment Method</label>
+                </div>
+                <div class="col-md-8">
+                    <select id="metodoPago" name="metodoPago" class="form-control form-control-sm" onchange="" required>
+                    </select>
+                </div>
+                <div class="col-md-3 text-md-right">
                     <label class="control-label">Supplier</label>
                 </div>
                 <div class="col-md-8">
                     <select id="proveedor" name="proveedor" class="form-control form-control-sm" onchange="" required> </select>
-                </div><br /><br/>
-               <div class="col-md-12 text-md-right">
-                    <input type="button" value="Add Supplier" class="btn btn-success" onclick="MostrarModalProveedor();" style="width:150px" />
+                </div><br />
+                <div class="col-md-12 text-md-right">
+                    <button class="btn btn-success" onclick="MostrarModalProveedor();" ><i class="bi bi-plus-circle-fill"> Supplier</i></button>
                 </div>
             </div>
         </div>
@@ -47,15 +56,16 @@
                 <div class="col-md-8">
                     <input type="text" id="articulo" name="articulo" class="form form-control" />
                 </div>
+                <br />
+                 <div class="col-md-12 text-md-right">
+                   <button class="btn btn-success" onclick="MostrarModalArticulo();"><i class="bi bi-plus-circle-fill"> Article</i></button>
+                </div>
+                <br /><br />
                 <div class="col-md-3 text-md-right">
                     <label class="control-label">Unit</label>
                 </div>
                 <div class="col-md-8">
                     <select id="unidad" name="unidad" class="form-control form-control-sm" onchange="" required>
-                        <option value="Unit">Unit</option>
-                        <option value="Gallon">Gallon</option>
-                        <option value="Foot">Foot</option>
-                        <option value="Pound">Pound</option>
                     </select>
                 </div>
                 <div class="col-md-3 text-md-right">
@@ -82,9 +92,8 @@
                 <div class="col-md-8">
                     <input type="number" id="subTotalLinea" name="subTotalLinea" class="form form-control" min="0" disabled placeholder="0.0" />
                 </div>
-                <br /><br />
                 <div class="col-md-12 text-md-right">
-                    <input type="button" value="Add Line" class="btn btn-success" onclick="AddLinea();" style="width:150px" />
+                        <button class="btn btn-success" onclick="AddLinea();"><i class="bi bi-plus-circle-fill"> </i></button>
                 </div>
             </div>
         </div>
@@ -140,7 +149,7 @@
         <div>
             <div class="form-group row text-center">
                 <div class="col-md-6 text-md-left">
-                    <input type="button" value="Save" class="btn btn-primary form-control" onclick="GuardarFactura();" style="width:200px;" />
+                    <input type="button" value="Save" class="btn btn-success form-control" onclick="GuardarFactura();" style="width:200px;" />
                 </div>
                 <div class="col-md-6 text-md-right">
                     <input type="reset" value="Cancel" class="btn btn-danger form-control" onclick="Reset()" style="width:200px;" />
@@ -169,7 +178,7 @@
                                 <input type="text" id="_telefono" class="form-control text-box single-line" />
                             </div>
                             <div class="col-md-12">
-                                <input type="submit" value="Save" class="btn btn-primary" style="float:left;" onclick="AgregarProveedor();" />
+                                <input type="submit" value="Save" class="btn btn-success" style="float:left;" onclick="AgregarProveedor();" />
                                 <input type="submit" value="Cancel" class="btn btn-danger" style="float:right;" onclick="OcultarModalProveedor();" />
                             </div>
                         </div>
@@ -177,6 +186,34 @@
                 </div>
             </div>
         </div>
+
+
+        <div class="container" style="color:dimgray;">
+            <div class="modalTipo" id="modalArticulo">
+                <div class="modal-content2">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3> Add New Product</h3>
+                            <div class="form-group row">
+                                <label class="form form-label">Name Product </label>
+                                <input type="text" id="_nombreArt" class="form-control text-box single-line" />
+                                <label class="form form-label">Description Product</label>
+                                <input type="text" id="_descripcionArticulo" class="form-control text-box single-line" />
+                                <label class="form form-label">Unit Price</label>
+                                <input type="text" id="_precioArticulo" class="form-control text-box single-line" />
+                                <label class="form form-label">Presentacion</label>
+                                <input type="text" id="_presentacionArticulo" class="form-control text-box single-line" />
+                            </div>
+                            <div class="col-md-12">
+                                <input type="submit" value="Save" class="btn btn-success" style="float:left;" onclick="AgregarArticulo();" />
+                                <input type="submit" value="Cancel" class="btn btn-danger" style="float:right;" onclick="OcultarModalArticulo();" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 
     </div>
 </div>

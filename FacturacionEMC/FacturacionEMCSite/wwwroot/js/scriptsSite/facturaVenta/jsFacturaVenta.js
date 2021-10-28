@@ -1,14 +1,15 @@
 ﻿
 $(document).ready(function () {
     console.log("ready!");
+    GetMetodosPago();
     GetClientes();
+    GetUnidadesMedida();
     $('#pImpuesto').val('0.00');
     $('#pDescuento').val('0.00');
     $('#numeroLinea_').val(0)
 });
 
 function GetClientes() {
-    console.log(urlGetClientes);
     $.ajax({
         type: "GET",
         url: urlGetClientes,
@@ -18,6 +19,38 @@ function GetClientes() {
             $('#cliente').append('<option value="-1" disabled selected>Select client...</option>');
             $.each(data, function (index, item) {
                 $('#cliente').append("<option value=\"" + item.id + "\">" + item.nombreCliente + "</option>");
+            });
+        }
+    });
+    return false;
+}
+
+function GetMetodosPago() {
+    $.ajax({
+        type: "GET",
+        url: urlGetMetodosPago,
+        datatype: "json",
+        success: function (data) {
+            $('#metodoPago').empty();
+            $('#metodoPago').append('<option value="-1" disabled selected>Select pay method...</option>');
+            $.each(data, function (index, item) {
+                $('#metodoPago').append("<option value=\"" + item.id + "\">" + item.metodo + "</option>");
+            });
+        }
+    });
+    return false;
+}
+
+function GetUnidadesMedida() {
+    $.ajax({
+        type: "GET",
+        url: urlGetUnidadesMedida,
+        datatype: "json",
+        success: function (data) {
+            $('#unidad').empty();
+            $('#unidad').append('<option value="-1" disabled selected>Select unit...</option>');
+            $.each(data, function (index, item) {
+                $('#unidad').append("<option value=\"" + item.id + "\">" + item.unidad + "</option>");
             });
         }
     });
@@ -38,7 +71,7 @@ function AddLinea()
     var precio = $('#precio').val();
     var subTotalLinea = $('#subTotalLinea').val();
 
-    if (idCliente === '-1' || articulo === '' || descripcion === '' || subTotalLinea <= 0) {
+    if (idCliente === '-1' || articulo === '' || descripcion === '' || subTotalLinea <= 0 || unidad === '-1' || metodoPago === '-1') {
         toastr.warning("All fields are required");
         return false;
     }
@@ -137,6 +170,7 @@ function GuardarFactura() {
     var total = parseFloat($('#total').val());
     var pImpuesto = parseFloat($('#pImpuesto').val());
     var pDescuento = parseFloat($('#pDescuento').val());
+    var idMetodoPago = $('#metodoPago').val();
 
     var rows = $('#tablaLineas tr').length -1;
 
@@ -144,7 +178,7 @@ function GuardarFactura() {
         toastr.warning("You must add invoice detail");
         return false;
     }
-    else if (idCliente === '-1' || nFactura === '' || subtotal <= 0 || total <= 0 || pDescuento < 0 || pImpuesto < 0) {
+    else if (idCliente === '-1' || nFactura === '' || subtotal <= 0 || total <= 0 || pDescuento < 0 || pImpuesto < 0 || idMetodoPago === '-1') {
         toastr.warning("All fields are required");
         return false;
     }
@@ -152,7 +186,7 @@ function GuardarFactura() {
     $.ajax({
         type: "POST",
         url: urlGuardarFactura,
-        data: { NumeroFactura: nFactura,Subtotal: subtotal, PorcentajeDescuento: pDescuento, PorcentajeImpuesto: pImpuesto, Total: total , IdCliente: idCliente, NombreCliente: nombreCliente},
+        data: { NumeroFactura: nFactura, Subtotal: subtotal, PorcentajeDescuento: pDescuento, PorcentajeImpuesto: pImpuesto, Total: total, IdCliente: idCliente, NombreCliente: nombreCliente, IdMetodoPago: idMetodoPago},
         datatype: "json",
         success: function (data) {
             if (data.estatus) {

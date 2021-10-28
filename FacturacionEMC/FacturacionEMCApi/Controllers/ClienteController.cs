@@ -63,6 +63,5 @@ namespace FacturacionEMCApi.Controllers
                 return BadRequest(EngineService.SetGenericResponse(false, "No se encontró información"));
         }
 
-
     }
 }

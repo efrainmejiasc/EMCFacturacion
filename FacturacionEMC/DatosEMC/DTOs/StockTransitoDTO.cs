@@ -11,9 +11,9 @@ namespace DatosEMC.DTOs
         public int Id { get; set; }
         public int IdEmpresa { get; set; }
         public decimal Cantidad { get; set; }
-        public int IdProducto { get; set; }
-        public string NombreProducto { get; set; }
-        public int IdUnidad { get; set; }
+        public int IdArticulo { get; set; }
+        public string NombreArticulo { get; set; }
+        public int Unidad { get; set; }
         public DateTime Fecha { get; set; }
         public DateTime FechaModificacion { get; set; }
         public bool Activo { get; set; }

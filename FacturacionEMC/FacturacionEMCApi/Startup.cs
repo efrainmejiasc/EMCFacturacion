@@ -88,6 +88,12 @@ namespace FacturacionEMCApi
 
             services.AddScoped<MyAppContext, MyAppContext>();
 
+            services.AddScoped<IUnidadMedidaService, UnidadMedidaService>();
+            services.AddScoped<IUnidadMedidaRepository, UnidadMedidaRepository>();
+
+            services.AddScoped<IMetodoPagoService, MetodoPagoService>();
+            services.AddScoped<IMetodoPagoRepository,MetodoPagoRepository>();
+
             services.AddScoped<IUsuarioService, UsuarioService>();
             services.AddScoped<IUsuarioRepository,UsuarioRepository>();
 
@@ -111,6 +117,15 @@ namespace FacturacionEMCApi
 
             services.AddScoped<IFacturaVentaDetalleService, FacturaVentaDetalleService>();
             services.AddScoped<IFacturaVentaDetalleRepository, FacturaVentaDetalleRepository>();
+
+            services.AddScoped<IStockTotalService, StockTotalService>();
+            services.AddScoped<IStockTotalRepository, StockTotalRepository>();
+
+            services.AddScoped<IStockBodegaService, StockBodegaService>();
+            //services.AddScoped<IStockBodegaRepository, StockBodegaRepository>();
+
+            services.AddScoped<IStockTransitoService, StockTransitoService>();
+            //services.AddScoped<IStockTransitoRepository, StockTransitoRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

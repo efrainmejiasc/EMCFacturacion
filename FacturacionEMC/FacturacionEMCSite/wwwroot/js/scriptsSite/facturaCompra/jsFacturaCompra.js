@@ -1,7 +1,9 @@
 ﻿
 $(document).ready(function () {
     console.log("ready!");
+    GetMetodosPago();
     GetProveedores();
+    GetUnidadesMedida();
     $('#pImpuesto').val('0.00');
     $('#pDescuento').val('0.00');
     $('#numeroLinea_').val(0)
@@ -25,6 +27,38 @@ function GetProveedores() {
     return false;
 }
 
+function GetMetodosPago() {
+    $.ajax({
+        type: "GET",
+        url: urlGetMetodosPago,
+        datatype: "json",
+        success: function (data) {
+            $('#metodoPago').empty();
+            $('#metodoPago').append('<option value="-1" disabled selected>Select pay method...</option>');
+            $.each(data, function (index, item) {
+                $('#metodoPago').append("<option value=\"" + item.id + "\">" + item.metodo + "</option>");
+            });
+        }
+    });
+    return false;
+}
+
+function GetUnidadesMedida() {
+    $.ajax({
+        type: "GET",
+        url: urlGetUnidadesMedida,
+        datatype: "json",
+        success: function (data) {
+            $('#unidad').empty();
+            $('#unidad').append('<option value="-1" disabled selected>Select unit...</option>');
+            $.each(data, function (index, item) {
+                $('#unidad').append("<option value=\"" + item.id + "\">" + item.unidad + "</option>");
+            });
+        }
+    });
+    return false;
+}
+
 
 var lineasArray = [];
 
@@ -32,7 +66,6 @@ function AddLinea()
 {
     var idProveedor = $('#proveedor').val();
     var nFactura = $('#nFactura').val();
-
     var numero = parseInt($('#numeroLinea_').val());
     var articulo = $('#articulo').val();
     var unidad = $('#unidad').val();
@@ -41,11 +74,8 @@ function AddLinea()
     var precio = $('#precio').val();
     var subTotalLinea = $('#subTotalLinea').val();
 
-    if (idProveedor === '-1' || nFactura === '') {
-        toastr.warning("Select supplier and add invoice number");
-        return false;
-    }
-    else if (articulo === '' || descripcion === '' || subTotalLinea <= 0) {
+
+    if (idProveedor === '-1' || articulo === '' || descripcion === '' || subTotalLinea <= 0 || unidad === '-1' || metodoPago === '-1' || nFactura === '') {
         toastr.warning("All fields are required");
         return false;
     }
@@ -140,12 +170,12 @@ function GuardarFactura() {
 
     var idProveedor = $('#proveedor').val();
     var nombreProveedor = $("#proveedor option:selected").text();
-    console.log(idProveedor);
     var nFactura = $('#nFactura').val();
     var subtotal = parseFloat($('#subtotal').val());
     var total = parseFloat($('#total').val());
     var pImpuesto = parseFloat($('#pImpuesto').val());
     var pDescuento = parseFloat($('#pDescuento').val());
+    var idMetodoPago = $('#metodoPago').val();
 
     var rows = $('#tablaLineas tr').length -1;
 
@@ -153,7 +183,7 @@ function GuardarFactura() {
         toastr.warning("You must add invoice detail");
         return false;
     }
-    else if (idProveedor === '-1' || nFactura === '' || subtotal <= 0 || total <= 0 || pDescuento < 0 || pImpuesto < 0) {
+    else if (idProveedor === '-1' || nFactura === '' || subtotal <= 0 || total <= 0 || pDescuento < 0 || pImpuesto < 0 || idMetodoPago ==='-1') {
         toastr.warning("All fields are required");
         return false;
     }
@@ -161,7 +191,7 @@ function GuardarFactura() {
     $.ajax({
         type: "POST",
         url: urlGuardarFactura,
-        data: { NumeroFactura: nFactura, IdProveedor: idProveedor, NombreProveedor: nombreProveedor, Subtotal: subtotal, PorcentajeDescuento: pDescuento, PorcentajeImpuesto: pImpuesto, Total: total },
+        data: { NumeroFactura: nFactura, IdProveedor: idProveedor, NombreProveedor: nombreProveedor, Subtotal: subtotal, PorcentajeDescuento: pDescuento, PorcentajeImpuesto: pImpuesto, Total: total, IdMetodoPago: idMetodoPago},
         datatype: "json",
         success: function (data) {
             if (data.estatus) {
@@ -297,6 +327,16 @@ function ResetModal() {
     $('#_direccion').val('');
     $('#_telefono').val('');
 }
+
+function MostrarModalArticulo() {
+    $('#modalArticulo').show();
+}
+
+function OcultarModalArticulo() {
+    $('#modalArticulo').hide();
+   // ResetModalArticulo();
+}
+
 
 
 

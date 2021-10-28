@@ -5,7 +5,6 @@
     <script src="~/js/scriptsSite/facturaVenta/jsFacturaVenta.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <link  rel="stylesheet" href="~/css/modalStyle.css" />
 
 }
 <!--FACTURA DE VENTAS-->
@@ -13,7 +12,9 @@
     var urlGuardarFactura = '@Url.Action("GuardarFactura", "FacturaVenta")';
     var urlGuardarFacturaDetalle = '@Url.Action("GuardarFacturaDetalle", "FacturaVenta")';
     var urlGetClientes = '@Url.Action("GetClientes", "Cliente")';
-    var urlAgregarCliente  = '@Url.Action("AgregarCliente", "Cliente")';
+    var urlAgregarCliente = '@Url.Action("AgregarCliente", "Cliente")';
+    var urlGetMetodosPago = '@Url.Action("GetMetodosPago","MetodoPago")';
+     var urlGetUnidadesMedida = '@Url.Action("GetUnidadesMedida","UnidadMedida")';
 </script>
 
 <div class="card" style="margin-top: 5%; background-color: #e6faea; color: dimgray;">
@@ -22,11 +23,18 @@
             <h1 style="color:dimgray">Add Sales Invoice</h1><hr />
 
             <div class="form-group row">
-                 <div class="col-md-3 text-md-right">
+                <div class="col-md-3 text-md-right">
                     <label class="control-label">Nº Invoice</label>
                 </div>
                 <div class="col-md-8">
                     <input type="text" id="nFactura" name="nFactura" class="form form-control" required />
+                </div>
+                <div class="col-md-3 text-md-right">
+                    <label class="control-label">Payment Method</label>
+                </div>
+                <div class="col-md-8">
+                    <select id="metodoPago" name="metodoPago" class="form-control form-control-sm" onchange="" required>
+                    </select>
                 </div>
                 <div class="col-md-3 text-md-right">
                     <label class="control-label">Client</label>
@@ -34,9 +42,9 @@
                 <div class="col-md-8">
                     <select id="cliente" name="cliente" class="form-control form-control-sm" onchange="" required>
                     </select>
-                </div><br /><br/>
-               <div class="col-md-12 text-md-right">
-                    <input type="button" value="Add Client" class="btn btn-success" onclick="MostrarModalCliente();" style="width:150px" />
+                </div>
+                <div class="col-md-12 text-md-right">
+                     <button class="btn btn-success" onclick="MostrarModalCliente();"><i class="bi bi-plus-circle-fill"> Client</i></button>
                 </div>
             </div>
 
@@ -55,10 +63,6 @@
                 </div>
                 <div class="col-md-8">
                     <select id="unidad" name="unidad" class="form-control form-control-sm" onchange="" required>
-                        <option value="Unit">Unit</option>
-                        <option value="Gallon">Gallon</option>
-                        <option value="Foot">Foot</option>
-                        <option value="Pound">Pound</option>
                     </select>
                 </div>
                 <div class="col-md-3 text-md-right">
@@ -85,9 +89,8 @@
                 <div class="col-md-8">
                     <input type="number" id="subTotalLinea" name="subTotalLinea" class="form form-control" min="0" disabled placeholder="0.0" />
                 </div>
-                <br /><br />
                 <div class="col-md-12 text-md-right">
-                    <input type="button" value="Add Line" class="btn btn-success" onclick="AddLinea();" style="width:150px" />
+                          <button class="btn btn-success" onclick="AddLinea();"><i class="bi bi-plus-circle-fill"> </i></button>
                 </div>
             </div>
         </div>
@@ -143,7 +146,7 @@
         <div>
             <div class="form-group row text-center">
                 <div class="col-md-6 text-md-left">
-                    <input type="button" value="Save" class="btn btn-primary form-control" onclick="GuardarFactura();" style="width:200px;" />
+                    <input type="button" value="Save" class="btn btn-success form-control" onclick="GuardarFactura();" style="width:200px;" />
                 </div>
                 <div class="col-md-6 text-md-right">
                     <input type="reset" value="Cancel" class="btn btn-danger form-control" onclick="Reset()" style="width:200px;" />
@@ -171,7 +174,7 @@
                                 <input type="text" id="_telefono" class="form-control text-box single-line" />
                             </div>
                             <div class="col-md-12">
-                                <input type="submit" value="Save" class="btn btn-primary" style="float:left;" onclick="AgregarCliente();" />
+                                <input type="submit" value="Save" class="btn btn-success" style="float:left;" onclick="AgregarCliente();" />
                                 <input type="submit" value="Cancel" class="btn btn-danger" style="float:right;" onclick="OcultarModalCliente();" />
                             </div>
                         </div>

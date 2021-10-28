@@ -19,5 +19,8 @@ namespace DatosEMC.DTOs
         public int IdEmpresa { get; set; }
         public DateTime Fecha { get; set; }
         public DateTime FechaModificacion { get; set; }
+        public float Longitud { get; set; }
+        public float Latitud { get; set; }
+        public float Altitud { get; set; }
     }
 }

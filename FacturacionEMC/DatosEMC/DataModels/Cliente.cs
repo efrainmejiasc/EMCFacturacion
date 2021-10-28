@@ -45,5 +45,14 @@ namespace DatosEMC.DataModels
 
         [Column(Order = 11, TypeName = "INT")]
         public int IdEmpresa { get; set; }
+
+        [Column(Order = 12, TypeName = "FLOAT")]
+        public float Longitud { get; set; }
+
+        [Column(Order = 13, TypeName = "FLOAT")]
+        public float Latitud { get; set; }
+
+        [Column(Order = 14, TypeName = "FLOAT")]
+        public float Altitud { get; set; }
     }
 }

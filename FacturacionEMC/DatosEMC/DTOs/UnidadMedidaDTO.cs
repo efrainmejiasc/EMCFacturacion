@@ -11,5 +11,6 @@ namespace DatosEMC.DTOs
         public int Id { get; set; }
         public string Unidad { get; set; }
         public int IdEmpresa { get; set; }
+        public string Sistema { get; set; }
     }
 }

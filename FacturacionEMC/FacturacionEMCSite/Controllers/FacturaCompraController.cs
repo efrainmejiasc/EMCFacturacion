@@ -66,6 +66,7 @@ namespace FacturacionEMCSite.Controllers
                 var facturaDetalleDTO = JsonConvert.DeserializeObject<List<EMCApi.Client.FacturaCompraDetalleDTO>>(facturaDetalle);
                 foreach(var f in facturaDetalleDTO)
                 {
+                    f.IdEmpresa = this.usuario.IdEmpresa;
                     f.IdUsuario = usuario.Id;
                     f.IdArticulo = 1;
                     f.NombreArticulo = f.Descripcion;
@@ -74,8 +75,8 @@ namespace FacturacionEMCSite.Controllers
                 }
 
                 var saveFacturaDetalle = await this.clientApi.PostFacturaCompraDetalleAsync(facturaDetalleDTO);
-
-                response.Estatus = saveFacturaDetalle.Ok ? true : false;
+                var saveStock = await this.clientApi.PostStockTotalAsync(facturaDetalleDTO);
+                response.Estatus = saveFacturaDetalle.Ok && saveStock.Ok ? true : false;
             }
             catch (Exception ex)
             {
@@ -83,6 +84,11 @@ namespace FacturacionEMCSite.Controllers
             }
          
             return Json(response);
+        }
+
+        public IActionResult _Facturas()
+        {
+            return View();
         }
 
     }

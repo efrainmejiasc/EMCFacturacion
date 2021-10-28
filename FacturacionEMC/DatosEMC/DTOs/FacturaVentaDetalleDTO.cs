@@ -22,7 +22,7 @@ namespace DatosEMC.DTOs
 
         public decimal Cantidad { get; set; }
 
-        public string Unidad { get; set; }
+        public int Unidad { get; set; }
 
         public decimal PrecioUnitario { get; set; }
 
@@ -45,5 +45,7 @@ namespace DatosEMC.DTOs
         public int IdUsuario { get; set; }
 
         public bool Activo { get; set; }
+
+        public int IdEmpresa { get; set; }
     }
 }

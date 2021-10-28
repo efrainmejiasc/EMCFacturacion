@@ -24,6 +24,8 @@ namespace NegocioEMC
             CreateMap<StockTotalDTO, StockTotal>().ReverseMap();
             CreateMap<StockBodegaDTO, StockBodega>().ReverseMap();
             CreateMap<StockTransitoDTO, StockTransito>().ReverseMap();
+            CreateMap<MetodoPagoDTO, MetodoPago>().ReverseMap();
+            CreateMap<UnidadMedidaDTO, UnidadMedida>().ReverseMap();
         }
     }
 }

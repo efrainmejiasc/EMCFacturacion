@@ -18,20 +18,8 @@ namespace DatosEMC.Repositories
 
         public Cliente AddClienteAsync(Cliente x)
         {
-            try
-            {
-                db.Cliente.AddAsync(x);
-                db.SaveChanges();
-
-            }
-            catch (Exception ex)
-            {
-                var e = ex.Message;
-            }
-
-
-
-          
+            db.Cliente.AddAsync(x);
+            db.SaveChanges();
 
             return x;
         }

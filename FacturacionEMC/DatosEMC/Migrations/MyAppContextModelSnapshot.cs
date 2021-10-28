@@ -125,6 +125,9 @@ namespace DatosEMC.Migrations
                     b.Property<int>("IdEmpresa")
                         .HasColumnType("INT");
 
+                    b.Property<int>("IdMetodoPago")
+                        .HasColumnType("INT");
+
                     b.Property<int>("IdProveedor")
                         .HasColumnType("INT");
 
@@ -206,8 +209,8 @@ namespace DatosEMC.Migrations
                     b.Property<decimal>("Total")
                         .HasColumnType("MONEY");
 
-                    b.Property<string>("Unidad")
-                        .HasColumnType("VARCHAR(50)");
+                    b.Property<int>("Unidad")
+                        .HasColumnType("INT");
 
                     b.HasKey("Id");
 
@@ -240,6 +243,9 @@ namespace DatosEMC.Migrations
                         .HasColumnType("INT");
 
                     b.Property<int>("IdEmpresa")
+                        .HasColumnType("INT");
+
+                    b.Property<int>("IdMetodoPago")
                         .HasColumnType("INT");
 
                     b.Property<int>("IdUsuario")
@@ -320,9 +326,30 @@ namespace DatosEMC.Migrations
                     b.Property<decimal>("Total")
                         .HasColumnType("MONEY");
 
+                    b.Property<int>("Unidad")
+                        .HasColumnType("INT");
+
                     b.HasKey("Id");
 
                     b.ToTable("FacturaVentaDetalle");
+                });
+
+            modelBuilder.Entity("DatosEMC.DataModels.MetodoPago", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INT")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Idioma")
+                        .HasColumnType("VARCHAR(20)");
+
+                    b.Property<string>("Metodo")
+                        .HasColumnType("VARCHAR(50)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("MetodoPago");
                 });
 
             modelBuilder.Entity("DatosEMC.DataModels.Proveedor", b =>
@@ -401,20 +428,20 @@ namespace DatosEMC.Migrations
                     b.Property<DateTime>("FechaModificacion")
                         .HasColumnType("DATETIME");
 
+                    b.Property<int>("IdArticulo")
+                        .HasColumnType("INT");
+
                     b.Property<int>("IdEmpresa")
-                        .HasColumnType("INT");
-
-                    b.Property<int>("IdProducto")
-                        .HasColumnType("INT");
-
-                    b.Property<int>("IdUnidad")
                         .HasColumnType("INT");
 
                     b.Property<int>("IdUsuario")
                         .HasColumnType("INT");
 
-                    b.Property<string>("NombreProducto")
+                    b.Property<string>("NombreArticulo")
                         .HasColumnType("VARCHAR(100)");
+
+                    b.Property<int>("Unidad")
+                        .HasColumnType("INT");
 
                     b.HasKey("Id");
 
@@ -440,13 +467,10 @@ namespace DatosEMC.Migrations
                     b.Property<DateTime>("FechaModificacion")
                         .HasColumnType("DATETIME");
 
+                    b.Property<int>("IdArticulo")
+                        .HasColumnType("INT");
+
                     b.Property<int>("IdEmpresa")
-                        .HasColumnType("INT");
-
-                    b.Property<int>("IdProducto")
-                        .HasColumnType("INT");
-
-                    b.Property<int>("IdUnidad")
                         .HasColumnType("INT");
 
                     b.Property<int>("IdUsuario")
@@ -455,11 +479,14 @@ namespace DatosEMC.Migrations
                     b.Property<int>("Linea")
                         .HasColumnType("INT");
 
-                    b.Property<string>("NombreProducto")
+                    b.Property<string>("NombreArticulo")
                         .HasColumnType("VARCHAR(100)");
 
                     b.Property<string>("NumeroFactura")
                         .HasColumnType("VARCHAR(50)");
+
+                    b.Property<int>("Unidad")
+                        .HasColumnType("INT");
 
                     b.HasKey("Id");
 
@@ -485,13 +512,10 @@ namespace DatosEMC.Migrations
                     b.Property<DateTime>("FechaModificacion")
                         .HasColumnType("DATETIME");
 
+                    b.Property<int>("IdArticulo")
+                        .HasColumnType("INT");
+
                     b.Property<int>("IdEmpresa")
-                        .HasColumnType("INT");
-
-                    b.Property<int>("IdProducto")
-                        .HasColumnType("INT");
-
-                    b.Property<int>("IdUnidad")
                         .HasColumnType("INT");
 
                     b.Property<int>("IdUsuario")
@@ -500,8 +524,11 @@ namespace DatosEMC.Migrations
                     b.Property<int>("IdVendedor")
                         .HasColumnType("INT");
 
-                    b.Property<string>("NombreProducto")
+                    b.Property<string>("NombreArticulo")
                         .HasColumnType("VARCHAR(100)");
+
+                    b.Property<int>("Unidad")
+                        .HasColumnType("INT");
 
                     b.HasKey("Id");
 
@@ -535,6 +562,9 @@ namespace DatosEMC.Migrations
 
                     b.Property<int>("IdEmpresa")
                         .HasColumnType("INT");
+
+                    b.Property<string>("Sistema")
+                        .HasColumnType("VARCHAR(50)");
 
                     b.HasKey("Unidad");
 

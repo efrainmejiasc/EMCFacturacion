@@ -35,5 +35,7 @@ namespace DatosEMC.DTOs
         public int IdUsuario { get; set; }
 
         public bool Activo { get; set; }
+
+        public int IdMetodoPago { get; set; }
     }
 }
