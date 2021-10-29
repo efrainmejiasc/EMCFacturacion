@@ -1,6 +1,7 @@
 ﻿using DatosEMC.DTOs;
 using EMCApi.Client;
 using FacturacionEMCSite.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -17,6 +18,7 @@ namespace FacturacionEMCSite.Controllers
         private readonly ClientEMCApi clientApi;
         private readonly IHttpContextAccessor httpContext;
 
+  
         public FacturaCompraController(ClientEMCApi _clienteApi, IHttpContextAccessor _httpContext)
         {
             this.httpContext = _httpContext;
@@ -25,6 +27,9 @@ namespace FacturacionEMCSite.Controllers
             if (!string.IsNullOrEmpty(httpContext.HttpContext.Session.GetString("UserLogin")))
                 this.usuario = JsonConvert.DeserializeObject<DatosEMC.DTOs.UsuarioDTO>(httpContext.HttpContext.Session.GetString("UserLogin"));
         }
+
+        #region Index_Factura
+
         public IActionResult Index()
         {
             return View();
@@ -50,9 +55,9 @@ namespace FacturacionEMCSite.Controllers
 
                 var saveFactura = await this.clientApi.PostFacturaCompraAsync(factura);
 
-                response.Estatus = saveFactura.Ok ? true : false; 
+                response.Estatus = saveFactura.Ok ? true : false;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 var error = ex.Message;
             }
@@ -69,10 +74,10 @@ namespace FacturacionEMCSite.Controllers
             try
             {
                 var facturaDetalleDTO = JsonConvert.DeserializeObject<List<EMCApi.Client.FacturaCompraDetalleDTO>>(facturaDetalle);
-                foreach(var f in facturaDetalleDTO)
+                foreach (var f in facturaDetalleDTO)
                 {
                     var pArt = f.NombreArticulo.Trim().Split(' ');
-                    f.IdArticulo = Convert.ToInt32(pArt[pArt.Length-1]);
+                    f.IdArticulo = Convert.ToInt32(pArt[pArt.Length - 1]);
                     f.IdEmpresa = this.usuario.IdEmpresa;
                     f.IdUsuario = usuario.Id;
                     f.NombreArticulo = f.NombreArticulo.Substring(0, f.NombreArticulo.Trim().Length - 1);
@@ -89,14 +94,20 @@ namespace FacturacionEMCSite.Controllers
             {
                 var error = ex.Message;
             }
-         
+
             return Json(response);
         }
 
-        public IActionResult _Facturas()
+        #endregion
+
+
+        #region About_ResumenFacturas
+        public IActionResult About()
         {
             return View();
         }
+
+        #endregion
 
     }
 }

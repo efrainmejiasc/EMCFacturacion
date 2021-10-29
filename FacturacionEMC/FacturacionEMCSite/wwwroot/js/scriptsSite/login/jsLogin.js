@@ -1,6 +1,10 @@
 ﻿$(document).ready(function () {
     console.log("ready!");
     GetEmpresas();
+    $('#_1').hide();
+    $('#_2').hide();
+    $('#_3').hide();
+    $('#_4').hide();
    //toastr.warning("PRUEBA TOASTR");
     //toastr.success("Reinicio de politicas exitoso");
     //toastr.error("Error al reiniciar politicas");

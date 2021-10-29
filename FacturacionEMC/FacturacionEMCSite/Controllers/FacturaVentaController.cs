@@ -25,10 +25,13 @@ namespace FacturacionEMCSite.Controllers
                 this.usuario = JsonConvert.DeserializeObject<DatosEMC.DTOs.UsuarioDTO>(httpContext.HttpContext.Session.GetString("UserLogin"));
         }
 
+        #region Index_Factura
+
         public IActionResult Index()
         {
             return View();
         }
+
 
         [HttpPost]
         public async Task<IActionResult> GuardarFactura(EMCApi.Client.FacturaVentaDTO factura)
@@ -93,6 +96,17 @@ namespace FacturacionEMCSite.Controllers
             return Json(response);
         }
 
+        #endregion
+
+
+        #region About_ResumenFacturas
+
+        public IActionResult About()
+        {
+            return View();
+        }
+
+        #endregion
 
     }
 }

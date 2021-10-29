@@ -4,6 +4,7 @@ using DatosEMC.DataModels;
 using DatosEMC.IRepositories;
 using DatosEMC.Repositories;
 using EMCApi.Client;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -19,6 +20,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 
@@ -78,7 +80,8 @@ namespace FacturacionEMCSite
 
             app.UseRouting();
 
-            //app.UseAuthorization();
+           // app.UseAuthorization();
+
             app.UseSession();
 
             app.UseEndpoints(endpoints =>
