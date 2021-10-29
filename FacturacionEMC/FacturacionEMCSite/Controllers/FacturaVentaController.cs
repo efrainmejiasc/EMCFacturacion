@@ -42,6 +42,11 @@ namespace FacturacionEMCSite.Controllers
                 factura.IdUsuario = usuario.Id;
                 factura.Activo = true;
                 factura.Fecha = factura.FechaModificacion = DateTime.Now;
+                factura.Descuento = factura.PorcentajeDescuento > 0 ? factura.Subtotal - (factura.Subtotal * factura.PorcentajeDescuento * 0.01F) : 0.00F;
+                factura.Impuesto = factura.PorcentajeImpuesto > 0 ? (factura.Subtotal - factura.Descuento) - (factura.Subtotal * factura.PorcentajeImpuesto * 0.01F) : 0.00F;
+
+                factura.Subtotal = factura.Subtotal / 100;
+                factura.Total = factura.Total / 100 - factura.Descuento + factura.Impuesto;
 
                 var saveFactura = await this.clientApi.PostFacturaVentaAsync(factura);
 
@@ -66,11 +71,14 @@ namespace FacturacionEMCSite.Controllers
                 var facturaDetalleDTO = JsonConvert.DeserializeObject<List<FacturaVentaDetalleDTO>>(facturaDetalle);
                 foreach (var f in facturaDetalleDTO)
                 {
+                    var pArt = f.NombreArticulo.Trim().Split(' ');
+                    f.IdArticulo = Convert.ToInt32(pArt[pArt.Length - 1]);
+                    f.IdEmpresa = this.usuario.IdEmpresa;
                     f.IdUsuario = usuario.Id;
-                    f.IdArticulo = 1;
-                    f.NombreArticulo = f.Descripcion;
+                    f.NombreArticulo = f.NombreArticulo.Substring(0, f.NombreArticulo.Trim().Length - 1);
                     f.Descuento = f.PorcentajeDescuento > 0 ? f.Subtotal - (f.Subtotal * f.PorcentajeDescuento * 0.01F) : 0.00F;
                     f.Impuesto = f.PorcentajeImpuesto > 0 ? (f.Subtotal - f.Descuento) - (f.Subtotal * f.PorcentajeImpuesto * 0.01F) : 0.00F;
+                    f.Total = f.Subtotal - f.Descuento + f.Impuesto;
                 }
 
                 var saveFacturaDetalle = await this.clientApi.PostFacturaVentaDetalleAsync(facturaDetalleDTO);

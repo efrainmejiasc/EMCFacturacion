@@ -6,6 +6,7 @@ using FacturacionEMCApi.SecurityToken;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -19,6 +20,7 @@ using NegocioEMC.IServices;
 using NegocioEMC.Services;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -126,6 +128,9 @@ namespace FacturacionEMCApi
 
             services.AddScoped<IStockTransitoService, StockTransitoService>();
             //services.AddScoped<IStockTransitoRepository, StockTransitoRepository>();
+
+            services.AddScoped<IProductoService, ProductoService>();
+            services.AddScoped<IProductoRepository, ProductoRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -146,6 +151,25 @@ namespace FacturacionEMCApi
             {
                 endpoints.MapControllers();
             });
+
+            //******************************************************************************
+            var defaultDateCulture = "en-US";
+            var ci = new CultureInfo(defaultDateCulture);
+            ci.NumberFormat.NumberDecimalSeparator = ".";
+            ci.NumberFormat.CurrencyDecimalSeparator = ".";
+            app.UseRequestLocalization(new RequestLocalizationOptions
+            {
+                DefaultRequestCulture = new RequestCulture(ci),
+                SupportedCultures = new List<CultureInfo>
+                {
+                    ci,
+                },
+                SupportedUICultures = new List<CultureInfo>
+                {
+                    ci,
+                }
+            });
+            //******************************************************************************
         }
     }
 }

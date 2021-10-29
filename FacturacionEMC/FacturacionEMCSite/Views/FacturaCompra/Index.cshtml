@@ -14,6 +14,8 @@
     var urlAgregarProveedor = '@Url.Action("AgregarProveedor","Proveedor")';
     var urlGetMetodosPago = '@Url.Action("GetMetodosPago","MetodoPago")';
     var urlGetUnidadesMedida = '@Url.Action("GetUnidadesMedida","UnidadMedida")';
+    var urlGetProductos = '@Url.Action("GetProductos", "Producto")';
+    var urlAddProducto = '@Url.Action("AddProduct", "Producto")';
 </script>
 
 <!--FACTURA DE COMPRAS-->
@@ -54,13 +56,15 @@
                     <label class="control-label">Article</label>
                 </div>
                 <div class="col-md-8">
-                    <input type="text" id="articulo" name="articulo" class="form form-control" />
+                    <select id="lstArticulo" name="lstArticulo" class="form-control form-control-sm" onchange="SetArticulo();"></select>
                 </div>
-                <br />
-                 <div class="col-md-12 text-md-right">
-                   <button class="btn btn-success" onclick="MostrarModalArticulo();"><i class="bi bi-plus-circle-fill"> Article</i></button>
+                <div class="col-md-12 text-md-right">
+                    <button class="btn btn-success" onclick="MostrarModalArticulo();"><i class="bi bi-plus-circle-fill"> Article</i></button>
                 </div>
                 <br /><br />
+                <div class="col-md-8" style="display:none;">
+                    <input type="text" id="articulo" name="articulo" class="form form-control" />
+                </div>
                 <div class="col-md-3 text-md-right">
                     <label class="control-label">Unit</label>
                 </div>
@@ -93,7 +97,7 @@
                     <input type="number" id="subTotalLinea" name="subTotalLinea" class="form form-control" min="0" disabled placeholder="0.0" />
                 </div>
                 <div class="col-md-12 text-md-right">
-                        <button class="btn btn-success" onclick="AddLinea();"><i class="bi bi-plus-circle-fill"> </i></button>
+                    <button class="btn btn-success" onclick="AddLinea();"><i class="bi bi-plus-circle-fill"> </i></button>
                 </div>
             </div>
         </div>
@@ -193,14 +197,14 @@
                 <div class="modal-content2">
                     <div class="row">
                         <div class="col-md-12">
-                            <h3> Add New Product</h3>
+                            <h3> Add New Article</h3>
                             <div class="form-group row">
-                                <label class="form form-label">Name Product </label>
+                                <label class="form form-label">Name Article</label>
                                 <input type="text" id="_nombreArt" class="form-control text-box single-line" />
                                 <label class="form form-label">Description Product</label>
                                 <input type="text" id="_descripcionArticulo" class="form-control text-box single-line" />
                                 <label class="form form-label">Unit Price</label>
-                                <input type="text" id="_precioArticulo" class="form-control text-box single-line" />
+                                <input type="number" id="_precioArticulo" class="form-control text-box single-line" min="0" step="1" />
                                 <label class="form form-label">Presentacion</label>
                                 <input type="text" id="_presentacionArticulo" class="form-control text-box single-line" />
                             </div>

@@ -25,6 +25,7 @@ namespace DatosEMC.DataModels
         public virtual DbSet<Proveedor> Proveedor { get; set; }
         public virtual DbSet<Empresa> Empresa { get; set; }
         public virtual DbSet<Usuario> Usuario { get; set; }
+        public virtual DbSet<Producto> Producto { get; set; }
 
 
         public virtual DbSet<StockTotal> StockTotal { get; set; }

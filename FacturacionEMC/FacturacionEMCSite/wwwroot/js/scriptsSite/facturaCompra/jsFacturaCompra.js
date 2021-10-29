@@ -4,6 +4,7 @@ $(document).ready(function () {
     GetMetodosPago();
     GetProveedores();
     GetUnidadesMedida();
+    GetProductos();
     $('#pImpuesto').val('0.00');
     $('#pDescuento').val('0.00');
     $('#numeroLinea_').val(0)
@@ -148,7 +149,7 @@ function SetTotalesTabla() {
     var precio = 0;
     var subtotal = 0;
 
-    //devulve las filas del body de tu tabla segun el ejemplo que brindaste
+    //devuelve las filas del body de tu tabla segun el ejemplo que brindaste
     var nfilas = $("#tablaLineas").find("tr");
 
     for (var i = 1; i < nfilas.length; i++) {
@@ -165,7 +166,6 @@ function SetTotalesTabla() {
     }
 }
 
-    
 function GuardarFactura() {
 
     var idProveedor = $('#proveedor').val();
@@ -335,6 +335,60 @@ function MostrarModalArticulo() {
 function OcultarModalArticulo() {
     $('#modalArticulo').hide();
    // ResetModalArticulo();
+}
+
+function AgregarArticulo() {
+    var nombre = $('#_nombreArt').val();
+    var descripcion = $('#_descripcionArticulo').val();
+    var precio = $('#_precioArticulo').val();
+    var presentacion = $('#_presentacionArticulo').val();
+
+
+    if (nombre === '' || descripcion  === '' || precio <= 0 || presentacion === '' ) {
+        toastr.warning("All fields are required");
+        return false;
+    }
+    $.ajax({
+        type: "POST",
+        url: urlAddProducto,
+        data: { NombreProducto: nombre, Descripcion: descripcion, PrecioUnidad: precio, Presentacion: presentacion},
+        datatype: "json",
+        success: function (data) {
+            if (data.estatus) {
+                toastr.success("Article saved successfully");
+                GetProductos();
+                setTimeout(OcultarModalArticulo, 4000);
+            }
+            else
+                toastr.error("Unexpected error");
+        }
+    });
+
+    return false;
+}
+
+function SetArticulo() {
+    var articulo = $("#lstArticulo option:selected").text();
+    var id = $("#lstArticulo").val();
+    $('#articulo').val(articulo + ' ' +id);
+}
+
+function GetProductos() {
+
+    $.ajax({
+        type: "GET",
+        url: urlGetProductos,
+        datatype: "json",
+        success: function (data) {
+            $('#lstArticulo').empty();
+            $('#lstArticulo').append('<option value="-1" disabled selected>Select article...</option>');
+            $.each(data, function (index, item) {
+                $('#lstArticulo').append("<option value=\"" + item.id + "\">" + item.nombreProducto + " - " +  item.presentacion +"</option>");
+            });
+        }
+    });
+
+    return false;
 }
 
 

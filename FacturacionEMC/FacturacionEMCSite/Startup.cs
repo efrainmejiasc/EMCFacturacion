@@ -91,10 +91,10 @@ namespace FacturacionEMCSite
             });
 
             //******************************************************************************
-            var defaultDateCulture = "es-VE";
+            var defaultDateCulture = "en-US";
             var ci = new CultureInfo(defaultDateCulture);
-            ci.NumberFormat.NumberDecimalSeparator = ",";
-            ci.NumberFormat.CurrencyDecimalSeparator = ",";
+            ci.NumberFormat.NumberDecimalSeparator = ".";
+            ci.NumberFormat.CurrencyDecimalSeparator = ".";
             app.UseRequestLocalization(new RequestLocalizationOptions
             {
                 DefaultRequestCulture = new RequestCulture(ci),

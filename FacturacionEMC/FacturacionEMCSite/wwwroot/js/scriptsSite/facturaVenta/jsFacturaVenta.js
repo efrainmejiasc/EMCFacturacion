@@ -4,6 +4,8 @@ $(document).ready(function () {
     GetMetodosPago();
     GetClientes();
     GetUnidadesMedida();
+    GetUnidadesMedida();
+    GetProductos();
     $('#pImpuesto').val('0.00');
     $('#pDescuento').val('0.00');
     $('#numeroLinea_').val(0)
@@ -320,6 +322,30 @@ function ResetModal() {
     $('#_email').val('');
     $('#_direccion').val('');
     $('#_telefono').val('');
+}
+
+function SetArticulo() {
+    var articulo = $("#lstArticulo option:selected").text();
+    var id = $("#lstArticulo").val();
+    $('#articulo').val(articulo + ' ' + id);
+}
+
+function GetProductos() {
+
+    $.ajax({
+        type: "GET",
+        url: urlGetProductos,
+        datatype: "json",
+        success: function (data) {
+            $('#lstArticulo').empty();
+            $('#lstArticulo').append('<option value="-1" disabled selected>Select article...</option>');
+            $.each(data, function (index, item) {
+                $('#lstArticulo').append("<option value=\"" + item.id + "\">" + item.nombreProducto + " - " + item.presentacion + "</option>");
+            });
+        }
+    });
+
+    return false;
 }
 
 
