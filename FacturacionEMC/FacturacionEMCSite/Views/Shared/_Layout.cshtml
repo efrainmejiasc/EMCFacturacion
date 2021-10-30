@@ -8,8 +8,6 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/font-awesome.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.1/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="~/css/modalStyle.css" />
 </head>
@@ -25,16 +23,28 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between" id="submenu">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a href="@Url.Action("Index","FacturaVenta")" class="nav-link text-dark" id="_1">Sales Record</a>
+                            <a href="@Url.Action("Index","Home")" class="nav-link text-dark" id="logout_">Logout</a>
                         </li>
                         <li class="nav-item">
-                            <a href="@Url.Action("Index","FacturaCompra")" class="nav-link text-dark" id="_2">Purchase Record</a>
+                            <a href="@Url.Action("Index","Usuario")" class="nav-link text-dark" id="usuario_">Users</a>
                         </li>
                         <li class="nav-item">
-                            <a href="@Url.Action("About","FacturaVenta")" class="nav-link text-dark" id="_3">Sales Summary</a>
+                            <a href="@Url.Action("About","Home")" class="nav-link text-dark" id="dashboard_">Dashboard</a>
                         </li>
                         <li class="nav-item">
-                            <a href="@Url.Action("About","FacturaCompra")" class="nav-link text-dark" id="_4">Purchase Summary</a>
+                            <a href="@Url.Action("Index","FacturaVenta")" class="nav-link text-dark" id="fVenta_">Sales Record</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="@Url.Action("Index","FacturaCompra")" class="nav-link text-dark" id="fCompra_">Purchase Record</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="@Url.Action("About","FacturaVenta")" class="nav-link text-dark" id="rVenta_">Sales Summary</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="@Url.Action("About","FacturaCompra")" class="nav-link text-dark" id="rCompra_">Purchase Summary</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="@Url.Action("Index","Inventario")" class="nav-link text-dark" id="stock_">Stock</a>
                         </li>
                     </ul>
                 </div>
@@ -53,7 +63,6 @@
         </div>
     </footer>
 
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
 

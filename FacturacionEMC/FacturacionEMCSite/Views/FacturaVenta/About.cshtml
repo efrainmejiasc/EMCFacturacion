@@ -3,11 +3,15 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/js/scriptsSite/facturaVenta/jsFacturaVentaResumen.js"></script>
+    <link rel="stylesheet" type="text/css" href="~/js/dataTables/datatables.css" />
+    <script type="text/javascript" src="~/js/dataTables/datatables.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
 }
-
+<script>
+    var urlGetFacturas = '@Url.Action("GetFacturas","FacturaVenta")';
+    var urlGetFacturasFechas = '@Url.Action("GetFacturasFechas","FacturaVenta")';
+</script>
 
 <div class="card" style="margin-top:5%;">
     <div class="card-body">
@@ -20,16 +24,16 @@
                 <input type="date" id="fechaFinal" class="form-horizontal form-control" />
             </div>
             <div class="col-md-4">
-                <button class="btn btn-primary" onclick="Buscar();"><i class="bi bi-search"> Search</i></button>
+                <button class="btn btn-primary" onclick="GetFacturasFechas();"><i class="bi bi-search"> Search</i></button>
             </div>
         </div>
         <hr />
 
-
+        <input type="hidden" id="initDataTable" value="no" />
         <h3 style="color:dimgray"> Summary Sales </h3>
         <div class="form-horizontal" style="color:dimgray">
 
-            <table id="tablaLineas" class="display compact dt-center table table-striped table-light" style="width:100%">
+            <table id="tablaFacturas" class="display compact dt-center table table-striped table-light" style="width:100%">
                 <thead class="thead-dark">
                     <tr>
                         <th>Nº</th>

@@ -1,6 +1,7 @@
 ﻿
 $(document).ready(function () {
     console.log("ready!");
+    $('#fVenta_').hide();
     GetMetodosPago();
     GetClientes();
     GetUnidadesMedida();

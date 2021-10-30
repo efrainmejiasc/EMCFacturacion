@@ -106,6 +106,40 @@ namespace FacturacionEMCSite.Controllers
             return View();
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetFacturasAsync()
+        {
+            ICollection<EMCApi.Client.FacturaVentaDTO> facturas = new List<EMCApi.Client.FacturaVentaDTO>();
+
+            try
+            {
+                facturas = await this.clientApi.GetFacturasVentasAsync(this.usuario.IdEmpresa);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return Json(facturas);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetFacturasFechasAsync(DateTime fechaInicial, DateTime fechaFinal)
+        {
+            ICollection<EMCApi.Client.FacturaVentaDTO> facturas = new List<EMCApi.Client.FacturaVentaDTO>();
+
+            try
+            {
+                facturas = await this.clientApi.GetFacturasVentasFechasAsync(this.usuario.IdEmpresa,fechaInicial,fechaFinal);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return Json(facturas);
+        }
+
         #endregion
 
     }

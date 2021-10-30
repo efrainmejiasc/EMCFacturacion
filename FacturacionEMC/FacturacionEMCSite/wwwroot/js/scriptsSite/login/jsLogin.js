@@ -1,10 +1,14 @@
 ﻿$(document).ready(function () {
     console.log("ready!");
     GetEmpresas();
-    $('#_1').hide();
-    $('#_2').hide();
-    $('#_3').hide();
-    $('#_4').hide();
+    $('#logout_').hide();
+    $('#usuario_').hide();
+    $('#dashboard_').hide();
+    $('#fVenta_').hide();
+    $('#fCompra_').hide();
+    $('#rVenta_').hide();
+    $('#rCompra_').hide();
+    $('#stock_').hide();
    //toastr.warning("PRUEBA TOASTR");
     //toastr.success("Reinicio de politicas exitoso");
     //toastr.error("Error al reiniciar politicas");
@@ -15,9 +19,9 @@ function Login() {
     var empresa = $('#empresa').val();
     var userMail = $('#userMail').val();
     var password = $('#password').val();
-    var confirmar = $('#confirmar').val();
+    var confirmar = document.getElementById('confirmar').checked;
 
-    if (empresa === null || userMail === '' || password === '' && confirmar != 'on') {
+    if (empresa === null || userMail === '' || password === '' || !confirmar) {
         toastr.warning("All fields are required");
         return false;
     }
@@ -67,43 +71,3 @@ function Reset() {
 }
 
 
-
-
-function GetAlmacenesPorIdConexion() {
-    almacenesArray = [];
-    var idConexion = $('#conexion').val();
-    if (idConexion === '')
-        return false;
-    $.ajax({
-        type: "GET",
-        url: urlGetAlmacenesPorIdConexion,
-        data: { id: idConexion },
-        datatype: "json",
-        success: function (data) {
-            if (data != null) {
-                $('#tablaAlmacenes tbody tr').remove();
-                $.each(data, function (index, item) {
-                    let tr = `<tr>
-                      <td> ${item.CveAlmacen} </td>
-                      <td> ${item.Almacen} </td>
-                      <td><a href="javascript:void(0)" class="btn btn-sm btn-danger" onclick="RemoveAlmacen(${item.CveAlmacen})"><small><i class="mdi mdi-delete-forever"></i></small></a> </td>
-                      </tr>`;
-                    $('#tablaAlmacenes tbody').append(tr);
-                });
-                if (almacenesArray.length === 0) {
-                    $.each(data, function (index, item) {
-                        AgregarAlmacen(item.CveAlmacen.toString());
-                    });
-                }
-            } else {
-                $('#tablaAlmacenes tbody tr').remove();
-            }
-            InicializarDataTable();
-        }, error: function (jqXHR, textStatus, errorThrown) {
-            $('#tablaAlmacenes tbody tr').remove();
-        }
-    });
-
-    $("#tablaAlmacenes").addClass("display compact dt-center");
-    return false;
-}

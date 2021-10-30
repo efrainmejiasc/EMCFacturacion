@@ -10,5 +10,6 @@ namespace DatosEMC.IRepositories
     public interface IStockTotalRepository
     {
         List<StockTotal> AddExistencia(List<StockTotal> model);
+        List<StockTotal> GetProductosStock(int idEmpresa, bool activo = true);
     }
 }

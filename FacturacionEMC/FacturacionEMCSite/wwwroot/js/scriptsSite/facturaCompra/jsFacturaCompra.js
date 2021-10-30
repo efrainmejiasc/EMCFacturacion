@@ -1,10 +1,12 @@
 ﻿
 $(document).ready(function () {
     console.log("ready!");
+    $('#fCompra_').hide();
     GetMetodosPago();
     GetProveedores();
     GetUnidadesMedida();
     GetProductos();
+    GetPresentacion();
     $('#pImpuesto').val('0.00');
     $('#pDescuento').val('0.00');
     $('#numeroLinea_').val(0)
@@ -358,6 +360,10 @@ function AgregarArticulo() {
                 toastr.success("Article saved successfully");
                 GetProductos();
                 setTimeout(OcultarModalArticulo, 4000);
+                $('#_nombreArt').val('');
+                $('#_descripcionArticulo').val('');
+                $('#_precioArticulo').val('');
+                $('#_presentacionArticulo').val('');
             }
             else
                 toastr.error("Unexpected error");
@@ -389,6 +395,29 @@ function GetProductos() {
     });
 
     return false;
+}
+
+
+function GetPresentacion() {
+    $.ajax({
+        type: "GET",
+        url: urlGetUnidadesMedida,
+        datatype: "json",
+        success: function (data) {
+            $('#_unidad').empty();
+            $('#_unidad').append('<option value="-1" disabled selected>Select unit...</option>');
+            $.each(data, function (index, item) {
+                $('#_unidad').append("<option value=\"" + item.id + "\">" + item.unidad + "</option>");
+            });
+        }
+    });
+    return false;
+}
+
+function SetPresentacion(){
+    var unidad = $("#_unidad option:selected").text();
+    $('#_presentacionArticulo').val(unidad);
+    $("#_unidad").val("-1");
 }
 
 

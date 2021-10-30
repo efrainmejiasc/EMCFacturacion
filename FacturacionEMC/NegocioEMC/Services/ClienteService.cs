@@ -40,12 +40,12 @@ namespace NegocioEMC.Services
 
         public List<ClienteDTO> GetClientes(int idEmpresa)
         {
-            var Clientees = this.ClienteRepository.GetClientes(idEmpresa);
+            var clientes = this.ClienteRepository.GetClientes(idEmpresa);
 
-            var ClienteesDTO = new List<ClienteDTO>();
-            ClienteesDTO = this._mapper.Map<List<ClienteDTO>>(Clientees);
+            var ClientesDTO = new List<ClienteDTO>();
+            ClientesDTO = this._mapper.Map<List<ClienteDTO>>(clientes);
 
-            return ClienteesDTO;
+            return ClientesDTO;
         }
     }
 }

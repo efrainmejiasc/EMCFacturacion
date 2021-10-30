@@ -15,6 +15,8 @@ namespace DatosEMC.DTOs
 
         public string NombreProveedor { get; set; }
 
+        public string Rfc { get; set; }
+
         public int IdProveedor { get; set; }
 
         public decimal Subtotal { get; set; }
@@ -37,5 +39,7 @@ namespace DatosEMC.DTOs
         public bool Activo { get; set; }
 
         public int IdMetodoPago { get; set; }
+
+        public string MetodoPago { get; set; }
     }
 }

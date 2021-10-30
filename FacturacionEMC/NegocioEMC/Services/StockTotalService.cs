@@ -14,10 +14,12 @@ namespace NegocioEMC.Services
     public class StockTotalService: IStockTotalService 
     {
         private readonly IStockTotalRepository stockTotalRepository;
+        private readonly IProductoRepository productoRepository;
 
-        public StockTotalService(IStockTotalRepository _stockTotalRepository)
+        public StockTotalService(IStockTotalRepository _stockTotalRepository , IProductoRepository _productoRepository)
         {
             this.stockTotalRepository = _stockTotalRepository;
+            this.productoRepository = _productoRepository;
         }
 
         public GenericResponse AddExistencia(List<FacturaCompraDetalleDTO> facturas )
@@ -52,6 +54,31 @@ namespace NegocioEMC.Services
                 return EngineService.SetGenericResponse(false, "No se pudo registrar la información");
 
 
+        }
+
+        public List<StockTotalDTO> GetStockTotal(int idEmpresa , bool activo = true)
+        {
+            var productos = this.productoRepository.GetProductos(idEmpresa, activo);
+            var stockTotal = this.stockTotalRepository.GetProductosStock(idEmpresa, activo);
+
+            var lst = new List<StockTotalDTO>();
+            StockTotalDTO s ;
+
+            foreach(var p in productos)
+            {
+                s = new StockTotalDTO()
+                {
+                    Identificador = p.Identificador.ToString(),
+                    IdArticulo = p.Id,
+                    NombreProducto = p.NombreProducto,
+                    Cantidad = stockTotal.Where(x => x.Activo == true && x.Id == p.Id).Sum(x => x.Cantidad),
+                    Unidad = p.Presentacion
+                };
+
+                lst.Add(s);
+            }
+
+            return lst;
         }
     }
 }

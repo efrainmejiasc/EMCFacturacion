@@ -9,6 +9,8 @@ namespace NegocioEMC.IServices
 {
     public interface IFacturaVentaService
     {
+        List<FacturaVentaDTO> GetFacturasVentas(int idEmpresa);
         GenericResponse AddFacturaVenta(FacturaVentaDTO facturaDTO);
+        List<FacturaVentaDTO> GetFacturasVentasFechas(int idEmpresa, DateTime fechaInicial, DateTime fechaFinal);
     }
 }

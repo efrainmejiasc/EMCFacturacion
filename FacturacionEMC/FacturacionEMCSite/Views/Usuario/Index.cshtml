@@ -2,63 +2,65 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/js/scriptsSite/login/jsLogin.js"></script>
+    <script src="~/js/scriptsSite/usuario/jsIndex.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 }
 
-<script>
-    var urlLogin = '@Url.Action("Login", "Home")';
-    var urlGetEmpresas = '@Url.Action("GetEmpresas", "Empresa")';
-    var urlRedirect = '@Url.Action("About", "Home")';
-</script>
 
+<script>
+    var urlAddUsuario = '@Url.Action("AddUsuario","Usuario")';
+</script>
 
 <div class="card" style="margin-top:5%;">
     <div class="card-body">
+
         <div class="form-horizontal" style="color:dimgray">
-            <h1 style="color:dimgray"> Login </h1>
+
+            <h1 style="color:dimgray"> New Users </h1>
             <div class="form-group row">
 
                 <div class="col-md-3 text-md-right">
-                    <label class="control-label">Company</label>
+                    <label class="control-label">User Rol</label>
                 </div>
                 <div class="col-md-8">
-                    <select id="empresa" name="empresa" class="form-control form-control-sm" onchange="" required> </select>
+                    <select id="rol" class="form-control form-control-sm" onchange="" required> </select>
                 </div>
                 <div class="col-md-3 text-md-right">
-                    <label class="control-label">Username/Email</label>
+                    <label class="control-label">Username</label>
                 </div>
                 <div class="col-md-8">
-                    <input type="text" id="userMail" name="userMail" class="form form-control" />
+                    <input type="text" id="username" class="form form-control" />
+                </div>
+                <div class="col-md-3 text-md-right">
+                    <label class="control-label">Email</label>
+                </div>
+                <div class="col-md-8">
+                    <input type="email" id="email" class="form form-control" />
                 </div>
                 <div class="col-md-3 text-md-right">
                     <label class="control-label">Password</label>
                 </div>
                 <div class="col-md-8">
-                    <input type="password" id="password" name="password" class="form form-control" />
+                    <input type="password" name="password" class="form form-control" />
                 </div>
-
                 <div class="col-md-3 text-md-right">
-                    <input type="checkbox" id="confirmar" class="" form-check-input> <br>
+                    <label class="control-label">Confirm Password</label>
                 </div>
-                <div class="col-md-2">
-                    <label class="control-label">Confirm</label>
-                </div>
-
-            </div>
-            <div class="form-group row">
+                <div class="col-md-8">
+                    <input type="password" name="cpassword" class="form form-control" />
+                </div>                <hr />
                 <div class="col-md-3 text-md-right">
                     <label class="control-label">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
                 </div>
                 <div class="col-md-8">
                     <input type="button" value="Accept" class="btn btn-success form-control" onclick="Login();" />
                 </div>
-                <div class="col-md-6 text-md-right" style="display:none;">
-                    <input type="reset" value="Cancel" class="btn btn-danger form-control" onclick="Reset()" style="width:200px;" />
-                </div>
+
             </div>
 
         </div>
+
     </div>
 </div>

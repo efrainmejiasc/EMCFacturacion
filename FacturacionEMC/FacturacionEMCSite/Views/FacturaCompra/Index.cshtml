@@ -205,7 +205,9 @@
                                 <label class="form form-label">Unit Price</label>
                                 <input type="number" id="_precioArticulo" class="form-control text-box single-line" min="0" step="1" />
                                 <label class="form form-label">Presentacion</label>
-                                <input type="text" id="_presentacionArticulo" class="form-control text-box single-line" />
+                                <select id="_unidad" class="form-control form-control-sm" onchange="SetPresentacion();">
+                                </select>
+                                <input type="text" id="_presentacionArticulo" class="form-control text-box single-line" disabled/>
                             </div>
                             <div class="col-md-12">
                                 <input type="submit" value="Save" class="btn btn-success" style="float:left;" onclick="AgregarArticulo();" />

@@ -23,5 +23,11 @@ namespace DatosEMC.Repositories
 
             return model;
         }
+
+        public List<StockTotal> GetProductosStock(int idEmpresa, bool activo = true)
+        {
+            return db.StockTotal.Where(x => x.Activo == activo && x.IdEmpresa == idEmpresa).ToList();
+        }
+
     }
 }

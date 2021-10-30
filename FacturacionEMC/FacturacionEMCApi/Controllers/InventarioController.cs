@@ -1,6 +1,7 @@
 ﻿using DatosEMC.DTOs;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using NegocioEMC.Commons;
 using NegocioEMC.IServices;
 using System;
 using System.Collections.Generic;
@@ -44,6 +45,23 @@ namespace FacturacionEMCApi.Controllers
             else
                 return BadRequest(genericResponse);
 
+        }
+
+        /// <summary>
+        /// Obtiene stock en bodega
+        /// </summary>
+        /// <returns>Lista de productos y existencia</returns>
+        [HttpGet("id/activo", Name = "GetStockBodega")]
+        [ProducesResponseType(statusCode: (int)HttpStatusCode.OK, Type = typeof(List<StockTotalDTO>))]
+        [ProducesResponseType(statusCode: (int)HttpStatusCode.BadRequest, Type = typeof(GenericResponse))]
+        public IActionResult GetStockBodega(int id,bool activo = true)
+        {
+            var lstStock = this.stockTotalService.GetStockTotal(id, activo);
+
+            if (lstStock.Count > 0)
+                return Ok(lstStock);
+            else
+                return BadRequest(EngineService.SetGenericResponse(false, "No se encontró información"));
         }
     }
 }
