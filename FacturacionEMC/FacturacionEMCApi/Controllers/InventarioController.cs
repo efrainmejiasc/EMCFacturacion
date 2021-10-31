@@ -51,7 +51,7 @@ namespace FacturacionEMCApi.Controllers
         /// Obtiene stock en bodega
         /// </summary>
         /// <returns>Lista de productos y existencia</returns>
-        [HttpGet("id/activo", Name = "GetStockBodega")]
+        [HttpGet("{id}/{activo}", Name = "GetStockBodega")]
         [ProducesResponseType(statusCode: (int)HttpStatusCode.OK, Type = typeof(List<StockTotalDTO>))]
         [ProducesResponseType(statusCode: (int)HttpStatusCode.BadRequest, Type = typeof(GenericResponse))]
         public IActionResult GetStockBodega(int id,bool activo = true)

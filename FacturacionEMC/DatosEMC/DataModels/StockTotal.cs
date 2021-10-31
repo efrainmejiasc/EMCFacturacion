@@ -48,5 +48,8 @@ namespace DatosEMC.DataModels
 
         [Column(Order = 12, TypeName = "INT")]
         public int IdUsuario { get; set; }
+
+        [Column(Order = 13, TypeName = "INT")]
+        public int TipoFactura { get; set; }
     }
 }

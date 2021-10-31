@@ -26,5 +26,6 @@ namespace DatosEMC.DTOs
         public string NombreProducto{ get; set; }
         public decimal Cantidad { get; set; }
         public string Unidad { get; set; }
+        public int TipoFactura { get; set; }
     }
 }

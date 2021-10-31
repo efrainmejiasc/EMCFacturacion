@@ -11,56 +11,76 @@
 
 <script>
     var urlAddUsuario = '@Url.Action("AddUsuario","Usuario")';
+    var urlAllUsers = '@Url.Action("About","Usuario")';
 </script>
 
 <div class="card" style="margin-top:5%;">
     <div class="card-body">
 
         <div class="form-horizontal" style="color:dimgray">
-
-            <h1 style="color:dimgray"> New Users </h1>
             <div class="form-group row">
+                    <div class="col-md-8">
+                        <h1 style="color:dimgray"> New Users </h1>
+                    </div>
+                    <div class="col-md-3 text-md-right">
+                        <a href="javascript:void(0);" class="btn btn-primary" onclick="GotoUsers()">All Users</a>
+                    </div>
+            </div>
+               
+                <div class="form-group row">
+                    <div class="col-md-3 text-md-right">
+                        <label class="control-label"> Name</label>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="text" id="nombre" class="form form-control" autocomplete="off" required />
+                    </div>
 
-                <div class="col-md-3 text-md-right">
-                    <label class="control-label">User Rol</label>
-                </div>
-                <div class="col-md-8">
-                    <select id="rol" class="form-control form-control-sm" onchange="" required> </select>
-                </div>
-                <div class="col-md-3 text-md-right">
-                    <label class="control-label">Username</label>
-                </div>
-                <div class="col-md-8">
-                    <input type="text" id="username" class="form form-control" />
-                </div>
-                <div class="col-md-3 text-md-right">
-                    <label class="control-label">Email</label>
-                </div>
-                <div class="col-md-8">
-                    <input type="email" id="email" class="form form-control" />
-                </div>
-                <div class="col-md-3 text-md-right">
-                    <label class="control-label">Password</label>
-                </div>
-                <div class="col-md-8">
-                    <input type="password" name="password" class="form form-control" />
-                </div>
-                <div class="col-md-3 text-md-right">
-                    <label class="control-label">Confirm Password</label>
-                </div>
-                <div class="col-md-8">
-                    <input type="password" name="cpassword" class="form form-control" />
-                </div>                <hr />
-                <div class="col-md-3 text-md-right">
-                    <label class="control-label">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                </div>
-                <div class="col-md-8">
-                    <input type="button" value="Accept" class="btn btn-success form-control" onclick="Login();" />
+                    <div class="col-md-3 text-md-right">
+                        <label class="control-label">Last Name</label>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="text" id="apellido" class="form form-control" autocomplete="off" required />
+                    </div>
+                    <div class="col-md-3 text-md-right">
+                        <label class="control-label">User Rol</label>
+                    </div>
+                    <div class="col-md-8">
+                        <select id="rol" class="form-control form-control-sm" onchange="" required> </select>
+                    </div>
+                    <div class="col-md-3 text-md-right">
+                        <label class="control-label">Username</label>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="text" id="username" class="form form-control" autocomplete="off" required />
+                    </div>
+                    <div class="col-md-3 text-md-right">
+                        <label class="control-label">Email</label>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="email" id="email" class="form form-control" autocomplete="off" required />
+                    </div>
+                    <div class="col-md-3 text-md-right">
+                        <label class="control-label">Password</label>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="password" id="password" class="form form-control" autocomplete="off" required />
+                    </div>
+                    <div class="col-md-3 text-md-right">
+                        <label class="control-label">Confirm Password</label>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="password" id="cpassword" class="form form-control" autocomplete="off" required />
+                    </div>                <hr />
+                    <div class="col-md-3 text-md-right">
+                        <label class="control-label">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="button" value="Accept" class="btn btn-success form-control" onclick="CrearUsuario();" />
+                    </div>
+
                 </div>
 
             </div>
 
         </div>
-
-    </div>
 </div>

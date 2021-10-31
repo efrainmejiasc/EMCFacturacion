@@ -26,12 +26,12 @@ namespace FacturacionEMCApi.Controllers
         /// Obtiene las unidades de medida por Id Empresa
         /// </summary>
         /// <returns>Lista metodos Pago</returns>
-        [HttpGet("id/idioma", Name = "GetUnidadesMedida")]
+        [HttpGet("{id}/{idioma}", Name = "GetUnidadesMedida")]
         [ProducesResponseType(statusCode: (int)HttpStatusCode.OK, Type = typeof(List<UnidadMedidaDTO>))]
         [ProducesResponseType(statusCode: (int)HttpStatusCode.BadRequest, Type = typeof(GenericResponse))]
-        public IActionResult GetMetodosPago(int id,string idiomas)
+        public IActionResult GetUnidadesMedida(int id,string idioma)
         {
-            var unidades = this.unidadMedidaService.GetUnidadMedidas(id,idiomas);
+            var unidades = this.unidadMedidaService.GetUnidadMedidas(id,idioma);
 
             if (unidades.Count > 0)
                 return Ok(unidades);

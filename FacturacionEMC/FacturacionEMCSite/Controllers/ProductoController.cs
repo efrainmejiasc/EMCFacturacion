@@ -58,9 +58,15 @@ namespace FacturacionEMCSite.Controllers
         public async Task<IActionResult> GetProductos()
         {
             ICollection<ProductoDTO> productos = new List<ProductoDTO>();
-
-            if (this.usuario != null)
-                productos = await this.clientApi.GetProductosAsync(this.usuario.IdEmpresa, true);
+            try
+            {
+                if (this.usuario != null)
+                    productos = await this.clientApi.GetProductosAsync(this.usuario.IdEmpresa, true);
+            }
+            catch (Exception ex)
+            {
+                var error = ex.Message;
+            }
 
             return Json(productos);
         }

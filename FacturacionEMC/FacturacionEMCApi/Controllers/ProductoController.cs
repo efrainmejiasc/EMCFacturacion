@@ -48,7 +48,7 @@ namespace FacturacionEMCApi.Controllers
         /// Obtiene los productos por idEmpresa
         /// </summary>
         /// <returns>Lista de Productos activos por idEmpresa </returns>
-        [HttpGet("id/activo", Name = "GetProductos")]
+        [HttpGet("{id}/{activo}", Name = "GetProductos")]
         [ProducesResponseType(statusCode: (int)HttpStatusCode.OK, Type = typeof(List<ProductoDTO>))]
         [ProducesResponseType(statusCode: (int)HttpStatusCode.BadRequest, Type = typeof(GenericResponse))]
         public IActionResult GetProductos(int id, bool activo)

@@ -49,7 +49,7 @@ namespace FacturacionEMCApi.Controllers
         /// Obtiene los Clientes por idEmpresa
         /// </summary>
         /// <returns>Lista de Clientes por idEmpresa </returns>
-        [HttpGet("id", Name = "GetClientes")]
+        [HttpGet("{id}", Name = "GetClientes")]
         [ProducesResponseType(statusCode: (int)HttpStatusCode.OK, Type = typeof(List<ClienteDTO>))]
         [ProducesResponseType(statusCode: (int)HttpStatusCode.BadRequest, Type = typeof(GenericResponse))]
         public IActionResult GetClientes(int id)

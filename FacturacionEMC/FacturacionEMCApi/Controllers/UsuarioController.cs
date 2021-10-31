@@ -13,7 +13,7 @@ using FacturacionEMCApi.SecurityToken;
 
 namespace FacturacionEMCApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class UsuarioController : ControllerBase
     {
@@ -32,7 +32,7 @@ namespace FacturacionEMCApi.Controllers
         /// </summary>
         /// <returns>Datos del usuario</returns>
         // GET: api/GetUserData
-        [HttpGet(Name = "GetUserData")]
+        [HttpGet("{idEmpresa}/{userMail}/{password}",Name = "GetUserData")]
         [ProducesResponseType(statusCode: (int)HttpStatusCode.OK, Type = typeof(UsuarioDTO))]
         [ProducesResponseType(statusCode: (int)HttpStatusCode.BadRequest, Type = typeof(GenericResponse))]
 
@@ -45,6 +45,92 @@ namespace FacturacionEMCApi.Controllers
             else
             return BadRequest(EngineService.SetGenericResponse(false, "No se encontró información"));
         }
-  
+
+        /// <summary>
+        ///Obtiene usuarios por id empresa 
+        /// <param name="id">Id Empresa</param>
+        /// </summary>
+        /// <returns>Usuarios de la empresa </returns>
+        // GET: api/GetUsuarios
+        [HttpGet("id", Name = "GeUsuarios")]
+        [ProducesResponseType(statusCode: (int)HttpStatusCode.OK, Type = typeof(List<UsuarioDTO>))]
+        [ProducesResponseType(statusCode: (int)HttpStatusCode.BadRequest, Type = typeof(GenericResponse))]
+
+        public IActionResult GetUsuarios(int idEmpresa)
+        {
+            var usuariosDTO = this.usuarioService.GetUsuarios(idEmpresa);
+
+            if (usuariosDTO.Count > 0)
+                return Ok(usuariosDTO);
+            else
+                return BadRequest(EngineService.SetGenericResponse(false, "No se encontró información"));
+        }
+
+
+        /// <summary>
+        /// Crea un nuevo Usuario
+        /// </summary>
+        /// <returns>Estado de la solicitud</returns>
+        [HttpPost(Name = "PostUsuario")]
+        [ProducesResponseType(statusCode: (int)HttpStatusCode.OK, Type = typeof(GenericResponse))]
+        [ProducesResponseType(statusCode: (int)HttpStatusCode.BadRequest, Type = typeof(GenericResponse))]
+
+        public IActionResult PostUsuario([FromBody] UsuarioDTO usuarioDTO)
+        {
+            usuarioDTO.Id = 0;
+
+
+            var genericResponse = this.usuarioService.AddUsuario(usuarioDTO);
+
+            if (genericResponse.Ok)
+                return Ok(EngineService.SetGenericResponse(true, "Usuario agregado correctamente"));
+
+            else
+                return BadRequest(EngineService.SetGenericResponse(false, "No se encontró información"));
+
+        }
+
+
+        /// <summary>
+        /// actualiza estatus de usuario
+        /// </summary>
+        /// <returns>Estado de la solicitud</returns>
+        [HttpPut(Name = "UpdateEstatusUsuario")]
+        [ProducesResponseType(statusCode: (int)HttpStatusCode.OK, Type = typeof(GenericResponse))]
+        [ProducesResponseType(statusCode: (int)HttpStatusCode.BadRequest, Type = typeof(GenericResponse))]
+
+        public IActionResult UpdateEstatusUsuario([FromBody] UsuarioDTO usuarioDTO)
+        {
+            var genericResponse = this.usuarioService.UpdateEstatusUsuario(usuarioDTO.IdEmpresa, usuarioDTO.Id, usuarioDTO.Activo);
+
+            if (genericResponse.Ok)
+                return Ok(EngineService.SetGenericResponse(true, "Usuario actualizado correctamente"));
+
+            else
+                return BadRequest(EngineService.SetGenericResponse(false, "No se encontró información"));
+
+        }
+
+        /// <summary>
+        /// Eliminar usuario
+        /// </summary>
+        /// <returns>Estado de la solicitud</returns>
+        [HttpDelete(Name = "EliminarUsuario")]
+        [ProducesResponseType(statusCode: (int)HttpStatusCode.OK, Type = typeof(GenericResponse))]
+        [ProducesResponseType(statusCode: (int)HttpStatusCode.BadRequest, Type = typeof(GenericResponse))]
+
+        public IActionResult EliminarUsuario([FromBody] UsuarioDTO usuarioDTO)
+        {
+            var genericResponse = this.usuarioService.DeleteUsuario(usuarioDTO.IdEmpresa, usuarioDTO.Id);
+
+            if (genericResponse.Ok)
+                return Ok(EngineService.SetGenericResponse(true, "Usuario eliminado correctamente"));
+
+            else
+                return BadRequest(EngineService.SetGenericResponse(false, "No se encontró información"));
+
+        }
+
+
     }
 }

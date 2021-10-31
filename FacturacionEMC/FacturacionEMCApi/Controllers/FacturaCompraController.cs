@@ -48,7 +48,7 @@ namespace FacturacionEMCApi.Controllers
         /// Obtiene Facturas de compras entre rango de fechas y id empresa
         /// </summary>
         /// <returns>Lista de facturas de compra</returns>
-        [HttpGet("id/fechaInicial/fechaFinal", Name = "GetFacturasComprasFechas")]
+        [HttpGet("{id}/{fechaInicial}/{fechaFinal}", Name = "GetFacturasComprasFechas")]
         [ProducesResponseType(statusCode: (int)HttpStatusCode.OK, Type = typeof(List<FacturaCompraDTO>))]
         [ProducesResponseType(statusCode: (int)HttpStatusCode.BadRequest, Type = typeof(GenericResponse))]
         public IActionResult GetFacturasComprasFechas(int id,DateTime fechaInicial, DateTime fechaFinal)
@@ -65,7 +65,7 @@ namespace FacturacionEMCApi.Controllers
         /// Obtiene Facturas de compras ultimas 50 por id empresa
         /// </summary>
         /// <returns>Lista de facturas de compra</returns>
-        [HttpGet("id", Name = "GetFacturasCompras")]
+        [HttpGet("{id}", Name = "GetFacturasCompras")]
         [ProducesResponseType(statusCode: (int)HttpStatusCode.OK, Type = typeof(List<FacturaCompraDTO>))]
         [ProducesResponseType(statusCode: (int)HttpStatusCode.BadRequest, Type = typeof(GenericResponse))]
         public IActionResult GetFacturasCompras(int id)

@@ -40,7 +40,8 @@ namespace NegocioEMC.Services
                     Fecha = DateTime.Now,
                     FechaModificacion = DateTime.Now,
                     IdUsuario = f.IdUsuario,
-                    Activo = true
+                    Activo = true,
+                    TipoFactura = 1
                 };
                 stocks.Add(stock);
             }

@@ -24,7 +24,7 @@ namespace FacturacionEMCApi.Controllers
         /// Obtiene los metodos de pago
         /// </summary>
         /// <returns>Lista metodos Pago</returns>
-        [HttpGet("idioma",Name = "GetMetodosPago")]
+        [HttpGet("{idioma}",Name = "GetMetodosPago")]
         [ProducesResponseType(statusCode: (int)HttpStatusCode.OK, Type = typeof(List<MetodoPagoDTO>))]
         [ProducesResponseType(statusCode: (int)HttpStatusCode.BadRequest, Type = typeof(GenericResponse))]
         public IActionResult GetMetodosPago(string idioma)
