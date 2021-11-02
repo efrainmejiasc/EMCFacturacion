@@ -13,6 +13,7 @@
 <script>
     var urlGetFacturas = '@Url.Action("GetFacturas","FacturaCompra")';
     var urlGetFacturasFechas = '@Url.Action("GetFacturasFechas","FacturaCompra")';
+    var urlGetFacturaDetalle =  '@Url.Action("GetFacturasDetalles", "FacturaCompra")';
 </script>
 
 <div class="card" style="margin-top:5%;">
@@ -55,5 +56,34 @@
                 </tbody>
             </table>
         </div>
+
+        <div class="form-horizontal" style="color:dimgray">
+            <div class="container" style="color:dimgray;">
+                <div class="modalTipo" id="modalDetalle">
+                    <div class="modal-content2">
+                        <table id="tablaDetalle" class="display compact dt-center table table-striped table-light" style="width:100%">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Product</th>
+                                    <th>Unit</th>
+                                    <th>Amount</th>
+                                    <th>U. Price</th>
+                                    <th>Subtotal</th>
+                                    <th>Discount</th>
+                                    <th>Tax</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>

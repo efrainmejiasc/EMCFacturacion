@@ -53,8 +53,39 @@ namespace NegocioEMC.Services
 
             else
                 return EngineService.SetGenericResponse(false, "No se pudo registrar la información");
+        }
 
+        public GenericResponse RemoveExistencia(List<FacturaVentaDetalleDTO> facturas)
+        {
+            var stock = new StockTotal();
+            var stocks = new List<StockTotal>();
+            foreach (var f in facturas)
+            {
+                stock = new StockTotal()
+                {
+                    IdEmpresa = f.IdEmpresa,
+                    NumeroFactura = f.NumeroFactura,
+                    Linea = f.Linea,
+                    IdArticulo = f.IdArticulo,
+                    NombreArticulo = f.NombreArticulo,
+                    Unidad = f.Unidad,
+                    Cantidad = f.Cantidad,
+                    Fecha = DateTime.Now,
+                    FechaModificacion = DateTime.Now,
+                    IdUsuario = f.IdUsuario,
+                    Activo = true,
+                    TipoFactura = 2
+                };
+                stocks.Add(stock);
+            }
 
+            stocks = this.stockTotalRepository.AddExistencia(stocks);
+
+            if (stocks.Count > 0)
+                return EngineService.SetGenericResponse(true, "La información ha sido registrada");
+
+            else
+                return EngineService.SetGenericResponse(false, "No se pudo registrar la información");
         }
 
         public List<StockTotalDTO> GetStockTotal(int idEmpresa , bool activo = true)
@@ -67,15 +98,16 @@ namespace NegocioEMC.Services
 
             foreach(var p in productos)
             {
-                s = new StockTotalDTO()
-                {
-                    Identificador = p.Identificador.ToString(),
-                    IdArticulo = p.Id,
-                    NombreProducto = p.NombreProducto,
-                    Cantidad = stockTotal.Where(x => x.Activo == true && x.Id == p.Id).Sum(x => x.Cantidad),
-                    Unidad = p.Presentacion
-                };
+                s = new StockTotalDTO();
 
+                s.Identificador = p.Identificador.ToString();
+                s.IdArticulo = p.Id;
+                s.NombreProducto = p.NombreProducto;
+                s.CantidadPositiva = stockTotal.Where(x => x.Activo == true && x.Id == p.Id && x.TipoFactura == 1).Sum(x => x.Cantidad);
+                s.CantidadNegativa = stockTotal.Where(x => x.Activo == true && x.Id == p.Id && x.TipoFactura == 2).Sum(x => x.Cantidad);
+                s.Cantidad = s.CantidadPositiva >= s.CantidadNegativa ? s.CantidadPositiva - s.CantidadNegativa : s.CantidadNegativa - s.CantidadPositiva;
+                s.Unidad = p.Presentacion;
+                
                 lst.Add(s);
             }
 

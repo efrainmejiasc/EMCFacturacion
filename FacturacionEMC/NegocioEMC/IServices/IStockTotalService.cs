@@ -9,7 +9,8 @@ namespace NegocioEMC.IServices
 {
     public interface IStockTotalService
     {
-        GenericResponse AddExistencia(List<FacturaCompraDetalleDTO> facturas);
         List<StockTotalDTO> GetStockTotal(int idEmpresa, bool activo = true);
+        GenericResponse AddExistencia(List<FacturaCompraDetalleDTO> facturas);
+        GenericResponse RemoveExistencia(List<FacturaVentaDetalleDTO> facturas);
     }
 }

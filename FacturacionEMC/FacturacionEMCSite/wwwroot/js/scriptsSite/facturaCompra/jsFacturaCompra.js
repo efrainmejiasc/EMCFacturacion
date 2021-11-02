@@ -106,6 +106,8 @@ function AddLinea()
     $('#precio').val('');
     $('#subTotalLinea').val('');
     $('#unidad').val('Unit');
+    $('#lstArticulo').val('-1')
+    $('#lstArticulo').val('-1')
 
     SetTotalesTabla();
 }

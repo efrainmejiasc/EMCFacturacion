@@ -50,8 +50,8 @@ namespace FacturacionEMCSite.Controllers
                 factura.Descuento = factura.PorcentajeDescuento > 0 ? factura.Subtotal - (factura.Subtotal * factura.PorcentajeDescuento * 0.01F) : 0.00F;
                 factura.Impuesto = factura.PorcentajeImpuesto > 0 ? (factura.Subtotal - factura.Descuento) - (factura.Subtotal * factura.PorcentajeImpuesto * 0.01F) : 0.00F;
 
-                factura.Subtotal = factura.Subtotal / 100;
-                factura.Total = factura.Total / 100 - factura.Descuento + factura.Impuesto;
+                factura.Subtotal = factura.Subtotal ;
+                factura.Total = factura.Total  - factura.Descuento + factura.Impuesto;
 
                 var saveFactura = await this.clientApi.PostFacturaCompraAsync(factura);
 
@@ -84,10 +84,11 @@ namespace FacturacionEMCSite.Controllers
                     f.Descuento = f.PorcentajeDescuento > 0 ? f.Subtotal - (f.Subtotal * f.PorcentajeDescuento * 0.01F) : 0.00F;
                     f.Impuesto = f.PorcentajeImpuesto > 0 ? (f.Subtotal - f.Descuento) - (f.Subtotal * f.PorcentajeImpuesto * 0.01F) : 0.00F;
                     f.Total = f.Subtotal - f.Descuento + f.Impuesto;
+                    f.IdEmpresa = this.usuario.IdEmpresa;
                 }
 
                 var saveFacturaDetalle = await this.clientApi.PostFacturaCompraDetalleAsync(facturaDetalleDTO);
-                var saveStock = await this.clientApi.PostStockTotalAsync(facturaDetalleDTO);
+                var saveStock = await this.clientApi.PostStockTotalAddAsync(facturaDetalleDTO);
                 response.Estatus = saveFacturaDetalle.Ok && saveStock.Ok ? true : false;
             }
             catch (Exception ex)
@@ -133,6 +134,23 @@ namespace FacturacionEMCSite.Controllers
             try
             {
                 facturas = await this.clientApi.GetFacturasComprasFechasAsync(this.usuario.IdEmpresa,fechaInicial,fechaFinal);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return Json(facturas);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetFacturasDetallesAsync(string numeroFactura)
+        {
+            ICollection<EMCApi.Client.FacturaCompraDetalleDTO> facturas = new List<EMCApi.Client.FacturaCompraDetalleDTO>();
+
+            try
+            {
+                facturas = await this.clientApi.GetFacturaCompraDetalleAsync(this.usuario.IdEmpresa, numeroFactura);
             }
             catch (Exception ex)
             {

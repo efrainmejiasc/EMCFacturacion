@@ -36,5 +36,15 @@ namespace NegocioEMC.Services
             else
                 return EngineService.SetGenericResponse(false, "No se pudo registrar la información");
         }
+
+        public List<FacturaCompraDetalleDTO> GetFacturaCompraDetalle(int idEmpresa, string numeroFactura)
+        {
+            var detalle = this.facturaCompraDetalleRepository.GetDetalleFactura(idEmpresa, numeroFactura);
+
+            var detalleDTO = new List<FacturaCompraDetalleDTO>();
+            detalleDTO = this.mapper.Map<List<FacturaCompraDetalleDTO>>(detalle);
+
+            return detalleDTO;
+        }
     }
 }

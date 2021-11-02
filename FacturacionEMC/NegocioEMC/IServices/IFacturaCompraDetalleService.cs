@@ -9,6 +9,7 @@ namespace NegocioEMC.IServices
 {
     public interface IFacturaCompraDetalleService
     {
+        List<FacturaCompraDetalleDTO> GetFacturaCompraDetalle(int idEmpresa, string numeroFactura);
         GenericResponse AddFacturaCompraDetalle(List<FacturaCompraDetalleDTO> facturaDetalleDTO);
     }
 }

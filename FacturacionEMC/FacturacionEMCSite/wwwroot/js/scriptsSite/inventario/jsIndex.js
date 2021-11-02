@@ -11,7 +11,11 @@ $(document).ready(function () {
 function FechaActual() {
 
     var today = new Date();
-    var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+    var year = today.getFullYear();
+    var moth = (today.getMonth() + 1) <= 9 ? "0" + (today.getMonth() + 1) : (today.getMonth() + 1);
+    var day = today.getDate() <= 9 ? "0" + today.getDate() : today.getDate();
+    var date = year + '-' + moth + '-' + day;
+
     return date;
 }
 
@@ -52,7 +56,7 @@ function InicializarDataTable() {
 
     try {
         if (init === 'no') {
-            $('#tablaFacturas').DataTable({
+            $('#tablaStock').DataTable({
                 language: {
                     "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
                 },
@@ -62,7 +66,7 @@ function InicializarDataTable() {
             });
             $('#initDataTable').val('si');
         } else {
-            $('#tablaFacturas').DataTable().fnDestroy({
+            $('#tablaStock').DataTable().fnDestroy({
                 language: {
                     "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
                 },
@@ -73,5 +77,5 @@ function InicializarDataTable() {
         }
     } catch { console.log(''); }
 
-    $("#tablaFacturas").addClass("display compact dt-center");
+    $("#tablaStock").addClass("display compact dt-center");
 }

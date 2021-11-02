@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace FacturacionEMCApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class InventarioController : ControllerBase
     {
@@ -28,16 +28,38 @@ namespace FacturacionEMCApi.Controllers
 
 
         /// <summary>
-        /// Crear registro de stock
+        /// Crear registro de stock positivo
         /// </summary>
         /// <returns>Estado de la solicitud</returns>
-        [HttpPost(Name = "PostStockTotal")]
+        [HttpPost(Name = "PostStockTotalAdd")]
         [ProducesResponseType(statusCode: (int)HttpStatusCode.OK, Type = typeof(GenericResponse))]
         [ProducesResponseType(statusCode: (int)HttpStatusCode.BadRequest, Type = typeof(GenericResponse))]
 
-        public IActionResult PostStockTotal([FromBody] List<FacturaCompraDetalleDTO> facturaDTO)
+        public IActionResult PostStockTotalAdd([FromBody] List<FacturaCompraDetalleDTO> facturaDTO)
         {
             var genericResponse = this.stockTotalService.AddExistencia(facturaDTO);
+
+            if (genericResponse.Ok)
+                return Ok(genericResponse);
+
+            else
+                return BadRequest(genericResponse);
+
+        }
+
+
+
+        /// <summary>
+        /// Crear registro de stock
+        /// </summary>
+        /// <returns>Estado de la solicitud</returns>
+        [HttpPost(Name = "PostStockTotalRemove")]
+        [ProducesResponseType(statusCode: (int)HttpStatusCode.OK, Type = typeof(GenericResponse))]
+        [ProducesResponseType(statusCode: (int)HttpStatusCode.BadRequest, Type = typeof(GenericResponse))]
+
+        public IActionResult PostStockTotalRemove([FromBody] List<FacturaVentaDetalleDTO> facturaDTO)
+        {
+            var genericResponse = this.stockTotalService.RemoveExistencia(facturaDTO);
 
             if (genericResponse.Ok)
                 return Ok(genericResponse);
@@ -51,12 +73,12 @@ namespace FacturacionEMCApi.Controllers
         /// Obtiene stock en bodega
         /// </summary>
         /// <returns>Lista de productos y existencia</returns>
-        [HttpGet("{id}/{activo}", Name = "GetStockBodega")]
+        [HttpGet("{idEmpresa}/{activo}", Name = "GetStockBodega")]
         [ProducesResponseType(statusCode: (int)HttpStatusCode.OK, Type = typeof(List<StockTotalDTO>))]
         [ProducesResponseType(statusCode: (int)HttpStatusCode.BadRequest, Type = typeof(GenericResponse))]
-        public IActionResult GetStockBodega(int id,bool activo = true)
+        public IActionResult GetStockBodega(int idEmpresa, bool activo = true)
         {
-            var lstStock = this.stockTotalService.GetStockTotal(id, activo);
+            var lstStock = this.stockTotalService.GetStockTotal(idEmpresa, activo);
 
             if (lstStock.Count > 0)
                 return Ok(lstStock);

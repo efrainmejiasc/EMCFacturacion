@@ -1,6 +1,7 @@
 ﻿using DatosEMC.DTOs;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using NegocioEMC.Commons;
 using NegocioEMC.IServices;
 using System;
 using System.Collections.Generic;
@@ -40,6 +41,23 @@ namespace FacturacionEMCApi.Controllers
             else
                 return BadRequest(genericResponse);
 
+        }
+
+        /// <summary>
+        /// Obtiene detalle de la factura por id empresa
+        /// </summary>
+        /// <returns>Lista de facturas de venta</returns>
+        [HttpGet("{idEmpresa}/{numeroFactura}", Name = "GetFacturaVentaDetalle")]
+        [ProducesResponseType(statusCode: (int)HttpStatusCode.OK, Type = typeof(List<FacturaVentaDetalleDTO>))]
+        [ProducesResponseType(statusCode: (int)HttpStatusCode.BadRequest, Type = typeof(GenericResponse))]
+        public IActionResult GetFacturaVentaDetalle(int idEmpresa, string numeroFactura)
+        {
+            var factura = this.facturaVentaDetalleService.GetFacturaVentaDetalle(idEmpresa, numeroFactura);
+
+            if (factura.Count > 0)
+                return Ok(factura);
+            else
+                return BadRequest(EngineService.SetGenericResponse(false, "No se encontró información"));
         }
     }
 }

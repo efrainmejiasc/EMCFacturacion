@@ -48,12 +48,12 @@ namespace FacturacionEMCApi.Controllers
         /// Obtiene los proveedores por idEmpresa
         /// </summary>
         /// <returns>Lista de proveedores por idEmpresa </returns>
-        [HttpGet("{id}", Name = "GetProveedores")]
+        [HttpGet("{idEmpresa}", Name = "GetProveedores")]
         [ProducesResponseType(statusCode: (int)HttpStatusCode.OK, Type = typeof(List<ProveedorDTO>))]
         [ProducesResponseType(statusCode: (int)HttpStatusCode.BadRequest, Type = typeof(GenericResponse))]
-        public IActionResult GetProveedores(int id)
+        public IActionResult GetProveedores(int idEmpresa)
         {
-            var proveedores =  this.proveedorService.GetProveedores(id);
+            var proveedores =  this.proveedorService.GetProveedores(idEmpresa);
 
             if (proveedores.Count > 0)
                 return Ok(proveedores);

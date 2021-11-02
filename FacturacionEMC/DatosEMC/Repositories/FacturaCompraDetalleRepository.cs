@@ -1,4 +1,5 @@
 ﻿using DatosEMC.DataModels;
+using DatosEMC.DTOs;
 using DatosEMC.IRepositories;
 using System;
 using System.Collections.Generic;
@@ -18,10 +19,38 @@ namespace DatosEMC.Repositories
 
         public List<FacturaCompraDetalle> AddFacturaCompraDetalle(List<FacturaCompraDetalle> facturaDetalle)
         {
-            db.FacturaCompraDetalle.AddRange(facturaDetalle);
-            db.SaveChangesAsync();
+            this.db.FacturaCompraDetalle.AddRange(facturaDetalle);
+            this.db.SaveChangesAsync();
 
             return facturaDetalle;
+        }
+
+        public FacturaCompraDetalle GetFacturaCompraDetalle(int idEmpresa, string numeroFactura)
+        {
+            return this.db.FacturaCompraDetalle.Where(x => x.IdEmpresa == idEmpresa && x.NumeroFactura == numeroFactura).FirstOrDefault();
+        }
+
+        public List<FacturaCompraDetalleDTO> GetDetalleFactura (int idEmpresa, string numeroFactura)
+        {
+            var lst = new List<FacturaCompraDetalleDTO>();
+            lst = (from fd in db.FacturaCompraDetalle join u in db.UnidadMedida on fd.Unidad equals u.Id
+                   where fd.IdEmpresa == idEmpresa && fd.NumeroFactura == numeroFactura
+                   select new { fd, u}).AsEnumerable()
+                    .Select(x => new FacturaCompraDetalleDTO
+                    {
+                        Linea = x.fd.Linea,
+                        NombreArticulo = x.fd.NombreArticulo,
+                        UnidadMedida = x.u.Unidad,
+                        Cantidad = x.fd.Cantidad,
+                        PrecioUnitario = x.fd.Cantidad / x.fd.Subtotal,
+                        Subtotal = x.fd.Subtotal,
+                        Descuento = x.fd.Descuento,
+                        Impuesto = x.fd.Impuesto,
+                        Total = x.fd.Total
+
+                    }).OrderBy(x => x.Linea).ToList();
+
+            return lst;
         }
     }
 }

@@ -63,5 +63,8 @@ namespace DatosEMC.DataModels
 
         [Column(Order = 17, TypeName = "INT")]
         public int Unidad { get; set; }
+
+        [Column(Order = 18, TypeName = "INT")]
+        public int IdEmpresa { get; set; }
     }
 }

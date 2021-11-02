@@ -48,12 +48,12 @@ namespace FacturacionEMCApi.Controllers
         /// Obtiene Facturas de venta entre rango de fechas y id empresa
         /// </summary>
         /// <returns>Lista de facturas de venta</returns>
-        [HttpGet("{id}/{fechaInicial}/{fechaFinal}", Name = "GetFacturasVentasFechas")]
+        [HttpGet("{idEmpresa}/{fechaInicial}/{fechaFinal}", Name = "GetFacturasVentasFechas")]
         [ProducesResponseType(statusCode: (int)HttpStatusCode.OK, Type = typeof(List<FacturaVentaDTO>))]
         [ProducesResponseType(statusCode: (int)HttpStatusCode.BadRequest, Type = typeof(GenericResponse))]
-        public IActionResult GetFacturasVentasFechas(int id, DateTime fechaInicial, DateTime fechaFinal)
+        public IActionResult GetFacturasVentasFechas(int idEmpresa, DateTime fechaInicial, DateTime fechaFinal)
         {
-            var facturas = this.facturaVentaService.GetFacturasVentasFechas(id, fechaInicial, fechaFinal);
+            var facturas = this.facturaVentaService.GetFacturasVentasFechas(idEmpresa, fechaInicial, fechaFinal);
 
             if (facturas.Count > 0)
                 return Ok(facturas);
@@ -65,12 +65,12 @@ namespace FacturacionEMCApi.Controllers
         /// Obtiene Facturas de ventas ultimas 50 por id empresa
         /// </summary>
         /// <returns>Lista de facturas de venta</returns>
-        [HttpGet("{id}", Name = "GetFacturasVentas")]
+        [HttpGet("{idEmpresa}", Name = "GetFacturasVentas")]
         [ProducesResponseType(statusCode: (int)HttpStatusCode.OK, Type = typeof(List<FacturaVentaDTO>))]
         [ProducesResponseType(statusCode: (int)HttpStatusCode.BadRequest, Type = typeof(GenericResponse))]
-        public IActionResult GetFacturasVentas(int id)
+        public IActionResult GetFacturasVentas(int idEmpresa)
         {
-            var facturas = this.facturaVentaService.GetFacturasVentas(id);
+            var facturas = this.facturaVentaService.GetFacturasVentas(idEmpresa);
 
             if (facturas.Count > 0)
                 return Ok(facturas);

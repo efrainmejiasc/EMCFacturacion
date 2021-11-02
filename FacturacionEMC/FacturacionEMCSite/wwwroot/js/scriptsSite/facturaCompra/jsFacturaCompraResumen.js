@@ -8,10 +8,15 @@
     GetFacturas();
 });
 
+
 function FechaActual() {
 
     var today = new Date();
-    var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+    var year = today.getFullYear();
+    var moth = (today.getMonth() + 1) <= 9 ? "0" + (today.getMonth() + 1) : (today.getMonth() + 1);
+    var day = today.getDate() <= 9 ? "0" + today.getDate() : today.getDate();
+    var date = year + '-' + moth + '-' + day;
+
     return date;
 }
 
@@ -26,7 +31,7 @@ function GetFacturas() {
                 $('#tablaFacturas tbody tr').remove();
                 $.each(data, function (index, item) {
                     let tr = `<tr>
-                      <td> ${item.numeroFactura} </td>
+                      <td> <a href="javascript:void(0);" onclick="MostrarDetalle('${item.numeroFactura}');"> ${item.numeroFactura} </a></td>
                       <td> ${item.fecha.substring(0, 10)} </td>
                       <td> ${item.nombreProveedor} </td>
                       <td> ${item.rfc} </td>
@@ -67,7 +72,7 @@ function GetFacturasFechas() {
                 $('#tablaFacturas tbody tr').remove();
                 $.each(data, function (index, item) {
                     let tr = `<tr>
-                      <td> ${item.numeroFactura} </td>
+                      <td> <a href="javascript:void(0);" onclick="MostrarDetalle('${item.numeroFactura}');"> ${item.numeroFactura} </a></td>
                       <td> ${item.fecha.substring(0,10)} </td>
                       <td> ${item.nombreProveedor} </td>
                       <td> ${item.rfc} </td>
@@ -122,4 +127,50 @@ function InicializarDataTable() {
     } catch { console.log(''); }
 
     $("#tablaFacturas").addClass("display compact dt-center");
+}
+
+function MostrarDetalle(numeroFactura) {
+    $('#modalDetalle').show();
+    GetFacturaDetalle(numeroFactura);
+}
+
+function OcultarDetalle() {
+    $('#modalDetalle').hide();
+}
+
+function GetFacturaDetalle(numeroFactura) {
+
+    $.ajax({
+        type: "GET",
+        url: urlGetFacturaDetalle,
+        data: { numeroFactura: numeroFactura },
+        datatype: "json",
+        success: function (data) {
+            if (data != null) {
+                $('#tablaDetalle tbody tr').remove();
+                $.each(data, function (index, item) {
+                    let tr = `<tr>
+                      <td> ${item.linea} </td>
+                      <td> ${item.nombreArticulo} </td>
+                      <td> ${item.unidad} </td>
+                      <td> ${item.cantidad} </td>
+                      <td> ${item.precio} </td>
+                      <td> ${item.subtotal} </td>
+                      <td> ${item.descuento} </td>
+                      <td> ${item.impuesto} </td>
+                      <td> ${item.total} </td>
+                      </tr>`;
+                    $('#tablaDetalle tbody').append(tr);
+                });
+            }
+            else {
+                $('#tablaDetalle tbody tr').remove();
+            }
+        }, error: function (jqXHR, textStatus, errorThrown) {
+            $('#tablaDetalle tbody tr').remove();
+        }
+    });
+
+    $("#tablaDetalle").addClass("display compact dt-center");
+    return false;
 }

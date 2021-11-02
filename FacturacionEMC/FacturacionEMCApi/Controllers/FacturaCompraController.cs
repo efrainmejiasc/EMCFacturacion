@@ -48,12 +48,12 @@ namespace FacturacionEMCApi.Controllers
         /// Obtiene Facturas de compras entre rango de fechas y id empresa
         /// </summary>
         /// <returns>Lista de facturas de compra</returns>
-        [HttpGet("{id}/{fechaInicial}/{fechaFinal}", Name = "GetFacturasComprasFechas")]
+        [HttpGet("{idEmpresa}/{fechaInicial}/{fechaFinal}", Name = "GetFacturasComprasFechas")]
         [ProducesResponseType(statusCode: (int)HttpStatusCode.OK, Type = typeof(List<FacturaCompraDTO>))]
         [ProducesResponseType(statusCode: (int)HttpStatusCode.BadRequest, Type = typeof(GenericResponse))]
-        public IActionResult GetFacturasComprasFechas(int id,DateTime fechaInicial, DateTime fechaFinal)
+        public IActionResult GetFacturasComprasFechas(int idEmpresa,DateTime fechaInicial, DateTime fechaFinal)
         {
-            var facturas = this.facturaCompraService.GetFacturasComprasFechas(id,fechaInicial, fechaFinal);
+            var facturas = this.facturaCompraService.GetFacturasComprasFechas(idEmpresa, fechaInicial, fechaFinal);
 
             if (facturas.Count > 0)
                 return Ok(facturas);
@@ -65,12 +65,12 @@ namespace FacturacionEMCApi.Controllers
         /// Obtiene Facturas de compras ultimas 50 por id empresa
         /// </summary>
         /// <returns>Lista de facturas de compra</returns>
-        [HttpGet("{id}", Name = "GetFacturasCompras")]
+        [HttpGet("{idEmpresa}", Name = "GetFacturasCompras")]
         [ProducesResponseType(statusCode: (int)HttpStatusCode.OK, Type = typeof(List<FacturaCompraDTO>))]
         [ProducesResponseType(statusCode: (int)HttpStatusCode.BadRequest, Type = typeof(GenericResponse))]
-        public IActionResult GetFacturasCompras(int id)
+        public IActionResult GetFacturasCompras(int idEmpresa)
         {
-            var facturas = this.facturaCompraService.GetFacturasCompras(id);
+            var facturas = this.facturaCompraService.GetFacturasCompras(idEmpresa);
 
             if (facturas.Count > 0)
                 return Ok(facturas);

@@ -52,7 +52,7 @@ namespace FacturacionEMCApi.Controllers
         /// </summary>
         /// <returns>Usuarios de la empresa </returns>
         // GET: api/GetUsuarios
-        [HttpGet("id", Name = "GeUsuarios")]
+        [HttpGet("idEmpresa", Name = "GeUsuarios")]
         [ProducesResponseType(statusCode: (int)HttpStatusCode.OK, Type = typeof(List<UsuarioDTO>))]
         [ProducesResponseType(statusCode: (int)HttpStatusCode.BadRequest, Type = typeof(GenericResponse))]
 

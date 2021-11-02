@@ -49,12 +49,12 @@ namespace FacturacionEMCApi.Controllers
         /// Obtiene los Clientes por idEmpresa
         /// </summary>
         /// <returns>Lista de Clientes por idEmpresa </returns>
-        [HttpGet("{id}", Name = "GetClientes")]
+        [HttpGet("{idEmpresa}", Name = "GetClientes")]
         [ProducesResponseType(statusCode: (int)HttpStatusCode.OK, Type = typeof(List<ClienteDTO>))]
         [ProducesResponseType(statusCode: (int)HttpStatusCode.BadRequest, Type = typeof(GenericResponse))]
-        public IActionResult GetClientes(int id)
+        public IActionResult GetClientes(int idEmpresa)
         {
-            var clientes = this.clienteService.GetClientes(id);
+            var clientes = this.clienteService.GetClientes(idEmpresa);
 
             if (clientes.Count > 0)
                 return Ok(clientes);
