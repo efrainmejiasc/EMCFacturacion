@@ -186,10 +186,13 @@ function GuardarFactura() {
         return false;
     }
 
+    var newSub = subtotal.toString();
+    newSub = newSub.replace('.', ',');
+
     $.ajax({
         type: "POST",
         url: urlGuardarFactura,
-        data: { NumeroFactura: nFactura, Subtotal: subtotal, PorcentajeDescuento: pDescuento, PorcentajeImpuesto: pImpuesto, Total: total, IdCliente: idCliente, NombreCliente: nombreCliente, IdMetodoPago: idMetodoPago},
+        data: { NumeroFactura: nFactura, Subtotal: newSub, PorcentajeDescuento: pDescuento, PorcentajeImpuesto: pImpuesto, Total: newSub, IdCliente: idCliente, NombreCliente: nombreCliente, IdMetodoPago: idMetodoPago },
         datatype: "json",
         success: function (data) {
             if (data.estatus) {

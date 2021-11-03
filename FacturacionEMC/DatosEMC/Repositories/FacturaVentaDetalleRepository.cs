@@ -34,7 +34,7 @@ namespace DatosEMC.Repositories
         public List<FacturaVentaDetalleDTO> GetDetalleFactura(int idEmpresa, string numeroFactura)
         {
             var lst = new List<FacturaVentaDetalleDTO>();
-            lst = (from fd in db.FacturaCompraDetalle
+            lst = (from fd in db.FacturaVentaDetalle
                    join u in db.UnidadMedida on fd.Unidad equals u.Id
                    where fd.IdEmpresa == idEmpresa && fd.NumeroFactura == numeroFactura
                    select new { fd, u }).AsEnumerable()
@@ -44,7 +44,7 @@ namespace DatosEMC.Repositories
                         NombreArticulo = x.fd.NombreArticulo,
                         UnidadMedida = x.u.Unidad,
                         Cantidad = x.fd.Cantidad,
-                        PrecioUnitario = x.fd.Cantidad / x.fd.Subtotal,
+                        PrecioUnitario = Math.Round(x.fd.Subtotal / x.fd.Cantidad, 2),
                         Subtotal = x.fd.Subtotal,
                         Descuento = x.fd.Descuento,
                         Impuesto = x.fd.Impuesto,

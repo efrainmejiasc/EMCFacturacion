@@ -31,9 +31,9 @@ function GetFacturas() {
                 $('#tablaFacturas tbody tr').remove();
                 $.each(data, function (index, item) {
                     let tr = `<tr>
-                      <td> <a href="javascript:void(0);" onclick="MostrarDetalle('${item.numeroFactura}');"> ${item.numeroFactura} </a></td>
+                      <td> <a href="javascript:void(0);" onclick="MostrarDetalle('${item.numeroFactura}');">${item.numeroFactura}</a></td>
                       <td> ${item.fecha.substring(0, 10)} </td>
-                      <td> ${item.nombreCliente} </td>
+                      <td> ${item.nombreProveedor} </td>
                       <td> ${item.rfc} </td>
                       <td> ${item.metodoPago} </td>
                       <td> ${item.subtotal} </td>
@@ -43,10 +43,9 @@ function GetFacturas() {
                       </tr>`;
                     $('#tablaFacturas tbody').append(tr);
                 });
-                setTimeout(InicializarDataTable, 2000);
+                setTimeout(InicializarDataTable, 1000);
             }
-            else
-            {
+            else {
                 $('#tablaFacturas tbody tr').remove();
             }
         }, error: function (jqXHR, textStatus, errorThrown) {
@@ -55,6 +54,7 @@ function GetFacturas() {
     });
 
     $("#tablaFacturas").addClass("display compact dt-center");
+
     return false;
 }
 
@@ -71,9 +71,9 @@ function GetFacturasFechas() {
                 $('#tablaFacturas tbody tr').remove();
                 $.each(data, function (index, item) {
                     let tr = `<tr>
-                      <td> <a href="javascript:void(0);" onclick="MostrarDetalle('${item.numeroFactura}');"> ${item.numeroFactura} </a></td>
+                      <td> <a href="javascript:void(0);" onclick="MostrarDetalle('${item.numeroFactura}');">${item.numeroFactura}</a></td>
                       <td> ${item.fecha.substring(0, 10)} </td>
-                      <td> ${item.nombreCliente} </td>
+                      <td> ${item.nombreProveedor} </td>
                       <td> ${item.rfc} </td>
                       <td> ${item.metodoPago} </td>
                       <td> ${item.subtotal} </td>
@@ -83,10 +83,9 @@ function GetFacturasFechas() {
                       </tr>`;
                     $('#tablaFacturas tbody').append(tr);
                 });
-                setTimeout(InicializarDataTable, 2000);
+                setTimeout(InicializarDataTable, 1000);
             }
-            else
-            {
+            else {
                 $('#tablaFacturas tbody tr').remove();
             }
         }, error: function (jqXHR, textStatus, errorThrown) {
@@ -95,9 +94,10 @@ function GetFacturasFechas() {
     });
 
     $("#tablaFacturas").addClass("display compact dt-center");
-
+    setTimeout(InicializarDataTable, 2000);
     return false;
 }
+
 
 
 function InicializarDataTable() {
@@ -134,10 +134,9 @@ function MostrarDetalle(numeroFactura) {
     GetFacturaDetalle(numeroFactura);
 }
 
-function OcultarDetalle() {
+function OcultarModalDetalle() {
     $('#modalDetalle').hide();
 }
-
 
 function GetFacturaDetalle(numeroFactura) {
 
@@ -152,10 +151,10 @@ function GetFacturaDetalle(numeroFactura) {
                 $.each(data, function (index, item) {
                     let tr = `<tr>
                       <td> ${item.linea} </td>
-                      <td> ${item.nombreArticulo} </td>
-                      <td> ${item.unidad} </td>
+                      <td style="width: 99%"> ${item.nombreArticulo} </td>
+                      <td> ${item.unidadMedida} </td>
                       <td> ${item.cantidad} </td>
-                      <td> ${item.precio} </td>
+                      <td> ${item.precioUnitario} </td>
                       <td> ${item.subtotal} </td>
                       <td> ${item.descuento} </td>
                       <td> ${item.impuesto} </td>

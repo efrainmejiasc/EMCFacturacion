@@ -41,7 +41,7 @@ function GetUsuarios() {
 
                     $('#tablaUsuarios tbody').append(tr);
                 });
-
+                setTimeout(InicializarDataTable, 1000);
             }
             else {
                 $('#tablaUsuarios tbody tr').remove();
@@ -94,4 +94,36 @@ function DeleteUser(id, idEmpresa) {
             }
         }
     });
+}
+
+
+function InicializarDataTable() {
+    var init = $('#initDataTable').val();
+
+    try {
+        if (init === 'no') {
+            $('#tablaUsuarios').DataTable({
+                language: {
+                    "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+                },
+                "bInfo": false,
+                "lengthChange": false,
+                "searching": false,
+                pagingType: "simple"
+            });
+            $('#initDataTable').val('si');
+        } else {
+            $('#tablaUsuarios').DataTable().fnDestroy({
+                language: {
+                    "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+                },
+                "bInfo": false,
+                "lengthChange": false,
+                "searching": false,
+                pagingType: "simple"
+            });
+        }
+    } catch { console.log(''); }
+
+    $("#tablaUsuarios").addClass("display compact dt-center");
 }

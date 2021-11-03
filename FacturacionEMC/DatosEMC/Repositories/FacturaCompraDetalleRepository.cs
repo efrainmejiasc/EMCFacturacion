@@ -42,7 +42,7 @@ namespace DatosEMC.Repositories
                         NombreArticulo = x.fd.NombreArticulo,
                         UnidadMedida = x.u.Unidad,
                         Cantidad = x.fd.Cantidad,
-                        PrecioUnitario = x.fd.Cantidad / x.fd.Subtotal,
+                        PrecioUnitario = Math.Round(x.fd.Subtotal/ x.fd.Cantidad,2) ,
                         Subtotal = x.fd.Subtotal,
                         Descuento = x.fd.Descuento,
                         Impuesto = x.fd.Impuesto,

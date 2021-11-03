@@ -4,14 +4,16 @@ using DatosEMC.DataModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DatosEMC.Migrations
 {
     [DbContext(typeof(MyAppContext))]
-    partial class MyAppContextModelSnapshot : ModelSnapshot
+    [Migration("20211103102842_startInvoice")]
+    partial class startInvoice
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -364,9 +366,6 @@ namespace DatosEMC.Migrations
 
                     b.Property<int>("IdEmpresa")
                         .HasColumnType("INT");
-
-                    b.Property<string>("NumeroFactura")
-                        .HasColumnType("VARCHAR(50)");
 
                     b.HasKey("Id");
 

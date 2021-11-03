@@ -3,6 +3,8 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/js/scriptsSite/usuario/jsAbout.js"></script>
+    <link rel="stylesheet" type="text/css" href="~/js/dataTables/datatables.css" />
+    <script type="text/javascript" src="~/js/dataTables/datatables.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
@@ -15,14 +17,14 @@
     var urlDeleteUser = '@Url.Action("DeleteUSuario", "Usuario")';
 </script>
 
-<div class="card" style="margin-top:5%;">
+<div class="card" style="margin-top:0%;">
     <div class="card-body">
 
         <div class="form-horizontal" style="color:dimgray">
 
             <div class="form-group row">
                 <div class="col-md-8">
-                    <h1 style="color:dimgray"> Registered Users </h1>
+                    <h2 style="color:dimgray"> Registered Users </h2>
                 </div>
                 <div class="col-md-3 text-md-right">
                     <a href="javascript:void(0);" class="btn btn-primary" onclick="GotoUsers();">New User</a>

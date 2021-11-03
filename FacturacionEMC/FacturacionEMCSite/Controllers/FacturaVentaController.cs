@@ -161,5 +161,13 @@ namespace FacturacionEMCSite.Controllers
 
         #endregion
 
+
+        #region Startinvoice_InicioFacturacion
+        public IActionResult Startinvoice()
+        {
+            return View();
+        }
+
+        #endregion
     }
 }

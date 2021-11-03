@@ -37,7 +37,7 @@ function GetStockTotal() {
                       </tr>`;
                     $('#tablaStock tbody').append(tr);
                 });
-                setTimeout(InicializarDataTable, 2000);
+                setTimeout(InicializarDataTable, 1000);
             }
             else {
                 $('#tablaStock tbody tr').remove();

@@ -14,7 +14,22 @@
      var urlGetFacturaDetalle =  '@Url.Action("GetFacturasDetalles", "FacturaVenta")';
 </script>
 
-<div class="card" style="margin-top:5%;">
+<div class="row" style="color: dimgray;">
+    <div class="col-md-12 grid-margin">
+        <div class="d-flex justify-content-between flex-wrap">
+            <div class="d-flex align-items-end flex-wrap">
+                <div class="mr-md-3 mr-xl-5">
+                    <div class="mr-md-3 mr-xl-5">
+                        <h2>Sales Summary</h2>
+                        <small class="mb-md-0 text-gray"></small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card" style="margin-top:0%;">
     <div class="card-body">
 
         <div class="row" style="color:dimgray">
@@ -31,7 +46,6 @@
         <hr />
 
         <input type="hidden" id="initDataTable" value="no" />
-        <h3 style="color:dimgray"> Summary Sales </h3>
         <div class="form-horizontal" style="color:dimgray">
 
             <table id="tablaFacturas" class="display compact dt-center table table-striped table-light" style="width:100%">
@@ -60,6 +74,7 @@
             <div class="container" style="color:dimgray;">
                 <div class="modalTipo" id="modalDetalle">
                     <div class="modal-content2">
+                        <span class="close" onclick="OcultarModalDetalle();">&times;</span><br /><br />
                         <table id="tablaDetalle" class="display compact dt-center table table-striped table-light" style="width:100%">
                             <thead class="thead-dark">
                                 <tr>
@@ -67,7 +82,7 @@
                                     <th>Product</th>
                                     <th>Unit</th>
                                     <th>Amount</th>
-                                    <th>U. Price</th>
+                                    <th>U.Price</th>
                                     <th>Subtotal</th>
                                     <th>Discount</th>
                                     <th>Tax</th>

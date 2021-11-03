@@ -20,6 +20,7 @@ namespace DatosEMC.DataModels
         public virtual DbSet<TipoFactura> TipoFactura { get; set; }
         public virtual DbSet<UnidadMedida> UnidadMedida { get; set; }
         public virtual DbSet<TipoInventario> TipoInventario { get; set; }
+        public virtual DbSet<InicioFacturacion> InicioFacturacion { get; set; }
 
 
 
