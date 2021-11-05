@@ -23,18 +23,13 @@ namespace NegocioEMC.Services
             this.inicioFacturacionRepository = _inicioFacturacionRepository;
         }
 
-        public GenericResponse SetInicioFacturacion (InicioFacturacionDTO model)
+        public InicioFacturacion  SetInicioFacturacion (InicioFacturacionDTO model)
         {
-            var inicio = new InicioFacturacion();
-            inicio = this.mapper.Map<InicioFacturacion>(model);
+            var inicio = this.mapper.Map<InicioFacturacion>(model);
 
             inicio = this.inicioFacturacionRepository.SetInicioFacturacion(inicio);
 
-            if (inicio!= null)
-                return EngineService.SetGenericResponse(true, "La información ha sido registrada");
-
-            else
-                return EngineService.SetGenericResponse(false, "No se pudo registrar la información");
+            return inicio;
         }
 
         public bool GetInicioFacturacion (int idEmpresa)
@@ -44,21 +39,20 @@ namespace NegocioEMC.Services
             return inicio == null ? false : inicio.Activo;
         }
 
+        public  InicioFacturacion GetInicioFacturacionCtrl(int idEmpresa)
+        {
+           return this.inicioFacturacionRepository.GetInicioFacturacion(idEmpresa);
+        }
+
         public string GetNumeroFacturaInicio(int idEmpresa)
         {
             return this.inicioFacturacionRepository.GetNumeroFacturaInicio(idEmpresa);
         }
 
-        public GenericResponse ReInicioFacturacion(int idEmpresa)
+        public InicioFacturacion ReInicioFacturacion(int idEmpresa)
         {
 
-            var inicio = this.inicioFacturacionRepository.ReInicioFacturacion(idEmpresa);
-
-            if (inicio != null)
-                return EngineService.SetGenericResponse(true, "La información ha sido registrada");
-
-            else
-                return EngineService.SetGenericResponse(false, "No se pudo registrar la información");
+            return this.inicioFacturacionRepository.ReInicioFacturacion(idEmpresa);
         }
 
     }

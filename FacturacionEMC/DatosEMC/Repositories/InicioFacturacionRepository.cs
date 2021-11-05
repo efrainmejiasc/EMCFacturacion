@@ -19,7 +19,18 @@ namespace DatosEMC.Repositories
 
         public InicioFacturacion SetInicioFacturacion(InicioFacturacion model)
         {
-            this.db.InicioFacturacion.Add(model);
+            var t = this.db.InicioFacturacion.Where(x => x.IdEmpresa == model.IdEmpresa).FirstOrDefault();
+
+            if (t != null)
+            {
+                t.IdEmpresa = model.IdEmpresa;
+                t.Activo = true;
+                t.Fecha = DateTime.Now;
+                t.NumeroFactura = model.NumeroFactura;
+            }
+            else
+                this.db.InicioFacturacion.Add(model);
+
             this.db.SaveChanges();
 
             return model;

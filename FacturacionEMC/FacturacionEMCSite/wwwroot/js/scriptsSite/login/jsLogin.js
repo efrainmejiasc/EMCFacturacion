@@ -32,8 +32,12 @@ function Login() {
         data: { idEmpresa: empresa, userMail: userMail, password: password},
         datatype: "json",
         success: function (data) {
-            if (data.estatus)
-                window.location.href=urlRedirect
+            if (data.estatus) {
+                if (data.estatusFacturacion)
+                    window.location.href = urlRedirect;
+                else
+                    window.location.href = urlRedirectIF;
+            }
             else
                 toastr.warning("Unauthorized user / incorrect data");
         }

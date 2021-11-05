@@ -20,5 +20,8 @@ namespace DatosEMC.DTOs
         public DateTime Fecha { get; set; }
         public string Password { get; set; }
         public string Password2 { get; set; }
+        public bool InicioFacturacion { get; set; }
+        public string InicioFacturacionNumero{ get; set; }
+
     }
 }

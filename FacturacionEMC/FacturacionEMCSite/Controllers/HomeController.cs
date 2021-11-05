@@ -11,6 +11,8 @@ using NegocioEMC.Commons;
 using Newtonsoft.Json;
 using Microsoft.AspNetCore.Http;
 using FacturacionEMCSite.Models;
+using NegocioEMC.IServices;
+using DatosEMC.DataModels;
 
 namespace FacturacionEMCSite.Controllers
 {
@@ -18,12 +20,13 @@ namespace FacturacionEMCSite.Controllers
     {
         private readonly ClientEMCApi clientApi;
         private readonly IHttpContextAccessor httpContext;
+ 
         public HomeController(ClientEMCApi _clienteApi, IHttpContextAccessor _httpContext)
         {
             //var httpClient = new HttpClient();
             //var urlBase = "http://localhost:13170";
-            clientApi = _clienteApi;
-            httpContext = _httpContext;
+            this.clientApi = _clienteApi;
+            this.httpContext = _httpContext;
         }
 
         public IActionResult Index()
@@ -68,8 +71,11 @@ namespace FacturacionEMCSite.Controllers
                     user.Email = claims.GetEmail();
                     user.Token = accessToken.Token;
 
+                    user = await InicioFacturacionDatosAsync(user);
+
                     httpContext.HttpContext.Session.SetString("UserLogin", JsonConvert.SerializeObject(user));
                     respuesta.Estatus = true;
+                    respuesta.EstatusFacturacion = user.InicioFacturacion;
                 }
                 else
                 {
@@ -82,6 +88,23 @@ namespace FacturacionEMCSite.Controllers
             }
 
             return Json(respuesta);
+        }
+
+        private async Task<UsuarioDTO> InicioFacturacionDatosAsync(UsuarioDTO u)
+        {
+            var inicioFacturacion = new InicioFacturacionDTO();
+            try
+            {
+                inicioFacturacion = await this.clientApi.GetInicioFacturacionCtrlAsync(u.IdEmpresa);
+                u.InicioFacturacion = inicioFacturacion.Activo;
+                u.InicioFacturacionNumero = inicioFacturacion.NumeroFactura;
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return u;
         }
     }
 }

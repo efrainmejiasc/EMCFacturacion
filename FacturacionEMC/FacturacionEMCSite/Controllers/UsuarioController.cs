@@ -121,5 +121,12 @@ namespace FacturacionEMCSite.Controllers
 
             return Json(response);
         }
+
+
+        [HttpGet]
+        public IActionResult GetUsuarioLogger()
+        {
+            return Json(this.usuario);
+        }
     }
 }

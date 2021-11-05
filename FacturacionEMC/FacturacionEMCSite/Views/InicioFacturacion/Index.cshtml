@@ -1,0 +1,83 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/scriptsSite/inicioFacturacion/jsIndex.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+}
+<script>
+    var urlUsuarioLogger = '@Url.Action("GetUsuarioLogger", "Usuario")';
+    var urlSetInicioFacturacion = '@Url.Action("SetInicioFacturacion", "InicioFacturacion")';
+    var urlReInicioFacturacion = '@Url.Action("ReInicioFacturacion", "InicioFacturacion")';
+</script>
+
+<div class="row" style="color: dimgray;">
+        <div class="col-md-12 grid-margin">
+            <div class="d-flex justify-content-between flex-wrap">
+                <div class="d-flex align-items-end flex-wrap">
+                    <div class="mr-md-3 mr-xl-5">
+                        <div class="mr-md-3 mr-xl-5">
+                            <h2>Start Invoice</h2>
+                            <a href="javacript:void(0);" onclick="MostrarModalInstrucciones();">Instructions</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+<br />
+
+<div class="card" style="margin-top:0%;">
+        <div class="card-body">
+            <div class="form-horizontal" style="color:dimgray">
+                <small class="mb-md-0 text-gray">Start Billing Number</small>
+                <div class="form-group row">
+                    <div class="col-md-4 text-md-right">
+                        <label class="control-label">Invoice Init</label>
+                    </div>
+                    <div class="col-md-4 text-md-center">
+                        <input type="text" id="numeroFactura" class="form form-control" />
+                    </div>
+                    <div class="col-md-4 text-md-left">
+                        <input type="button" id="btnSet" class="btn btn-primary" value="Save" onclick="SetInicioFaturacion();"/>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+</div>
+
+
+<div class="card" style="margin-top:0%;">
+        <div class="card-body">
+            <div class="form-horizontal" style="color:dimgray">
+                <small class="mb-md-0 text-gray">Reset the first invoice number and then start it</small>
+                <div class="form-group row">
+                    <div class="col-md-12 text-md-center">
+                        <input type="button"   id="btnRe" class="btn btn-warning" value="Restart Invoice Init" onclick="ReInicioFacturacion();"/>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+</div>
+
+
+<div class="form-horizontal" style="color:dimgray">
+        <div class="container" style="color:#0268b8;">
+            <div class="modalTipo" id="modalInstrucciones">
+                <div class="modal-content2">
+                    <span class="close" onclick="OcultarModalInstrucciones();">&times;</span><br /><br />
+                    <h2 style="color:#0268b8;">Notice!</h2>
+                    <p class="text-left">
+                        1.- Enter the number with which you want to start the billing
+                        this will be the first consecutive invoice number<br /><br />
+                        2.- In case of any conflict you can reset this number using
+                        the reset init invoice option and repeating step 1
+                    </p>
+                </div>
+            </div>
+        </div>
+</div>

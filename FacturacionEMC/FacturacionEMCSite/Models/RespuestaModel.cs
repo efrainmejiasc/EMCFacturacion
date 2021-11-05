@@ -8,7 +8,8 @@ namespace FacturacionEMCSite.Models
     public class RespuestaModel
     {
         public int Id { get; set; }
-        public string Descrippcion { get; set; }
+        public string Descripcion { get; set; }
         public bool Estatus { get; set; }
+        public bool EstatusFacturacion { get; set; }
     }
 }
