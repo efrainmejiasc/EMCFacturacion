@@ -37,6 +37,8 @@ namespace FacturacionEMCSite.Controllers
             var response = new RespuestaModel();
             response.Estatus = false;
 
+            numeroFactura = numeroFactura.Replace(",", "");
+            numeroFactura = numeroFactura.Replace(".", "");
             var inicioFacturacion = new EMCApi.Client.InicioFacturacionDTO()
             {
                 NumeroFactura = numeroFactura,

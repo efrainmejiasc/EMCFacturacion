@@ -61,7 +61,14 @@ function ReInicioFacturacion() {
     return false;
 }
 
+function ValidarDecimal() {
+    var numeroFactura = $('#numeroFactura').val();
 
+    if (numeroFactura.includes(',') || numeroFactura.includes('.')) {
+        toastr.warning("The number must be integer.");
+        return false;
+    }
+}
 
 function MostrarModalInstrucciones() {
     $('#modalInstrucciones').show();

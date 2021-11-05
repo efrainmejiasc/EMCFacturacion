@@ -38,7 +38,7 @@
                         <label class="control-label">Invoice Init</label>
                     </div>
                     <div class="col-md-4 text-md-center">
-                        <input type="text" id="numeroFactura" class="form form-control" />
+                        <input type="number" id="numeroFactura" class="form form-control" step="1" max="999999" onblur="ValidarDecimal()"/>
                     </div>
                     <div class="col-md-4 text-md-left">
                         <input type="button" id="btnSet" class="btn btn-primary" value="Save" onclick="SetInicioFaturacion();"/>
@@ -73,7 +73,7 @@
                     <h2 style="color:#0268b8;">Notice!</h2>
                     <p class="text-left">
                         1.- Enter the number with which you want to start the billing
-                        this will be the first consecutive invoice number<br /><br />
+                        this will be the first consecutive invoice number,the number must be a integer<br /><br />
                         2.- In case of any conflict you can reset this number using
                         the reset init invoice option and repeating step 1
                     </p>
