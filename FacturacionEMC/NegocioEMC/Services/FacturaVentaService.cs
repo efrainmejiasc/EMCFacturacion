@@ -49,5 +49,24 @@ namespace NegocioEMC.Services
 
             return facturas;
         }
+
+        public string GetNumeroFactura(int idEmpresa)
+        {
+            var numeroFactura = this.facturaVentaRepository.GetNumeroFactura(idEmpresa);
+            var nFactura = Convert.ToInt32(numeroFactura) + 1;
+
+            if (nFactura <= 9)
+                numeroFactura = "00000" + nFactura.ToString();
+            else if(nFactura >= 10 && nFactura <= 99)
+                numeroFactura = "0000" + nFactura.ToString();
+            else if   (nFactura >= 100 && nFactura <= 999)
+                numeroFactura = "000" + nFactura.ToString();
+            else if (nFactura >= 1000 && nFactura <= 9999)
+                numeroFactura = "00" + nFactura.ToString();
+            else if (nFactura >= 10000)
+                numeroFactura = "0" + nFactura.ToString();
+
+            return numeroFactura;
+        }
     }
 }

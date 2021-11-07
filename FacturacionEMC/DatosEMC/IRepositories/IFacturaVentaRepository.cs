@@ -10,6 +10,7 @@ namespace DatosEMC.IRepositories
 {
     public interface IFacturaVentaRepository
     {
+        string GetNumeroFactura(int idEmpresa);
         FacturaVenta AddFacturaVenta(FacturaVenta factura);
         List<FacturaVentaDTO> GetFacturasVentas(int idEmpresa);
         List<FacturaVentaDTO> GetFacturasVentasFechas(int idEmpresa, DateTime fInicio, DateTime fFinal);

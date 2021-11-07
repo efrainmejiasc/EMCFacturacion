@@ -77,5 +77,24 @@ namespace FacturacionEMCApi.Controllers
             else
                 return BadRequest(EngineService.SetGenericResponse(false, "No se encontró información"));
         }
+
+
+        /// <summary>
+        /// Obtiene el consecutivo del numero de factura
+        /// </summary>
+        /// <returns>Retorna Numero de factura</returns>
+        [HttpGet("{idEmpresa}", Name = "GetNumeroFactura")]
+        [ProducesResponseType(statusCode: (int)HttpStatusCode.OK, Type = typeof(InicioFacturacionDTO))]
+        [ProducesResponseType(statusCode: (int)HttpStatusCode.BadRequest, Type = typeof(GenericResponse))]
+        public IActionResult GetNumeroFactura(int idEmpresa)
+        {
+            var factura = new InicioFacturacionDTO();
+            factura.NumeroFactura = this.facturaVentaService.GetNumeroFactura(idEmpresa);
+
+            if (!string.IsNullOrEmpty(factura.NumeroFactura))
+                return Ok(factura);
+            else
+                return BadRequest(EngineService.SetGenericResponse(false, "No se encontró información"));
+        }
     }
 }

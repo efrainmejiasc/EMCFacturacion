@@ -108,7 +108,6 @@ namespace FacturacionEMCApi
             services.AddScoped<IProveedorService, ProveedorService>();
             services.AddScoped<IProveedorRepository, ProveedorRepository>();
 
-
             services.AddScoped<IInicioFacturacionService, InicioFacturacionService>();
             services.AddScoped<IInicioFacturacionRepository, InicioFacturacionRepository>();
 

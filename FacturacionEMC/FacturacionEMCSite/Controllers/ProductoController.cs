@@ -31,7 +31,7 @@ namespace FacturacionEMCSite.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddProductAsync(ProductoDTO producto)
+        public async Task<IActionResult> AddProductAsync(ProductoDTO producto, string p)
         {
             var response = new RespuestaModel();
             response.Estatus = false;
@@ -42,6 +42,7 @@ namespace FacturacionEMCSite.Controllers
                 producto.Fecha = DateTime.Now;
                 producto.IdUsuario = this.usuario.Id;
                 producto.Activo = true;
+                producto.PrecioUnidad = Convert.ToDouble(p.Replace(".",","));
 
                 var saveProducto = await this.clientApi.PostProductoAsync(producto);
                 response.Estatus = saveProducto.Ok ? true : false;

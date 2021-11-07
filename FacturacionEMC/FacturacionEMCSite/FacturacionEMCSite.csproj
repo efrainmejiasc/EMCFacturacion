@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <OpenApiReference Include="..\..\..\..\..\Downloads\EMCFactura\emcapi.json" CodeGenerator="NSwagCSharp" Namespace="EMCApi.Client" ClassName="ClientEMCApi" Link="OpenAPIs\emcapi.json" />
+    <OpenApiReference Include="..\..\EMCSQL\swagger.json" CodeGenerator="NSwagCSharp" Namespace="EMCApi.Client" ClassName="ClientEMCApi" Link="OpenAPIs\swagger.json" />
   </ItemGroup>
 
   <ItemGroup>

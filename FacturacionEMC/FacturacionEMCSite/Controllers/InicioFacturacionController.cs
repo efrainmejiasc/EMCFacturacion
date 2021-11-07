@@ -1,4 +1,5 @@
-﻿using EMCApi.Client;
+﻿
+using EMCApi.Client;
 using FacturacionEMCSite.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -12,6 +13,7 @@ namespace FacturacionEMCSite.Controllers
 {
     public class InicioFacturacionController : Controller
     {
+        //await Task.WhenAll(updateTask, updateStatusTask);
         private readonly DatosEMC.DTOs.UsuarioDTO usuario;
         private readonly ClientEMCApi clientApi;
         private readonly IHttpContextAccessor httpContext;
@@ -51,6 +53,15 @@ namespace FacturacionEMCSite.Controllers
             {
                 var save = await this.clientApi.PostInicioFacturacionAsync(inicioFacturacion);
                 response.Estatus = save.Ok ? true : false;
+
+                if (response.Estatus)
+                {
+                    var user = JsonConvert.DeserializeObject<DatosEMC.DTOs.UsuarioDTO>(httpContext.HttpContext.Session.GetString("UserLogin"));
+                    user.InicioFacturacionNumero = (Convert.ToInt32(numeroFactura) + 1).ToString();
+                    user.InicioFacturacion = true;
+                    httpContext.HttpContext.Session.SetString("UserLogin", string.Empty);
+                    httpContext.HttpContext.Session.SetString("UserLogin", JsonConvert.SerializeObject(user));
+                }
             }
             catch(Exception ex)
             {
@@ -71,6 +82,14 @@ namespace FacturacionEMCSite.Controllers
             {
                 var save = await this.clientApi.ReInicioFacturacionAsync(this.usuario.IdEmpresa);
                 response.Estatus = save.Ok ? true : false;
+                if (response.Estatus)
+                {
+                    var user = JsonConvert.DeserializeObject<DatosEMC.DTOs.UsuarioDTO>(httpContext.HttpContext.Session.GetString("UserLogin"));
+                    user.InicioFacturacionNumero = string.Empty;
+                    user.InicioFacturacion = false;
+                    httpContext.HttpContext.Session.SetString("UserLogin", string.Empty);
+                    httpContext.HttpContext.Session.SetString("UserLogin", JsonConvert.SerializeObject(user));
+                }
             }
             catch (Exception ex)
             {

@@ -36,7 +36,7 @@ namespace FacturacionEMCSite.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> GuardarFactura(EMCApi.Client.FacturaCompraDTO factura)
+        public IActionResult  GuardarFactura(EMCApi.Client.FacturaCompraDTO factura)
         {
             var response = new RespuestaModel();
             response.Estatus = false;
@@ -49,13 +49,12 @@ namespace FacturacionEMCSite.Controllers
                 factura.Fecha = factura.FechaModificacion = DateTime.Now;
                 factura.Descuento = factura.PorcentajeDescuento > 0 ? factura.Subtotal - (factura.Subtotal * factura.PorcentajeDescuento * 0.01F) : 0.00F;
                 factura.Impuesto = factura.PorcentajeImpuesto > 0 ? (factura.Subtotal - factura.Descuento) - (factura.Subtotal * factura.PorcentajeImpuesto * 0.01F) : 0.00F;
-
                 factura.Subtotal = factura.Subtotal ;
                 factura.Total = factura.Total  - factura.Descuento + factura.Impuesto;
 
-                var saveFactura = await this.clientApi.PostFacturaCompraAsync(factura);
+                httpContext.HttpContext.Session.SetString("FacturaCompra", JsonConvert.SerializeObject(factura));
+                response.Estatus = true;
 
-                response.Estatus = saveFactura.Ok ? true : false;
             }
             catch (Exception ex)
             {
@@ -87,9 +86,12 @@ namespace FacturacionEMCSite.Controllers
                     f.IdEmpresa = this.usuario.IdEmpresa;
                 }
 
+                var factura = JsonConvert.DeserializeObject<EMCApi.Client.FacturaCompraDTO>(httpContext.HttpContext.Session.GetString("FacturaCompra"));
+                var saveFactura = await this.clientApi.PostFacturaCompraAsync(factura);
                 var saveFacturaDetalle = await this.clientApi.PostFacturaCompraDetalleAsync(facturaDetalleDTO);
                 var saveStock = await this.clientApi.PostStockTotalAddAsync(facturaDetalleDTO);
-                response.Estatus = saveFacturaDetalle.Ok && saveStock.Ok ? true : false;
+                response.Estatus =saveFactura.Ok && saveFacturaDetalle.Ok && saveStock.Ok ? true : false;
+                httpContext.HttpContext.Session.SetString("FacturaCompra", string.Empty);
             }
             catch (Exception ex)
             {

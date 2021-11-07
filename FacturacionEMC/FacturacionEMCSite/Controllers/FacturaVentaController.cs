@@ -34,7 +34,7 @@ namespace FacturacionEMCSite.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> GuardarFactura(EMCApi.Client.FacturaVentaDTO factura)
+        public IActionResult GuardarFactura(EMCApi.Client.FacturaVentaDTO factura)
         {
             var response = new RespuestaModel();
             response.Estatus = false;
@@ -47,13 +47,12 @@ namespace FacturacionEMCSite.Controllers
                 factura.Fecha = factura.FechaModificacion = DateTime.Now;
                 factura.Descuento = factura.PorcentajeDescuento > 0 ? factura.Subtotal - (factura.Subtotal * factura.PorcentajeDescuento * 0.01F) : 0.00F;
                 factura.Impuesto = factura.PorcentajeImpuesto > 0 ? (factura.Subtotal - factura.Descuento) - (factura.Subtotal * factura.PorcentajeImpuesto * 0.01F) : 0.00F;
-
                 factura.Subtotal = factura.Subtotal ;
                 factura.Total = factura.Total  - factura.Descuento + factura.Impuesto;
 
-                var saveFactura = await this.clientApi.PostFacturaVentaAsync(factura);
+                httpContext.HttpContext.Session.SetString("FacturaVenta", JsonConvert.SerializeObject(factura));
+                response.Estatus = true;
 
-                response.Estatus = saveFactura.Ok ? true : false;
             }
             catch (Exception ex)
             {
@@ -85,9 +84,12 @@ namespace FacturacionEMCSite.Controllers
                     f.IdEmpresa = this.usuario.IdEmpresa;
                 }
 
+                var factura = JsonConvert.DeserializeObject<EMCApi.Client.FacturaVentaDTO>(httpContext.HttpContext.Session.GetString("FacturaVenta"));
+                var saveFactura = await this.clientApi.PostFacturaVentaAsync(factura);
                 var saveFacturaDetalle = await this.clientApi.PostFacturaVentaDetalleAsync(facturaDetalleDTO);
                 var saveStock = await this.clientApi.PostStockTotalRemoveAsync(facturaDetalleDTO);
-                response.Estatus = saveFacturaDetalle.Ok && saveStock.Ok ? true : false;
+                response.Estatus = saveFactura.Ok && saveFacturaDetalle.Ok && saveStock.Ok ? true : false;
+                httpContext.HttpContext.Session.SetString("FacturaVenta",string.Empty);
             }
             catch (Exception ex)
             {
@@ -96,6 +98,24 @@ namespace FacturacionEMCSite.Controllers
 
             return Json(response);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> GetNumeroFacturaAsync()
+        {
+            EMCApi.Client.InicioFacturacionDTO factura = new EMCApi.Client.InicioFacturacionDTO();
+
+            try
+            {
+                factura = await this.clientApi.GetNumeroFacturaAsync(this.usuario.IdEmpresa);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return Json(factura);
+        }
+
 
         #endregion
 

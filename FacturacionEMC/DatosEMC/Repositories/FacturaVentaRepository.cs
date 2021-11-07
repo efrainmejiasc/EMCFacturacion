@@ -69,5 +69,20 @@ namespace DatosEMC.Repositories
 
             return facturas;
         }
+
+
+        public string  GetNumeroFactura(int idEmpresa)
+        {
+            var numeroFactura = string.Empty;
+
+            numeroFactura = this.db.FacturaVenta.Where(x => x.IdEmpresa == idEmpresa)
+                                                .OrderByDescending(x => x.NumeroFactura)
+                                                .Select(x => x.NumeroFactura).FirstOrDefault();
+
+            if (string.IsNullOrEmpty(numeroFactura))
+                numeroFactura = this.db.InicioFacturacion.Where(x => x.IdEmpresa == idEmpresa).Select(x => x.NumeroFactura).FirstOrDefault();
+
+            return numeroFactura;
+        }
     }
 }

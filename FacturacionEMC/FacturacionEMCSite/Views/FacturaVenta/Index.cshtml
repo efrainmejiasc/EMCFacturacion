@@ -15,6 +15,9 @@
     var urlGetMetodosPago = '@Url.Action("GetMetodosPago","MetodoPago")';
     var urlGetUnidadesMedida = '@Url.Action("GetUnidadesMedida","UnidadMedida")';
     var urlGetProductos = '@Url.Action("GetProductos", "Producto")';
+    var urlInicioFacturacion = '@Url.Action("Index", "InicioFacturacion")';
+    var urlUsuarioLogger = '@Url.Action("GetUsuarioLogger", "Usuario")';
+    var urlNumeroFactura = '@Url.Action("GetNumeroFactura", "FacturaVenta")';
 </script>
 
 <div class="card" style="margin-top: 5%; background-color: #e6faea; color: dimgray;">
@@ -27,7 +30,7 @@
                     <label class="control-label">Nº Invoice</label>
                 </div>
                 <div class="col-md-8">
-                    <input type="text" id="nFactura" name="nFactura" class="form form-control" required />
+                    <input type="text" id="nFactura" name="nFactura" class="form form-control" required disabled />
                 </div>
                 <div class="col-md-3 text-md-right">
                     <label class="control-label">Payment Method</label>
@@ -78,13 +81,13 @@
                     <label class="control-label">Amount</label>
                 </div>
                 <div class="col-md-8">
-                    <input type="number" id="cantidad" name="cantidad" class="form form-control" step="1" min="0" placeholder="0" />
+                    <input type="number" id="cantidad" name="cantidad" class="form form-control" step="1" min="0" placeholder="0" onblur="SubtotalLinea();"  />
                 </div>
                 <div class="col-md-3 text-md-right">
                     <label class="control-label">Price</label>
                 </div>
                 <div class="col-md-8">
-                    <input type="number" id="precio" name="precio" class="form form-control" min="0" onblur="SubtotalLinea();" placeholder="0.0" />
+                    <input type="number" id="precio" name="precio" class="form form-control" min="0" placeholder="0.0" />
                 </div>
                 <div class="col-md-3 text-md-right">
                     <label class="control-label">SubTotal</label>

@@ -9,9 +9,7 @@
     $('#rVenta_').hide();
     $('#rCompra_').hide();
     $('#stock_').hide();
-   //toastr.warning("PRUEBA TOASTR");
-    //toastr.success("Reinicio de politicas exitoso");
-    //toastr.error("Error al reiniciar politicas");
+    $('#inicioFact_').hide();
 });
 
 function Login() {

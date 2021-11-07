@@ -351,14 +351,14 @@ function AgregarArticulo() {
     var presentacion = $('#_presentacionArticulo').val();
 
 
-    if (nombre === '' || descripcion  === '' || precio <= 0 || presentacion === '' ) {
+    if (nombre === '' || descripcion  === '' || precio === '' || presentacion === '' ) {
         toastr.warning("All fields are required");
         return false;
     }
     $.ajax({
         type: "POST",
         url: urlAddProducto,
-        data: { NombreProducto: nombre, Descripcion: descripcion, PrecioUnidad: precio, Presentacion: presentacion},
+        data: { NombreProducto: nombre, Descripcion: descripcion, PrecioUnidad: precio, Presentacion: presentacion, p: precio},
         datatype: "json",
         success: function (data) {
             if (data.estatus) {
@@ -378,13 +378,11 @@ function AgregarArticulo() {
     return false;
 }
 
-function SetArticulo() {
-    var articulo = $("#lstArticulo option:selected").text();
-    var id = $("#lstArticulo").val();
-    $('#articulo').val(articulo + ' ' +id);
-}
+var productosArray = [];
 
 function GetProductos() {
+
+    productosArray = []
 
     $.ajax({
         type: "GET",
@@ -394,13 +392,38 @@ function GetProductos() {
             $('#lstArticulo').empty();
             $('#lstArticulo').append('<option value="-1" disabled selected>Select article...</option>');
             $.each(data, function (index, item) {
-                $('#lstArticulo').append("<option value=\"" + item.id + "\">" + item.nombreProducto + " - " +  item.presentacion +"</option>");
+                $('#lstArticulo').append("<option value=\"" + item.id + "\">" + item.nombreProducto + " - " + item.presentacion + "</option>");
+                productosArray.push(item.nombreProducto + " - " + item.presentacion);
             });
         }
     });
 
     return false;
 }
+
+
+function SetPresentacion() {
+    var unidad = $("#_unidad option:selected").text();
+    $('#_presentacionArticulo').val(unidad);
+    $("#_unidad").val("-1");
+
+    var articulo = $("#_nombreArt").val();
+    var product = articulo + ' - ' + unidad;
+
+    if (ValidateProduct(product))
+        toastr.warning('This product already in db');
+}
+
+function ValidateProduct(product) {
+
+    if (!productosArray.includes(product)) {
+        return false;
+    }
+    else {
+        return true;
+    }
+}
+
 
 
 function GetPresentacion() {
@@ -419,11 +442,17 @@ function GetPresentacion() {
     return false;
 }
 
-function SetPresentacion(){
-    var unidad = $("#_unidad option:selected").text();
-    $('#_presentacionArticulo').val(unidad);
-    $("#_unidad").val("-1");
+
+function SetArticulo() {
+    var articulo = $("#lstArticulo option:selected").text();
+    var id = $("#lstArticulo").val();
+    $('#articulo').val(articulo + ' ' + id);
 }
+
+
+
+
+
 
 
 

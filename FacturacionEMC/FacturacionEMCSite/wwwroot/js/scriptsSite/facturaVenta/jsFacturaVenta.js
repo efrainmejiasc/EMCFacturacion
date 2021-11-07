@@ -2,15 +2,47 @@
 $(document).ready(function () {
     console.log("ready!");
     $('#fVenta_').hide();
-    GetMetodosPago();
-    GetClientes();
-    GetUnidadesMedida();
-    GetUnidadesMedida();
-    GetProductos();
+    GetUsuarioLogger();
     $('#pImpuesto').val('0.00');
     $('#pDescuento').val('0.00');
     $('#numeroLinea_').val(0)
 });
+
+function GetUsuarioLogger() {
+
+    $.ajax({
+        type: "GET",
+        url: urlUsuarioLogger,
+        datatype: "json",
+        success: function (data) {
+            if (data.inicioFacturacion) {
+                GetNumeroFactura();
+                GetMetodosPago();
+                GetClientes();
+                GetUnidadesMedida();
+                GetUnidadesMedida();
+                GetProductos();
+            } else {
+                toastr.warning('You must set the billing start.');
+                setTimeout(function () { window.location.href = urlInicioFacturacion },3000);
+            }
+        }
+    });
+    return false;
+}
+
+function GetNumeroFactura() {
+
+    $.ajax({
+        type: "GET",
+        url: urlNumeroFactura,
+        datatype: "json",
+        success: function (data) {
+            $('#nFactura').val(data.numeroFactura);
+        }
+    });
+    return false;
+}
 
 function GetClientes() {
     $.ajax({
@@ -332,8 +364,10 @@ function SetArticulo() {
     var articulo = $("#lstArticulo option:selected").text();
     var id = $("#lstArticulo").val();
     $('#articulo').val(articulo + ' ' + id);
+    GetPrecio(id);
 }
 
+var productosArray = [] ;
 function GetProductos() {
 
     $.ajax({
@@ -341,6 +375,7 @@ function GetProductos() {
         url: urlGetProductos,
         datatype: "json",
         success: function (data) {
+            productosArray = data;
             $('#lstArticulo').empty();
             $('#lstArticulo').append('<option value="-1" disabled selected>Select article...</option>');
             $.each(data, function (index, item) {
@@ -350,6 +385,12 @@ function GetProductos() {
     });
 
     return false;
+}
+
+function GetPrecio(id) {
+    var producto = productosArray.find(element => element.id == id);
+    $('#precio').val(producto.precioUnidad);
+    document.getElementById("precio").focus();
 }
 
 

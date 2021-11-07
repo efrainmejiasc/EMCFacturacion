@@ -1,6 +1,14 @@
 ﻿$(document).ready(function () {
     console.log("ready!");
+    $('#usuario_').hide();
+    $('#fVenta_').hide();
+    $('#fCompra_').hide();
+    $('#rVenta_').hide();
+    $('#rCompra_').hide();
+    $('#stock_').hide();
+    $('#inicioFact_').hide();
     GetUsuarioLogger();
+    MostrarModalInstrucciones();
 });
 
 
