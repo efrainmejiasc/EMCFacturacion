@@ -164,12 +164,34 @@ function RemoveLineaArray(id) {
 
 //metodo on blur precio
 function SubtotalLinea() {
+    var id = $('#lstArticulo').val();
+    var existencia = GetStockProductoBodega(id);
+    console.log('Existencia : ' + existencia);
+
     var cantidad = $('#cantidad').val();
     var precio = $('#precio').val();
 
     var subtotal = (cantidad * precio);
     var subTotalFormat = parseFloat(subtotal).toFixed(2)
     $('#subTotalLinea').val(subTotalFormat);
+}
+
+
+function GetStockProductoBodega(idArticulo) {
+
+    console.log(idArticulo);
+    $.ajax({
+        type: "GET",
+        url: urlGetStockProductoBodega,
+        data: { idArticulo: idArticulo },
+        datatype: "json",
+        success: function (data) {
+            console.log(data);
+            return data.cantidad;
+        }
+    });
+
+    console.log('hola mundo');
 }
 
 //se ejecuta cada vez que se agrega o se elimina una linea
@@ -365,6 +387,22 @@ function SetArticulo() {
     var id = $("#lstArticulo").val();
     $('#articulo').val(articulo + ' ' + id);
     GetPrecio(id);
+}
+
+function GetStockProductoBodega(idArticulo) {
+
+    $.ajax({
+        type: "GET",
+        url: urlGetStockProductoBodega,
+        data: { idArticulo: idArticulo },
+        datatype: "json",
+        success: function (data) {
+
+            return data.cantidad;
+        }
+    });
+
+    return 0;
 }
 
 var productosArray = [] ;

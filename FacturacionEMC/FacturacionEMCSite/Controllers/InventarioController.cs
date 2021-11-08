@@ -28,6 +28,7 @@ namespace FacturacionEMCSite.Controllers
             return View();
         }
 
+        [HttpGet]
         public async Task<IActionResult> GetStockTotalAsync()
         {
             ICollection<EMCApi.Client.StockTotalDTO> productos = new List<EMCApi.Client.StockTotalDTO>();
@@ -41,6 +42,22 @@ namespace FacturacionEMCSite.Controllers
             }
 
             return Json(productos);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetStockProductoBodegaAsync(int idArticulo)
+        {
+            EMCApi.Client.StockTotalDTO producto = new EMCApi.Client.StockTotalDTO();
+            try
+            {
+                producto = await this.clientApi.GetStockProductoBodegaAsync(this.usuario.IdEmpresa,idArticulo, true);
+            }
+            catch (Exception ex)
+            {
+                var error = ex.Message;
+            }
+
+            return Json(producto);
         }
     }
 }

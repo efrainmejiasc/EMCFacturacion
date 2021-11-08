@@ -113,5 +113,10 @@ namespace NegocioEMC.Services
 
             return lst;
         }
+
+        public decimal GetExistenciaProducto(int idEmpresa, int idArticulo, bool activo = true)
+        {
+            return this.stockTotalRepository.GetExistenciaProducto(idEmpresa, idArticulo,activo);
+        }
     }
 }

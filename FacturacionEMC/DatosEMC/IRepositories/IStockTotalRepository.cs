@@ -11,5 +11,6 @@ namespace DatosEMC.IRepositories
     {
         List<StockTotal> AddExistencia(List<StockTotal> model);
         List<StockTotal> GetProductosStock(int idEmpresa, bool activo = true);
+        decimal GetExistenciaProducto(int idEmpresa, int idArticulo, bool activo = true);
     }
 }

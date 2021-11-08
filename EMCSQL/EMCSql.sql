@@ -46,10 +46,15 @@ SELECT * FROM InicioFacturacion
 --INSERT INTO MetodoPago VALUES('Debit Card', 'EN-US')
 --INSERT INTO MetodoPago VALUES('Bank Transfer', 'EN-US')
 
---INSERT INTO UNIDADMEDIDA (UNIDAD, IdEmpresa, Sistema) VALUES ('Unit',2,'EN-US')
---INSERT INTO UNIDADMEDIDA (UNIDAD, IdEmpresa, Sistema) VALUES ('Gallon',2,'EN-US')
---INSERT INTO UNIDADMEDIDA (UNIDAD, IdEmpresa, Sistema) VALUES ('Foot',2,'EN-US')
---INSERT INTO UNIDADMEDIDA (UNIDAD, IdEmpresa, Sistema) VALUES ('Pound',2,'EN-US')
+--INSERT INTO UNIDADMEDIDA (UNIDAD, IdEmpresa, Sistema) VALUES ('Unit',1,'EN-US')
+--INSERT INTO UNIDADMEDIDA (UNIDAD, IdEmpresa, Sistema) VALUES ('Gallon',1,'EN-US')
+--INSERT INTO UNIDADMEDIDA (UNIDAD, IdEmpresa, Sistema) VALUES ('Foot',1,'EN-US')
+--INSERT INTO UNIDADMEDIDA (UNIDAD, IdEmpresa, Sistema) VALUES ('Pound',1,'EN-US')
+
+--INSERT INTO UNIDADMEDIDA (UNIDAD, IdEmpresa, Sistema) VALUES ('Unidad',2,'ES-VE')
+--INSERT INTO UNIDADMEDIDA (UNIDAD, IdEmpresa, Sistema) VALUES ('Litro',2,'ES-VE')
+--INSERT INTO UNIDADMEDIDA (UNIDAD, IdEmpresa, Sistema) VALUES ('Kilo',2,'ES-VE')
+--INSERT INTO UNIDADMEDIDA (UNIDAD, IdEmpresa, Sistema) VALUES ('Metro',2,'ES-VE')
 
 
 --INSERT INTO EMPRESA VALUES ('4F0EF2D3-A470-4B2D-B2EF-A9B8A8EE1777','EMC Software','V-11346727','efrainmejiasc@hotmail.com','04244133677','Valencia-Venezuela',GetDate(),GetDate(),1)

@@ -29,5 +29,17 @@ namespace DatosEMC.Repositories
             return db.StockTotal.Where(x => x.Activo == activo && x.IdEmpresa == idEmpresa).ToList();
         }
 
+        public decimal GetExistenciaProducto (int idEmpresa, int idArticulo,bool activo = true)
+        {
+            var numeroPositivo = db.StockTotal.Where(x => x.Activo == activo && x.IdEmpresa == idEmpresa && x.IdArticulo == idArticulo && x.TipoFactura == 1).Sum(x => x.Cantidad);
+
+            var numeroNegativo = db.StockTotal.Where(x => x.Activo == activo && x.IdEmpresa == idEmpresa && x.IdArticulo == idArticulo && x.TipoFactura == 2).Sum(x => x.Cantidad);
+
+            var resultado = numeroPositivo - numeroNegativo;
+
+            return Math.Round(resultado, 2);
+
+        }
+
     }
 }

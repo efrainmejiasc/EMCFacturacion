@@ -85,5 +85,31 @@ namespace FacturacionEMCApi.Controllers
             else
                 return BadRequest(EngineService.SetGenericResponse(false, "No se encontró información"));
         }
+
+
+
+        /// <summary>
+        /// Obtiene stock en bodega de un producto
+        /// </summary>
+        /// <returns>Existencia de producto</returns>
+        [HttpGet("{idEmpresa}/{idArticulo}/{activo}", Name = "GetStockProductoBodega")]
+        [ProducesResponseType(statusCode: (int)HttpStatusCode.OK, Type = typeof(StockTotalDTO))]
+        [ProducesResponseType(statusCode: (int)HttpStatusCode.BadRequest, Type = typeof(GenericResponse))]
+        public IActionResult GetStockProductoBodega(int idEmpresa, int idArticulo,bool activo = true)
+        {
+            var stock = this.stockTotalService.GetExistenciaProducto(idEmpresa, idArticulo,activo);
+
+            var result = new StockTotalDTO();
+            result.Cantidad = stock;
+            result.IdEmpresa = idEmpresa;
+            result.IdArticulo = idArticulo;
+            result.Activo = activo;
+
+            if (result != null)
+                return Ok(result);
+            else
+                return BadRequest(EngineService.SetGenericResponse(false, "No se encontró información"));
+        }
     }
 }
+

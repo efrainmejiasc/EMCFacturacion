@@ -12,5 +12,6 @@ namespace NegocioEMC.IServices
         List<StockTotalDTO> GetStockTotal(int idEmpresa, bool activo = true);
         GenericResponse AddExistencia(List<FacturaCompraDetalleDTO> facturas);
         GenericResponse RemoveExistencia(List<FacturaVentaDetalleDTO> facturas);
+        decimal GetExistenciaProducto(int idEmpresa, int idArticulo, bool activo = true);
     }
 }
