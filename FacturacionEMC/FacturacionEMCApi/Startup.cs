@@ -41,14 +41,14 @@ namespace FacturacionEMCApi
         {
             services.AddControllers();
 
-#if DEBUG
+          #if DEBUG
 
             services.AddDbContext<MyAppContext>(op => op.UseSqlServer(Configuration.GetConnectionString("DefaultConnectionLocal"),
                                                        b => b.MigrationsAssembly("DatosEMC")));
-#else
+          #else
             services.AddDbContext<MyAppContext>(op => op.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
                                                       b => b.MigrationsAssembly("DatosEMC")));
-#endif
+           #endif
             services.AddDbContext<MyAppContext>();
 
             // Asigna la configuracion de la seguridad del JWT

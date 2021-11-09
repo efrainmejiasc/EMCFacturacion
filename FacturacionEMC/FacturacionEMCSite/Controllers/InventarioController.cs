@@ -28,6 +28,8 @@ namespace FacturacionEMCSite.Controllers
             return View();
         }
 
+        #region StockTotal
+
         [HttpGet]
         public async Task<IActionResult> GetStockTotalAsync()
         {
@@ -58,6 +60,13 @@ namespace FacturacionEMCSite.Controllers
             }
 
             return Json(producto);
+        }
+
+        #endregion
+
+        public IActionResult About()
+        {
+            return View();
         }
     }
 }

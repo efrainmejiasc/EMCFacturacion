@@ -105,7 +105,7 @@ namespace NegocioEMC.Services
                 s.NombreProducto = p.NombreProducto;
                 s.CantidadPositiva = stockTotal.Where(x => x.Activo == true && x.Id == p.Id && x.TipoFactura == 1).Sum(x => x.Cantidad);
                 s.CantidadNegativa = stockTotal.Where(x => x.Activo == true && x.Id == p.Id && x.TipoFactura == 2).Sum(x => x.Cantidad);
-                s.Cantidad = s.CantidadPositiva >= s.CantidadNegativa ? s.CantidadPositiva - s.CantidadNegativa : s.CantidadNegativa - s.CantidadPositiva;
+                s.Cantidad = Math.Round( s.CantidadPositiva - s.CantidadNegativa ,2);
                 s.Unidad = p.Presentacion;
                 
                 lst.Add(s);

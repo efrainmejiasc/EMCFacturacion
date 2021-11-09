@@ -1,0 +1,76 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/scriptsSite/inventario/jsAbout.js"></script>
+    <link rel="stylesheet" type="text/css" href="~/js/dataTables/datatables.css" />
+    <script type="text/javascript" src="~/js/dataTables/datatables.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+}
+
+<script>
+     var urlGetProductos = '@Url.Action("GetProductos", "Producto")';
+     var urlGetVendedor= '@Url.Action("GetUsuarios","Usuario")';
+     var urlGetStockProductoBodega = '@Url.Action("GetStockProductoBodega", "Inventario")';
+</script>
+
+<div class="card" style="margin-top: 5%; background-color: #F7F9CE; color: dimgray;">
+    <div class="card-body">
+        <div class="form-horizontal" style="color: dimgray;">
+            <h1 style="color:dimgray">Assign Stock To Seller</h1><hr />
+            <div class="form-group row">
+
+                <div class="col-md-3 text-md-right">
+                    <label class="control-label">Seller</label>
+                </div>
+                <div class="col-md-8">
+                    <select id="vendedor" name="vendedor" class="form-control form-control-sm" onchange="" required>
+                    </select>
+                </div>
+                <div class="col-md-3 text-md-right">
+                    <label class="control-label">Article</label>
+                </div>
+                <div class="col-md-8">
+                    <select id="lstArticulo" name="lstArticulo" class="form-control form-control-sm" onchange="GetExistenciaArticuloBodega_();"></select>
+                </div>
+                <div class="col-md-3 text-md-right">
+                    <label class="control-label">Amount</label>
+                </div>
+                <div class="col-md-8">
+                    <input type="number" id="cantidad" name="cantidad" class="form form-control" step="1" min="0" placeholder="0,00" onblur="GetStock();" />
+                </div>
+
+            </div>
+            <div class="form-group row">
+                <div class="col-md-12 text-md-right">
+                    <button class="btn btn-success" onclick="AddLinea();"><i class="bi bi-plus-circle-fill"> Asignar</i></button>
+                </div>
+            </div>
+
+            <hr />
+            <div class="form-horizontal" style="color:dimgray">
+                <h3 style="color:dimgray"> Assigned Items</h3>
+                <table id="tablaLineas" class="display compact dt-center table table-striped table-light" style="width:100%">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th style="display:none;">Nº</th>
+                            <th>Seller</th>
+                            <th>Seller Id</th>
+                            <th>Article</th>
+                            <th>Article Id</th>
+                            <th>Amount</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+                <hr />
+            </div>
+
+        </div>
+    </div>
+</div>
+<input type="hidden" id="numeroLinea_" />

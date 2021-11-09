@@ -5,10 +5,14 @@ ClientEMCApi
 
         urlweb: http://efrainweb-001-site1.gtempurl.com
 
-        public ClientEMCApi()
+   public ClientEMCApi()
         {
-            //BaseUrl = "http://efrainapi-001-site1.itempurl.com";
-            BaseUrl = "http://localhost:13170";
+            #if RELEASE
+             BaseUrl = "http://efrainapi-001-site1.itempurl.com";
+            #else
+             BaseUrl = "http://localhost:13170";
+            #endif
+
             _httpClient = new System.Net.Http.HttpClient();
             _settings = new System.Lazy<Newtonsoft.Json.JsonSerializerSettings>(() =>
             {
@@ -16,7 +20,7 @@ ClientEMCApi
                 UpdateJsonSerializerSettings(settings);
                 return settings;
             });
-          }
+        }
 
     public async System.Threading.Tasks.Task<AccessToken> LoginAsync(CredencialesDTO body, System.Threading.CancellationToken cancellationToken)
         {

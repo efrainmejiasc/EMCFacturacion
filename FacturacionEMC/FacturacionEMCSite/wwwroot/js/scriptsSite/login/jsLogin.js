@@ -9,6 +9,7 @@
     $('#rVenta_').hide();
     $('#rCompra_').hide();
     $('#stock_').hide();
+    $('#asignacion_').hide();
     $('#inicioFact_').hide();
 });
 

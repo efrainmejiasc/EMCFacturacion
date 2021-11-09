@@ -48,7 +48,7 @@
                     </select>
                 </div>
                 <div class="col-md-12 text-md-right">
-                     <button class="btn btn-success" onclick="MostrarModalCliente();"><i class="bi bi-plus-circle-fill"> Client</i></button>
+                    <button class="btn btn-success" onclick="MostrarModalCliente();"><i class="bi bi-plus-circle-fill"> Client</i></button>
                 </div>
             </div>
         </div>
@@ -82,7 +82,7 @@
                     <label class="control-label">Amount</label>
                 </div>
                 <div class="col-md-8">
-                    <input type="number" id="cantidad" name="cantidad" class="form form-control" step="1" min="0" placeholder="0" onblur="SubtotalLinea();"  />
+                    <input type="number" id="cantidad" name="cantidad" class="form form-control" step="1" min="0" placeholder="0" onblur="SubtotalLinea();" />
                 </div>
                 <div class="col-md-3 text-md-right">
                     <label class="control-label">Price</label>
@@ -97,10 +97,10 @@
                     <input type="number" id="subTotalLinea" name="subTotalLinea" class="form form-control" min="0" disabled placeholder="0.0" />
                 </div>
                 <div class="col-md-12 text-md-right">
-                          <button class="btn btn-success" onclick="AddLinea();"><i class="bi bi-plus-circle-fill"> </i></button>
+                    <button class="btn btn-success" onclick="AddLinea();"><i class="bi bi-plus-circle-fill"> </i></button>
                 </div>
             </div>
-            </div>
+        </div>
 
         <hr />
         <div class="form-horizontal" style="color:dimgray">
@@ -194,3 +194,5 @@
 </div>
 
 <input type="hidden" id="numeroLinea_" />
+
+<input type="hidden" id="existenciaProducto_" />
