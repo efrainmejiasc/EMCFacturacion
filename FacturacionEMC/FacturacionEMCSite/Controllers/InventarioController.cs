@@ -1,4 +1,5 @@
 ﻿using EMCApi.Client;
+using FacturacionEMCSite.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -68,5 +69,38 @@ namespace FacturacionEMCSite.Controllers
         {
             return View();
         }
+
+        #region StockTransito
+
+        [HttpPost]
+        public async Task<IActionResult> GuardarAsignacionAsync(string asignaciones)
+        {
+            var response = new RespuestaModel();
+            response.Estatus = false;
+
+            try
+            {
+                var asignacionDTO = JsonConvert.DeserializeObject<List<EMCApi.Client.StockTransitoDTO>>(asignaciones);
+                foreach (var modelo in asignacionDTO)
+                {
+                    modelo.IdEmpresa = usuario.IdEmpresa;
+                    modelo.IdUsuario = usuario.Id;
+                    modelo.Activo = true;
+                    modelo.Fecha = modelo.FechaModificacion = DateTime.Now;
+                }
+                
+                var saveModelo = await this.clientApi.PostStockTransitoAsync(asignacionDTO);
+                response.Estatus = true;
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return Json(response);
+        }
+
+        #endregion
     }
 }

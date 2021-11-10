@@ -4,6 +4,7 @@
     $('#numeroLinea_').val(0)
     GetProductos();
     GetVendedores();
+    GetUnidadesMedida();
 });
 
 var productosArray = [];
@@ -48,6 +49,22 @@ function GetVendedores() {
     return false;
 }
 
+function GetUnidadesMedida() {
+    $.ajax({
+        type: "GET",
+        url: urlGetUnidadesMedida,
+        datatype: "json",
+        success: function (data) {
+            $('#unidad').empty();
+            $('#unidad').append('<option value="-1" disabled selected>Select unit...</option>');
+            $.each(data, function (index, item) {
+                $('#unidad').append("<option value=\"" + item.id + "\">" + item.unidad + "</option>");
+            });
+        }
+    });
+    return false;
+}
+
 function GetStock() {
     var id = $('#lstArticulo').val();
     GetExistenciaArticuloBodega_(id);
@@ -79,11 +96,13 @@ function AddLinea() {
     var articulo = $("#lstArticulo option:selected").text();
     var articuloId = $('#lstArticulo').val();
     var cantidad = $('#cantidad').val();
+    var strUnidad = $("#unidad option:selected").text();
+    var unidad = $('#unidad').val()
     var numero = parseInt($('#numeroLinea_').val());
 
 
 
-    if ( articuloId === '' || cantidad === '' || vendedorId === '') {
+    if ( articuloId === '' || cantidad === '' || vendedorId === ''|| unidad ==='') {
         toastr.warning("All fields are required");
         return false;
     }
@@ -92,10 +111,12 @@ function AddLinea() {
     let ln = `<tr id='r${numero}' >
                   <td style="display:none;"> ${numero} </td>
                   <td id='r${numero}1' > ${vendedor} </td>
-                  <td id='r${numero}1' > ${vendedorId} </td>
-                  <td id='r${numero}2' > ${articulo} </td>
-                  <td id='r${numero}2' > ${articuloId} </td>
-                  <td id='r${numero}3' > ${cantidad} </td>
+                  <td id='r${numero}2' style="display:none;" > ${vendedorId} </td>
+                  <td id='r${numero}3' > ${articulo} </td>
+                  <td id='r${numero}4' style="display:none;"> ${articuloId} </td>
+                  <td id='r${numero}5' > ${cantidad} </td>
+                  <td id='r${numero}6' style="display:none;"> ${unidad} </td>
+                  <td id='r${numero}7' > ${strUnidad} </td>
                   <td><a href="javascript:void(0)" class="btn btn-sm btn-danger" onclick="RemoveLinea(${numero})">Delete</a></td>
                   </tr>`;
 
@@ -103,11 +124,53 @@ function AddLinea() {
     AddLineaArray('r' + numero);
     numero = numero + 1;
     $('#numeroLinea_').val(numero);
-
-    $('#articulo').val('')
+    //$('#vendedor').val('-1');
+    $('#lstArticulo').val('-1')
     $('#cantidad').val('');
-    $('#vendedor').val('');
+    $('#unidad').val('-1');
 }
+
+
+function GuardarAsignacion() {
+    var StockTransitoDTO = new Array();
+    var nfilas = $("#tablaLineas").find("tr");
+
+
+    for (var i = 1; i < nfilas.length; i++) {
+        var celdas = $(nfilas[i]).find("td");
+        var x = {};
+        x.Linea = parseInt(i);
+        x.NombreVendedor = $(celdas[1]).text();
+        x.IdVendedor = parseInt($(celdas[2]).text());
+        x.NombreArticulo = $(celdas[3]).text();
+        x.IdArticulo = parseInt($(celdas[4]).text());
+        x.Cantidad = parseFloat($(celdas[5]).text());
+        x.Unidad = parseInt($(celdas[6]).text());
+        x.StrUnidad = $(celdas[7]).text();
+        x.IdUsuario = 0;
+        x.Activo = true;
+
+        StockTransitoDTO.push(x);
+    }
+
+    $.ajax({
+        type: "POST",
+        url: urlGuardarAsignaciones,
+        data: { asignaciones: JSON.stringify(StockTransitoDTO) },
+        datatype: "json",
+        success: function (data) {
+            if (data.estatus) {
+                toastr.success("Assigned saved successfully");
+                setTimeout(RecargarPagina, 4000);
+            }
+            else
+                toastr.error("Unexpected error");
+        }
+    });
+
+    return false;
+}
+
 
 function RemoveLinea(row) {
     RemoveLineaArray('r' + row);
@@ -131,4 +194,7 @@ function RemoveLineaArray(id) {
     lineasArray.splice(lineasArray.indexOf(id), 1);
 }
 
+function RecargarPagina() {
+    location.reload(true);
+}
 

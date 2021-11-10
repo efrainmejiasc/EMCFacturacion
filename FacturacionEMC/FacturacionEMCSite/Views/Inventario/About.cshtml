@@ -11,9 +11,11 @@
 }
 
 <script>
-     var urlGetProductos = '@Url.Action("GetProductos", "Producto")';
-     var urlGetVendedor= '@Url.Action("GetUsuarios","Usuario")';
-     var urlGetStockProductoBodega = '@Url.Action("GetStockProductoBodega", "Inventario")';
+    var urlGetProductos = '@Url.Action("GetProductos", "Producto")';
+    var urlGetVendedor= '@Url.Action("GetUsuarios","Usuario")';
+    var urlGetStockProductoBodega = '@Url.Action("GetStockProductoBodega", "Inventario")';
+    var urlGetUnidadesMedida = '@Url.Action("GetUnidadesMedida","UnidadMedida")';
+    var urlGuardarAsignaciones = '@Url.Action("GuardarAsignacion", "Inventario")';
 </script>
 
 <div class="card" style="margin-top: 5%; background-color: #F7F9CE; color: dimgray;">
@@ -41,11 +43,16 @@
                 <div class="col-md-8">
                     <input type="number" id="cantidad" name="cantidad" class="form form-control" step="1" min="0" placeholder="0,00" onblur="GetStock();" />
                 </div>
-
+                <div class="col-md-3 text-md-right">
+                    <label class="control-label">Unit</label>
+                </div>
+                <div class="col-md-8">
+                    <select id="unidad" name="unidad" class="form-control form-control-sm" onchange=""></select>
+                </div>
             </div>
             <div class="form-group row">
                 <div class="col-md-12 text-md-right">
-                    <button class="btn btn-success" onclick="AddLinea();"><i class="bi bi-plus-circle-fill"> Asignar</i></button>
+                    <button class="btn btn-success" onclick="AddLinea();"><i class="bi bi-plus-circle-fill"> Assign</i></button>
                 </div>
             </div>
 
@@ -57,10 +64,12 @@
                         <tr>
                             <th style="display:none;">Nº</th>
                             <th>Seller</th>
-                            <th>Seller Id</th>
+                            <th style="display:none;">Seller Id</th>
                             <th>Article</th>
-                            <th>Article Id</th>
+                            <th style="display:none;">Article Id</th>
                             <th>Amount</th>
+                            <th style="display:none;">Unit Id</th>
+                            <th>Unit</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -69,6 +78,19 @@
                 </table>
                 <hr />
             </div>
+
+            <div>
+                <div class="form-group row text-center">
+                    <div class="col-md-6 text-md-left">
+                        <input type="button" value="Save" class="btn btn-success form-control" onclick="GuardarAsignacion();" style="width:200px;" />
+                    </div>
+                    <div class="col-md-6 text-md-right">
+                        <input type="reset" value="Cancel" class="btn btn-danger form-control" onclick="RecargarPagina()" style="width:200px;" />
+                    </div>
+                </div>
+                <hr />
+            </div>
+
 
         </div>
     </div>

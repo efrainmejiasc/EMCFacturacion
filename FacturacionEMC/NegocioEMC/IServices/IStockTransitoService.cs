@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DatosEMC.DTOs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,7 @@ namespace NegocioEMC.IServices
 {
     public interface IStockTransitoService
     {
+        GenericResponse AddStockTransito(List<StockTransitoDTO> model);
+        List<StockTransitoDTO> GetAsignacionesVendedor(int idEmpresa, int idUsuario, bool activo);
     }
 }

@@ -26,6 +26,7 @@ namespace FacturacionEMCApi.Controllers
           this.stockTransitoService = _stockTransitoService;
        }
 
+        #region STOCKTOTAL
 
         /// <summary>
         /// Crear registro de stock positivo
@@ -95,9 +96,9 @@ namespace FacturacionEMCApi.Controllers
         [HttpGet("{idEmpresa}/{idArticulo}/{activo}", Name = "GetStockProductoBodega")]
         [ProducesResponseType(statusCode: (int)HttpStatusCode.OK, Type = typeof(StockTotalDTO))]
         [ProducesResponseType(statusCode: (int)HttpStatusCode.BadRequest, Type = typeof(GenericResponse))]
-        public IActionResult GetStockProductoBodega(int idEmpresa, int idArticulo,bool activo = true)
+        public IActionResult GetStockProductoBodega(int idEmpresa, int idArticulo, bool activo = true)
         {
-            var stock = this.stockTotalService.GetExistenciaProducto(idEmpresa, idArticulo,activo);
+            var stock = this.stockTotalService.GetExistenciaProducto(idEmpresa, idArticulo, activo);
 
             var result = new StockTotalDTO();
             result.Cantidad = stock;
@@ -110,6 +111,51 @@ namespace FacturacionEMCApi.Controllers
             else
                 return BadRequest(EngineService.SetGenericResponse(false, "No se encontró información"));
         }
+
+        #endregion
+
+        #region STOCKTRANSITO
+
+        /// <summary>
+        /// Crear registro de stock en transito
+        /// </summary>
+        /// <returns>Estado de la solicitud</returns>
+        [HttpPost(Name = "PostStockTransito")]
+        [ProducesResponseType(statusCode: (int)HttpStatusCode.OK, Type = typeof(GenericResponse))]
+        [ProducesResponseType(statusCode: (int)HttpStatusCode.BadRequest, Type = typeof(GenericResponse))]
+
+        public IActionResult PostStockTransito([FromBody] List<StockTransitoDTO> stockTransitoDTO)
+        {
+
+            var genericResponse = this.stockTransitoService.AddStockTransito(stockTransitoDTO);
+
+            if (genericResponse.Ok)
+                return Ok(genericResponse);
+
+            else
+                return BadRequest(genericResponse);
+
+        }
+
+
+        /// <summary>
+        /// Obtiene las asignaciones de un vendedor
+        /// </summary>
+        /// <returns>Lista de asignaciones de un vendedor</returns>
+        [HttpGet("{idEmpresa}/{idUsuario}/{activo}", Name = "GetAsignacionesVendedor")]
+        [ProducesResponseType(statusCode: (int)HttpStatusCode.OK, Type = typeof(List<FacturaVentaDetalleDTO>))]
+        [ProducesResponseType(statusCode: (int)HttpStatusCode.BadRequest, Type = typeof(GenericResponse))]
+        public IActionResult GetAsignacionesVendedor(int idEmpresa, int idUsuario, bool activo)
+        {
+            var asignacion = this.stockTransitoService.GetAsignacionesVendedor(idEmpresa, idUsuario,activo);
+
+            if (asignacion.Count > 0)
+                return Ok(asignacion);
+            else
+                return BadRequest(EngineService.SetGenericResponse(false, "No se encontró información"));
+        }
+
+        #endregion
     }
 }
 

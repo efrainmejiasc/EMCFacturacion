@@ -130,7 +130,7 @@ namespace FacturacionEMCApi
             //services.AddScoped<IStockBodegaRepository, StockBodegaRepository>();
 
             services.AddScoped<IStockTransitoService, StockTransitoService>();
-            //services.AddScoped<IStockTransitoRepository, StockTransitoRepository>();
+            services.AddScoped<IStockTransitoRepository, StockTransitoRepository>();
 
             services.AddScoped<IProductoService, ProductoService>();
             services.AddScoped<IProductoRepository, ProductoRepository>();

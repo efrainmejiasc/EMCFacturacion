@@ -13,6 +13,7 @@ SELECT * FROM FacturaVenta
 SELECT * FROM FacturaVentaDetalle
 
 SELECT * FROM StockTotal
+SELECT * FROM StockTransito
 
 
 
