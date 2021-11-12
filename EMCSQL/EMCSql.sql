@@ -57,6 +57,8 @@ SELECT * FROM InicioFacturacion
 --INSERT INTO UNIDADMEDIDA (UNIDAD, IdEmpresa, Sistema) VALUES ('Kilo',2,'ES-VE')
 --INSERT INTO UNIDADMEDIDA (UNIDAD, IdEmpresa, Sistema) VALUES ('Metro',2,'ES-VE')
 
+--update StockTransito Set NombreArticulo = ' Monitor - Unit' Where id = 1 
+
 
 --INSERT INTO EMPRESA VALUES ('4F0EF2D3-A470-4B2D-B2EF-A9B8A8EE1777','EMC Software','V-11346727','efrainmejiasc@hotmail.com','04244133677','Valencia-Venezuela',GetDate(),GetDate(),1)
 --INSERT INTO USUARIO VALUES ('admin@hotmail.com',1,'admin','admin','admin','YWRtaW5AaG90bWFpbC5jb21hZG1pbg==','YWRtaW4xMjM0',GetDate(),1,1)

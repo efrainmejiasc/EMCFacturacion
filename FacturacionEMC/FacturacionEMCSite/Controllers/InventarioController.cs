@@ -24,10 +24,6 @@ namespace FacturacionEMCSite.Controllers
                 this.usuario = JsonConvert.DeserializeObject<DatosEMC.DTOs.UsuarioDTO>(httpContext.HttpContext.Session.GetString("UserLogin"));
         }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
 
         #region StockTotal
 
@@ -65,10 +61,6 @@ namespace FacturacionEMCSite.Controllers
 
         #endregion
 
-        public IActionResult About()
-        {
-            return View();
-        }
 
         #region StockTransito
 
@@ -101,6 +93,56 @@ namespace FacturacionEMCSite.Controllers
             return Json(response);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetStockTransitoProducto(int idProducto)
+        {
+            ICollection<StockTransitoDTO> lst = new List<StockTransitoDTO>();
+
+            try
+            {
+                lst = await this.clientApi.GetStockTransitoProductoAsync(this.usuario.IdEmpresa, idProducto, true);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return Json(lst);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetStockTransitoVendedor(int idVendedor, int idEmpresa)
+        {
+            ICollection<StockTransitoDTO> lst = new List<StockTransitoDTO>();
+
+            try
+            {
+                lst = await this.clientApi.GetAsignacionesVendedorAsync(idEmpresa, idVendedor, true);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return Json(lst);
+        }
+
         #endregion
+
+
+        public IActionResult Index()
+        {
+            return View();
+        }
+
+        public IActionResult About()
+        {
+            return View();
+        }
+
+        public IActionResult Contact()
+        {
+            return View();
+        }
     }
 }

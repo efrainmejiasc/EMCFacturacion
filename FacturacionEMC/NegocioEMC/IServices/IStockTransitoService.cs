@@ -11,5 +11,6 @@ namespace NegocioEMC.IServices
     {
         GenericResponse AddStockTransito(List<StockTransitoDTO> model);
         List<StockTransitoDTO> GetAsignacionesVendedor(int idEmpresa, int idUsuario, bool activo);
+        List<StockTransitoDTO> GetStockTransitoProducto(int idEmpresa, int idArticulo, bool activo);
     }
 }

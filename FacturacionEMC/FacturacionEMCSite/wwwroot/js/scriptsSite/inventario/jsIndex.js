@@ -34,6 +34,7 @@ function GetStockTotal() {
                       <td> ${item.nombreProducto} </td>
                       <td> ${item.unidad} </td>
                       <td> ${item.cantidad} </td>
+                       <td><input type="button" class="btn btn-sm btn-primary" onclick="Transito(${item.idArticulo})" value="Transit" style="width:100px;" ></td>
                       </tr>`;
                     $('#tablaStock tbody').append(tr);
                 });
@@ -78,4 +79,46 @@ function InicializarDataTable() {
     } catch { console.log(''); }
 
     $("#tablaStock").addClass("display compact dt-center");
+}
+
+function Transito(idProducto) {
+
+    $.ajax({
+        type: "GET",
+        url: urlGetStockTransitoProducto,
+        data: { idProducto: idProducto },
+        datatype: "json",
+        success: function (data)
+        {
+            if (data != null) {
+                $('#tablaTransito tbody tr').remove();
+                $.each(data, function (index, item) {
+                    let tr = `<tr>
+                      <td> ${item.identificador.substring(1, 8)} </td>
+                      <td> ${item.nombreVendedor} </td>
+                      <td> ${item.nombreArticulo} </td>
+                      <td> ${item.strUnidad} </td>
+                      <td> ${item.cantidad} </td>
+                      </tr>`;
+                    $('#tablaTransito tbody').append(tr);
+                });
+                setTimeout(InicializarDataTable, 1000);
+                $('#modalTransito').show();
+            }
+            else {
+                $('#tablaTransito tbody tr').remove();
+            }
+        }, error: function (jqXHR, textStatus, errorThrown) {
+            $('#tablaTransito tbody tr').remove();
+        }
+      
+    });
+
+    $("#tablaTransito").addClass("display compact dt-center");
+
+    return false;
+}
+
+function OcultarModalTransito() {
+    $('#modalTransito').hide();
 }

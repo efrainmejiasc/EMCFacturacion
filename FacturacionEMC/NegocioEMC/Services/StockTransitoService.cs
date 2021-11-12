@@ -40,11 +40,16 @@ namespace NegocioEMC.Services
         {
             var lstTransito = this.stockTransitoRepository.GetAsignacionesVendedor(idEmpresa, idUsuario, activo);
 
-            var stockTransitoDTO = new List<StockTransitoDTO>();
-            stockTransitoDTO = this.mapper.Map<List<StockTransitoDTO>>(lstTransito);
-
-            return stockTransitoDTO;
+            return lstTransito;
         }
+
+        public List<StockTransitoDTO> GetStockTransitoProducto(int idEmpresa, int idArticulo, bool activo)
+        {
+            var lstTransito = this.stockTransitoRepository.GetStockTransitoProducto(idEmpresa, idArticulo, activo);
+
+            return lstTransito;
+        }
+
 
     }
 }

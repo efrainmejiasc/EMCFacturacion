@@ -14,10 +14,13 @@ namespace DatosEMC.DTOs
         public int IdArticulo { get; set; }
         public string NombreArticulo { get; set; }
         public int Unidad { get; set; }
+        public string StrUnidad { get; set; }
         public DateTime Fecha { get; set; }
         public DateTime FechaModificacion { get; set; }
         public bool Activo { get; set; }
         public int IdVendedor { get; set; }
+        public string NombreVendedor { get; set; }
+        public string Identificador { get; set; }
         public int IdUsuario { get; set; }
     }
 }

@@ -1740,7 +1740,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/FacturaVentaDetalleDTO"
+                    "$ref": "#/components/schemas/StockTransitoDTO"
                   }
                 }
               },
@@ -1748,7 +1748,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/FacturaVentaDetalleDTO"
+                    "$ref": "#/components/schemas/StockTransitoDTO"
                   }
                 }
               },
@@ -1756,7 +1756,91 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/FacturaVentaDetalleDTO"
+                    "$ref": "#/components/schemas/StockTransitoDTO"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenericResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenericResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenericResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Inventario/GetStockTransitoProducto/idEmpresa/idProducto/activo": {
+      "get": {
+        "tags": [
+          "Inventario"
+        ],
+        "operationId": "GetStockTransitoProducto",
+        "parameters": [
+          {
+            "name": "idEmpresa",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "idProducto",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "activo",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/StockTransitoDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/StockTransitoDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/StockTransitoDTO"
                   }
                 }
               }
@@ -3241,6 +3325,10 @@
             "type": "integer",
             "format": "int32"
           },
+          "strUnidad": {
+            "type": "string",
+            "nullable": true
+          },
           "fecha": {
             "type": "string",
             "format": "date-time"
@@ -3255,6 +3343,14 @@
           "idVendedor": {
             "type": "integer",
             "format": "int32"
+          },
+          "nombreVendedor": {
+            "type": "string",
+            "nullable": true
+          },
+          "identificador": {
+            "type": "string",
+            "nullable": true
           },
           "idUsuario": {
             "type": "integer",
