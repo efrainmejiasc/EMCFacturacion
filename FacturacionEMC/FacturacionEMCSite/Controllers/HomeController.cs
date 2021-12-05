@@ -40,7 +40,7 @@ namespace FacturacionEMCSite.Controllers
         }
 
         [HttpGet]
-        public async Task<JsonResult> LoginAsync(int idEmpresa, string userMail, string password)
+        public async Task<JsonResult> LoginAsync(int idEmpresa, string userMail, string password, string nombreEmpresa)
         {
             var passwordEncode = EngineTool.EnCodeBase64(userMail + password);
             JwtProvider jwtProvider = SecurityToken.JwtProvider.Create(clientApi);
@@ -66,6 +66,7 @@ namespace FacturacionEMCSite.Controllers
                     var user = new UsuarioDTO();
                     user.Id = claims.GetId();
                     user.IdEmpresa = idEmpresa;
+                    user.NombreEmpresa = nombreEmpresa;
                     user.Username = claims.GetUsuario();
                     user.IdRol = Convert.ToInt32(claims.GetRoles().FirstOrDefault());
                     user.Email = claims.GetEmail();

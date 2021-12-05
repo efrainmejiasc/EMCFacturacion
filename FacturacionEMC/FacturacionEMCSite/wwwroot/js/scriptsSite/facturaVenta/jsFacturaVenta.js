@@ -15,6 +15,9 @@ function GetUsuarioLogger() {
         url: urlUsuarioLogger,
         datatype: "json",
         success: function (data) {
+            $('#empresaP').html(data.nombreEmpresa);
+            console.log(data.nombreEmpresa);
+
             if (data.inicioFacturacion) {
                 GetNumeroFactura();
                 GetMetodosPago();
@@ -106,7 +109,7 @@ function AddLinea()
     var precio = $('#precio').val();
     var subTotalLinea = $('#subTotalLinea').val();
 
-    if (idCliente === '-1' || articulo === '' || descripcion === '' || subTotalLinea <= 0 || unidad === '-1' || metodoPago === '-1') {
+    if (idCliente === '-1' || articulo === '' || subTotalLinea <= 0 || unidad === '-1' || metodoPago === '-1') {
         toastr.warning("All fields are required");
         return false;
     }
@@ -128,6 +131,7 @@ function AddLinea()
     numero = numero + 1;
     $('#numeroLinea_').val(numero);
 
+    $('#lstArticulo').val(-1)
     $('#articulo').val('')
     $('#descripcion').val('')
     $('#cantidad').val('');
@@ -431,6 +435,79 @@ function GetPrecio(id) {
     $('#precio').val(producto.precioUnidad);
     document.getElementById("precio").focus();
 }
+
+
+function MostrarModalPrinter() {
+    SetTickket();
+    $('#printer_').show();
+}
+
+function OcultarModalPrinter() {
+    var nfilas = $("#tablaTicket").find("tr");
+
+    for (var i = 1; i < nfilas.length; i++) {
+        $('#a' + i + '1').remove();
+        $('#a' + i + '2').remove();
+        $('#a' + i + '3').remove();
+        $('#a' + i + '4').remove();
+    }
+ 
+    $('#printer_').hide();
+}
+
+
+function SetTickket() {
+    $('#tablaTicket > tbody > tr').remove();
+
+    var nfilas = $("#tablaLineas").find("tr");
+    var nFactura = $('#nFactura').val();
+    var pImpuesto = parseFloat($('#pImpuesto').val());
+    var pDescuento = parseFloat($('#pDescuento').val());
+
+    for (var i = 1; i < nfilas.length; i++) {
+        var celdas = $(nfilas[i]).find("td");
+        var x = {};
+        x.Linea = parseInt(i);
+        x.NumeroFactura = nFactura;
+        x.NombreArticulo = $(celdas[1]).text();
+        x.Descripcion = $(celdas[2]).text();
+        x.Cantidad = parseInt($(celdas[3]).text());
+        x.Unidad = $(celdas[4]).text();
+        x.PrecioUnitario = parseFloat($(celdas[5]).text());
+        x.Subtotal = parseFloat($(celdas[6]).text());
+        x.IdArticulo = 0;
+        x.PorcentajeImpuesto = pImpuesto;
+        x.Impuesto = 0;
+        x.PorcentajeDescuento = pDescuento;
+        x.Descuento = 0;
+        x.Total = parseFloat($(celdas[6]).text());
+
+
+        let ln = `<tr>
+                  <td id='a${i}1'> ${x.NombreArticulo} </td>
+                  <td id='a${i}2'> ${x.PrecioUnitario} </td>
+                  <td id='a${i}3'> ${x.Cantidad} </td>
+                  <td id='a${i}4'> ${x.Subtotal} </td>
+                  </tr>`;
+
+        $('#tablaTicket  tr:last').after(ln);
+    }
+
+    return false;
+}
+
+
+function ImprimirTicket() {
+    var divContents = document.getElementById("impresionante").innerHTML;
+    var a = window.open('', '', 'height=500, width=500');
+   // a.document.write('<html>');
+   // a.document.write('<body > <h1>Div contents are <br>');
+    a.document.write(divContents);
+   // a.document.write('</body></html>');
+    a.document.close();
+    a.print();
+}
+
 
 
 

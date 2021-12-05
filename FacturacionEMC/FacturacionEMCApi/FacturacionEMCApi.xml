@@ -1,0 +1,318 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>FacturacionEMCApi</name>
+    </assembly>
+    <members>
+        <member name="M:FacturacionEMCApi.Controllers.ClienteController.PostCliente(DatosEMC.DTOs.ClienteDTO)">
+            <summary>
+            Crea un nuevo Cliente
+            </summary>
+            <returns>Estado de la solicitud</returns>
+        </member>
+        <member name="M:FacturacionEMCApi.Controllers.ClienteController.GetClientes(System.Int32)">
+            <summary>
+            Obtiene los Clientes por idEmpresa
+            </summary>
+            <returns>Lista de Clientes por idEmpresa </returns>
+        </member>
+        <member name="M:FacturacionEMCApi.Controllers.EmpresaController.GetEmpresas">
+             <summary>
+            Obtiene datos de la Empresa
+             </summary>
+             <returns>Datos del Empresa</returns>
+        </member>
+        <member name="M:FacturacionEMCApi.Controllers.FacturaCompraController.PostFacturaCompra(DatosEMC.DTOs.FacturaCompraDTO)">
+            <summary>
+            Crear registro de factura
+            </summary>
+            <returns>Estado de la solicitud</returns>
+        </member>
+        <member name="M:FacturacionEMCApi.Controllers.FacturaCompraController.GetFacturasComprasFechas(System.Int32,System.DateTime,System.DateTime)">
+            <summary>
+            Obtiene Facturas de compras entre rango de fechas y id empresa
+            </summary>
+            <returns>Lista de facturas de compra</returns>
+        </member>
+        <member name="M:FacturacionEMCApi.Controllers.FacturaCompraController.GetFacturasCompras(System.Int32)">
+            <summary>
+            Obtiene Facturas de compras ultimas 50 por id empresa
+            </summary>
+            <returns>Lista de facturas de compra</returns>
+        </member>
+        <member name="M:FacturacionEMCApi.Controllers.FacturaCompraDetalleController.PostFacturaCompra(System.Collections.Generic.List{DatosEMC.DTOs.FacturaCompraDetalleDTO})">
+            <summary>
+            Crear registro de detall de factura
+            </summary>
+            <returns>Estado de la solicitud</returns>
+        </member>
+        <member name="M:FacturacionEMCApi.Controllers.FacturaCompraDetalleController.GetFacturaCompraDetalle(System.Int32,System.String)">
+            <summary>
+            Obtiene detalle de la factura por id empresa
+            </summary>
+            <returns>Lista de facturas de Compra</returns>
+        </member>
+        <member name="M:FacturacionEMCApi.Controllers.FacturaVentaController.PostFacturaVenta(DatosEMC.DTOs.FacturaVentaDTO)">
+            <summary>
+            Crear registro de factura
+            </summary>
+            <returns>Estado de la solicitud</returns>
+        </member>
+        <member name="M:FacturacionEMCApi.Controllers.FacturaVentaController.GetFacturasVentasFechas(System.Int32,System.DateTime,System.DateTime)">
+            <summary>
+            Obtiene Facturas de venta entre rango de fechas y id empresa
+            </summary>
+            <returns>Lista de facturas de venta</returns>
+        </member>
+        <member name="M:FacturacionEMCApi.Controllers.FacturaVentaController.GetFacturasVentas(System.Int32)">
+            <summary>
+            Obtiene Facturas de ventas ultimas 50 por id empresa
+            </summary>
+            <returns>Lista de facturas de venta</returns>
+        </member>
+        <member name="M:FacturacionEMCApi.Controllers.FacturaVentaController.GetNumeroFactura(System.Int32)">
+            <summary>
+            Obtiene el consecutivo del numero de factura
+            </summary>
+            <returns>Retorna Numero de factura</returns>
+        </member>
+        <member name="M:FacturacionEMCApi.Controllers.FacturaVentaDetalleController.PostFacturaVenta(System.Collections.Generic.List{DatosEMC.DTOs.FacturaVentaDetalleDTO})">
+            <summary>
+            Crear registro de detall de factura
+            </summary>
+            <returns>Estado de la solicitud</returns>
+        </member>
+        <member name="M:FacturacionEMCApi.Controllers.FacturaVentaDetalleController.GetFacturaVentaDetalle(System.Int32,System.String)">
+            <summary>
+            Obtiene detalle de la factura por id empresa
+            </summary>
+            <returns>Lista de facturas de venta</returns>
+        </member>
+        <member name="M:FacturacionEMCApi.Controllers.InicioFacturacion.PostInicioFacturacion(DatosEMC.DTOs.InicioFacturacionDTO)">
+            <summary>
+            Establecer Inicio Facturacion
+            </summary>
+            <returns>Estado de la solicitud</returns>
+        </member>
+        <member name="M:FacturacionEMCApi.Controllers.InicioFacturacion.GetInicioFacturacionCtrl(System.Int32)">
+            <summary>
+            Obtiene el inicio de facturacion
+            </summary>
+            <returns>inicio de facturacion</returns>
+        </member>
+        <member name="M:FacturacionEMCApi.Controllers.InicioFacturacion.ReInicioFacturacion(System.Int32)">
+            <summary>
+            Establecer RE Inicio Facturacion
+            </summary>
+            <returns>Estado de la solicitud</returns>
+        </member>
+        <member name="M:FacturacionEMCApi.Controllers.InventarioController.PostStockTotalAdd(System.Collections.Generic.List{DatosEMC.DTOs.FacturaCompraDetalleDTO})">
+            <summary>
+            Crear registro de stock positivo
+            </summary>
+            <returns>Estado de la solicitud</returns>
+        </member>
+        <member name="M:FacturacionEMCApi.Controllers.InventarioController.PostStockTotalRemove(System.Collections.Generic.List{DatosEMC.DTOs.FacturaVentaDetalleDTO})">
+            <summary>
+            Crear registro de stock
+            </summary>
+            <returns>Estado de la solicitud</returns>
+        </member>
+        <member name="M:FacturacionEMCApi.Controllers.InventarioController.GetStockBodega(System.Int32,System.Boolean)">
+            <summary>
+            Obtiene stock en bodega
+            </summary>
+            <returns>Lista de productos y existencia</returns>
+        </member>
+        <member name="M:FacturacionEMCApi.Controllers.InventarioController.GetStockProductoBodega(System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Obtiene stock en bodega de un producto
+            </summary>
+            <returns>Existencia de producto</returns>
+        </member>
+        <member name="M:FacturacionEMCApi.Controllers.InventarioController.PostStockTransito(System.Collections.Generic.List{DatosEMC.DTOs.StockTransitoDTO})">
+            <summary>
+            Crear registro de stock en transito
+            </summary>
+            <returns>Estado de la solicitud</returns>
+        </member>
+        <member name="M:FacturacionEMCApi.Controllers.InventarioController.GetAsignacionesVendedor(System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Obtiene las asignaciones de un vendedor
+            </summary>
+            <returns>Lista de asignaciones de un vendedor</returns>
+        </member>
+        <member name="M:FacturacionEMCApi.Controllers.InventarioController.GetStockTransitoProducto(System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Obtiene las asignaciones de un producto
+            </summary>
+            <returns>Lista de asignaciones de un producto</returns>
+        </member>
+        <member name="M:FacturacionEMCApi.Controllers.MetodoPagoController.GetMetodosPago(System.String)">
+            <summary>
+            Obtiene los metodos de pago
+            </summary>
+            <returns>Lista metodos Pago</returns>
+        </member>
+        <member name="M:FacturacionEMCApi.Controllers.ProductoController.PostCliente(DatosEMC.DTOs.ProductoDTO)">
+            <summary>
+            Crea un nuevo Producto
+            </summary>
+            <returns>Estado de la solicitud</returns>
+        </member>
+        <member name="M:FacturacionEMCApi.Controllers.ProductoController.GetProductos(System.Int32,System.Boolean)">
+            <summary>
+            Obtiene los productos por idEmpresa
+            </summary>
+            <returns>Lista de Productos activos por idEmpresa </returns>
+        </member>
+        <member name="M:FacturacionEMCApi.Controllers.ProveedorController.PostProveedor(DatosEMC.DTOs.ProveedorDTO)">
+            <summary>
+            Crea un nuevo proveedor
+            </summary>
+            <returns>Estado de la solicitud</returns>
+        </member>
+        <member name="M:FacturacionEMCApi.Controllers.ProveedorController.GetProveedores(System.Int32)">
+            <summary>
+            Obtiene los proveedores por idEmpresa
+            </summary>
+            <returns>Lista de proveedores por idEmpresa </returns>
+        </member>
+        <member name="M:FacturacionEMCApi.Controllers.UnidadMedidaController.GetUnidadesMedida(System.Int32,System.String)">
+            <summary> 
+            Obtiene las unidades de medida por Id Empresa
+            </summary>
+            <returns>Lista metodos Pago</returns>
+        </member>
+        <member name="M:FacturacionEMCApi.Controllers.UsuarioController.GetUserData(System.Int32,System.String,System.String)">
+             <summary>
+            Obtiene datos del usuario
+             <param name="idEmpresa">Id Empresa</param>
+             <param name="userMail">Inombre usuario</param>
+             <param name="password">Inombre usuario</param>
+             </summary>
+             <returns>Datos del usuario</returns>
+        </member>
+        <member name="M:FacturacionEMCApi.Controllers.UsuarioController.GetUsuarios(System.Int32)">
+             <summary>
+            Obtiene usuarios por id empresa 
+             <param name="id">Id Empresa</param>
+             </summary>
+             <returns>Usuarios de la empresa </returns>
+        </member>
+        <member name="M:FacturacionEMCApi.Controllers.UsuarioController.PostUsuario(DatosEMC.DTOs.UsuarioDTO)">
+            <summary>
+            Crea un nuevo Usuario
+            </summary>
+            <returns>Estado de la solicitud</returns>
+        </member>
+        <member name="M:FacturacionEMCApi.Controllers.UsuarioController.UpdateEstatusUsuario(DatosEMC.DTOs.UsuarioDTO)">
+            <summary>
+            actualiza estatus de usuario
+            </summary>
+            <returns>Estado de la solicitud</returns>
+        </member>
+        <member name="M:FacturacionEMCApi.Controllers.UsuarioController.EliminarUsuario(DatosEMC.DTOs.UsuarioDTO)">
+            <summary>
+            Eliminar usuario
+            </summary>
+            <returns>Estado de la solicitud</returns>
+        </member>
+        <member name="T:FacturacionEMCApi.IdentityExtensions">
+            <summary>
+            Clase de extensiones para la identidad
+            </summary>
+        </member>
+        <member name="M:FacturacionEMCApi.IdentityExtensions.GetId(System.Security.Principal.IIdentity)">
+            <summary>
+            Obtiene el identificador de usuario
+            </summary>
+            <param name="identity">Identidad</param>
+            <returns>Identificador de usuario</returns>
+        </member>
+        <member name="M:FacturacionEMCApi.IdentityExtensions.GetUsuario(System.Security.Principal.IIdentity)">
+            <summary>
+            Obtiene el nombre de usuario        
+            </summary>
+            <param name="identity">Identidad</param>
+            <returns>Nombre de usuario</returns>
+        </member>
+        <member name="M:FacturacionEMCApi.IdentityExtensions.GetNombre(System.Security.Principal.IIdentity)">
+            <summary>
+            Obtiene el nombre de la persona
+            </summary>
+            <param name="identity">Identidad</param>
+            <returns>Nombre de la persona</returns>
+        </member>
+        <member name="M:FacturacionEMCApi.IdentityExtensions.GetApellidos(System.Security.Principal.IIdentity)">
+            <summary>
+            Obtiene los apellidos de la persona 
+            </summary>
+            <param name="identity">Identidad</param>
+            <returns>Apellidos del usuario</returns>
+        </member>
+        <member name="M:FacturacionEMCApi.IdentityExtensions.GetEmail(System.Security.Principal.IIdentity)">
+            <summary>
+            Obtiene el correo electronico
+            </summary>
+            <param name="identity">Identidad</param>
+            <returns>correo electronico del usuario</returns>
+        </member>
+        <member name="M:FacturacionEMCApi.IdentityExtensions.GetRoles(System.Security.Principal.IIdentity)">
+            <summary>
+            Obtiene la lista de roles que tiene el usuario
+            </summary>
+            <param name="identity">Identidad</param>
+            <returns>role</returns>
+        </member>
+        <member name="T:FacturacionEMCApi.SecurityToken.JwtBearerTokenSettings">
+            <summary>
+            Configuracion para el JWT
+            </summary>
+        </member>
+        <member name="P:FacturacionEMCApi.SecurityToken.JwtBearerTokenSettings.SecretKey">
+            <summary>
+            Llave de encriptacion
+            </summary>
+        </member>
+        <member name="P:FacturacionEMCApi.SecurityToken.JwtBearerTokenSettings.Audience">
+            <summary>
+            Solicitantes
+            </summary>
+        </member>
+        <member name="P:FacturacionEMCApi.SecurityToken.JwtBearerTokenSettings.Issuer">
+            <summary>
+            Gerador de token
+            </summary>
+        </member>
+        <member name="P:FacturacionEMCApi.SecurityToken.JwtBearerTokenSettings.ExpiryTimeInDays">
+            <summary>
+            Tiempo de expiracion en dias
+            </summary>
+        </member>
+        <member name="P:FacturacionEMCApi.SecurityToken.JwtBearerTokenSettings.ExpiryTimeInMinutes">
+            <summary>
+            Tiempo de expiracion en minutos
+            </summary>
+        </member>
+        <member name="T:FacturacionEMCApi.SecurityToken.TokenProvider">
+            <summary>
+            Clase del provedor de token
+            </summary>
+        </member>
+        <member name="M:FacturacionEMCApi.SecurityToken.TokenProvider.#ctor(FacturacionEMCApi.SecurityToken.JwtBearerTokenSettings)">
+            <summary>
+            Contructor
+            </summary>
+            <param name="jwtTokenOptions">Opciones de configuracion</param>
+        </member>
+        <member name="M:FacturacionEMCApi.SecurityToken.TokenProvider.GenerarToken(DatosEMC.DTOs.UsuarioDTO,System.Boolean)">
+            <summary>
+            General el token de autenticacion
+            </summary>
+            <param name="usuarioDTO"></param>
+            <param name="externo"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

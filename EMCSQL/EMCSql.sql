@@ -66,9 +66,12 @@ SELECT * FROM InicioFacturacion
 --INSERT INTO USUARIO VALUES ('efrainmejiasc@hotmail.com',2,'Efrain','Mejias','efrain','ZWZyYWlubWVqaWFzY0Bob3RtYWlsLmNvbTEyMzQ=','ZWZyYWluMTIzNA==',GetDate(),1,4)
 
 --UPDATE USUARIO SET Password2 = 'YWRtaW5hZG1pbg=='
+--UPDATE USUARIO SET Activo = 1
 --UPDATE Proveedor SET IdEmpresa = 2
 --UPDATE Cliente SET IdEmpresa = 1
 --UPDATE UnidadMedida SET IdEmpresa = 1
+--UPDATE EMPRESA SET Activo = 1
+
 
 --INSERT INTO TIPOINVENTARIO VALUES ('BODEGA')
 --INSERT INTO TIPOINVENTARIO VALUES ('TRANSITO')

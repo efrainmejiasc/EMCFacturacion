@@ -78,7 +78,7 @@ function AddLinea()
     var subTotalLinea = $('#subTotalLinea').val();
 
 
-    if (idProveedor === '-1' || articulo === '' || descripcion === '' || subTotalLinea <= 0 || unidad === '-1' || metodoPago === '-1' || nFactura === '') {
+    if (idProveedor === '-1' || articulo === '' || subTotalLinea <= 0 || unidad === '-1' || metodoPago === '-1' || nFactura === '') {
         toastr.warning("All fields are required");
         return false;
     }
@@ -100,6 +100,7 @@ function AddLinea()
     numero = numero + 1;
     $('#numeroLinea_').val(numero);
 
+    $('#lstArticulo').val(-1)
     $('#articulo').val('')
     $('#descripcion').val('')
     $('#cantidad').val('');
