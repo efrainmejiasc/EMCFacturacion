@@ -1,4 +1,4 @@
-﻿
+﻿@using FacturacionEMCSite.StringResources;
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
@@ -23,7 +23,7 @@
             <div class="form-group row">
 
                 <div class="col-md-3 text-md-right">
-                    <label class="control-label">Company</label>
+                    <label class="control-label">@Resources.Company</label>
                 </div>
                 <div class="col-md-8">
                     <select id="empresa" name="empresa" class="form-control form-control-sm" onchange="" required> </select>

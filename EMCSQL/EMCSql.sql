@@ -15,6 +15,8 @@ SELECT * FROM FacturaVentaDetalle
 SELECT * FROM StockTotal
 SELECT * FROM StockTransito
 
+SELECT * FROM TipoFactura
+
 
 
 SELECT * FROM ROLES
@@ -69,11 +71,11 @@ SELECT * FROM InicioFacturacion
 
 
 --INSERT INTO EMPRESA VALUES ('4F0EF2D3-A470-4B2D-B2EF-A9B8A8EE1777','Reparaciones CP','V-00000000','efrainmejiasc@hotmail.com','0414401526','Valencia-Venezuela',GetDate(),GetDate(),1)
---INSERT INTO USUARIO VALUES ('admin@hotmail.com',1,'admin','admin','admin','YWRtaW5AaG90bWFpbC5jb21hZG1pbg==','YWRtaW4xMjM0',GetDate(),1,1)
+--INSERT INTO USUARIO VALUES ('admin@hotmail.com',1,'admin','admin','admin','YWRtaW5AaG90bWFpbC5jb20xMjM0','YWRtaW4xMjM0',GetDate(),1,1)
 
 --INSERT INTO USUARIO VALUES ('efrainmejiasc@hotmail.com',2,'Efrain','Mejias','efrain','ZWZyYWlubWVqaWFzY0Bob3RtYWlsLmNvbTEyMzQ=','ZWZyYWluMTIzNA==',GetDate(),1,4)
 
---UPDATE USUARIO SET Password2 = 'YWRtaW5hZG1pbg=='
+--UPDATE USUARIO SET Password = 'YWRtaW5AaG90bWFpbC5jb20xMjM0'
 --UPDATE USUARIO SET Activo = 1
 --UPDATE Proveedor SET IdEmpresa = 2
 --UPDATE Cliente SET IdEmpresa = 1

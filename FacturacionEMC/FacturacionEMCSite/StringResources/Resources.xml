@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+	<resource culture="es-es" name="Company" value="Empresa"></resource>
+	<resource culture="en-US" name="Company" value="Company"></resource>
+	<resource culture="es-ES" name="IngreseEmail" value="Ingrese email"></resource>
+	<resource culture="en-US" name="IngreseEmail" value="Enter email"></resource>
+</resources>
