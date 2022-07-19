@@ -1,6 +1,7 @@
 ﻿
 using FacturacionEMCSite.StringResources.Abstract;
 using FacturacionEMCSite.StringResources.Entities;
+using Microsoft.Extensions.Hosting;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace FacturacionEMCSite.StringResources.Concrete
 {
     public class XmlResourceProvider: BaseResourceProvider
     {
-        // File path
+        private readonly IHostEnvironment _hostEnvironment;
         private static string filePath = null;
 
 

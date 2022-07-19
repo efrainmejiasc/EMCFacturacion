@@ -8,21 +8,25 @@ namespace FacturacionEMCSite.StringResources
 {
     public class Resources
     {
-        private readonly IHostingEnvironment _hostingEnvironment;
-        private static System.IO.FileInfo pathResourceFile = new System.IO.FileInfo(@"C:/Users/EfrainMejiasC/Documents/GitHub/EMCFacturacion/FacturacionEMC/FacturacionEMCSite/StringResources/Resources.xml");
-        private static IResourceProvider resourceProvider = new XmlResourceProvider(pathResourceFile.ToString());
+        private readonly IWebHostEnvironment _hostingEnvironment;
 
-        [System.Obsolete]
-        public Resources(IHostingEnvironment hostingEnvironment)
+        private static System.IO.FileInfo pathResourceFile;
+        private static IResourceProvider resourceProvider;
+
+        public Resources(IWebHostEnvironment hostingEnvironment)
         {
-            this._hostingEnvironment = hostingEnvironment;
-            string contentRootPath = this._hostingEnvironment.ContentRootPath;
-            pathResourceFile = new System.IO.FileInfo(contentRootPath + @"C:/Users/EfrainMejiasC/Documents/GitHub/EMCFacturacion/FacturacionEMC/FacturacionEMCSite/StringResources/Resources.xml");
+            _hostingEnvironment = hostingEnvironment;
+            pathResourceFile = new System.IO.FileInfo(_hostingEnvironment.ContentRootPath + @"/StringResources/Resources.xml");
             resourceProvider = new XmlResourceProvider(pathResourceFile.ToString());
-        }
+    }
         public static string Company
         {
             get { return resourceProvider.GetResource("Company", CultureInfo.CurrentUICulture.Name) as String; }
+        }
+
+        public static string LogOut
+        {
+            get { return resourceProvider.GetResource("LogOut", CultureInfo.CurrentUICulture.Name) as String; }
         }
     }
 }

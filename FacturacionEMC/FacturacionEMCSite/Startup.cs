@@ -28,9 +28,12 @@ namespace FacturacionEMCSite
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        private readonly IWebHostEnvironment _hostingEnvironment;
+
+        public Startup(IConfiguration configuration, IWebHostEnvironment hostingEnvironment)
         {
             Configuration = configuration;
+            _hostingEnvironment = hostingEnvironment;
         }
 
         public IConfiguration Configuration { get; }
@@ -54,6 +57,7 @@ namespace FacturacionEMCSite
             //*****************************************************************************
 
             services.AddScoped<ClientEMCApi, ClientEMCApi>();
+            services.AddSingleton<StringResources.Resources>(new StringResources.Resources(_hostingEnvironment));
 
             var mapperConfig = new MapperConfiguration(mc =>
             {
@@ -94,20 +98,24 @@ namespace FacturacionEMCSite
             });
 
             //******************************************************************************
-            var defaultDateCulture = "en-US";
-            var ci = new CultureInfo(defaultDateCulture);
+            var culturaInglesa = "en-US";
+            var culturaEspañola = "es-ES";
+            var ci = new CultureInfo(culturaInglesa);
+            var ce = new CultureInfo(culturaEspañola);
             ci.NumberFormat.NumberDecimalSeparator = ".";
             ci.NumberFormat.CurrencyDecimalSeparator = ".";
+            CultureInfo.DefaultThreadCurrentCulture = ci;
+            CultureInfo.DefaultThreadCurrentUICulture = ci;
             app.UseRequestLocalization(new RequestLocalizationOptions
             {
                 DefaultRequestCulture = new RequestCulture(ci),
                 SupportedCultures = new List<CultureInfo>
                 {
-                    ci,
+                    ci,ce
                 },
                 SupportedUICultures = new List<CultureInfo>
                 {
-                    ci,
+                    ci,ce
                 }
             });
             //******************************************************************************

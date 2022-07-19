@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using FacturacionEMCSite.StringResources;
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -23,7 +25,7 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between" id="submenu" style="color: #0268b8;">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a href="@Url.Action("Index","Home")" class="nav-link text-info" id="logout_">Logout</a>
+                            <a href="@Url.Action("Index","Home")" class="nav-link text-info" id="logout_">@Resources.LogOut</a>
                         </li>
                         <li class="nav-item">
                             <a href="@Url.Action("Index","Usuario")" class="nav-link text-info" id="usuario_">Users</a>
