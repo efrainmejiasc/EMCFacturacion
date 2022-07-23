@@ -18,8 +18,8 @@
 <div class="card" style="margin-top:5%;">
     <div class="card-body">
         <div class="form-horizontal" style="color:dimgray">
-            <h1 style="color:dimgray"> Login </h1>
-            <small class="mb-md-0 text-gray">Hello let's get started</small>
+            <h1 style="color:dimgray">@Resources.Login</h1>
+            <small class="mb-md-0 text-gray">@Resources.GetStarted</small>
             <div class="form-group row">
 
                 <div class="col-md-3 text-md-right">
@@ -29,13 +29,13 @@
                     <select id="empresa" name="empresa" class="form-control form-control-sm" onchange="" required> </select>
                 </div>
                 <div class="col-md-3 text-md-right">
-                    <label class="control-label">Username/Email</label>
+                    <label class="control-label">@Resources.UsernameMail</label>
                 </div>
                 <div class="col-md-8">
                     <input type="text" id="userMail" name="userMail" class="form form-control" />
                 </div>
                 <div class="col-md-3 text-md-right">
-                    <label class="control-label">Password</label>
+                    <label class="control-label">@Resources.Password</label>
                 </div>
                 <div class="col-md-8">
                     <input type="password" id="password" name="password" class="form form-control" />
@@ -45,7 +45,7 @@
                     <input type="checkbox" id="confirmar" class="" form-check-input> <br>
                 </div>
                 <div class="col-md-2">
-                    <label class="control-label">Confirm</label>
+                    <label class="control-label">@Resources.Confirm</label>
                 </div>
 
             </div>
@@ -54,10 +54,10 @@
                     <label class="control-label">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
                 </div>
                 <div class="col-md-8">
-                    <input type="button" value="Accept" class="btn btn-success form-control" onclick="Login();" />
+                    <input type="button" value="@Resources.Accept" class="btn btn-success form-control" onclick="Login();" />
                 </div>
                 <div class="col-md-6 text-md-right" style="display:none;">
-                    <input type="reset" value="Cancel" class="btn btn-danger form-control" onclick="Reset()" style="width:200px;" />
+                    <input type="reset" value="@Resources.Cancel" class="btn btn-danger form-control" onclick="Reset()" style="width:200px;" />
                 </div>
             </div>
 

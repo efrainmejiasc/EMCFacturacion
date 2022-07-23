@@ -1,4 +1,4 @@
-﻿
+﻿@using FacturacionEMCSite.StringResources;
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
@@ -24,10 +24,10 @@
 
             <div class="form-group row">
                 <div class="col-md-8">
-                    <h2 style="color:dimgray"> Registered Users </h2>
+                    <h2 style="color:dimgray"> @Resources.RegisteredUsers </h2>
                 </div>
                 <div class="col-md-3 text-md-right">
-                    <a href="javascript:void(0);" class="btn btn-primary" onclick="GotoUsers();">New User</a>
+                    <a href="javascript:void(0);" class="btn btn-primary" onclick="GotoUsers();">@Resources.NewUsers</a>
                 </div>
             </div>
 
@@ -35,12 +35,12 @@
             <table id="tablaUsuarios" class="display compact dt-center table table-striped table-light" style="width:100%">
                 <thead class="thead-dark">
                     <tr>
-                        <th>Status</th>
-                        <th>Name</th>
-                        <th>Last Name</th>
-                        <th>Username</th>
-                        <th>Email</th>
-                        <th>Rol</th>
+                        <th>@Resources.Status</th>
+                        <th>@Resources.Name</th>
+                        <th>@Resources.SurName</th>
+                        <th>@Resources.Username</th>
+                        <th>@Resources.Email</th>
+                        <th>@Resources.Rol</th>
                         <th></th>
                         <th></th>
                     </tr>

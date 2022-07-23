@@ -104,8 +104,8 @@ namespace FacturacionEMCSite
             var ce = new CultureInfo(culturaEspañola);
             ci.NumberFormat.NumberDecimalSeparator = ".";
             ci.NumberFormat.CurrencyDecimalSeparator = ".";
-            CultureInfo.DefaultThreadCurrentCulture = ci;
-            CultureInfo.DefaultThreadCurrentUICulture = ci;
+            CultureInfo.DefaultThreadCurrentCulture = ce;
+            CultureInfo.DefaultThreadCurrentUICulture = ce;
             app.UseRequestLocalization(new RequestLocalizationOptions
             {
                 DefaultRequestCulture = new RequestCulture(ci),

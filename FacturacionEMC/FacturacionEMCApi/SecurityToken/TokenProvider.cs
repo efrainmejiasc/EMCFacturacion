@@ -37,34 +37,44 @@ public class TokenProvider
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_jwtBearerTokenSettings.SecretKey);
+            var tokenString = string.Empty;
+            var exp = 0;
 
-
-            ClaimsIdentity claimsIdentity = new ClaimsIdentity(new Claim[]
+            try
             {
+                ClaimsIdentity claimsIdentity = new ClaimsIdentity(new Claim[]
+         {
                 new Claim(ClaimTypes.NameIdentifier, usuarioDTO.Id.ToString() ?? string.Empty),
                 new Claim(ClaimTypes.Name, usuarioDTO.Username ?? string.Empty),
                 new Claim(ClaimTypes.Role, usuarioDTO.IdRol.ToString()?? "2"),
                 new Claim(ClaimTypes.Email, usuarioDTO.Email ?? string.Empty),
                 new Claim(JwtRegisteredClaimNames.Jti,Guid.NewGuid().ToString())
-            });
+         });
 
 
                 //claimsIdentity.AddClaim(new Claim(ClaimTypes.Role, usuarioDTO.IdRol.ToString()));
-            
 
-            var exp = (externo) ? _jwtBearerTokenSettings.ExpiryTimeInMinutes : _jwtBearerTokenSettings.ExpiryTimeInDays;
-            var tokenDescriptor = new SecurityTokenDescriptor
+
+                exp = (externo) ? _jwtBearerTokenSettings.ExpiryTimeInMinutes : _jwtBearerTokenSettings.ExpiryTimeInDays;
+                var tokenDescriptor = new SecurityTokenDescriptor
+                {
+                    Subject = claimsIdentity,
+                    NotBefore = DateTime.UtcNow,
+                    Audience = _jwtBearerTokenSettings.Audience,
+                    Issuer = _jwtBearerTokenSettings.Issuer,
+                    Expires = (externo) ? DateTime.UtcNow.AddMinutes(_jwtBearerTokenSettings.ExpiryTimeInMinutes) : DateTime.UtcNow.AddDays(_jwtBearerTokenSettings.ExpiryTimeInDays),
+                    SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+                };
+
+                var token = tokenHandler.CreateToken(tokenDescriptor);
+                tokenString = tokenHandler.WriteToken(token);
+            }
+            catch(Exception  ex)
             {
-                Subject = claimsIdentity,
-                NotBefore = DateTime.UtcNow,
-                Audience = _jwtBearerTokenSettings.Audience,
-                Issuer = _jwtBearerTokenSettings.Issuer,
-                Expires = (externo)?DateTime.UtcNow.AddMinutes(_jwtBearerTokenSettings.ExpiryTimeInMinutes): DateTime.UtcNow.AddDays(_jwtBearerTokenSettings.ExpiryTimeInDays),
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
-            };
+                var error = ex.ToString();
+            }
 
-            var token = tokenHandler.CreateToken(tokenDescriptor);
-            string tokenString = tokenHandler.WriteToken(token);
+         
             return new AccessToken(tokenString, exp, externo);
 
         }

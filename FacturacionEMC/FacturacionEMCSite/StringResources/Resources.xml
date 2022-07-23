@@ -1,7 +1,79 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <resources>
+	<resource culture="es-es" name="GetStarted" value="Hola comencemos"></resource>
+	<resource culture="en-US" name="GetStarted" value="Hello let's get started"></resource>
+	<resource culture="es-es" name="Login" value="Acceso"></resource>
+	<resource culture="en-US" name="Login" value="Login"></resource>
 	<resource culture="es-es" name="Company" value="Empresa"></resource>
 	<resource culture="en-US" name="Company" value="Company"></resource>
+	<resource culture="es-es" name="UsernameMail" value="Nombre Usuario/Email"></resource>
+	<resource culture="en-US" name="UsernameMail" value="Username/Email"></resource>
+	<resource culture="es-es" name="Password" value="Contraseña"></resource>
+	<resource culture="en-US" name="Password" value="Password"></resource>
+	<resource culture="es-es" name="Confirm" value="Confirmar"></resource>
+	<resource culture="en-US" name="Confirm" value="Confirm"></resource>
+    <resource culture="es-es" name="Accept" value="Aceptar"></resource>
+	<resource culture="en-US" name="Accept" value="Accept"></resource>
+    <resource culture="es-es" name="Cancel" value="Cancelar"></resource>
+	<resource culture="en-US" name="Cancel" value="Cancel"></resource>
+	<resource culture="es-es" name="Users" value="Usuarios"></resource>
+	<resource culture="en-US" name="Users" value="Users"></resource>
+	<resource culture="es-es" name="Dashboard" value="Tablero"></resource>
+	<resource culture="en-US" name="Dashboard" value="Dashboard"></resource>
+	<resource culture="es-es" name="SalesRecord" value="Registro de Ventas"></resource>
+	<resource culture="en-US" name="SalesRecord" value="Sales Record"></resource>
+    <resource culture="es-es" name="PurchasesRecord" value="Registro de Compras"></resource>
+	<resource culture="en-US" name="PurchasesRecord" value="Purchases Record"></resource>
+	<resource culture="es-es" name="SalesSummary" value="Resumen de Ventas"></resource>
+	<resource culture="en-US" name="SalesSummary" value="Sales Summary"></resource>
+    <resource culture="es-es" name="PurchasesSummary" value="Resumen de Compras"></resource>
+	<resource culture="en-US" name="PurchasesSummary" value="Purchases Summary"></resource>
+	<resource culture="es-es" name="Stock" value="Stock"></resource>
+	<resource culture="en-US" name="Stock" value="Stock"></resource>
+	<resource culture="es-es" name="Assignments" value="Asignaciones"></resource>
+	<resource culture="en-US" name="Assignments" value="Assignments"></resource>
+	<resource culture="es-es" name="HomeBilling" value="Inicio Facturación"></resource>
+	<resource culture="en-US" name="HomeBilling" value="Home Billing"></resource>
+	<resource culture="es-es" name="NewUsers" value="Nuevos Usuarios"></resource>
+	<resource culture="en-US" name="NewUsers" value="New Users"></resource>
+	<resource culture="es-es" name="Name" value="Nombre"></resource>
+	<resource culture="en-US" name="Name" value="Name"></resource>
+	<resource culture="es-es" name="SurName" value="Apellido"></resource>
+	<resource culture="en-US" name="SurName" value="Sur Name"></resource>
 	<resource culture="es-ES" name="LogOut" value="Salir"></resource>
 	<resource culture="en-US" name="LogOut" value="LogOut"></resource>
+    <resource culture="es-ES" name="UserRol" value="Rol de Usuario"></resource>
+	<resource culture="en-US" name="UserRol" value="User Rol"></resource>
+    <resource culture="es-es" name="Username" value="Nombre de Usuario"></resource>
+	<resource culture="en-US" name="Username" value="Username"></resource>
+    <resource culture="es-es" name="Email" value="Email"></resource>
+	<resource culture="en-US" name="Email" value="Email"></resource>
+    <resource culture="es-es" name="ConfirmPassword" value="Confirmar COntraseña"></resource>
+	<resource culture="en-US" name="ConfirmPassword" value="Confirm Password"></resource>
+    <resource culture="es-es" name="AllUsers" value="Todos los Usuarios"></resource>
+	<resource culture="en-US" name="AllUsers" value="Todos los Usarios"></resource>
+    <resource culture="es-es" name="Status" value="Estado"></resource>
+	<resource culture="en-US" name="Status" value="Status"></resource>
+    <resource culture="es-es" name="Rol" value="Rol"></resource>
+	<resource culture="en-US" name="Rol" value="Rol"></resource>
+    <resource culture="es-es" name="RegisteredUsers" value="Usuarios Registrados"></resource>
+	<resource culture="en-US" name="RegisteredUsers" value="Registered Users"></resource>
+    <resource culture="es-es" name="SummaryStock" value="Resumen de Stock"></resource>
+	<resource culture="en-US" name="SummaryStock" value="Summary Stock"></resource>
+    <resource culture="es-es" name="Id" value="Id"></resource>
+	<resource culture="en-US" name="Id" value="Id"></resource>
+    <resource culture="es-es" name="Product" value="Producto"></resource>
+	<resource culture="en-US" name="Product" value="Product"></resource>
+	<resource culture="es-es" name="Article" value="Articulo"></resource>
+	<resource culture="en-US" name="Article" value="Article"></resource>
+    <resource culture="es-es" name="Unit" value="Unidad"></resource>
+	<resource culture="en-US" name="Unit" value="Unit"></resource>
+    <resource culture="es-es" name="Amount" value="Cantidad"></resource>
+	<resource culture="en-US" name="Amount" value="Cantidad"></resource>
+    <resource culture="es-es" name="Seller" value="Vendedor"></resource>
+	<resource culture="en-US" name="Seller" value="Seller"></resource>
+    <resource culture="es-es" name="Search" value="Buscar"></resource>
+	<resource culture="en-US" name="Search" value="Search"></resource>
+    <resource culture="es-es" name="Save" value="Guardar"></resource>
+	<resource culture="en-US" name="Save" value="Save"></resource>
 </resources>
