@@ -76,4 +76,6 @@
 	<resource culture="en-US" name="Search" value="Search"></resource>
     <resource culture="es-es" name="Save" value="Guardar"></resource>
 	<resource culture="en-US" name="Save" value="Save"></resource>
+    <resource culture="es-es" name="VendorAssignments" value="Asignaciones de Vendedor"></resource>
+	<resource culture="en-US" name="VendorAssignments" value="VendorAssignments"></resource>
 </resources>
