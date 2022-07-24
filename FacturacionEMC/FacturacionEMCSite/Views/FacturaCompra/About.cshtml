@@ -1,5 +1,4 @@
-﻿
-
+﻿@using FacturacionEMCSite.StringResources;
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
@@ -22,7 +21,7 @@
             <div class="d-flex align-items-end flex-wrap">
                 <div class="mr-md-3 mr-xl-5">
                     <div class="mr-md-3 mr-xl-5">
-                        <h2>Purchases Summary</h2>
+                        <h2>@Resources.PurchasesSummary</h2>
                         <small class="mb-md-0 text-gray"></small>
                     </div>
                 </div>
@@ -42,7 +41,7 @@
                 <input type="date" id="fechaFinal" class="form-horizontal form-control" />
             </div>
             <div class="col-md-4">
-                <button class="btn btn-primary" onclick="GetFacturasFechas();"><i class="bi bi-search"> Search</i></button>
+                <button class="btn btn-primary" onclick="GetFacturasFechas();"><i class="bi bi-search"> @Resources.Search</i></button>
             </div>
         </div>
         <hr />
@@ -55,14 +54,14 @@
                 <thead class="thead-dark">
                     <tr>
                         <th>Nº</th>
-                        <th>Date</th>
-                        <th>Supplier</th>
-                        <th>Rfc</th>
-                        <th>Pay Method</th>
-                        <th>Subtotal</th>
-                        <th>Descount</th>
-                        <th>Tax</th>
-                        <th>Total</th>
+                        <th>@Resources.Date</th>
+                        <th>@Resources.Supplier</th>
+                        <th>@Resources.RFC</th>
+                        <th>@Resources.PaymentMethod</th>
+                        <th>@Resources.Subtotal</th>
+                        <th>@Resources.Discount</th>
+                        <th>@Resources.Tax</th>
+                        <th>@Resources.Total</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -80,15 +79,15 @@
                         <table id="tablaDetalle" class="display compact dt-center table table-striped table-light" style="width:100%">
                             <thead class="thead-dark">
                                 <tr>
-                                    <th>Id</th>
-                                    <th>Product</th>
-                                    <th>Unit</th>
-                                    <th>Amount</th>
-                                    <th>U.Price</th>
-                                    <th>Subtotal</th>
-                                    <th>Discount</th>
-                                    <th>Tax</th>
-                                    <th>Total</th>
+                                    <th>@Resources.Id</th>
+                                    <th>@Resources.Product</th>
+                                    <th>@Resources.Unit</th>
+                                    <th>@Resources.Amount</th>
+                                    <th>U.@Resources.Price</th>
+                                    <th>@Resources.Subtotal</th>
+                                    <th>@Resources.Discount</th>
+                                    <th>@Resources.Tax</th>
+                                    <th>@Resources.Total</th>
                                 </tr>
                             </thead>
                             <tbody>

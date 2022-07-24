@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="~/css/modalStyle.css" />
 </head>
 <body>
+    <input type="hidden" id="cultureInfo" />
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
@@ -75,5 +76,28 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
+
 </body>
 </html>
+<script>
+    var urlGetCultureInfo = '@Url.Action("GetCultureInfo","Usuario")';
+
+    $(document).ready(function () {
+        GetCultureInfo();
+    });
+
+    function GetCultureInfo() {
+
+    $.ajax({
+        type: "GET",
+        url: urlGetCultureInfo,
+        datatype: "json",
+        success: function (data) {
+            console.log(data);
+            $('#cultureInfo').val(data);
+        }
+    });
+
+    return false;
+}
+</script>

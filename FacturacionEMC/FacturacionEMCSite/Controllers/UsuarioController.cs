@@ -6,6 +6,7 @@ using NegocioEMC.Commons;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -127,6 +128,13 @@ namespace FacturacionEMCSite.Controllers
         public IActionResult GetUsuarioLogger()
         {
             return Json(this.usuario);
+        }
+
+        [HttpGet]
+
+        public IActionResult GetCultureInfo()
+        {
+            return Json(CultureInfo.CurrentCulture.Name);
         }
     }
 }

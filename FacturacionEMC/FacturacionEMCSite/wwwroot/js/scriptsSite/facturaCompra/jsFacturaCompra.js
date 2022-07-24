@@ -12,6 +12,7 @@ $(document).ready(function () {
     $('#numeroLinea_').val(0)
 });
 
+
 function GetProveedores() {
 
     $.ajax({
@@ -448,6 +449,17 @@ function SetArticulo() {
     var articulo = $("#lstArticulo option:selected").text();
     var id = $("#lstArticulo").val();
     $('#articulo').val(articulo + ' ' + id);
+}
+
+function ImprimirTicket() {
+    var divContents = document.getElementById("impresionante").innerHTML;
+    var a = window.open('', '', 'height=500, width=500');
+    // a.document.write('<html>');
+    // a.document.write('<body > <h1>Div contents are <br>');
+    a.document.write(divContents);
+    // a.document.write('</body></html>');
+    a.document.close();
+    a.print();
 }
 
 

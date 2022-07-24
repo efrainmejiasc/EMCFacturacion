@@ -1,81 +1,139 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <resources>
-	<resource culture="es-es" name="GetStarted" value="Hola comencemos"></resource>
+	<resource culture="es-ES" name="GetStarted" value="Hola comencemos"></resource>
 	<resource culture="en-US" name="GetStarted" value="Hello let's get started"></resource>
-	<resource culture="es-es" name="Login" value="Acceso"></resource>
+	<resource culture="es-ES" name="Login" value="Acceso"></resource>
 	<resource culture="en-US" name="Login" value="Login"></resource>
-	<resource culture="es-es" name="Company" value="Empresa"></resource>
+	<resource culture="es-ES" name="Company" value="Empresa"></resource>
 	<resource culture="en-US" name="Company" value="Company"></resource>
-	<resource culture="es-es" name="UsernameMail" value="Nombre Usuario/Email"></resource>
+	<resource culture="es-ES" name="UsernameMail" value="Nombre Usuario/Email"></resource>
 	<resource culture="en-US" name="UsernameMail" value="Username/Email"></resource>
-	<resource culture="es-es" name="Password" value="Contraseña"></resource>
+	<resource culture="es-ES" name="Password" value="Contraseña"></resource>
 	<resource culture="en-US" name="Password" value="Password"></resource>
-	<resource culture="es-es" name="Confirm" value="Confirmar"></resource>
+	<resource culture="es-ES" name="Confirm" value="Confirmar"></resource>
 	<resource culture="en-US" name="Confirm" value="Confirm"></resource>
-    <resource culture="es-es" name="Accept" value="Aceptar"></resource>
+    <resource culture="es-ES" name="Accept" value="Aceptar"></resource>
 	<resource culture="en-US" name="Accept" value="Accept"></resource>
-    <resource culture="es-es" name="Cancel" value="Cancelar"></resource>
+    <resource culture="es-ES" name="Cancel" value="Cancelar"></resource>
 	<resource culture="en-US" name="Cancel" value="Cancel"></resource>
-	<resource culture="es-es" name="Users" value="Usuarios"></resource>
+	<resource culture="es-ES" name="Users" value="Usuarios"></resource>
 	<resource culture="en-US" name="Users" value="Users"></resource>
-	<resource culture="es-es" name="Dashboard" value="Tablero"></resource>
+	<resource culture="es-ES" name="Dashboard" value="Tablero"></resource>
 	<resource culture="en-US" name="Dashboard" value="Dashboard"></resource>
-	<resource culture="es-es" name="SalesRecord" value="Registro de Ventas"></resource>
+	<resource culture="es-ES" name="SalesRecord" value="Registro de Ventas"></resource>
 	<resource culture="en-US" name="SalesRecord" value="Sales Record"></resource>
-    <resource culture="es-es" name="PurchasesRecord" value="Registro de Compras"></resource>
+    <resource culture="es-ES" name="PurchasesRecord" value="Registro de Compras"></resource>
 	<resource culture="en-US" name="PurchasesRecord" value="Purchases Record"></resource>
-	<resource culture="es-es" name="SalesSummary" value="Resumen de Ventas"></resource>
+	<resource culture="es-ES" name="SalesSummary" value="Resumen de Ventas"></resource>
 	<resource culture="en-US" name="SalesSummary" value="Sales Summary"></resource>
-    <resource culture="es-es" name="PurchasesSummary" value="Resumen de Compras"></resource>
+    <resource culture="es-ES" name="PurchasesSummary" value="Resumen de Compras"></resource>
 	<resource culture="en-US" name="PurchasesSummary" value="Purchases Summary"></resource>
-	<resource culture="es-es" name="Stock" value="Stock"></resource>
+	<resource culture="es-ES" name="Stock" value="Stock"></resource>
 	<resource culture="en-US" name="Stock" value="Stock"></resource>
-	<resource culture="es-es" name="Assignments" value="Asignaciones"></resource>
+	<resource culture="es-ES" name="Assignments" value="Asignaciones"></resource>
 	<resource culture="en-US" name="Assignments" value="Assignments"></resource>
-	<resource culture="es-es" name="HomeBilling" value="Inicio Facturación"></resource>
+	<resource culture="es-ES" name="HomeBilling" value="Inicio Facturación"></resource>
 	<resource culture="en-US" name="HomeBilling" value="Home Billing"></resource>
-	<resource culture="es-es" name="NewUsers" value="Nuevos Usuarios"></resource>
+	<resource culture="es-ES" name="NewUsers" value="Nuevos Usuarios"></resource>
 	<resource culture="en-US" name="NewUsers" value="New Users"></resource>
-	<resource culture="es-es" name="Name" value="Nombre"></resource>
+	<resource culture="es-ES" name="Name" value="Nombre"></resource>
 	<resource culture="en-US" name="Name" value="Name"></resource>
-	<resource culture="es-es" name="SurName" value="Apellido"></resource>
+	<resource culture="es-ES" name="SurName" value="Apellido"></resource>
 	<resource culture="en-US" name="SurName" value="Sur Name"></resource>
 	<resource culture="es-ES" name="LogOut" value="Salir"></resource>
 	<resource culture="en-US" name="LogOut" value="LogOut"></resource>
     <resource culture="es-ES" name="UserRol" value="Rol de Usuario"></resource>
 	<resource culture="en-US" name="UserRol" value="User Rol"></resource>
-    <resource culture="es-es" name="Username" value="Nombre de Usuario"></resource>
+    <resource culture="es-ES" name="Username" value="Nombre de Usuario"></resource>
 	<resource culture="en-US" name="Username" value="Username"></resource>
-    <resource culture="es-es" name="Email" value="Email"></resource>
+    <resource culture="es-ES" name="Email" value="Email"></resource>
 	<resource culture="en-US" name="Email" value="Email"></resource>
-    <resource culture="es-es" name="ConfirmPassword" value="Confirmar COntraseña"></resource>
+    <resource culture="es-ES" name="ConfirmPassword" value="Confirmar COntraseña"></resource>
 	<resource culture="en-US" name="ConfirmPassword" value="Confirm Password"></resource>
-    <resource culture="es-es" name="AllUsers" value="Todos los Usuarios"></resource>
+    <resource culture="es-ES" name="AllUsers" value="Todos los Usuarios"></resource>
 	<resource culture="en-US" name="AllUsers" value="Todos los Usarios"></resource>
-    <resource culture="es-es" name="Status" value="Estado"></resource>
+    <resource culture="es-ES" name="Status" value="Estado"></resource>
 	<resource culture="en-US" name="Status" value="Status"></resource>
-    <resource culture="es-es" name="Rol" value="Rol"></resource>
+    <resource culture="es-ES" name="Rol" value="Rol"></resource>
 	<resource culture="en-US" name="Rol" value="Rol"></resource>
-    <resource culture="es-es" name="RegisteredUsers" value="Usuarios Registrados"></resource>
+    <resource culture="es-ES" name="RegisteredUsers" value="Usuarios Registrados"></resource>
 	<resource culture="en-US" name="RegisteredUsers" value="Registered Users"></resource>
-    <resource culture="es-es" name="SummaryStock" value="Resumen de Stock"></resource>
+    <resource culture="es-ES" name="SummaryStock" value="Resumen de Stock"></resource>
 	<resource culture="en-US" name="SummaryStock" value="Summary Stock"></resource>
-    <resource culture="es-es" name="Id" value="Id"></resource>
+    <resource culture="es-ES" name="Id" value="Id"></resource>
 	<resource culture="en-US" name="Id" value="Id"></resource>
-    <resource culture="es-es" name="Product" value="Producto"></resource>
+    <resource culture="es-ES" name="Product" value="Producto"></resource>
 	<resource culture="en-US" name="Product" value="Product"></resource>
-	<resource culture="es-es" name="Article" value="Articulo"></resource>
+	<resource culture="es-ES" name="Article" value="Articulo"></resource>
 	<resource culture="en-US" name="Article" value="Article"></resource>
-    <resource culture="es-es" name="Unit" value="Unidad"></resource>
+    <resource culture="es-ES" name="Unit" value="Unidad"></resource>
 	<resource culture="en-US" name="Unit" value="Unit"></resource>
-    <resource culture="es-es" name="Amount" value="Cantidad"></resource>
+    <resource culture="es-ES" name="Amount" value="Cantidad"></resource>
 	<resource culture="en-US" name="Amount" value="Cantidad"></resource>
-    <resource culture="es-es" name="Seller" value="Vendedor"></resource>
+    <resource culture="es-ES" name="Seller" value="Vendedor"></resource>
 	<resource culture="en-US" name="Seller" value="Seller"></resource>
-    <resource culture="es-es" name="Search" value="Buscar"></resource>
+    <resource culture="es-ES" name="Search" value="Buscar"></resource>
 	<resource culture="en-US" name="Search" value="Search"></resource>
-    <resource culture="es-es" name="Save" value="Guardar"></resource>
+    <resource culture="es-ES" name="Save" value="Guardar"></resource>
 	<resource culture="en-US" name="Save" value="Save"></resource>
-    <resource culture="es-es" name="VendorAssignments" value="Asignaciones de Vendedor"></resource>
-	<resource culture="en-US" name="VendorAssignments" value="VendorAssignments"></resource>
+	<resource culture="es-ES" name="Instructions" value="Instrucciones"></resource>
+	<resource culture="en-US" name="Instructions" value="Instructions"></resource>
+-   <resource culture="es-ES" name="VendorAssignments" value="Asignaciones de Vendedor"></resource>
+	<resource culture="en-US" name="VendorAssignments" value="Vendor Assignments"></resource>
+    <resource culture="es-ES" name="StartBillingNumber" value="Numero de Inicio de Facturacion"></resource>
+	<resource culture="en-US" name="StartBillingNumber" value="Start Billing Number"></resource>
+    <resource culture="es-ES" name="InvoiceInit" value="Inicio de Facturacion"></resource>
+	<resource culture="en-US" name="InvoiceInit" value="Invoice Init"></resource>
+    <resource culture="es-ES" name="RestartInvoiceInit" value="Reiniciar Inicio de Facturacion"></resource>
+	<resource culture="en-US" name="RestartInvoiceInit" value="Restart Invoice Init"></resource>
+    <resource culture="es-ES" name="StartInvoice" value="Inicio de Facturacion"></resource>
+	<resource culture="en-US" name="StartInvoice" value="Start Invoice"></resource>
+    <resource culture="es-ES" name="ResetP" value="Restablecer el primer número de factura y luego iniciarlo"></resource>
+	<resource culture="en-US" name="ResetP" value="Reset the first invoice number and then start it"></resource>
+    <resource culture="es-ES" name="OneP" value="1.- En este apartado establecemos el número correlativo con el que se iniciará la facturación"></resource>
+	<resource culture="en-US" name="OneP" value="1.- In this section we establish the consecutive number with which the billing will start"></resource>
+    <resource culture="es-ES" name="TwoP" value="2.- Introduce un número inferior al número con el que quieres empezar a facturar."></resource>
+	<resource culture="en-US" name="TwoP" value="2.- Please enter a number less than the number with which you want to start billing."></resource>
+    <resource culture="es-ES" name="ThreeP" value="3.- En caso de cualquier conflicto puede restablecer este número usando la opción restablecer factura inicial y repetir el paso 2."></resource>
+	<resource culture="en-US" name="ThreeP" value="3.- In case of any conflict you can reset this number using the reset init invoice option and repeating step 2."></resource>
+    <resource culture="es-ES" name="ExampleP" value="Ejemplo: si desea comenzar en 000001 ingrese cero (0), si desea comenzar en 000010 ingrese nueve (9)."></resource>
+	<resource culture="en-US" name="ExampleP" value="Example: if you want to start at 000001 enter zero (0), if you want to start at 000010 enter nine (9)."></resource>
+    <resource culture="es-ES" name="Notice" value="¡Aviso!"></resource>
+	<resource culture="en-US" name="Notice" value="Notice!"></resource>
+    <resource culture="es-ES" name="Invoice" value="Factura"></resource>
+	<resource culture="en-US" name="Invoice" value="Invoice"></resource>
+    <resource culture="es-ES" name="PaymentMethod" value="Metodo de Pago"></resource>
+	<resource culture="en-US" name="PaymentMethod" value="Payment Method"></resource>
+    <resource culture="es-ES" name="Client" value="Cliente"></resource>
+	<resource culture="en-US" name="Client" value="Client"></resource>
+    <resource culture="es-ES" name="Description" value="Descripcion"></resource>
+	<resource culture="en-US" name="Description" value="Description"></resource>
+    <resource culture="es-ES" name="Price" value="Precio"></resource>
+	<resource culture="en-US" name="Price" value="Price"></resource>
+    <resource culture="es-ES" name="Subtotal" value="SubTotal"></resource>
+	<resource culture="en-US" name="Subtotal" value="SubTotal"></resource>
+    <resource culture="es-ES" name="Total" value="Total"></resource>
+	<resource culture="en-US" name="Total" value="Total"></resource>
+    <resource culture="es-ES" name="Tax" value="Impuesto"></resource>
+	<resource culture="en-US" name="Tax" value="Tax"></resource>
+    <resource culture="es-ES" name="Discount" value="Descuento"></resource>
+	<resource culture="en-US" name="Discount" value="Discount"></resource>
+    <resource culture="es-ES" name="RFC" value="RIF"></resource>
+	<resource culture="en-US" name="RFC" value="RFC"></resource>
+    <resource culture="es-ES" name="PhoneNumber" value="Numero de Telefono"></resource>
+	<resource culture="en-US" name="PhoneNumber" value="Phone Number"></resource>
+    <resource culture="es-ES" name="Address" value="Direccion"></resource>
+	<resource culture="en-US" name="Address" value="Address"></resource>
+    <resource culture="es-ES" name="AddNewClient" value="Nuevo Cliente"></resource>
+	<resource culture="en-US" name="AddNewClient" value="Add New Client"></resource>
+    <resource culture="es-ES" name="NameSocialReason" value="Nombre / Razon Social"></resource>
+	<resource culture="en-US" name="NameSocialReason" value="Name / Social Reason "></resource>
+    <resource culture="es-ES" name="Print" value="Imprimir"></resource>
+	<resource culture="en-US" name="Print" value="Print"></resource>
+    <resource culture="es-ES" name="Date" value="Fecha"></resource>
+	<resource culture="en-US" name="Date" value="Date"></resource>
+    <resource culture="es-ES" name="NameArticle" value="Nombre Articulo"></resource>
+	<resource culture="en-US" name="NameArticle" value="Name Article"></resource>
+    <resource culture="es-ES" name="Supplier" value="Proveedor"></resource>
+	<resource culture="en-US" name="Supplier" value="Supplier"></resource>
 </resources>

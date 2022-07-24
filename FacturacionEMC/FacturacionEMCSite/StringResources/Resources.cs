@@ -193,5 +193,121 @@ namespace FacturacionEMCSite.StringResources
         {
             get { return resourceProvider.GetResource("VendorAssignments", CultureInfo.CurrentUICulture.Name).ToString(); }
         }
+        public static string StartInvoice
+        {
+            get { return resourceProvider.GetResource("StartInvoice", CultureInfo.CurrentUICulture.Name).ToString(); }
+        }
+        public static string InvoiceInit
+        {
+            get { return resourceProvider.GetResource("InvoiceInit", CultureInfo.CurrentUICulture.Name).ToString(); }
+        }
+        public static string StartBillingNumber
+        {
+            get { return resourceProvider.GetResource("StartBillingNumber", CultureInfo.CurrentUICulture.Name).ToString(); }
+        }
+        public static string Instructions
+        {
+            get { return resourceProvider.GetResource("Instructions", CultureInfo.CurrentUICulture.Name).ToString(); }
+        }
+        public static string RestartInvoiceInit
+        {
+            get { return resourceProvider.GetResource("RestartInvoiceInit", CultureInfo.CurrentUICulture.Name).ToString(); }
+        }
+        public static string ResetP
+        {
+            get { return resourceProvider.GetResource("ResetP", CultureInfo.CurrentUICulture.Name).ToString(); }
+        }
+        public static string OneP
+        {
+            get { return resourceProvider.GetResource("OneP", CultureInfo.CurrentUICulture.Name).ToString(); }
+        }
+        public static string TwoP
+        {
+            get { return resourceProvider.GetResource("TwoP", CultureInfo.CurrentUICulture.Name).ToString(); }
+        }
+        public static string ThreeP
+        {
+            get { return resourceProvider.GetResource("ThreeP", CultureInfo.CurrentUICulture.Name).ToString(); }
+        }
+        public static string ExampleP
+        {
+            get { return resourceProvider.GetResource("ExampleP", CultureInfo.CurrentUICulture.Name).ToString(); }
+        }
+        public static string Notice
+        {
+            get { return resourceProvider.GetResource("Notice", CultureInfo.CurrentUICulture.Name).ToString(); }
+        }
+        public static string Invoice
+        {
+            get { return resourceProvider.GetResource("Invoice", CultureInfo.CurrentUICulture.Name).ToString(); }
+        }
+        public static string PaymentMethod
+        {
+            get { return resourceProvider.GetResource("PaymentMethod", CultureInfo.CurrentUICulture.Name).ToString(); }
+        }
+        public static string Client
+        {
+            get { return resourceProvider.GetResource("Client", CultureInfo.CurrentUICulture.Name).ToString(); }
+        }
+        public static string Description
+        {
+            get { return resourceProvider.GetResource("Description", CultureInfo.CurrentUICulture.Name).ToString(); }
+        }
+        public static string Price
+        {
+            get { return resourceProvider.GetResource("Price", CultureInfo.CurrentUICulture.Name).ToString(); }
+        }
+        public static string Subtotal
+        {
+            get { return resourceProvider.GetResource("Subtotal", CultureInfo.CurrentUICulture.Name).ToString(); }
+        }
+        public static string Total
+        {
+            get { return resourceProvider.GetResource("Total", CultureInfo.CurrentUICulture.Name).ToString(); }
+        }
+        public static string Tax
+        {
+            get { return resourceProvider.GetResource("Tax", CultureInfo.CurrentUICulture.Name).ToString(); }
+        }
+        public static string Discount
+        {
+            get { return resourceProvider.GetResource("Discount", CultureInfo.CurrentUICulture.Name).ToString(); }
+        }
+        public static string RFC
+        {
+            get { return resourceProvider.GetResource("RFC", CultureInfo.CurrentUICulture.Name).ToString(); }
+        }
+        public static string PhoneNumber
+        {
+            get { return resourceProvider.GetResource("PhoneNumber", CultureInfo.CurrentUICulture.Name).ToString(); }
+        }
+        public static string Address
+        {
+            get { return resourceProvider.GetResource("Address", CultureInfo.CurrentUICulture.Name).ToString(); }
+        }
+        public static string AddNewClient
+        {
+            get { return resourceProvider.GetResource("AddNewClient", CultureInfo.CurrentUICulture.Name).ToString(); }
+        }
+        public static string NameSocialReason
+        {
+            get { return resourceProvider.GetResource("NameSocialReason", CultureInfo.CurrentUICulture.Name).ToString(); }
+        }
+        public static string Print
+        {
+            get { return resourceProvider.GetResource("Print", CultureInfo.CurrentUICulture.Name).ToString(); }
+        }
+        public static string Date
+        {
+            get { return resourceProvider.GetResource("Date", CultureInfo.CurrentUICulture.Name).ToString(); }
+        }
+        public static string NameArticle
+        {
+            get { return (string)resourceProvider.GetResource("NameArticle", CultureInfo.CurrentUICulture.Name); }
+        }
+        public static string Supplier
+        {
+            get { return (string)resourceProvider.GetResource("Supplier", CultureInfo.CurrentUICulture.Name); }
+        }
     }
 }

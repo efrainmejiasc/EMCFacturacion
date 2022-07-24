@@ -1,11 +1,10 @@
-﻿
+﻿@using FacturacionEMCSite.StringResources;
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/js/scriptsSite/inicioFacturacion/jsIndex.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
 }
 <script>
     var urlUsuarioLogger = '@Url.Action("GetUsuarioLogger", "Usuario")';
@@ -19,8 +18,8 @@
                 <div class="d-flex align-items-end flex-wrap">
                     <div class="mr-md-3 mr-xl-5">
                         <div class="mr-md-3 mr-xl-5">
-                            <h2>Start Invoice</h2>
-                            <a href="javacript:void(0);" onclick="MostrarModalInstrucciones();">Instructions</a>
+                            <h2>@Resources.StartInvoice</h2>
+                            <a href="javacript:void(0);" onclick="MostrarModalInstrucciones();">@Resources.Instructions</a>
                         </div>
                     </div>
                 </div>
@@ -32,16 +31,16 @@
 <div class="card" style="margin-top:0%;">
         <div class="card-body">
             <div class="form-horizontal" style="color:dimgray">
-                <small class="mb-md-0 text-gray">Start Billing Number</small>
+                <small class="mb-md-0 text-gray">@Resources.StartBillingNumber</small>
                 <div class="form-group row">
                     <div class="col-md-4 text-md-right">
-                        <label class="control-label">Invoice Init</label>
+                        <label class="control-label">@Resources.InvoiceInit</label>
                     </div>
                     <div class="col-md-4 text-md-center">
                         <input type="number" id="numeroFactura" class="form form-control" step="1" max="999999" onblur="ValidarDecimal()"/>
                     </div>
                     <div class="col-md-4 text-md-left">
-                        <input type="button" id="btnSet" class="btn btn-primary" value="Save" onclick="SetInicioFaturacion();"/>
+                        <input type="button" id="btnSet" class="btn btn-primary" value="@Resources.Save" onclick="SetInicioFaturacion();"/>
                     </div>
                 </div>
 
@@ -53,10 +52,10 @@
 <div class="card" style="margin-top:0%;">
         <div class="card-body">
             <div class="form-horizontal" style="color:dimgray">
-                <small class="mb-md-0 text-gray">Reset the first invoice number and then start it</small>
+                <small class="mb-md-0 text-gray">@Resources.ResetP</small>
                 <div class="form-group row">
                     <div class="col-md-12 text-md-center">
-                        <input type="button"   id="btnRe" class="btn btn-warning" value="Restart Invoice Init" onclick="ReInicioFacturacion();"/>
+                        <input type="button"   id="btnRe" class="btn btn-warning" value="@Resources.RestartInvoiceInit" onclick="ReInicioFacturacion();"/>
                     </div>
                 </div>
 
@@ -72,11 +71,10 @@
                     <span class="close" onclick="OcultarModalInstrucciones();">&times;</span><br /><br />
                     <h2 style="color:#0268b8;">Notice!</h2>
                     <p class="text-left">
-                        1.- In this section we establish the consecutive number with which the billing will start<br /><br />
-                        2.- Please enter a number less than the number with which you want to start billing.
-                        Example: if you want to start at 000001 enter zero (0), if you want to start at 000010 enter nine (9).<br /><br />
-                        3.- In case of any conflict you can reset this number using
-                        the reset init invoice option and repeating step 2.
+                        @Resources.OneP<br /><br />
+                        @Resources.TwoP
+                        @Resources.ExampleP<br /><br />
+                        @Resources.ThreeP
                     </p>
                 </div>
             </div>

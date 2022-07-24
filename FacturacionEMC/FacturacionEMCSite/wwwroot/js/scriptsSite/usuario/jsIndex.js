@@ -3,6 +3,8 @@
     LimpiarForm();
     $('#usuario_').hide();
     GetRolesUsuario();
+    var cultureInfo = $('#cultureInfo').val();
+    console.log(cultureInfo)
 });
 
 function GetRolesUsuario() {
