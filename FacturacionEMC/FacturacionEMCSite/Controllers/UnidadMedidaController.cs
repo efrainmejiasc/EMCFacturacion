@@ -34,7 +34,7 @@ namespace FacturacionEMCSite.Controllers
             ICollection<EMCApi.Client.UnidadMedidaDTO> unidadMedida = new List<EMCApi.Client.UnidadMedidaDTO>();
 
             if (this.usuario != null)
-                unidadMedida = await this.clientApi.GetUnidadesMedidaAsync(this.usuario.IdEmpresa, "EN-US");
+                unidadMedida = await this.clientApi.GetUnidadesMedidaAsync(this.usuario.IdEmpresa, "en-US");
 
             return Json(unidadMedida);
         }

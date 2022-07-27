@@ -36,7 +36,7 @@ namespace FacturacionEMCSite.Controllers
             ICollection<EMCApi.Client.MetodoPagoDTO> metodosPago = new List<EMCApi.Client.MetodoPagoDTO>();
 
             if (this.usuario != null)
-                metodosPago = await this.clientApi.GetMetodosPagoAsync("EN-US");
+                metodosPago = await this.clientApi.GetMetodosPagoAsync("en-US");
 
             return Json(metodosPago);
         }

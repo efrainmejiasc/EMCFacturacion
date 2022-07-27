@@ -1,4 +1,6 @@
-﻿$(document).ready(function () {
+﻿var cultureInfo = '';
+
+$(document).ready(function () {
     console.log("ready!");
     GetEmpresas();
     $('#logout_').hide();
@@ -11,6 +13,8 @@
     $('#stock_').hide();
     $('#asignacion_').hide();
     $('#inicioFact_').hide();
+
+    cultureInfo = $('#cultureInfo').val();
 });
 
 function Login() {
@@ -22,7 +26,11 @@ function Login() {
     var confirmar = document.getElementById('confirmar').checked;
 
     if (empresa === null || userMail === '' || password === '' || !confirmar) {
-        toastr.warning("All fields are required");
+        if (cultureInfo == 'en-US')
+            toastr.warning("All fields are required.");
+        else if (cultureInfo == 'es-ES')
+            toastr.warning("Todos los campos son requeridos.");
+
         return false;
     }
 
@@ -38,8 +46,13 @@ function Login() {
                 else
                     window.location.href = urlRedirectIF;
             }
-            else
-                toastr.warning("Unauthorized user / incorrect data");
+            else {
+                if (cultureInfo == 'en-US')
+                    toastr.warning("Unauthorized user / incorrect data");
+                else if (cultureInfo == 'es-ES')
+                    toastr.warning("Usuario no autorizado / datos incorectos");
+
+            }
         }
     });
     return false;
@@ -47,13 +60,15 @@ function Login() {
 
 function GetEmpresas() {
 
+    var empresa = cultureInfo == 'en-US' ? 'Select company...' : 'Seleccione empresa...';
+
     $.ajax({
         type: "POST",
         url: urlGetEmpresas,
         datatype: "json",
         success: function (data) {
             $('#empresa').empty();
-            $('#empresa').append('<option value="-1" disabled selected>Select company...</option>');
+            $('#empresa').append('<option value="-1" disabled selected>' + empresa + '</option>');
             $.each(data, function (index, item) {
                 $('#empresa').append("<option value=\"" + item.id + "\">" + item.nombreEmpresa + "</option>");
             });

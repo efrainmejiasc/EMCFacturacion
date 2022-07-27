@@ -1,4 +1,5 @@
-﻿
+﻿var cultureInfo = '';
+
 $(document).ready(function () {
     console.log("ready!");
     $('#stock_').hide();
@@ -6,6 +7,8 @@ $(document).ready(function () {
     $('#fechaInicio').val(date);
     $('#fechaFinal').val(date);
     GetStockTotal();
+
+    cultureInfo = $('#cultureInfo').val();
 });
 
 function FechaActual() {
@@ -21,6 +24,8 @@ function FechaActual() {
 
 function GetStockTotal() {
 
+    var Transit = cultureInfo == 'en-US' ? 'Transit' : 'Transito';
+
     $.ajax({
         type: "GET",
         url: urlGetStockTotal,
@@ -34,7 +39,7 @@ function GetStockTotal() {
                       <td> ${item.nombreProducto} </td>
                       <td> ${item.unidad} </td>
                       <td> ${item.cantidad} </td>
-                       <td><input type="button" class="btn btn-sm btn-primary" onclick="Transito(${item.idArticulo})" value="Transit" style="width:100px;" ></td>
+                       <td><input type="button" class="btn btn-sm btn-primary" onclick="Transito(${item.idArticulo})" value="${Transit}" style="width:100px;" ></td>
                       </tr>`;
                     $('#tablaStock tbody').append(tr);
                 });

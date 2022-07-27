@@ -1,10 +1,18 @@
-﻿$(document).ready(function () {
+﻿var cultureInfo = '';
+
+$(document).ready(function () {
     console.log("ready!");
     $('#usuario_').hide();
     GetUsuarios();
+    cultureInfo = $('#cultureInfo').val();
 });
 
+
 function GetUsuarios() {
+    var Enable = cultureInfo == 'en-US' ? 'Enable' : 'Activar';
+    var Delete = cultureInfo == 'en-US' ? 'Delete' : 'Eliminar';
+    var Disable= cultureInfo == 'en-US' ? 'Disable' : 'Desactivar';
+
     $.ajax({
         type: "GET",
         url: urlGetUsuarios,
@@ -24,8 +32,8 @@ function GetUsuarios() {
                       <td> ${item.username} </td>
                       <td> ${item.email} </td>
                       <td> ${rol} </td>
-                      <td><input type="button" class="btn btn-sm btn-success" onclick="EditEstatus(${item.id} , ${item.idEmpresa} , ${true})" value="Enable" style="width:100px;"></td>
-                      <td><input type="button" class="btn btn-sm btn-danger" onclick="DeleteUser(${item.id} , ${item.idEmpresa})" value="Delete" style="width:100px;"></td>
+                      <td><input type="button" class="btn btn-sm btn-success" onclick="EditEstatus(${item.id} , ${item.idEmpresa} , ${true})" value="${Enable}" style="width:100px;"></td>
+                      <td><input type="button" class="btn btn-sm btn-danger" onclick="DeleteUser(${item.id} , ${item.idEmpresa})" value="${Delete}" style="width:100px;"></td>
                       </tr>`;
                     else
                         tr = `<tr>
@@ -35,8 +43,8 @@ function GetUsuarios() {
                       <td> ${item.username} </td>
                       <td> ${item.email} </td>
                       <td> ${rol} </td>
-                      <td><input type="button" class="btn btn-sm btn-warning" onclick="EditEstatus(${item.id}, ${item.idEmpresa} ,${false})" value="Disable" style="width:100px;" ></td>
-                      <td><input type="button" class="btn btn-sm btn-danger" onclick="DeleteUser(${item.id} , ${item.idEmpresa})" value="Delete" style="width:100px;"></td>
+                      <td><input type="button" class="btn btn-sm btn-warning" onclick="EditEstatus(${item.id}, ${item.idEmpresa} ,${false})" value="${Disable}" style="width:100px;" ></td>
+                      <td><input type="button" class="btn btn-sm btn-danger" onclick="DeleteUser(${item.id} , ${item.idEmpresa})" value="${Delete}" style="width:100px;"></td>
                       </tr>`;
 
                     $('#tablaUsuarios tbody').append(tr);
@@ -69,10 +77,17 @@ function EditEstatus(id, idEmpresa , estatus) {
         success: function (data) {
             if (data.estatus) {
                 GetUsuarios();
-                toastr.success("Update status success");
+                if (cultureInfo == 'en-US')
+                    toastr.success("Update status success.");
+                else if (cultureInfo == 'es-ES')
+                    toastr.success("Actualizacion exitosa.");
+               
             }
             else {
-                toastr.warning("Update status failed");
+                if (cultureInfo == 'en-US')
+                    toastr.warning("Update status failed.");
+                else if (cultureInfo == 'es-ES')
+                    toastr.warning("Actualizacion fallida.");
             }
         }
     });
@@ -87,10 +102,17 @@ function DeleteUser(id, idEmpresa) {
         success: function (data) {
             if (data.estatus) {
                 GetUsuarios();
-                toastr.success("Delete user success");
+                if (cultureInfo == 'en-US')
+                    toastr.success("Delete user success.");
+                if (cultureInfo == 'es_ES')
+                    toastr.success("Usuario eliminado exitosa.");
             }
             else {
-                toastr.warning("Delete user  failed");
+                if (cultureInfo == 'en-US')
+                    toastr.warning("Delete user  failed");
+                else if (cultureInfo == 'es-ES')
+                    toastr.warning("Fallo eliminar usuario.");
+
             }
         }
     });
