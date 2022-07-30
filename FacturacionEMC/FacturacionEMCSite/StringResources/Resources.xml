@@ -136,4 +136,16 @@
 	<resource culture="en-US" name="NameArticle" value="Name Article"></resource>
     <resource culture="es-ES" name="Supplier" value="Proveedor"></resource>
 	<resource culture="en-US" name="Supplier" value="Supplier"></resource>
+    <resource culture="es-ES" name="AddPurchaseInvoice" value="Agregar Factura de Compra"></resource>
+	<resource culture="en-US" name="AddPurchaseInvoice" value="Add Purchase Invoice"></resource>
+    <resource culture="es-ES" name="AddDetail" value="Agregar Detalle"></resource>
+	<resource culture="en-US" name="AddDetail" value="Add Detail"></resource>
+    <resource culture="es-ES" name="AddSalesInvoice" value="Agregar Factura de Venta"></resource>
+	<resource culture="en-US" name="AddSalesInvoice" value="Add Sales Invoice"></resource>
+    <resource culture="es-ES" name="InvoiceDetail" value="Detalle de Factura"></resource>
+	<resource culture="en-US" name="InvoiceDetail" value="InvoiceDetail"></resource>
+    <resource culture="es-ES" name="AssignStockToSeller" value="Asignacion a Vendedor"></resource>
+	<resource culture="en-US" name="AssignStockToSeller" value="Assign Stock To Seller"></resource>
+    <resource culture="es-ES" name="AssignedItems" value="Items Asignados"></resource>
+	<resource culture="en-US" name="AssignedItems" value="Assigned Items"></resource>
 </resources>

@@ -309,5 +309,29 @@ namespace FacturacionEMCSite.StringResources
         {
             get { return (string)resourceProvider.GetResource("Supplier", CultureInfo.CurrentUICulture.Name); }
         }
+        public static string AddPurchaseInvoice
+        {
+            get { return resourceProvider.GetResource("AddPurchaseInvoice", CultureInfo.CurrentUICulture.Name).ToString(); }
+        }
+        public static string AddDetail
+        {
+            get { return resourceProvider.GetResource("AddDetail", CultureInfo.CurrentUICulture.Name).ToString(); }
+        }
+        public static string AddSalesInvoice
+        {
+            get { return resourceProvider.GetResource("AddSalesInvoice", CultureInfo.CurrentUICulture.Name).ToString(); }
+        }
+        public static string InvoiceDetail
+        {
+            get { return resourceProvider.GetResource("InvoiceDetail", CultureInfo.CurrentUICulture.Name).ToString(); }
+        }
+        public static string AssignStockToSeller
+        {
+            get { return resourceProvider.GetResource("AssignStockToSeller", CultureInfo.CurrentUICulture.Name).ToString(); }
+        }
+        public static string AssignedItems
+        {
+            get { return resourceProvider.GetResource("AssignedItems", CultureInfo.CurrentUICulture.Name).ToString(); }
+        }
     }
 }

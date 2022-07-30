@@ -25,6 +25,8 @@ SELECT * FROM UnidadMedida
 SELECT * FROM TipoFactura
 SELECT * FROM InicioFacturacion
 
+UPDATE UnidadMedida SET IdEmpresa = 1 
+
 --TRUNCATE TABLE FacturaVenta
 --TRUNCATE TABLE FacturaVentaDetalle
 --TRUNCATE TABLE FacturaCompra

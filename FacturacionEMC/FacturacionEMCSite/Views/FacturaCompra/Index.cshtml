@@ -21,7 +21,7 @@
 <div class="card" style="margin-top: 5%; background-color: #ddf6fa; color: dimgray;">
     <div class="card-body">
         <div class="form-horizontal" style="color: dimgray;">
-            <h1 style="color:dimgray"> Add Purchase Invoice</h1><hr />
+            <h1 style="color:dimgray"> @Resources.AddPurchaseInvoice</h1><hr />
 
             <div class="form-group row">
                 <div class="col-md-3 text-md-right">
@@ -44,12 +44,12 @@
                     <select id="proveedor" name="proveedor" class="form-control form-control-sm" onchange="" required> </select>
                 </div><br />
                 <div class="col-md-12 text-md-right">
-                    <button class="btn btn-success" onclick="MostrarModalProveedor();" ><i class="bi bi-plus-circle-fill"> Supplier</i></button>
+                    <button class="btn btn-success" onclick="MostrarModalProveedor();" ><i class="bi bi-plus-circle-fill"> @Resources.Supplier</i></button>
                 </div>
             </div>
         </div>
         <div>
-            <h3 style="color:dimgray">Add Detail </h3>
+            <h3 style="color:dimgray">@Resources.AddDetail </h3>
             <div class="form-group row">
                 <div class="col-md-3 text-md-right">
                     <label class="control-label">@Resources.Article</label>
@@ -103,7 +103,7 @@
 
         <hr />
         <div class="form-horizontal" style="color:dimgray">
-            <h3 style="color:dimgray">Invoice Detail </h3>
+            <h3 style="color:dimgray">@Resources.InvoiceDetail </h3>
             <table id="tablaLineas" class="display compact dt-center table table-striped table-light" style="width:100%">
                 <thead class="thead-dark">
                     <tr>
