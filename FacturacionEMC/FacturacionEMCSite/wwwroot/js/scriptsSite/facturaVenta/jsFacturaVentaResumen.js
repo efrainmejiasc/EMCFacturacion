@@ -1,10 +1,12 @@
-﻿$(document).ready(function () {
+﻿var cultureInfo = '';
+
+$(document).ready(function () {
     console.log("ready!");
+    cultureInfo = $('#cultureInfo').val();
     $('#rVenta_').hide();
     var date = FechaActual();
     $('#fechaInicio').val(date);
     $('#fechaFinal').val(date);
-
     GetFacturas();
 });
 

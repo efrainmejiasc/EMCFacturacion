@@ -2,13 +2,12 @@
 
 $(document).ready(function () {
     console.log("ready!");
+    cultureInfo = $('#cultureInfo').val();
     $('#stock_').hide();
     var date = FechaActual();
     $('#fechaInicio').val(date);
     $('#fechaFinal').val(date);
     GetStockTotal();
-
-    cultureInfo = $('#cultureInfo').val();
 });
 
 function FechaActual() {

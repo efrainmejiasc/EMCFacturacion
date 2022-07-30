@@ -2,12 +2,11 @@
 
 $(document).ready(function () {
     console.log('!ready');
+    cultureInfo = $('#cultureInfo').val();
     GetUsuarios();
     var date = FechaActual();
     $('#fechaInicio').val(date);
     $('#fechaFinal').val(date);
-
-    cultureInfo = $('#cultureInfo').val();
 });
 
 

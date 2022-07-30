@@ -2,9 +2,9 @@
 
 $(document).ready(function () {
     console.log("ready!");
+    cultureInfo = $('#cultureInfo').val();
     $('#usuario_').hide();
     GetUsuarios();
-    cultureInfo = $('#cultureInfo').val();
 });
 
 

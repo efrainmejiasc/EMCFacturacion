@@ -1,5 +1,8 @@
-﻿$(document).ready(function () {
+﻿var cultureInfo = '';
+
+$(document).ready(function () {
     console.log("ready!");
+    cultureInfo = $('#cultureInfo').val();
     $('#usuario_').hide();
     $('#fVenta_').hide();
     $('#fCompra_').hide();
@@ -23,7 +26,10 @@ function GetUsuarioLogger() {
                 $("#numeroFactura").prop("disabled", true);
                 $("#btnSet").prop("disabled", true);
                 $("#btnRe").prop("disabled", true);
-                toastr.warning("Does not have privileges to initiate billing.");
+                if (cultureInfo == 'en-US')
+                    toastr.warning("Does not have privileges to initiate billing.");
+                else if (cultureInfo == 'es-ES')
+                    toastr.warning("Np tienes privilegios para iniciar la facturacion.");
             }
         }
     });
@@ -34,7 +40,10 @@ function SetInicioFaturacion() {
 
     var numeroFactura = $('#numeroFactura').val();
     if (numeroFactura === '') {
-        toastr.warning("All fiels required.");
+        if (cultureInfo == 'en-US')
+            toastr.warning("All fields are required");
+        else if (cultureInfo == 'es-ES')
+            toastr.warning("Todos los campos son requeridos");
         return false;
     }
 
@@ -44,10 +53,19 @@ function SetInicioFaturacion() {
         data: { numeroFactura: numeroFactura},
         datatype: "json",
         success: function (data) {
-            if (data.estatus) 
-                toastr.success("Successful transaction.");
-            else
-                toastr.warning("Transaction error.");
+            if (data.estatus) {
+                if (cultureInfo == 'en-US')
+                    toastr.success("Successful transaction.");
+                else if (cultureInfo == 'es-ES')
+                    toastr.success("Transaccion exitosa.");
+            }
+            else{
+                if (cultureInfo == 'en-US')
+                    toastr.warning("Transaction error.");
+                else if (cultureInfo == 'es-ES')
+                    toastr.warning("Error en transaccion.");
+            }
+
         }
     });
     return false;
@@ -60,10 +78,18 @@ function ReInicioFacturacion() {
         url: urlReInicioFacturacion,
         datatype: "json",
         success: function (data) {
-            if (data.estatus)
-                toastr.success("Successful transaction.");
-            else
-                toastr.warning("Transaction error.");
+            if (data.estatus) {
+                if (cultureInfo == 'en-US')
+                    toastr.success("Successful transaction.");
+                else if (cultureInfo == 'es-ES')
+                    toastr.success("Transaccion exitosa.");
+            }
+            else {
+                if (cultureInfo == 'en-US')
+                    toastr.warning("Transaction error.");
+                else if (cultureInfo == 'es-ES')
+                    toastr.warning("Error en transaccion.");
+            }
         }
     });
     return false;
@@ -73,7 +99,10 @@ function ValidarDecimal() {
     var numeroFactura = $('#numeroFactura').val();
 
     if (numeroFactura.includes(',') || numeroFactura.includes('.')) {
-        toastr.warning("The number must be integer.");
+        if (cultureInfo == 'en-US')
+            toastr.warning("The number must be integer.");
+        else if (cultureInfo == 'es-ES')
+            toastr.warning("El numero debe ser un entero.");
         return false;
     }
 }

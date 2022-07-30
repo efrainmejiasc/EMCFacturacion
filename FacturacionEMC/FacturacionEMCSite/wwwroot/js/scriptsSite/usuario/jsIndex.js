@@ -2,18 +2,19 @@
 
 $(document).ready(function () {
     console.log("ready!");
+    cultureInfo = $('#cultureInfo').val();
     LimpiarForm();
     $('#usuario_').hide();
     GetRolesUsuario();
-    cultureInfo = $('#cultureInfo').val();
 });
 
-var userRol = cultureInfo == 'en-US' ? 'Select user rol...' : 'Seleccione rol de usuario...';
-var manager = cultureInfo == 'en-US' ? 'Manager' : 'Gerente';
-var client = cultureInfo == 'en-US' ? 'Client' : 'Cliente';
-var seller = cultureInfo == 'en-US' ? 'Seller' : 'Vendedor';
 
 function GetRolesUsuario() {
+
+    var userRol = cultureInfo == 'en-US' ? 'Select user rol...' : 'Seleccione rol de usuario...';
+    var manager = cultureInfo == 'en-US' ? 'Manager' : 'Gerente';
+    var client = cultureInfo == 'en-US' ? 'Client' : 'Cliente';
+    var seller = cultureInfo == 'en-US' ? 'Seller' : 'Vendedor';
 
     $('#rol').empty();
     $('#rol').append('<option value="-1" disabled selected>' + userRol + '</option>');

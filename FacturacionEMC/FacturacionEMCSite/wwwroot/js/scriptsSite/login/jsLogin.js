@@ -2,6 +2,7 @@
 
 $(document).ready(function () {
     console.log("ready!");
+    cultureInfo = $('#cultureInfo').val();
     GetEmpresas();
     $('#logout_').hide();
     $('#usuario_').hide();
@@ -13,8 +14,6 @@ $(document).ready(function () {
     $('#stock_').hide();
     $('#asignacion_').hide();
     $('#inicioFact_').hide();
-
-    cultureInfo = $('#cultureInfo').val();
 });
 
 function Login() {

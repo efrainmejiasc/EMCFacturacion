@@ -19,7 +19,7 @@ namespace DatosEMC.Repositories
 
         public List<UnidadMedida> GetUnidadMedida( int idEmpresa, string sistema)
         {
-            return this.db.UnidadMedida.Where(x => x.IdEmpresa == idEmpresa &&  x.Sistema == sistema).ToList();
+            return this.db.UnidadMedida.Where(x => x.IdEmpresa == idEmpresa &&  x.Sistema == sistema.ToUpper()).ToList();
         }
     }
 }

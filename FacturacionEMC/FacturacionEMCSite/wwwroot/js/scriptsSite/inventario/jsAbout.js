@@ -2,13 +2,12 @@
 
 $(document).ready(function () {
     console.log('ready!');
+    cultureInfo = $('#cultureInfo').val();
     $('#asignacion_').hide();
     $('#numeroLinea_').val(0)
     GetProductos();
     GetVendedores();
     GetUnidadesMedida();
-
-    cultureInfo = $('#cultureInfo').val();
 });
 
 var productosArray = [];

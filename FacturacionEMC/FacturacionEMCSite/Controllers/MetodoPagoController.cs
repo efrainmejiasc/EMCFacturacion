@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -36,7 +37,7 @@ namespace FacturacionEMCSite.Controllers
             ICollection<EMCApi.Client.MetodoPagoDTO> metodosPago = new List<EMCApi.Client.MetodoPagoDTO>();
 
             if (this.usuario != null)
-                metodosPago = await this.clientApi.GetMetodosPagoAsync("en-US");
+                metodosPago = await this.clientApi.GetMetodosPagoAsync(CultureInfo.CurrentCulture.Name);
 
             return Json(metodosPago);
         }
