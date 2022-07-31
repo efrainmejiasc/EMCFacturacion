@@ -57,7 +57,7 @@ function GetVendedores() {
 
 function GetUnidadesMedida() {
 
-    var seleccion = cultureInfo == 'en-US' ? 'Select unit...' : 'Select unit...';
+    var seleccion = cultureInfo == 'en-US' ? 'Select unit...' : 'Seleccione unidad de medida...';
 
     $.ajax({
         type: "GET",
