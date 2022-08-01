@@ -532,8 +532,9 @@ function ImprimirTicket() {
 }
 
 
-
-
+function Reset() {
+    location.reload();
+}
 
 
 

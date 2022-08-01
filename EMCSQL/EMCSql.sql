@@ -32,6 +32,7 @@ UPDATE UnidadMedida SET IdEmpresa = 1
 --TRUNCATE TABLE FacturaCompra
 --TRUNCATE TABLE FacturaCompraDetalle
 --TRUNCATE TABLE StockTotal
+--TRUNCATE TABLE Proveedor
 
 
 --TRUNCATE TABLE Producto

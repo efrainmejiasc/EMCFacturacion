@@ -565,6 +565,10 @@ function ImprimirTicket() {
     a.print();
 }
 
+function Reset() {
+    location.reload();
+}
+
 
 
 
