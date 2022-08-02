@@ -2,13 +2,18 @@
 
 $(document).ready(function () {
     console.log("ready!");
+    setTimeout(DocumentoListo, 2000);
+});
+
+function DocumentoListo() {
+    var obje = $(document).find('#cultureInfo').prop('disabled', true);
     cultureInfo = $('#cultureInfo').val();
     $('#fVenta_').hide();
     GetUsuarioLogger();
     $('#pImpuesto').val('0.00');
     $('#pDescuento').val('0.00');
     $('#numeroLinea_').val(0)
-});
+}
 
 function GetUsuarioLogger() {
 

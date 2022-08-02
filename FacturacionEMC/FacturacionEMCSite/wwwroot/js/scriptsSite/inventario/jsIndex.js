@@ -2,13 +2,18 @@
 
 $(document).ready(function () {
     console.log("ready!");
+    setTimeout(DocumentoListo, 2000);
+});
+
+function DocumentoListo() {
+    var obje = $(document).find('#cultureInfo').prop('disabled', true);
     cultureInfo = $('#cultureInfo').val();
     $('#stock_').hide();
     var date = FechaActual();
     $('#fechaInicio').val(date);
     $('#fechaFinal').val(date);
     GetStockTotal();
-});
+}
 
 function FechaActual() {
 

@@ -2,7 +2,13 @@
 
 $(document).ready(function () {
     console.log("ready!");
+    setTimeout(DocumentoListo, 2000);
+});
+
+function DocumentoListo(){
+    var obje = $(document).find('#cultureInfo').prop('disabled', true);
     cultureInfo = $('#cultureInfo').val();
+    console.log(cultureInfo);
     $('#fCompra_').hide();
     GetMetodosPago();
     GetProveedores();
@@ -12,7 +18,7 @@ $(document).ready(function () {
     $('#pImpuesto').val('0.00');
     $('#pDescuento').val('0.00');
     $('#numeroLinea_').val(0)
-});
+}
 
 
 function GetProveedores() {
@@ -281,9 +287,9 @@ function GuardarFacturaDetalle()
         datatype: "json",
         success: function (data) {
             if (data.estatus) {
-                if (cultureInfo == 'en-US')
+                if (cultureInfo === 'en-US')
                     toastr.success("Invoice saved successfully");
-                else if (cultureInfo == 'es-ES')
+                else if (cultureInfo === 'es-ES')
                     toastr.success("Factura guardada correctamente");
 
                 setTimeout(RecargarPagina, 4000);

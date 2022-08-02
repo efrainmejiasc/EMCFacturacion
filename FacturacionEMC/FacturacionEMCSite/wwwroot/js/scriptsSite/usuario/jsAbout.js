@@ -2,11 +2,15 @@
 
 $(document).ready(function () {
     console.log("ready!");
+    setTimeout(DocumentoListo, 2000);
+});
+
+function DocumentoListo() {
+    var obje = $(document).find('#cultureInfo').prop('disabled', true);
     cultureInfo = $('#cultureInfo').val();
     $('#usuario_').hide();
     GetUsuarios();
-});
-
+}
 
 function GetUsuarios() {
     var Enable = cultureInfo == 'en-US' ? 'Enable' : 'Activar';

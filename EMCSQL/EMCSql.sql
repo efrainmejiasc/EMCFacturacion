@@ -22,10 +22,12 @@ SELECT * FROM TipoFactura
 SELECT * FROM ROLES
 SELECT * FROM MetodoPago
 SELECT * FROM UnidadMedida
+SELECT * FROM UnidadMedida WHERE Sistema = 'EN-US'
+SELECT * FROM UnidadMedida WHERE Sistema = 'ES-ES'
 SELECT * FROM TipoFactura
 SELECT * FROM InicioFacturacion
 
-UPDATE UnidadMedida SET IdEmpresa = 1 
+--UPDATE UnidadMedida SET Sistema = 'ES-ES' WHERE Id = 10
 
 --TRUNCATE TABLE FacturaVenta
 --TRUNCATE TABLE FacturaVentaDetalle
@@ -68,7 +70,7 @@ UPDATE UnidadMedida SET IdEmpresa = 1
 --INSERT INTO UNIDADMEDIDA (UNIDAD, IdEmpresa, Sistema) VALUES ('Litro',2,'ES-ES')
 --INSERT INTO UNIDADMEDIDA (UNIDAD, IdEmpresa, Sistema) VALUES ('Kilo',2,'ES-ES')
 --INSERT INTO UNIDADMEDIDA (UNIDAD, IdEmpresa, Sistema) VALUES ('Metro',2,'ES-ES')
---INSERT INTO UNIDADMEDIDA (UNIDAD, IdEmpresa, Sistema) VALUES ('Pieza',1,'EN-ES')
+--INSERT INTO UNIDADMEDIDA (UNIDAD, IdEmpresa, Sistema) VALUES ('Pieza',1,'ES-ES')
 
 --update StockTransito Set NombreArticulo = ' Monitor - Unit' Where id = 1 
 

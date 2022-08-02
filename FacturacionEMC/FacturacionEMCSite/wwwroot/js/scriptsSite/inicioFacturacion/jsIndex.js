@@ -2,6 +2,11 @@
 
 $(document).ready(function () {
     console.log("ready!");
+    setTimeout(DocumentoListo, 2000);
+});
+
+function DocumentoListo() {
+    var obje = $(document).find('#cultureInfo').prop('disabled', true);
     cultureInfo = $('#cultureInfo').val();
     $('#usuario_').hide();
     $('#fVenta_').hide();
@@ -12,7 +17,7 @@ $(document).ready(function () {
     $('#inicioFact_').hide();
     GetUsuarioLogger();
     MostrarModalInstrucciones();
-});
+}
 
 
 function GetUsuarioLogger() {
