@@ -6,11 +6,11 @@ SELECT * FROM CLIENTE
 
 SELECT * FROM PRODUCTO
 
-SELECT * FROM FacturaCompra
-SELECT * FROM FacturaCompraDetalle
+SELECT * FROM FacturaCompra ORDER BY FECHA DESC
+SELECT * FROM FacturaCompraDetalle ORDER BY ID DESC
 
-SELECT * FROM FacturaVenta
-SELECT * FROM FacturaVentaDetalle
+SELECT * FROM FacturaVenta ORDER BY FECHA DESC
+SELECT * FROM FacturaVentaDetalle ORDER BY ID DESC
 
 SELECT * FROM StockTotal
 SELECT * FROM StockTransito
@@ -99,3 +99,7 @@ SELECT * FROM InicioFacturacion
 --DELETE Proveedor WHERE Id = 
 
   --DELETE FacturaCompraDetalle WHERE Id = 2
+
+
+  SELECT B.NombreArticulo, B.Cantidad, A.Total, A.Fecha FROM FacturaCompra A INNER  JOIN FacturaCompraDetalle B  ON A.NumeroFactura = B.NumeroFactura
+
