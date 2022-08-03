@@ -40,7 +40,7 @@ function GetFacturas() {
                     let tr = `<tr>
                       <td> <a href="javascript:void(0);" onclick="MostrarDetalle('${item.numeroFactura}');">${item.numeroFactura}</a></td>
                       <td> ${item.fecha.substring(0, 10)} </td>
-                      <td> ${item.nombreProveedor} </td>
+                      <td> ${item.nombreCliente} </td>
                       <td> ${item.rfc} </td>
                       <td> ${item.metodoPago} </td>
                       <td> ${item.subtotal} </td>

@@ -97,3 +97,5 @@ SELECT * FROM InicioFacturacion
 --Select * from USUARIO WHERE Password = 'ZWZyYWlubWVqaWFzY0Bob3RtYWlsLmNvbTEyMzQ='
 
 --DELETE Proveedor WHERE Id = 
+
+  --DELETE FacturaCompraDetalle WHERE Id = 2
