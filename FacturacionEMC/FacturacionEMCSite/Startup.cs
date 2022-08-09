@@ -4,6 +4,7 @@ using DatosEMC.DataModels;
 using DatosEMC.IRepositories;
 using DatosEMC.Repositories;
 using EMCApi.Client;
+using FacturacionEMCSite.Filters;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -42,6 +43,7 @@ namespace FacturacionEMCSite
         public void ConfigureServices(IServiceCollection services)
         {
             //**************************************************************************
+          
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddTransient<IHttpContextAccessor, HttpContextAccessor>();
             services.AddDistributedMemoryCache();
@@ -66,6 +68,11 @@ namespace FacturacionEMCSite
             IMapper mapper = mapperConfig.CreateMapper();
             services.AddSingleton(mapper);
 
+            services.AddControllers(config =>
+            {
+                config.Filters.Add(new CustomAuthenticationFilter());
+                //config.Filters.Add(new CustomActionFilter());
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

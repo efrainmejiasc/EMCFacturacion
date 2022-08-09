@@ -101,5 +101,10 @@ SELECT * FROM InicioFacturacion
   --DELETE FacturaCompraDetalle WHERE Id = 2
 
 
-  SELECT B.NombreArticulo, B.Cantidad, A.Total, A.Fecha FROM FacturaCompra A INNER  JOIN FacturaCompraDetalle B  ON A.NumeroFactura = B.NumeroFactura
+  SELECT C.NombreProducto, B.Cantidad, A.Total, A.Fecha FROM FacturaCompra A INNER  JOIN FacturaCompraDetalle B  ON A.NumeroFactura = B.NumeroFactura
+                                                                             INNER JOIN Producto C ON B.NombreArticulo LIKE '%' + C.NombreProducto + '%'
 
+  SELECT C.NombreProducto, B.Cantidad, A.Total, A.Fecha FROM FacturaVenta A INNER  JOIN FacturaVentaDetalle B  ON A.NumeroFactura = B.NumeroFactura
+                                                                             INNER JOIN Producto C ON B.NombreArticulo LIKE '%' + C.NombreProducto + '%'
+
+  SELECT * FROM PRODUCTO

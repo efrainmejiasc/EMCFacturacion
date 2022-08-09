@@ -13,9 +13,11 @@ using Microsoft.AspNetCore.Http;
 using FacturacionEMCSite.Models;
 using NegocioEMC.IServices;
 using DatosEMC.DataModels;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FacturacionEMCSite.Controllers
 {
+    [AllowAnonymous]
     public class HomeController : Controller
     {
         private readonly ClientEMCApi clientApi;

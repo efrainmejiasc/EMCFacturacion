@@ -130,11 +130,5 @@ namespace FacturacionEMCSite.Controllers
             return Json(this.usuario);
         }
 
-        [HttpGet]
-
-        public IActionResult GetCultureInfo()
-        {
-            return Json(CultureInfo.CurrentCulture.Name);
-        }
     }
 }

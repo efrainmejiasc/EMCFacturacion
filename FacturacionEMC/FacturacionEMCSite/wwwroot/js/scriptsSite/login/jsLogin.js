@@ -9,16 +9,7 @@ function DocumentoListo() {
     var obje = $(document).find('#cultureInfo').prop('disabled', true);
     cultureInfo = $('#cultureInfo').val();
     GetEmpresas();
-    $('#logout_').hide();
-    $('#usuario_').hide();
-    $('#dashboard_').hide();
-    $('#fVenta_').hide();
-    $('#fCompra_').hide();
-    $('#rVenta_').hide();
-    $('#rCompra_').hide();
-    $('#stock_').hide();
-    $('#asignacion_').hide();
-    $('#inicioFact_').hide();
+
 }
 
 function Login() {
