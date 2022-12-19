@@ -2,9 +2,13 @@
 using DatosEMC.DataModels;
 using DatosEMC.DTOs;
 using DatosEMC.IRepositories;
+using Microsoft.Data.SqlClient;
 using NegocioEMC.IServices;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,5 +34,7 @@ namespace NegocioEMC.Services
 
             return empresasDto;
         }
+
+
     }
 }

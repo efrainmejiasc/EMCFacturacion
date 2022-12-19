@@ -85,7 +85,7 @@ function InicializarDataTable() {
                 pagingType: "simple"
             });
         }
-    } catch { console.log(''); }
+    } catch { console.log('ERROR'); }
 
     $("#tablaStock").addClass("display compact dt-center");
 }

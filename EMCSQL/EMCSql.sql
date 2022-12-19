@@ -100,6 +100,12 @@ SELECT * FROM InicioFacturacion
 
   --DELETE FacturaCompraDetalle WHERE Id = 2
 
+--UPDATE FacturaCompra SET Fecha = GetDate() , FechaModificacion = GetDate()
+--UPDATE FacturaCompraDetalle SET Fecha = GetDate() , FechaModificacion = GetDate()
+
+--UPDATE  FacturaVenta SET Fecha = GetDate() , FechaModificacion = GetDate()
+--UPDATE  FacturaVentaDetalle SET Fecha = GetDate() , FechaModificacion = GetDate()
+
 
   SELECT C.NombreProducto, B.Cantidad, A.Total, A.Fecha FROM FacturaCompra A INNER  JOIN FacturaCompraDetalle B  ON A.NumeroFactura = B.NumeroFactura
                                                                              INNER JOIN Producto C ON B.NombreArticulo LIKE '%' + C.NombreProducto + '%'
