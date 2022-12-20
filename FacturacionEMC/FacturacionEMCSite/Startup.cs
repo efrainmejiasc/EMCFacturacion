@@ -4,6 +4,7 @@ using DatosEMC.DataModels;
 using DatosEMC.IRepositories;
 using DatosEMC.Repositories;
 using EMCApi.Client;
+using FacturacionEMCSite.Application;
 using FacturacionEMCSite.Filters;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
@@ -60,6 +61,7 @@ namespace FacturacionEMCSite
 
             services.AddScoped<ClientEMCApi, ClientEMCApi>();
             services.AddSingleton<StringResources.Resources>(new StringResources.Resources(_hostingEnvironment));
+            AppMethods.PathFolderImgProducts = Configuration.GetValue<string>("HostSettings:PathFolderImgProducts");
 
             var mapperConfig = new MapperConfiguration(mc =>
             {

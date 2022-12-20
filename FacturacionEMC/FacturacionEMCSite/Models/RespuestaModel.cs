@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security;
 using System.Threading.Tasks;
 
 namespace FacturacionEMCSite.Models
@@ -11,5 +12,7 @@ namespace FacturacionEMCSite.Models
         public string Descripcion { get; set; }
         public bool Estatus { get; set; }
         public bool EstatusFacturacion { get; set; }
+        public List<string> Identidades { get; set; }
+
     }
 }

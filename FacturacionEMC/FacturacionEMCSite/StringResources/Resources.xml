@@ -148,4 +148,8 @@
 	<resource culture="en-US" name="AssignStockToSeller" value="Assign Stock To Seller"></resource>
     <resource culture="es-ES" name="AssignedItems" value="Items Asignados"></resource>
 	<resource culture="en-US" name="AssignedItems" value="Assigned Items"></resource>
+	<resource culture="es-ES" name="Tamaño" value="Tamaño"></resource>
+	<resource culture="en-US" name="Tamaño" value="Size"></resource>
+	<resource culture="es-ES" name="Peso" value="Peso"></resource>
+	<resource culture="en-US" name="Peso" value="Weight"></resource>
 </resources>

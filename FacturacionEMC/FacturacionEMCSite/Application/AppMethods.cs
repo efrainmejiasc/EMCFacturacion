@@ -7,6 +7,6 @@ namespace FacturacionEMCSite.Application
 {
     public class AppMethods
     {
-
+        public static string PathFolderImgProducts { get; set; }
     }
 }

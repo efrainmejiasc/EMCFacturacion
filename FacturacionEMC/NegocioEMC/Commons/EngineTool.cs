@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,6 +33,22 @@ namespace NegocioEMC.Commons
         private static Guid CreateGuid()
         {
             return Guid.NewGuid();
+        }
+
+        public static bool CreateDirectory(string path)
+        {
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+                return true;
+            }
+
+            return false;
+        }
+
+        public static void CreateFolder(string rootPath, string folder, string identificador)
+        {
+            CreateDirectory(rootPath + folder    + identificador);
         }
     }
 }
