@@ -40,16 +40,23 @@ function UploadFileMethod() {
     var files = input.files;
 
     var nombreArticulo = $('#nombreArticulo').val();
-    var categoriaArticulo = $('#lstArticulo').val();
+    var categoriaArticuloId = $('#lstArticulo').val(); 
+    var categoriaArticulo = $("#lstArticulo option:selected").text();
     var pesoArticulo = $('#pesoArticulo').val();
     var tamañoArticulo = $('#tamañoArticulo').val();
     var descripcionArticulo = $('#descripcionArticulo').val();
+    var messaje = '';
 
     if (files.length == 0) {
-        toastr.warning("Debe elegir imagenes del articulo");
+        messaje = cultureInfo === 'es-ES' ? "Debe seleccionar imagenes" : "You must select images";
+        toastr.warning(messaje);
         return false;
     }
-
+    else if (nombreArticulo == '' || descripcionArticulo == '') {
+        messaje = cultureInfo === 'es-ES' ? "Todos los campos (*) son requeridos" : "All fields (*) are required";
+        toastr.warning(messaje);
+        return false;
+    }
    
     var formData = new FormData();
     for (var i = 0; i < files.length ; i++) {
@@ -67,10 +74,45 @@ function UploadFileMethod() {
         success: function (data) {
             console.log(data);
             if (data.estatus) {
-                toastr.success("exit");
+                SendParametrosImg(nombreArticulo, categoriaArticulo, pesoArticulo, tamañoArticulo, data.nombres, data.identidades );
             }
             else {
-                toastr.error("fallo");
+                var messaje = cultureInfo === 'es-ES' ? "Transaccion fallida" : "Failure transaction";
+                toastr.error(messaje);
+            }
+        }, error: function (jqXHR, textStatus, errorThrown) {
+            toastr.error('ERROR INESPERADO: ' + textStatus + ' ' + jqXHR + ' ' + errorThrown);
+        }
+    });
+
+    return false;
+}
+
+function SendParametrosImg(nombreArticulo, categoriaArticulo, pesoArticulo, tamañoArticulo, nombreImagenes, identidadesImagenes) {
+
+    var productManagerImgDTO = {
+        Id: 0,
+        Nombre: nombreArticulo,
+        Categoria: categoriaArticulo,
+        Peso: pesoArticulo,
+        Tamaño: tamañoArticulo,
+        NombresImg: nombreImagenes,
+        Identidades: identidadesImagenes
+    };
+
+    $.ajax({
+        url: urlUploadParametrosImg,
+        data: JSON.stringify(productManagerImgDTO),
+        contentType: 'application/json',
+        type: "POST",
+        timeout: 0,
+        success: function (data) {
+            if (data.estatus) {
+                
+            }
+            else {
+                var messaje = cultureInfo === 'es-ES' ? "Transaccion fallida" : "Failure transaction";
+                toastr.error(messaje);
             }
         }, error: function (jqXHR, textStatus, errorThrown) {
             toastr.error('ERROR INESPERADO: ' + textStatus + ' ' + jqXHR + ' ' + errorThrown);

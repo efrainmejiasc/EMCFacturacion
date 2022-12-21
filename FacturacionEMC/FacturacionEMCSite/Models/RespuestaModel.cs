@@ -13,6 +13,6 @@ namespace FacturacionEMCSite.Models
         public bool Estatus { get; set; }
         public bool EstatusFacturacion { get; set; }
         public List<string> Identidades { get; set; }
-
+        public List<string> Nombres { get; set; }
     }
 }

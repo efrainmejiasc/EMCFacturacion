@@ -42,6 +42,10 @@ namespace DatosEMC.DataModels
         public virtual DbSet<FacturaVentaDetalle> FacturaVentaDetalle { get; set; }
 
 
+        public virtual DbSet<ProductoImgInfo> ProductoImgInfo { get; set; }
+        public virtual DbSet<ProductoImg> ProductoImg { get; set; }
+
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)

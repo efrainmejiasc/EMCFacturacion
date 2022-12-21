@@ -168,6 +168,13 @@ namespace FacturacionEMCApi
 
             services.AddScoped<IProductoService, ProductoService>();
             services.AddScoped<IProductoRepository, ProductoRepository>();
+
+            services.AddScoped<IProductoImgService, ProductoImgService>();
+            services.AddScoped<IProductoImgRepository, ProductoImgRepository>();
+
+            services.AddScoped<IProductoImgInfoService, ProductoImgInfoService>();
+            services.AddScoped<IProductoImgInfoRepository, ProductoImgInfoRepository>();
+         
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

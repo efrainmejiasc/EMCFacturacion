@@ -41,6 +41,7 @@ namespace FacturacionEMCSite.Controllers
             var response = new RespuestaModel();
             response.Estatus = false;
             response.Identidades = new List<string>();
+            response.Nombres = new List<string>();
             var nombresArchivos = new List<string>();
             try
             {
@@ -52,6 +53,7 @@ namespace FacturacionEMCSite.Controllers
                         var identificador = EngineTool.CreateUniqueidentifier();
                         var strIdentificador = identificador.ToString().ToUpper();
                         var name = p[0] + "_" + strIdentificador + "_.jpg".Replace(" ", "");
+                        response.Nombres.Add(name);
                         response.Identidades.Add(strIdentificador);
 
                         EngineTool.CreateFolder(this._webHostEnvironment.WebRootPath, AppMethods.PathFolderImgProducts, strIdentificador);
@@ -66,6 +68,31 @@ namespace FacturacionEMCSite.Controllers
                 response.Descripcion = "EXITO";
             }
             catch(Exception ex)
+            {
+                response.Descripcion = ex.Message;
+            }
+
+            return Json(response);
+        }
+
+
+        [HttpPost]
+        public IActionResult UploadParametrosImg([FromBody] ProductManagerImgDTO productManagerImgDTO)
+        {
+            var response = new RespuestaModel();
+            response.Estatus = false;
+            var limite = productManagerImgDTO.Identidades.Count  -  1;
+            try
+            {
+                for (int i = 0; i <= limite; i++)
+                {
+
+                }
+
+                response.Estatus = true;
+                response.Descripcion = "EXITO";
+            }
+            catch (Exception ex)
             {
                 response.Descripcion = ex.Message;
             }
