@@ -5,23 +5,7 @@ ClientEMCApi
 
         urlweb: http://efrainweb-001-site1.gtempurl.com
 
-        public ClientEMCApi()
-        {
-            var BaseUrl = string.Empty;
-#if RELEASE
-             BaseUrl = "http://efrainapi-001-site1.itempurl.com";
-#else
-            BaseUrl = "http://localhost:13170";
-#endif
 
-            var _httpClient = new System.Net.Http.HttpClient();
-            var _settings = new System.Lazy<Newtonsoft.Json.JsonSerializerSettings>(() =>
-            {
-                var settings = new Newtonsoft.Json.JsonSerializerSettings();
-                UpdateJsonSerializerSettings(settings);
-                return settings;
-            });
-        }
 
    public ClientEMCApi()
         {
@@ -107,7 +91,207 @@ ClientEMCApi
         }
 
 
-<a href="javascript:void(0);" onclick="MostrarDetalle();"></a>
+public System.Threading.Tasks.Task<GenericResponse> PostProductoImgInfoAsync(ProductoImgInfoDTO body)
+        {
+            return PostProductoImgInfoAsync(body, System.Threading.CancellationToken.None);
+        }
+    
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <summary>Crear registro</summary>
+        /// <returns>Success</returns>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        public async System.Threading.Tasks.Task<GenericResponse> PostProductoImgInfoAsync(ProductoImgInfoDTO body, System.Threading.CancellationToken cancellationToken)
+        {
+            var urlBuilder_ = new System.Text.StringBuilder();
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/ProductoManager/PostProductoImgInfo");
+    
+            var client_ = _httpClient;
+            try
+            {
+                using (var request_ = new System.Net.Http.HttpRequestMessage())
+                {
+                    var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(body, _settings.Value));
+                    content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
+                    request_.Content = content_;
+                    request_.Method = new System.Net.Http.HttpMethod("POST");
+                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("text/plain"));
+    
+                    PrepareRequest(client_, request_, urlBuilder_);
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
+                    PrepareRequest(client_, request_, url_);
+    
+                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+                    try
+                    {
+                        var headers_ = System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
+                        if (response_.Content != null && response_.Content.Headers != null)
+                        {
+                            foreach (var item_ in response_.Content.Headers)
+                                headers_[item_.Key] = item_.Value;
+                        }
+    
+                        ProcessResponse(client_, response_);
+    
+                        var status_ = ((int)response_.StatusCode).ToString();
+                        if (status_ == "200") 
+                        {
+                            var objectResponse_ = await ReadObjectResponseAsync<GenericResponse>(response_, headers_).ConfigureAwait(false);
+                            return objectResponse_.Object;
+                        }
+                        else
+                        if (status_ == "400") 
+                        {
+                            var objectResponse_ = await ReadObjectResponseAsync<GenericResponse>(response_, headers_).ConfigureAwait(false);
+                            throw new ApiException<GenericResponse>("Bad Request", (int)response_.StatusCode, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                        }
+                        else
+                        if (status_ != "200" && status_ != "204")
+                        {
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            throw new ApiException("The HTTP status code of the response was not expected (" + (int)response_.StatusCode + ").", (int)response_.StatusCode, responseData_, headers_, null);
+                        }
+            
+                        return default(GenericResponse);
+                    }
+                    finally
+                    {
+                        if (response_ != null)
+                            response_.Dispose();
+                    }
+                }
+            }
+            finally
+            {
+            }
+        }
+    
+        /// <summary>Crear registro</summary>
+        /// <returns>Success</returns>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        public System.Threading.Tasks.Task<GenericResponse> PostProductoImgAsync(System.Collections.Generic.IEnumerable<ProductoImgDTO> body)
+        {
+            return PostProductoImgAsync(body, System.Threading.CancellationToken.None);
+        }
+    
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <summary>Crear registro</summary>
+        /// <returns>Success</returns>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        public async System.Threading.Tasks.Task<GenericResponse> PostProductoImgAsync(System.Collections.Generic.IEnumerable<ProductoImgDTO> body, System.Threading.CancellationToken cancellationToken)
+        {
+            var urlBuilder_ = new System.Text.StringBuilder();
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/ProductoManager/PostProductoImg");
+    
+            var client_ = _httpClient;
+            try
+            {
+                using (var request_ = new System.Net.Http.HttpRequestMessage())
+                {
+                    var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(body, _settings.Value));
+                    content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
+                    request_.Content = content_;
+                    request_.Method = new System.Net.Http.HttpMethod("POST");
+                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("text/plain"));
+    
+                    PrepareRequest(client_, request_, urlBuilder_);
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
+                    PrepareRequest(client_, request_, url_);
+    
+                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+                    try
+                    {
+                        var headers_ = System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
+                        if (response_.Content != null && response_.Content.Headers != null)
+                        {
+                            foreach (var item_ in response_.Content.Headers)
+                                headers_[item_.Key] = item_.Value;
+                        }
+    
+                        ProcessResponse(client_, response_);
+    
+                        var status_ = ((int)response_.StatusCode).ToString();
+                        if (status_ == "200") 
+                        {
+                            var objectResponse_ = await ReadObjectResponseAsync<GenericResponse>(response_, headers_).ConfigureAwait(false);
+                            return objectResponse_.Object;
+                        }
+                        else
+                        if (status_ == "400") 
+                        {
+                            var objectResponse_ = await ReadObjectResponseAsync<GenericResponse>(response_, headers_).ConfigureAwait(false);
+                            throw new ApiException<GenericResponse>("Bad Request", (int)response_.StatusCode, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                        }
+                        else
+                        if (status_ != "200" && status_ != "204")
+                        {
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            throw new ApiException("The HTTP status code of the response was not expected (" + (int)response_.StatusCode + ").", (int)response_.StatusCode, responseData_, headers_, null);
+                        }
+            
+                        return default(GenericResponse);
+                    }
+                    finally
+                    {
+                        if (response_ != null)
+                            response_.Dispose();
+                    }
+                }
+            }
+            finally
+            {
+            }
+        }
+
+[System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.0.22.0 (Newtonsoft.Json v11.0.0.0)")]
+    public partial class ProductoImgInfoDTO 
+    {
+        [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public int Id { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("nombre", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string Nombre { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("categoria", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string Categoria { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("peso", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string Peso { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("tamaño", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string Tamaño { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("descripcion", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string Descripcion { get; set; }
+    
+    
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.0.22.0 (Newtonsoft.Json v11.0.0.0)")]
+    public partial class ProductoImgDTO 
+    {
+        [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public int Id { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("productoImgInfoId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public int ProductoImgInfoId { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("strBase64", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string StrBase64 { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("identificador", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string Identificador { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("nombreArchivo", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string NombreArchivo { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("ubicacion", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string Ubicacion { get; set; }
+    
+    
+    }
+    
 
 
 

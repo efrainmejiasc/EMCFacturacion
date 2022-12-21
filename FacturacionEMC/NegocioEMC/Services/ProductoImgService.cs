@@ -17,18 +17,35 @@ namespace NegocioEMC.Services
         private readonly IMapper mapper;
         private readonly IProductoImgRepository productoImgRepository;
 
-        public  ProductoImgService(IProductoImgRepository _productoImgRepository)
+        public  ProductoImgService(IProductoImgRepository _productoImgRepository, IMapper _mapper)
         {
             this.productoImgRepository= _productoImgRepository;
+            this.mapper = _mapper;
         }
 
         public GenericResponse InsertProductoImg(List<ProductoImgDTO> lstModel)
         {
-            var lst= this.mapper.Map<List<ProductoImg>>(lstModel);
+            var lst= new List<ProductoImg>();
+            var single = new ProductoImg();
+            foreach ( var x in lstModel) 
+            { 
+                single = new  ProductoImg()
+                {
+                    Id = 0,
+                    ProductoImgInfoId = x.ProductoImgInfoId,
+                    Identificador = x.Identificador,
+                    NombreArchivo = x.NombreArchivo,
+                    Ubicacion = x.Ubicacion,
+                    StrBase64 = x.StrBase64
+                };
+
+                lst.Add(single);
+            }
+            
 
             lst = this.productoImgRepository.InsertProductImg(lst);
 
-            if (lstModel[0].Id > 0)
+            if (lst[0].Id > 0)
                 return EngineService.SetGenericResponse(true, "La información ha sido registrada");
             else
                 return EngineService.SetGenericResponse(false, "No se pudo registrar la información");

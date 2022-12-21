@@ -74,7 +74,9 @@ function UploadFileMethod() {
         success: function (data) {
             console.log(data);
             if (data.estatus) {
-                SendParametrosImg(nombreArticulo, categoriaArticulo, pesoArticulo, tamañoArticulo, data.nombres, data.identidades );
+                var messaje = cultureInfo === 'es-ES' ? "Transaccion exitosa" : "Succes transaction";
+                SendParametrosImg(nombreArticulo, categoriaArticulo, pesoArticulo, tamañoArticulo, descripcionArticulo, data.nombres, data.identidades);
+                toastr.success(messaje);
             }
             else {
                 var messaje = cultureInfo === 'es-ES' ? "Transaccion fallida" : "Failure transaction";
@@ -88,7 +90,7 @@ function UploadFileMethod() {
     return false;
 }
 
-function SendParametrosImg(nombreArticulo, categoriaArticulo, pesoArticulo, tamañoArticulo, nombreImagenes, identidadesImagenes) {
+function SendParametrosImg(nombreArticulo, categoriaArticulo, pesoArticulo, tamañoArticulo, descripcionArticulo, nombreImagenes, identidadesImagenes) {
 
     var productManagerImgDTO = {
         Id: 0,
@@ -96,6 +98,7 @@ function SendParametrosImg(nombreArticulo, categoriaArticulo, pesoArticulo, tama
         Categoria: categoriaArticulo,
         Peso: pesoArticulo,
         Tamaño: tamañoArticulo,
+        Descripcion : descripcionArticulo,
         NombresImg: nombreImagenes,
         Identidades: identidadesImagenes
     };

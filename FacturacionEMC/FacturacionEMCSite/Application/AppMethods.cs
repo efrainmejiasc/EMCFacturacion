@@ -1,4 +1,4 @@
-﻿using DatosEMC.DataModels;
+﻿
 using DatosEMC.DTOs;
 using NegocioEMC.Commons;
 using System;
@@ -12,9 +12,9 @@ namespace FacturacionEMCSite.Application
     {
         public static string PathFolderImgProducts { get; set; }
 
-        public static ProductoImgInfoDTO SetProductImgInfo(ProductManagerImgDTO productoImgInfoDTO)
+        public static EMCApi.Client.ProductoImgInfoDTO SetProductImgInfo(ProductManagerImgDTO productoImgInfoDTO)
         {
-            var productoImgInfo = new ProductoImgInfoDTO()
+            var productoImgInfo = new EMCApi.Client.ProductoImgInfoDTO()
             {
                 Id = 0,
                 Nombre = productoImgInfoDTO.Nombre,
@@ -27,13 +27,13 @@ namespace FacturacionEMCSite.Application
             return productoImgInfo;
         }
 
-        public static List<ProductoImgDTO> SetProductImg(ProductManagerImgDTO productoImgInfoDTO, int productoImgInfoId, string webrootpath)
+        public static List<EMCApi.Client.ProductoImgDTO> SetProductImg(ProductManagerImgDTO productoImgInfoDTO, int productoImgInfoId, string webrootpath)
         {
-            var lst = new List<ProductoImgDTO>();
+            var lst = new List<EMCApi.Client.ProductoImgDTO>();
             var limite = productoImgInfoDTO.Identidades.Count - 1;
             for (int i = 0; i <= limite; i++)
             {
-                var productoImg = new ProductoImgDTO()
+                var productoImg = new EMCApi.Client.ProductoImgDTO()
                 {
                     Id = 0,
                     ProductoImgInfoId = productoImgInfoId,

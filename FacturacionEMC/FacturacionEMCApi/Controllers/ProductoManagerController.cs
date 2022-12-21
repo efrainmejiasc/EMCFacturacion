@@ -45,7 +45,7 @@ namespace FacturacionEMCApi.Controllers
         [HttpPost(Name = "PostProductoImg")]
         [ProducesResponseType(statusCode: (int)HttpStatusCode.OK, Type = typeof(GenericResponse))]
         [ProducesResponseType(statusCode: (int)HttpStatusCode.BadRequest, Type = typeof(GenericResponse))]
-        public IActionResult InsertProductoImg([FromBody] List<ProductoImgDTO> lstProductImg)
+        public IActionResult PostProductoImg([FromBody] List<ProductoImgDTO> lstProductImg)
         {
             var genericResponse  = this.productoImgService.InsertProductoImg(lstProductImg);
 

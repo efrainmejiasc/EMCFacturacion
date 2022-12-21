@@ -89,10 +89,19 @@ namespace FacturacionEMCSite.Controllers
             try
             {
                 var productoImgInfo = AppMethods.SetProductImgInfo(productManagerImgDTO);
-              //  var resultInfo = await this.clientApi.PostProductoImgInfoAsync(productoImgInfo);
+                var result = await this.clientApi.PostProductoImgInfoAsync(productoImgInfo);
 
-                var lstProductImg = AppMethods.SetProductImg(productManagerImgDTO, productoImgInfo.Id, this._webHostEnvironment.WebRootPath + AppMethods.PathFolderImgProducts);
+                var lstProductImg = new List<EMCApi.Client.ProductoImgDTO>();
 
+                if (result.Ok)
+                {
+                    lstProductImg = AppMethods.SetProductImg(productManagerImgDTO, result.Id, this._webHostEnvironment.WebRootPath + AppMethods.PathFolderImgProducts);
+                    result = await this.clientApi.PostProductoImgAsync(lstProductImg);
+                    if(!result.Ok)
+                        return Json(response);
+                }
+                else
+                    return Json(response);
 
                 response.Estatus = true;
                 response.Descripcion = "EXITO";
