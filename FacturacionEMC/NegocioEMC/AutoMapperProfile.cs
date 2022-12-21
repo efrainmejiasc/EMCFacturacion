@@ -28,6 +28,8 @@ namespace NegocioEMC
             CreateMap<UnidadMedidaDTO, UnidadMedida>().ReverseMap();
             CreateMap<ProductoDTO, Producto>().ReverseMap();
             CreateMap<InicioFacturacionDTO, InicioFacturacion>().ReverseMap();
+            CreateMap<ProductoImgInfoDTO, ProductoImgInfo>().ReverseMap();
+            CreateMap<ProductoImgDTO, ProductoImg>().ReverseMap();
         }
     }
 }

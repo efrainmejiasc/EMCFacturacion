@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NegocioEMC.Commons;
+using NegocioEMC.IServices;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace FacturacionEMCSite.Controllers
 {
@@ -19,7 +21,9 @@ namespace FacturacionEMCSite.Controllers
         private readonly IHttpContextAccessor httpContext;
         private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public ProductosManagerController(ClientEMCApi _clienteApi, IHttpContextAccessor _httpContext, IWebHostEnvironment _webHostEnvironment)
+
+        public ProductosManagerController(ClientEMCApi _clienteApi, IHttpContextAccessor _httpContext, 
+                                          IWebHostEnvironment _webHostEnvironment)
         {
             this.httpContext = _httpContext;
             this.clientApi = _clienteApi;
@@ -77,17 +81,18 @@ namespace FacturacionEMCSite.Controllers
 
 
         [HttpPost]
-        public IActionResult UploadParametrosImg([FromBody] ProductManagerImgDTO productManagerImgDTO)
+        public async Task<IActionResult> UploadParametrosImg([FromBody] ProductManagerImgDTO productManagerImgDTO)
         {
             var response = new RespuestaModel();
             response.Estatus = false;
-            var limite = productManagerImgDTO.Identidades.Count  -  1;
+          
             try
             {
-                for (int i = 0; i <= limite; i++)
-                {
+                var productoImgInfo = AppMethods.SetProductImgInfo(productManagerImgDTO);
+              //  var resultInfo = await this.clientApi.PostProductoImgInfoAsync(productoImgInfo);
 
-                }
+                var lstProductImg = AppMethods.SetProductImg(productManagerImgDTO, productoImgInfo.Id, this._webHostEnvironment.WebRootPath + AppMethods.PathFolderImgProducts);
+
 
                 response.Estatus = true;
                 response.Descripcion = "EXITO";

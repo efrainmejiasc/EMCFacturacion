@@ -8,7 +8,9 @@ namespace DatosEMC.DTOs
 {
     public class GenericResponse
     {
+        public int Id { get; set; }
         public bool Ok { get; set; }
         public string Mensaje { get; set; }
+
     }
 }

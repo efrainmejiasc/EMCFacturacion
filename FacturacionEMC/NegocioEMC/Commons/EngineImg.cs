@@ -13,7 +13,7 @@ namespace NegocioEMC.Commons
     public class EngineImg
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Interoperability", "CA1416:Validar la compatibilidad de la plataforma", Justification = "<pendiente>")]
-        public void MarcaDeAgua(string path, string pathName)
+        public static void MarcaDeAgua(string path, string pathName)
         {
             Image image = Image.FromFile(path);
             Bitmap bmp = new Bitmap(image);
@@ -27,7 +27,7 @@ namespace NegocioEMC.Commons
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Interoperability", "CA1416:Validar la compatibilidad de la plataforma", Justification = "<pendiente>")]
-        public Bitmap ResizeImage(Image image, int width, int height)
+        public static Bitmap ResizeImage(Image image, int width, int height)
         {
             var destRect = new Rectangle(0, 0, width, height);
             var destImage = new Bitmap(width, height);
@@ -52,5 +52,25 @@ namespace NegocioEMC.Commons
 
             return destImage;
         }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Interoperability", "CA1416:Validar la compatibilidad de la plataforma", Justification = "<pendiente>")]
+
+        public static string ConvertImageToBase64Str(string path)
+        {
+            using (Image image = Image.FromFile(path))
+            {
+                using (MemoryStream m = new MemoryStream())
+                {
+                    image.Save(m, image.RawFormat);
+                    byte[] imageBytes = m.ToArray();
+
+                    // Convert byte[] to Base64 String
+                    string base64String = Convert.ToBase64String(imageBytes);
+                    return base64String;
+                }
+            }
+        }
+
+
     }
 }

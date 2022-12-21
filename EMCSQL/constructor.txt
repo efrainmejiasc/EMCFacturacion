@@ -5,6 +5,24 @@ ClientEMCApi
 
         urlweb: http://efrainweb-001-site1.gtempurl.com
 
+        public ClientEMCApi()
+        {
+            var BaseUrl = string.Empty;
+#if RELEASE
+             BaseUrl = "http://efrainapi-001-site1.itempurl.com";
+#else
+            BaseUrl = "http://localhost:13170";
+#endif
+
+            var _httpClient = new System.Net.Http.HttpClient();
+            var _settings = new System.Lazy<Newtonsoft.Json.JsonSerializerSettings>(() =>
+            {
+                var settings = new Newtonsoft.Json.JsonSerializerSettings();
+                UpdateJsonSerializerSettings(settings);
+                return settings;
+            });
+        }
+
    public ClientEMCApi()
         {
             #if RELEASE

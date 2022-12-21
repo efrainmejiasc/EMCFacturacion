@@ -13,6 +13,7 @@ namespace DatosEMC.DTOs
         public string Categoria { get; set; }
         public string Peso{ get; set; }
         public string Tamaño { get; set; }
+        public string Descripcion { get; set; }
         public List<string> Identidades { get; set; }
         public List<string> NombresImg { get; set; }
 

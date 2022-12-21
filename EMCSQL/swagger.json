@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "Api Facturacion EMC",
+    "title": "FACTURACION EMC API",
     "version": "v1"
   },
   "paths": {
@@ -10,6 +10,7 @@
         "tags": [
           "Autentificacion"
         ],
+        "operationId": "Autentificacion_Login",
         "requestBody": {
           "content": {
             "application/json": {
@@ -78,7 +79,8 @@
         "tags": [
           "Cliente"
         ],
-        "operationId": "PostCliente",
+        "summary": "Crea un nuevo Cliente",
+        "operationId": "Cliente_PostCliente",
         "requestBody": {
           "content": {
             "application/json": {
@@ -147,7 +149,8 @@
         "tags": [
           "Cliente"
         ],
-        "operationId": "GetClientes",
+        "summary": "Obtiene los Clientes por idEmpresa",
+        "operationId": "Cliente_GetClientes",
         "parameters": [
           {
             "name": "idEmpresa",
@@ -217,7 +220,8 @@
         "tags": [
           "Empresa"
         ],
-        "operationId": "GetEmpresas",
+        "summary": "Obtiene datos de la Empresa",
+        "operationId": "Empresa_GetEmpresas",
         "responses": {
           "200": {
             "description": "Success",
@@ -276,7 +280,8 @@
         "tags": [
           "FacturaCompra"
         ],
-        "operationId": "PostFacturaCompra",
+        "summary": "Crear registro de factura",
+        "operationId": "FacturaCompra_PostFacturaCompra",
         "requestBody": {
           "content": {
             "application/json": {
@@ -345,7 +350,8 @@
         "tags": [
           "FacturaCompra"
         ],
-        "operationId": "GetFacturasComprasFechas",
+        "summary": "Obtiene Facturas de compras entre rango de fechas y id empresa",
+        "operationId": "FacturaCompra_GetFacturasComprasFechas",
         "parameters": [
           {
             "name": "idEmpresa",
@@ -433,7 +439,8 @@
         "tags": [
           "FacturaCompra"
         ],
-        "operationId": "GetFacturasCompras",
+        "summary": "Obtiene Facturas de compras ultimas 50 por id empresa",
+        "operationId": "FacturaCompra_GetFacturasCompras",
         "parameters": [
           {
             "name": "idEmpresa",
@@ -503,7 +510,8 @@
         "tags": [
           "FacturaCompraDetalle"
         ],
-        "operationId": "PostFacturaCompraDetalle",
+        "summary": "Crear registro de detall de factura",
+        "operationId": "FacturaCompraDetalle_PostFacturaCompra",
         "requestBody": {
           "content": {
             "application/json": {
@@ -584,7 +592,8 @@
         "tags": [
           "FacturaCompraDetalle"
         ],
-        "operationId": "GetFacturaCompraDetalle",
+        "summary": "Obtiene detalle de la factura por id empresa",
+        "operationId": "FacturaCompraDetalle_GetFacturaCompraDetalle",
         "parameters": [
           {
             "name": "idEmpresa",
@@ -663,7 +672,8 @@
         "tags": [
           "FacturaVenta"
         ],
-        "operationId": "PostFacturaVenta",
+        "summary": "Crear registro de factura",
+        "operationId": "FacturaVenta_PostFacturaVenta",
         "requestBody": {
           "content": {
             "application/json": {
@@ -732,7 +742,8 @@
         "tags": [
           "FacturaVenta"
         ],
-        "operationId": "GetFacturasVentasFechas",
+        "summary": "Obtiene Facturas de venta entre rango de fechas y id empresa",
+        "operationId": "FacturaVenta_GetFacturasVentasFechas",
         "parameters": [
           {
             "name": "idEmpresa",
@@ -820,7 +831,8 @@
         "tags": [
           "FacturaVenta"
         ],
-        "operationId": "GetFacturasVentas",
+        "summary": "Obtiene Facturas de ventas ultimas 50 por id empresa",
+        "operationId": "FacturaVenta_GetFacturasVentas",
         "parameters": [
           {
             "name": "idEmpresa",
@@ -890,7 +902,8 @@
         "tags": [
           "FacturaVenta"
         ],
-        "operationId": "GetNumeroFactura",
+        "summary": "Obtiene el consecutivo del numero de factura",
+        "operationId": "FacturaVenta_GetNumeroFactura",
         "parameters": [
           {
             "name": "idEmpresa",
@@ -951,7 +964,8 @@
         "tags": [
           "FacturaVentaDetalle"
         ],
-        "operationId": "PostFacturaVentaDetalle",
+        "summary": "Crear registro de detall de factura",
+        "operationId": "FacturaVentaDetalle_PostFacturaVenta",
         "requestBody": {
           "content": {
             "application/json": {
@@ -1032,7 +1046,8 @@
         "tags": [
           "FacturaVentaDetalle"
         ],
-        "operationId": "GetFacturaVentaDetalle",
+        "summary": "Obtiene detalle de la factura por id empresa",
+        "operationId": "FacturaVentaDetalle_GetFacturaVentaDetalle",
         "parameters": [
           {
             "name": "idEmpresa",
@@ -1111,7 +1126,8 @@
         "tags": [
           "InicioFacturacion"
         ],
-        "operationId": "PostInicioFacturacion",
+        "summary": "Establecer Inicio Facturacion",
+        "operationId": "InicioFacturacion_PostInicioFacturacion",
         "requestBody": {
           "content": {
             "application/json": {
@@ -1180,7 +1196,8 @@
         "tags": [
           "InicioFacturacion"
         ],
-        "operationId": "GetInicioFacturacionCtrl",
+        "summary": "Obtiene el inicio de facturacion",
+        "operationId": "InicioFacturacion_GetInicioFacturacionCtrl",
         "parameters": [
           {
             "name": "idEmpresa",
@@ -1241,7 +1258,8 @@
         "tags": [
           "InicioFacturacion"
         ],
-        "operationId": "ReInicioFacturacion",
+        "summary": "Establecer RE Inicio Facturacion",
+        "operationId": "InicioFacturacion_ReInicioFacturacion",
         "parameters": [
           {
             "name": "idEmpresa",
@@ -1302,7 +1320,8 @@
         "tags": [
           "Inventario"
         ],
-        "operationId": "PostStockTotalAdd",
+        "summary": "Crear registro de stock positivo",
+        "operationId": "Inventario_PostStockTotalAdd",
         "requestBody": {
           "content": {
             "application/json": {
@@ -1383,7 +1402,8 @@
         "tags": [
           "Inventario"
         ],
-        "operationId": "PostStockTotalRemove",
+        "summary": "Crear registro de stock",
+        "operationId": "Inventario_PostStockTotalRemove",
         "requestBody": {
           "content": {
             "application/json": {
@@ -1464,7 +1484,8 @@
         "tags": [
           "Inventario"
         ],
-        "operationId": "GetStockBodega",
+        "summary": "Obtiene stock en bodega",
+        "operationId": "Inventario_GetStockBodega",
         "parameters": [
           {
             "name": "idEmpresa",
@@ -1543,7 +1564,8 @@
         "tags": [
           "Inventario"
         ],
-        "operationId": "GetStockProductoBodega",
+        "summary": "Obtiene stock en bodega de un producto",
+        "operationId": "Inventario_GetStockProductoBodega",
         "parameters": [
           {
             "name": "idEmpresa",
@@ -1622,7 +1644,8 @@
         "tags": [
           "Inventario"
         ],
-        "operationId": "PostStockTransito",
+        "summary": "Crear registro de stock en transito",
+        "operationId": "Inventario_PostStockTransito",
         "requestBody": {
           "content": {
             "application/json": {
@@ -1703,7 +1726,8 @@
         "tags": [
           "Inventario"
         ],
-        "operationId": "GetAsignacionesVendedor",
+        "summary": "Obtiene las asignaciones de un vendedor",
+        "operationId": "Inventario_GetAsignacionesVendedor",
         "parameters": [
           {
             "name": "idEmpresa",
@@ -1790,7 +1814,8 @@
         "tags": [
           "Inventario"
         ],
-        "operationId": "GetStockTransitoProducto",
+        "summary": "Obtiene las asignaciones de un producto",
+        "operationId": "Inventario_GetStockTransitoProducto",
         "parameters": [
           {
             "name": "idEmpresa",
@@ -1874,7 +1899,8 @@
         "tags": [
           "MetodoPago"
         ],
-        "operationId": "GetMetodosPago",
+        "summary": "Obtiene los metodos de pago",
+        "operationId": "MetodoPago_GetMetodosPago",
         "parameters": [
           {
             "name": "idioma",
@@ -1944,7 +1970,8 @@
         "tags": [
           "Producto"
         ],
-        "operationId": "PostProducto",
+        "summary": "Crea un nuevo Producto",
+        "operationId": "Producto_PostCliente",
         "requestBody": {
           "content": {
             "application/json": {
@@ -2013,7 +2040,8 @@
         "tags": [
           "Producto"
         ],
-        "operationId": "GetProductos",
+        "summary": "Obtiene los productos por idEmpresa",
+        "operationId": "Producto_GetProductos",
         "parameters": [
           {
             "name": "idEmpresa",
@@ -2086,12 +2114,165 @@
         }
       }
     },
+    "/api/ProductoManager/PostProductoImgInfo": {
+      "post": {
+        "tags": [
+          "ProductoManager"
+        ],
+        "summary": "Crear registro",
+        "operationId": "ProductoManager_PostProductoImgInfo",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductoImgInfoDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductoImgInfoDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductoImgInfoDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenericResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenericResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenericResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenericResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenericResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenericResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/ProductoManager/InsertProductoImg": {
+      "post": {
+        "tags": [
+          "ProductoManager"
+        ],
+        "summary": "Crear registro",
+        "operationId": "ProductoManager_InsertProductoImg",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ProductoImgDTO"
+                },
+                "nullable": true
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ProductoImgDTO"
+                },
+                "nullable": true
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ProductoImgDTO"
+                },
+                "nullable": true
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenericResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenericResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenericResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenericResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenericResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenericResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/Proveedor": {
       "post": {
         "tags": [
           "Proveedor"
         ],
-        "operationId": "PostProveedor",
+        "summary": "Crea un nuevo proveedor",
+        "operationId": "Proveedor_PostProveedor",
         "requestBody": {
           "content": {
             "application/json": {
@@ -2160,7 +2341,8 @@
         "tags": [
           "Proveedor"
         ],
-        "operationId": "GetProveedores",
+        "summary": "Obtiene los proveedores por idEmpresa",
+        "operationId": "Proveedor_GetProveedores",
         "parameters": [
           {
             "name": "idEmpresa",
@@ -2230,7 +2412,8 @@
         "tags": [
           "UnidadMedida"
         ],
-        "operationId": "GetUnidadesMedida",
+        "summary": "Obtiene las unidades de medida por Id Empresa",
+        "operationId": "UnidadMedida_GetUnidadesMedida",
         "parameters": [
           {
             "name": "idEmpresa",
@@ -2309,7 +2492,8 @@
         "tags": [
           "Usuario"
         ],
-        "operationId": "GetUserData",
+        "summary": "Obtiene datos del usuario\r\n<param name=\"idEmpresa\">Id Empresa</param><param name=\"userMail\">Inombre usuario</param><param name=\"password\">Inombre usuario</param>",
+        "operationId": "Usuario_GetUserData",
         "parameters": [
           {
             "name": "idEmpresa",
@@ -2388,7 +2572,8 @@
         "tags": [
           "Usuario"
         ],
-        "operationId": "GeUsuarios",
+        "summary": "Obtiene usuarios por id empresa \r\n<param name=\"idEmpresa\">Id Empresa</param>",
+        "operationId": "Usuario_GetUsuarios",
         "parameters": [
           {
             "name": "idEmpresa",
@@ -2457,7 +2642,8 @@
         "tags": [
           "Usuario"
         ],
-        "operationId": "PostUsuario",
+        "summary": "Crea un nuevo Usuario",
+        "operationId": "Usuario_PostUsuario",
         "requestBody": {
           "content": {
             "application/json": {
@@ -2526,7 +2712,8 @@
         "tags": [
           "Usuario"
         ],
-        "operationId": "UpdateEstatusUsuario",
+        "summary": "actualiza estatus de usuario",
+        "operationId": "Usuario_UpdateEstatusUsuario",
         "requestBody": {
           "content": {
             "application/json": {
@@ -2595,7 +2782,8 @@
         "tags": [
           "Usuario"
         ],
-        "operationId": "EliminarUsuario",
+        "summary": "Eliminar usuario",
+        "operationId": "Usuario_EliminarUsuario",
         "requestBody": {
           "content": {
             "application/json": {
@@ -2664,6 +2852,7 @@
         "tags": [
           "WeatherForecast"
         ],
+        "operationId": "WeatherForecast_Get",
         "responses": {
           "200": {
             "description": "Success",
@@ -2829,6 +3018,10 @@
       "GenericResponse": {
         "type": "object",
         "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
           "ok": {
             "type": "boolean"
           },
@@ -3422,6 +3615,66 @@
         },
         "additionalProperties": false
       },
+      "ProductoImgInfoDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nombre": {
+            "type": "string",
+            "nullable": true
+          },
+          "categoria": {
+            "type": "string",
+            "nullable": true
+          },
+          "peso": {
+            "type": "string",
+            "nullable": true
+          },
+          "tamaño": {
+            "type": "string",
+            "nullable": true
+          },
+          "descripcion": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProductoImgDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "productoImgInfoId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "strBase64": {
+            "type": "string",
+            "nullable": true
+          },
+          "identificador": {
+            "type": "string",
+            "nullable": true
+          },
+          "nombreArchivo": {
+            "type": "string",
+            "nullable": true
+          },
+          "ubicacion": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "ProveedorDTO": {
         "type": "object",
         "properties": {
@@ -3536,6 +3789,10 @@
             "type": "integer",
             "format": "int32"
           },
+          "nombreEmpresa": {
+            "type": "string",
+            "nullable": true
+          },
           "token": {
             "type": "string",
             "nullable": true
@@ -3588,6 +3845,19 @@
         },
         "additionalProperties": false
       }
+    },
+    "securitySchemes": {
+      "Bearer": {
+        "type": "apiKey",
+        "description": "JWT Authorization header using the Bearer scheme (Example: 'Bearer 12345abcdef')",
+        "name": "Authorization",
+        "in": "header"
+      }
     }
-  }
+  },
+  "security": [
+    {
+      "Bearer": [ ]
+    }
+  ]
 }
