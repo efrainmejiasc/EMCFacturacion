@@ -17,7 +17,11 @@ SELECT * FROM StockTransito
 
 SELECT * FROM TipoFactura
 
+SELECT * FROM ProductoImgInfo
+SELECT * FROM ProductoImg
 
+TRUNCATE TABLE ProductoImgInfo
+TRUNCATE TABLE ProductoImg
 
 SELECT * FROM ROLES
 SELECT * FROM MetodoPago

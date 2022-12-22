@@ -81,23 +81,24 @@ namespace FacturacionEMCSite.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> UploadParametrosImg([FromBody] ProductManagerImgDTO productManagerImgDTO)
+        public async Task<IActionResult> UploadParametrosImg([FromBody] DatosEMC.DTOs.ProductManagerImgDTO productManagerImgDTO)
         {
             var response = new RespuestaModel();
             response.Estatus = false;
           
             try
             {
-                var productoImgInfo = AppMethods.SetProductImgInfo(productManagerImgDTO);
+                var productoImgInfo = AppMethods.SetProductImgInfo(productManagerImgDTO, this.usuario.IdEmpresa);
                 var result = await this.clientApi.PostProductoImgInfoAsync(productoImgInfo);
 
                 var lstProductImg = new List<EMCApi.Client.ProductoImgDTO>();
 
                 if (result.Ok)
                 {
+                    response.Id = result.Id;
                     lstProductImg = AppMethods.SetProductImg(productManagerImgDTO, result.Id, this._webHostEnvironment.WebRootPath + AppMethods.PathFolderImgProducts);
                     result = await this.clientApi.PostProductoImgAsync(lstProductImg);
-                    if(!result.Ok)
+                    if (!result.Ok)
                         return Json(response);
                 }
                 else
@@ -112,6 +113,26 @@ namespace FacturacionEMCSite.Controllers
             }
 
             return Json(response);
+        }
+
+        [HttpGet]
+
+        public async Task<IActionResult> GetImgInfoProductosUploads(int id)
+        {
+            var imgInfoProductos = new List<EMCApi.Client.ProductManagerImgDTO>();
+            try
+            {
+                imgInfoProductos = await this.clientApi.GetProductImgInfoAsync(id) as List<EMCApi.Client.ProductManagerImgDTO> ;
+            }
+            catch (Exception ex)
+            {
+                var response = new RespuestaModel();
+                response.Estatus = false;
+                response.Descripcion = ex.Message;
+                return Json(response);
+            }
+
+            return Json(imgInfoProductos);
         }
     }
 }

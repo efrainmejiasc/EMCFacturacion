@@ -13,18 +13,10 @@ namespace DatosEMC.DTOs
     {
 
         public int Id { get; set; }
-
-
         public int ProductoImgInfoId { get; set; }
-
-
         public string StrBase64 { get; set; }
-
-
         public string Identificador { get; set; }
-
         public string NombreArchivo { get; set; }
-
         public string Ubicacion { get; set; }
     }
 }

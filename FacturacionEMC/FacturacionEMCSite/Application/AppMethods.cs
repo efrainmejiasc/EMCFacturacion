@@ -12,7 +12,7 @@ namespace FacturacionEMCSite.Application
     {
         public static string PathFolderImgProducts { get; set; }
 
-        public static EMCApi.Client.ProductoImgInfoDTO SetProductImgInfo(ProductManagerImgDTO productoImgInfoDTO)
+        public static EMCApi.Client.ProductoImgInfoDTO SetProductImgInfo(ProductManagerImgDTO productoImgInfoDTO, int idEmpresa)
         {
             var productoImgInfo = new EMCApi.Client.ProductoImgInfoDTO()
             {
@@ -21,7 +21,8 @@ namespace FacturacionEMCSite.Application
                 Categoria = productoImgInfoDTO.Categoria,
                 Peso = productoImgInfoDTO.Peso,
                 Tamaño = productoImgInfoDTO.Tamaño,
-                Descripcion = productoImgInfoDTO.Descripcion
+                Descripcion = productoImgInfoDTO.Descripcion,
+                IdEmpresa = idEmpresa
             };
 
             return productoImgInfo;

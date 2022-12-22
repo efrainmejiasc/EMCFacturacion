@@ -1,4 +1,5 @@
 ﻿@using FacturacionEMCSite.StringResources;
+
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
@@ -11,6 +12,7 @@
     var urlUploadDataImg = '@Url.Action("UploadDataImg", "ProductosManager")';
     var urlUploadParametrosImg = '@Url.Action("UploadParametrosImg", "ProductosManager")';
     var urlGetProductos = '@Url.Action("GetProductos", "Producto")';
+    var urlGetImgInfoProductosUploads = '@Url.Action("GetImgInfoProductosUploads", "ProductosManager")';
 </script>
 
 
@@ -68,6 +70,11 @@
             </div>
 
             <hr />
+
+            <div id="imgns" class="form-group row">
+                
+            </div>
+
 
         </div>
     </div>

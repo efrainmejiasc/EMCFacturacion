@@ -30,5 +30,8 @@ namespace DatosEMC.DataModels
 
         [Column(Order = 6, TypeName = "VARCHAR(500)")]
         public string Descripcion{ get; set; }
+
+        [Column(Order = 7, TypeName = "INT")]
+        public int IdEmpresa { get; set; }
     }
 }

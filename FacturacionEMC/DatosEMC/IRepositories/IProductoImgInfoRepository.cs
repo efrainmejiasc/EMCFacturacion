@@ -1,4 +1,5 @@
 ﻿using DatosEMC.DataModels;
+using DatosEMC.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,7 @@ namespace DatosEMC.IRepositories
 {
     public interface IProductoImgInfoRepository
     {
+        List<ProductManagerImgDTO> GetProductImgInfo(int id);
         ProductoImgInfo InsertProductImgInfo(ProductoImgInfo model);
     }
 }

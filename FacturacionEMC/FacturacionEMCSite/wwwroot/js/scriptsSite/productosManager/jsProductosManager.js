@@ -22,7 +22,6 @@ function GetProductos() {
         url: urlGetProductos,
         datatype: "json",
         success: function (data) {
-            productosArray = data;
             $('#lstArticulo').empty();
             $('#lstArticulo').append('<option value="-1" disabled selected>' + article + '</option>');
             $.each(data, function (index, item) {
@@ -72,11 +71,8 @@ function UploadFileMethod() {
         type: "POST",
         timeout: 0,
         success: function (data) {
-            console.log(data);
             if (data.estatus) {
-                var messaje = cultureInfo === 'es-ES' ? "Transaccion exitosa" : "Succes transaction";
                 SendParametrosImg(nombreArticulo, categoriaArticulo, pesoArticulo, tamañoArticulo, descripcionArticulo, data.nombres, data.identidades);
-                toastr.success(messaje);
             }
             else {
                 var messaje = cultureInfo === 'es-ES' ? "Transaccion fallida" : "Failure transaction";
@@ -111,7 +107,10 @@ function SendParametrosImg(nombreArticulo, categoriaArticulo, pesoArticulo, tama
         timeout: 0,
         success: function (data) {
             if (data.estatus) {
-                
+                GetImgInfoProductosUploads(data.id);
+                var messaje = cultureInfo === 'es-ES' ? "Transaccion exitosa" : "Succes transaction";
+                toastr.success(messaje); 
+                ResetForm();
             }
             else {
                 var messaje = cultureInfo === 'es-ES' ? "Transaccion fallida" : "Failure transaction";
@@ -123,4 +122,54 @@ function SendParametrosImg(nombreArticulo, categoriaArticulo, pesoArticulo, tama
     });
 
     return false;
+}
+
+function GetImgInfoProductosUploads(id) {
+
+    if (id <= 0 || id == '0') {
+        return false;
+    }
+
+    $.ajax({
+        url: urlGetImgInfoProductosUploads,
+        data: {id: id},
+        type: "GET",
+        success: function (data) {
+            console.log(data);
+            if (data != null) {
+                $('#imgns').empty();
+                var car =  `<div class=col-md-12>
+                              <span> Nombre: </span> <span> ${data[0].nombre} </span><br>
+                              <span> Categoria: </span> <span> ${data[0].categoria} </span><br>
+                              <span> Tamaño: </span> <span> ${data[0].tamaño} </span><br>
+                              <span> Peso: </span> <span> ${data[0].peso} </span><br>
+                              <span> Descripcion: </span> <span> ${data[0].descripcion}</span><br><br>
+                              </div>  <hr />`;
+                $('#imgns').append(car);
+                $.each(data, function (index, item) {
+                    let img = `<div class=col-md-6>
+                                 <img  id='${item.identificador}' src='${item.strBase64}' class=img-thumbnail style='height:250px;weight=200px;' />
+                              </div>`;
+                    $('#imgns').append(img);
+                });
+            }
+            else {
+                var messaje = cultureInfo === 'es-ES' ? "Transaccion fallida" : "Failure transaction";
+                toastr.error(messaje);
+            }
+        }, error: function (jqXHR, textStatus, errorThrown) {
+            toastr.error('ERROR INESPERADO: ' + textStatus + ' ' + jqXHR + ' ' + errorThrown);
+        }
+    });
+
+    return false;
+}
+
+function ResetForm() {
+     $('#theFile').val('');
+     $('#nombreArticulo').val('');
+     $('#lstArticulo').val(-1);
+     $('#pesoArticulo').val('');
+     $('#tamañoArticulo').val('');
+     $('#descripcionArticulo').val('');
 }

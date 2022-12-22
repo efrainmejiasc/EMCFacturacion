@@ -55,5 +55,23 @@ namespace FacturacionEMCApi.Controllers
             else
                 return BadRequest(genericResponse);
         }
+
+        /// <summary>
+        /// Obtiene informacion de imagenes y productos 
+        /// </summary>
+        /// <returns>Lista informacion de imagenes y productos </returns>
+        [HttpGet("{id}", Name = "GetProductImgInfo")]
+        [ProducesResponseType(statusCode: (int)HttpStatusCode.OK, Type = typeof(List<ProductManagerImgDTO>))]
+        [ProducesResponseType(statusCode: (int)HttpStatusCode.BadRequest, Type = typeof(GenericResponse))]
+        public IActionResult GetProductImgInfo(int id)
+        {
+            var productManagerImgs = this.productoImgInfoService.GetProductImgInfo(id);
+
+            if (productManagerImgs.Count > 0)
+                return Ok(productManagerImgs);
+
+            else
+                return BadRequest(EngineService.SetGenericResponse(false, "No se encontró información"));
+        }
     }
 }

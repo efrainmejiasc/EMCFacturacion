@@ -30,7 +30,8 @@ namespace NegocioEMC.Services
                 Tamaño = model.Tamaño,
                 Peso = model.Peso,
                 Descripcion = model.Descripcion,
-                Id = 0
+                Id = 0,
+                IdEmpresa = model.IdEmpresa
             };
             modelo =  this.productoImgInfoRepository.InsertProductImgInfo(modelo);
 
@@ -38,6 +39,11 @@ namespace NegocioEMC.Services
                 return EngineService.SetGenericResponse(true, "La información ha sido registrada", modelo.Id);
             else
                 return EngineService.SetGenericResponse(false, "No se pudo registrar la información");
+        }
+
+        public List<ProductManagerImgDTO> GetProductImgInfo(int id)
+        {
+            return this.productoImgInfoRepository.GetProductImgInfo(id);
         }
     }
 }
