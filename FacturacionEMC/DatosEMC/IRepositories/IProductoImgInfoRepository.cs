@@ -12,5 +12,6 @@ namespace DatosEMC.IRepositories
     {
         List<ProductManagerImgDTO> GetProductImgInfo(int id);
         ProductoImgInfo InsertProductImgInfo(ProductoImgInfo model);
+        List<ProductManagerImgDTO> GetProductImgInfo(string strProducto);
     }
 }

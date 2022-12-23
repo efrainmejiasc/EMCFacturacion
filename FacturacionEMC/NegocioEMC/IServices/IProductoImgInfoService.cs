@@ -11,6 +11,7 @@ namespace NegocioEMC.IServices
     public interface IProductoImgInfoService
     {
        List<ProductManagerImgDTO> GetProductImgInfo(int id);
+       List<ProductManagerImgDTO> GetProductImgInfo(string strProducto);
        GenericResponse InsertProductoImgInfo(ProductoImgInfoDTO model);
     }
 }

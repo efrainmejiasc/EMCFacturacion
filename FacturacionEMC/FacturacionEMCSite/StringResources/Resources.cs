@@ -343,5 +343,10 @@ namespace FacturacionEMCSite.StringResources
         {
             get { return resourceProvider.GetResource("Peso", CultureInfo.CurrentUICulture.Name).ToString(); }
         }
+
+        public static string Category
+        {
+            get { return resourceProvider.GetResource("Category", CultureInfo.CurrentUICulture.Name).ToString(); }
+        }
     }
 }

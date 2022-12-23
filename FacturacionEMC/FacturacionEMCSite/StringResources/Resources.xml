@@ -152,4 +152,6 @@
 	<resource culture="en-US" name="Tamaño" value="Size"></resource>
 	<resource culture="es-ES" name="Peso" value="Peso"></resource>
 	<resource culture="en-US" name="Peso" value="Weight"></resource>
+	<resource culture="es-ES" name="Category" value="Categoria"></resource>
+	<resource culture="en-US" name="Category" value="Category"></resource>
 </resources>

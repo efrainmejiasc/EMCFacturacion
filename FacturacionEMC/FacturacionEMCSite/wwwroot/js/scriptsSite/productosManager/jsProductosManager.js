@@ -130,6 +130,12 @@ function GetImgInfoProductosUploads(id) {
         return false;
     }
 
+    var nombre = cultureInfo === 'es-ES' ? "Nombre" : "Name";
+    var categoria = cultureInfo === 'es-ES' ? "Categoria" : "Category";
+    var tamaño = cultureInfo === 'es-ES' ? "Tamaño" : "Size";
+    var peso = cultureInfo === 'es-ES' ? "Peso" : "Weight";
+    var descripcion = cultureInfo === 'es-ES' ? "Descripcion" : "Description";
+
     $.ajax({
         url: urlGetImgInfoProductosUploads,
         data: {id: id},
@@ -139,11 +145,11 @@ function GetImgInfoProductosUploads(id) {
             if (data != null) {
                 $('#imgns').empty();
                 var car =  `<div class=col-md-12>
-                              <span> Nombre: </span> <span> ${data[0].nombre} </span><br>
-                              <span> Categoria: </span> <span> ${data[0].categoria} </span><br>
-                              <span> Tamaño: </span> <span> ${data[0].tamaño} </span><br>
-                              <span> Peso: </span> <span> ${data[0].peso} </span><br>
-                              <span> Descripcion: </span> <span> ${data[0].descripcion}</span><br><br>
+                              <span> ${nombre}: </span> <span> ${data[0].nombre} </span><br>
+                              <span> ${categoria}: </span> <span> ${data[0].categoria} </span><br>
+                              <span> ${tamaño}: </span> <span> ${data[0].tamaño} </span><br>
+                              <span> ${peso}: </span> <span> ${data[0].peso} </span><br>
+                              <span> ${descripcion}: </span> <span> ${data[0].descripcion}</span><br><br>
                               </div>  <hr />`;
                 $('#imgns').append(car);
                 $.each(data, function (index, item) {

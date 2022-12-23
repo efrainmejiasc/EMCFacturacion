@@ -45,5 +45,10 @@ namespace NegocioEMC.Services
         {
             return this.productoImgInfoRepository.GetProductImgInfo(id);
         }
+
+        public List<ProductManagerImgDTO> GetProductImgInfo(string strProducto)
+        {
+            return this.productoImgInfoRepository.GetProductImgInfo(strProducto);
+        }
     }
 }

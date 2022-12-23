@@ -1,5 +1,30 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@using FacturacionEMCSite.StringResources;
+
 @{
+    Layout = "~/Views/Shared/_LayoutSimple.cshtml";
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/scriptsSite/productosCliente/jsProductosCliente.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 }
+<script>
+    var urlGetInfoProducto = '@Url.Action("GetInfoProducto", "ProductosCliente")';
+  </script>
+
+<div class="card" style="margin-top:5%;">
+    <div class="card-body">
+        <div class="form-horizontal" style="color:dimgray">
+           
+            <div class="form-group row">
+                <div class="col-md-10">
+                    <input type="text" id="strBusqueda" class="form form-control" />
+                </div>
+                <div class="col-md-2">
+                    <button class="btn btn-primary" onclick="BuscarProducto();"><i class="bi bi-search"> @Resources.Search </i></button>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
