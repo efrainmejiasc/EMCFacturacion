@@ -36,6 +36,11 @@ namespace FacturacionEMCSite.Controllers
 
         public IActionResult Index()
         {
+            if(this.usuario == null)
+                return RedirectToAction("Index", "Home");
+            else if (this.usuario.Id == 2 || this.usuario.Id == 3)
+                return RedirectToAction("Index", "Home");
+
             return View();
         }
 

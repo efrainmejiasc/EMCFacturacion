@@ -154,4 +154,6 @@
 	<resource culture="en-US" name="Peso" value="Weight"></resource>
 	<resource culture="es-ES" name="Category" value="Categoria"></resource>
 	<resource culture="en-US" name="Category" value="Category"></resource>
+	<resource culture="es-ES" name="ManagerProducts" value="Gestionar Productos"></resource>
+	<resource culture="en-US" name="ManagerProducts" value="Manager Products"></resource>
 </resources>

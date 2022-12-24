@@ -333,20 +333,22 @@ namespace FacturacionEMCSite.StringResources
         {
             get { return resourceProvider.GetResource("AssignedItems", CultureInfo.CurrentUICulture.Name).ToString(); }
         }
-
         public static string Tamaño
         {
             get { return resourceProvider.GetResource("Tamaño", CultureInfo.CurrentUICulture.Name).ToString(); }
         }
-
         public static string Peso
         {
             get { return resourceProvider.GetResource("Peso", CultureInfo.CurrentUICulture.Name).ToString(); }
         }
-
         public static string Category
         {
             get { return resourceProvider.GetResource("Category", CultureInfo.CurrentUICulture.Name).ToString(); }
         }
+        public static string ManagerProducts
+        {
+            get { return resourceProvider.GetResource("ManagerProducts", CultureInfo.CurrentUICulture.Name).ToString(); }
+        }
+
     }
 }
