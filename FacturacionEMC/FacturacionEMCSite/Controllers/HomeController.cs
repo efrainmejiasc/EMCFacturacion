@@ -30,6 +30,10 @@ namespace FacturacionEMCSite.Controllers
             this.clientApi = _clienteApi;
             this.httpContext = _httpContext;
         }
+        public IActionResult Init()
+        {
+            return View();
+        }
 
         public IActionResult Index()
         {
