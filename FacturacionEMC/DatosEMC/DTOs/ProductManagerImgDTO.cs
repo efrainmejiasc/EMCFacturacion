@@ -21,6 +21,6 @@ namespace DatosEMC.DTOs
         public string NombreImg { get; set; }
         public List<string> Identidades { get; set; }
         public List<string> NombresImg { get; set; }
-
+        public List<DatosEMC.DataModels.ProductoImg> InfoImg { get; set; }
     }
 }
