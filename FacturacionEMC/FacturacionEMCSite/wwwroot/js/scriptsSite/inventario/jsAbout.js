@@ -1,16 +1,26 @@
-﻿$(document).ready(function () {
+﻿var cultureInfo = '';
+
+$(document).ready(function () {
     console.log('ready!');
+    setTimeout(DocumentoListo, 2000);
+});
+
+function DocumentoListo() {
+    var obje = $(document).find('#cultureInfo').prop('disabled', true);
+    cultureInfo = $('#cultureInfo').val();
     $('#asignacion_').hide();
     $('#numeroLinea_').val(0)
     GetProductos();
     GetVendedores();
     GetUnidadesMedida();
-});
+}
+
 
 var productosArray = [];
 
 function GetProductos() {
 
+    var seleccion = cultureInfo == 'en-US' ? 'Select article...' : 'Seleccione articulo...';
     productosArray = []
 
     $.ajax({
@@ -19,7 +29,7 @@ function GetProductos() {
         datatype: "json",
         success: function (data) {
             $('#lstArticulo').empty();
-            $('#lstArticulo').append('<option value="-1" disabled selected>Select article...</option>');
+            $('#lstArticulo').append('<option value="-1" disabled selected>' + seleccion + '</option>');
             $.each(data, function (index, item) {
                 $('#lstArticulo').append("<option value=\"" + item.id + "\">" + item.nombreProducto + " - " + item.presentacion + "</option>");
                 productosArray.push(item.nombreProducto + " - " + item.presentacion);
@@ -33,13 +43,15 @@ function GetProductos() {
 
 function GetVendedores() {
 
+    var seleccion = cultureInfo == 'en-US' ? 'Select seller...' : 'Seleccione vendedor...';
+
     $.ajax({
         type: "GET",
         url: urlGetVendedor,
         datatype: "json",
         success: function (data) {
             $('#vendedor').empty();
-            $('#vendedor').append('<option value="-1" disabled selected>Select seller...</option>');
+            $('#vendedor').append('<option value="-1" disabled selected>' + seleccion + '</option>');
             $.each(data, function (index, item) {
                 $('#vendedor').append("<option value=\"" + item.id + "\">" + item.nombre + " " + item.apellido + "</option>");
             });
@@ -50,13 +62,16 @@ function GetVendedores() {
 }
 
 function GetUnidadesMedida() {
+
+    var seleccion = cultureInfo == 'en-US' ? 'Select unit...' : 'Seleccione unidad de medida...';
+
     $.ajax({
         type: "GET",
         url: urlGetUnidadesMedida,
         datatype: "json",
         success: function (data) {
             $('#unidad').empty();
-            $('#unidad').append('<option value="-1" disabled selected>Select unit...</option>');
+            $('#unidad').append('<option value="-1" disabled selected>' + seleccion + '</option>');
             $.each(data, function (index, item) {
                 $('#unidad').append("<option value=\"" + item.id + "\">" + item.unidad + "</option>");
             });
@@ -80,7 +95,10 @@ function GetExistenciaArticuloBodega_(id) {
         success: function (data) {
             var cantidad = $('#cantidad').val();
             if (data.cantidad < cantidad) {
-                toastr.warning("They only exist in stock: " + data.cantidad);
+                if(cultureInfo == 'en-US')
+                    toastr.warning("They only exist in stock: " + data.cantidad);
+                else if (cultureInfo == 'es-ES')
+                    toastr.warning("Solo existe en stock: " + data.cantidad);
             }
         }
     });
@@ -160,7 +178,11 @@ function GuardarAsignacion() {
         datatype: "json",
         success: function (data) {
             if (data.estatus) {
-                toastr.success("Assigned saved successfully");
+                if (cultureInfo == 'en-US')
+                    toastr.success("Assigned saved successfully.");
+                else if (cultureInfo == 'es-ES')
+                    toastr.success("Asignacion guardada exitosamente.");
+              
                 setTimeout(RecargarPagina, 4000);
             }
             else

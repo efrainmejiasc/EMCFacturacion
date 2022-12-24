@@ -168,6 +168,13 @@ namespace FacturacionEMCApi
 
             services.AddScoped<IProductoService, ProductoService>();
             services.AddScoped<IProductoRepository, ProductoRepository>();
+
+            services.AddScoped<IProductoImgService, ProductoImgService>();
+            services.AddScoped<IProductoImgRepository, ProductoImgRepository>();
+
+            services.AddScoped<IProductoImgInfoService, ProductoImgInfoService>();
+            services.AddScoped<IProductoImgInfoRepository, ProductoImgInfoRepository>();
+         
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -190,22 +197,28 @@ namespace FacturacionEMCApi
             {
                 endpoints.MapControllers();
             });
-
             //******************************************************************************
-            var defaultDateCulture = "en-US";
-            var ci = new CultureInfo(defaultDateCulture);
+            var culturaInglesa = "en-US";
+            var culturaEspañola = "es-ES";
+            var ci = new CultureInfo(culturaInglesa);
             ci.NumberFormat.NumberDecimalSeparator = ".";
             ci.NumberFormat.CurrencyDecimalSeparator = ".";
+            var ce = new CultureInfo(culturaEspañola);
+            ce.NumberFormat.NumberDecimalSeparator = ",";
+            ce.NumberFormat.CurrencyDecimalSeparator = ",";
+            CultureInfo.DefaultThreadCurrentCulture = ce;
+            CultureInfo.DefaultThreadCurrentUICulture = ce;
+
             app.UseRequestLocalization(new RequestLocalizationOptions
             {
                 DefaultRequestCulture = new RequestCulture(ci),
                 SupportedCultures = new List<CultureInfo>
                 {
-                    ci,
+                    ci,ce
                 },
                 SupportedUICultures = new List<CultureInfo>
                 {
-                    ci,
+                    ci,ce
                 }
             });
             //******************************************************************************

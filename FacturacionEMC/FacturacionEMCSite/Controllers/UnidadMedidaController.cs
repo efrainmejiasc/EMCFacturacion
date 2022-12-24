@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -34,7 +35,7 @@ namespace FacturacionEMCSite.Controllers
             ICollection<EMCApi.Client.UnidadMedidaDTO> unidadMedida = new List<EMCApi.Client.UnidadMedidaDTO>();
 
             if (this.usuario != null)
-                unidadMedida = await this.clientApi.GetUnidadesMedidaAsync(this.usuario.IdEmpresa, "EN-US");
+                unidadMedida = await this.clientApi.GetUnidadesMedidaAsync(this.usuario.IdEmpresa, CultureInfo.CurrentCulture.Name);
 
             return Json(unidadMedida);
         }

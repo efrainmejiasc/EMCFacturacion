@@ -1,6 +1,14 @@
-﻿
+﻿var cultureInfo = '';
+
 $(document).ready(function () {
     console.log("ready!");
+    setTimeout(DocumentoListo, 2000);
+});
+
+function DocumentoListo(){
+    var obje = $(document).find('#cultureInfo').prop('disabled', true);
+    cultureInfo = $('#cultureInfo').val();
+    console.log(cultureInfo);
     $('#fCompra_').hide();
     GetMetodosPago();
     GetProveedores();
@@ -10,9 +18,12 @@ $(document).ready(function () {
     $('#pImpuesto').val('0.00');
     $('#pDescuento').val('0.00');
     $('#numeroLinea_').val(0)
-});
+}
+
 
 function GetProveedores() {
+
+    var supplier = cultureInfo == 'en-US' ? 'Select supplier...' : 'Seleccione proveedor...';
 
     $.ajax({
         type: "GET",
@@ -20,7 +31,7 @@ function GetProveedores() {
         datatype: "json",
         success: function (data) {
             $('#proveedor').empty();
-            $('#proveedor').append('<option value="-1" disabled selected>Select supplier...</option>');
+            $('#proveedor').append('<option value="-1" disabled selected>' + supplier + '</option>');
             $.each(data, function (index, item) {
                 $('#proveedor').append("<option value=\"" + item.id + "\">" + item.nombreProveedor + "</option>");
             });
@@ -31,13 +42,16 @@ function GetProveedores() {
 }
 
 function GetMetodosPago() {
+
+    var payMethod = cultureInfo == 'en-US' ? 'Select pay method...' : 'Seleccione metodo de pago...';
+
     $.ajax({
         type: "GET",
         url: urlGetMetodosPago,
         datatype: "json",
         success: function (data) {
             $('#metodoPago').empty();
-            $('#metodoPago').append('<option value="-1" disabled selected>Select pay method...</option>');
+            $('#metodoPago').append('<option value="-1" disabled selected>' + payMethod + '</option>');
             $.each(data, function (index, item) {
                 $('#metodoPago').append("<option value=\"" + item.id + "\">" + item.metodo + "</option>");
             });
@@ -47,13 +61,16 @@ function GetMetodosPago() {
 }
 
 function GetUnidadesMedida() {
+
+    var unit = cultureInfo == 'en-US' ? 'Select unit...' : 'Seleccione unidad de medida...';
+
     $.ajax({
         type: "GET",
         url: urlGetUnidadesMedida,
         datatype: "json",
         success: function (data) {
             $('#unidad').empty();
-            $('#unidad').append('<option value="-1" disabled selected>Select unit...</option>');
+            $('#unidad').append('<option value="-1" disabled selected>' + unit + '</option>');
             $.each(data, function (index, item) {
                 $('#unidad').append("<option value=\"" + item.id + "\">" + item.unidad + "</option>");
             });
@@ -79,10 +96,14 @@ function AddLinea()
 
 
     if (idProveedor === '-1' || articulo === '' || subTotalLinea <= 0 || unidad === '-1' || metodoPago === '-1' || nFactura === '') {
-        toastr.warning("All fields are required");
+        if (cultureInfo == 'en-US')
+            toastr.warning("All fields are required");
+        else if (cultureInfo == 'es-ES')
+            toastr.warning("Todos los campos son requeridos");
         return false;
     }
 
+    var Delete = cultureInfo == 'en-US' ? 'Delete' : 'Eliminar';
 
     let ln = `<tr id='r${numero}' >
                   <td style="display:none;"> ${numero} </td>
@@ -92,7 +113,7 @@ function AddLinea()
                   <td id='r${numero}4' > ${unidad} </td>
                   <td id='r${numero}5' > ${precio} </td>
                   <td id='r${numero}6' > ${subTotalLinea} </td>
-                  <td><a href="javascript:void(0)" class="btn btn-sm btn-danger" onclick="RemoveLinea(${numero})">Delete</a></td>
+                  <td><a href="javascript:void(0)" class="btn btn-sm btn-danger" onclick="RemoveLinea(${numero})">${Delete}</a></td>
                   </tr>`;
 
     $('#tablaLineas  tr:last').after(ln);
@@ -185,11 +206,18 @@ function GuardarFactura() {
     var rows = $('#tablaLineas tr').length -1;
 
     if (rows === 0) {
-        toastr.warning("You must add invoice detail");
+        if (cultureInfo == 'en-US')
+            toastr.warning("You must add invoice detail");
+        else if (cultureInfo == 'es-ES')
+            toastr.warning("Debes agregar detalle de la factura");
+
         return false;
     }
     else if (idProveedor === '-1' || nFactura === '' || subtotal <= 0 || total <= 0 || pDescuento < 0 || pImpuesto < 0 || idMetodoPago ==='-1') {
-        toastr.warning("All fields are required");
+        if (cultureInfo == 'en-US')
+            toastr.warning("All fields are required");
+        else if (cultureInfo == 'es-ES')
+            toastr.warning("Todos los campos son requeridos");
         return false;
     }
 
@@ -205,8 +233,12 @@ function GuardarFactura() {
             if (data.estatus) {
                 GuardarFacturaDetalle();
             }
-            else
-                toastr.error("Unexpected error");
+            else {
+                if (cultureInfo == 'en-US')
+                    toastr.error("Unexpected error");
+                else if (cultureInfo == 'es-ES')
+                    toastr.error("Error inesperado");
+            }
         }
     });
 
@@ -255,11 +287,20 @@ function GuardarFacturaDetalle()
         datatype: "json",
         success: function (data) {
             if (data.estatus) {
-                toastr.success("Invoice saved successfully");
+                if (cultureInfo === 'en-US')
+                    toastr.success("Invoice saved successfully");
+                else if (cultureInfo === 'es-ES')
+                    toastr.success("Factura guardada correctamente");
+
                 setTimeout(RecargarPagina, 4000);
             }
-            else
-                toastr.error("Unexpected error");
+            else {
+                if (cultureInfo == 'en-US')
+                    toastr.error("Unexpected error");
+                else if (cultureInfo == 'es-ES')
+                    toastr.error("Error inesperado");
+            }
+              
         }
     });
 
@@ -295,11 +336,18 @@ function AgregarProveedor() {
     var telefono = $('#_telefono').val();
 
     if (nombre === '' || rfc === '' || email === '' || direccion === '' || telefono === '') {
-        toastr.warning("All fields are required");
+        if (cultureInfo == 'en-US')
+            toastr.warning("All fields are required");
+        else if (cultureInfo == 'es-ES')
+            toastr.warning("Todos los campos son requeridos");
         return false;
     }
     else if (!EmailValido(email)){
-        toastr.warning("Email no valid");
+        if (cultureInfo == 'en-US')
+            toastr.warning("Email no valid");
+        else if (cultureInfo == 'es-ES')
+            toastr.warning("Email no valido");
+
         return false;
     }
 
@@ -310,12 +358,20 @@ function AgregarProveedor() {
         datatype: "json",
         success: function (data) {
             if (data.estatus) {
-                toastr.success("Supplier saved successfully");
+                if (cultureInfo == 'en-US')
+                    toastr.success("Supplier saved successfully.");
+                else if (cultureInfo == 'es-ES')
+                    toastr.success("Proveedor guardado correctamente.");
+
                 GetProveedores();
                 setTimeout(OcultarModalProveedor, 4000);
             }
-            else
-                toastr.error("Unexpected error");
+            else {
+                if (cultureInfo == 'en-US')
+                    toastr.error("Unexpected error");
+                else if (cultureInfo == 'es-ES')
+                    toastr.error("Error inesperado");
+            }
         }
     });
 
@@ -353,7 +409,10 @@ function AgregarArticulo() {
 
 
     if (nombre === '' || descripcion  === '' || precio === '' || presentacion === '' ) {
-        toastr.warning("All fields are required");
+        if (cultureInfo == 'en-US')
+            toastr.warning("All fields are required");
+        else if (cultureInfo == 'es-ES')
+            toastr.warning("Todos los campos son requeridos");
         return false;
     }
     $.ajax({
@@ -363,7 +422,11 @@ function AgregarArticulo() {
         datatype: "json",
         success: function (data) {
             if (data.estatus) {
-                toastr.success("Article saved successfully");
+                if (cultureInfo == 'en-US')
+                    toastr.success("Article saved successfully");
+                else if (cultureInfo == 'es-ES')
+                    toastr.success("Articulo guardado correctamente");
+
                 GetProductos();
                 setTimeout(OcultarModalArticulo, 4000);
                 $('#_nombreArt').val('');
@@ -371,8 +434,12 @@ function AgregarArticulo() {
                 $('#_precioArticulo').val('');
                 $('#_presentacionArticulo').val('');
             }
-            else
-                toastr.error("Unexpected error");
+            else {
+                if (cultureInfo == 'en-US')
+                    toastr.error("Unexpected error");
+                else if (cultureInfo == 'es-ES')
+                    toastr.error("Error inesperado");
+            }    
         }
     });
 
@@ -383,6 +450,7 @@ var productosArray = [];
 
 function GetProductos() {
 
+    var articulo = cultureInfo == 'en-US' ? 'Select article...' : 'Seleccione articulo...';
     productosArray = []
 
     $.ajax({
@@ -391,7 +459,7 @@ function GetProductos() {
         datatype: "json",
         success: function (data) {
             $('#lstArticulo').empty();
-            $('#lstArticulo').append('<option value="-1" disabled selected>Select article...</option>');
+            $('#lstArticulo').append('<option value="-1" disabled selected>' + articulo +'</option>');
             $.each(data, function (index, item) {
                 $('#lstArticulo').append("<option value=\"" + item.id + "\">" + item.nombreProducto + " - " + item.presentacion + "</option>");
                 productosArray.push(item.nombreProducto + " - " + item.presentacion);
@@ -411,8 +479,13 @@ function SetPresentacion() {
     var articulo = $("#_nombreArt").val();
     var product = articulo + ' - ' + unidad;
 
-    if (ValidateProduct(product))
-        toastr.warning('This product already in db');
+    if (ValidateProduct(product)) {
+        if (cultureInfo == 'en-US')
+            toastr.warning('This product already in db');
+        else if (cultureInfo == 'es-ES')
+            toastr.warning('Este producto ya existe en db');
+    }
+        
 }
 
 function ValidateProduct(product) {
@@ -428,13 +501,16 @@ function ValidateProduct(product) {
 
 
 function GetPresentacion() {
+
+    var unit = cultureInfo == 'en-US' ? 'Select unit...' : 'Seleccione unidad de medida...';
+
     $.ajax({
         type: "GET",
         url: urlGetUnidadesMedida,
         datatype: "json",
         success: function (data) {
             $('#_unidad').empty();
-            $('#_unidad').append('<option value="-1" disabled selected>Select unit...</option>');
+            $('#_unidad').append('<option value="-1" disabled selected>' +  unit +'</option>');
             $.each(data, function (index, item) {
                 $('#_unidad').append("<option value=\"" + item.id + "\">" + item.unidad + "</option>");
             });
@@ -450,9 +526,21 @@ function SetArticulo() {
     $('#articulo').val(articulo + ' ' + id);
 }
 
+function ImprimirTicket() {
+    var divContents = document.getElementById("impresionante").innerHTML;
+    var a = window.open('', '', 'height=500, width=500');
+    // a.document.write('<html>');
+    // a.document.write('<body > <h1>Div contents are <br>');
+    a.document.write(divContents);
+    // a.document.write('</body></html>');
+    a.document.close();
+    a.print();
+}
 
 
-
+function Reset() {
+    location.reload();
+}
 
 
 

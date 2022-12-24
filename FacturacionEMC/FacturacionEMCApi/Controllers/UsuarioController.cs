@@ -26,11 +26,11 @@ namespace FacturacionEMCApi.Controllers
 
         /// <summary>
         ///Obtiene datos del usuario
-        /// <param name="idEmpresa">Id Empresa</param>
-        /// <param name="userMail">Inombre usuario</param>
-        /// <param name="password">Inombre usuario</param>
-        /// </summary>
-        /// <returns>Datos del usuario</returns>
+        ///<param name="idEmpresa">Id Empresa</param>
+        ///<param name="userMail">Inombre usuario</param>
+        ///<param name="password">Inombre usuario</param>
+        ///</summary>
+        ///<returns>Datos del usuario</returns>
         // GET: api/GetUserData
         [HttpGet("{idEmpresa}/{userMail}/{password}",Name = "GetUserData")]
         [ProducesResponseType(statusCode: (int)HttpStatusCode.OK, Type = typeof(UsuarioDTO))]
@@ -48,9 +48,9 @@ namespace FacturacionEMCApi.Controllers
 
         /// <summary>
         ///Obtiene usuarios por id empresa 
-        /// <param name="id">Id Empresa</param>
-        /// </summary>
-        /// <returns>Usuarios de la empresa </returns>
+        ///<param name="idEmpresa">Id Empresa</param>
+        ///</summary>
+        ///<returns>Usuarios de la empresa </returns>
         // GET: api/GetUsuarios
         [HttpGet("idEmpresa", Name = "GeUsuarios")]
         [ProducesResponseType(statusCode: (int)HttpStatusCode.OK, Type = typeof(List<UsuarioDTO>))]

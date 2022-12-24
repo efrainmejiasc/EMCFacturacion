@@ -1,12 +1,19 @@
-﻿
+﻿var cultureInfo = '';
+
 $(document).ready(function () {
     console.log("ready!");
+    setTimeout(DocumentoListo, 2000);
+});
+
+function DocumentoListo() {
+    var obje = $(document).find('#cultureInfo').prop('disabled', true);
+    cultureInfo = $('#cultureInfo').val();
     $('#stock_').hide();
     var date = FechaActual();
     $('#fechaInicio').val(date);
     $('#fechaFinal').val(date);
     GetStockTotal();
-});
+}
 
 function FechaActual() {
 
@@ -21,6 +28,8 @@ function FechaActual() {
 
 function GetStockTotal() {
 
+    var Transit = cultureInfo == 'en-US' ? 'Transit' : 'Transito';
+
     $.ajax({
         type: "GET",
         url: urlGetStockTotal,
@@ -34,7 +43,7 @@ function GetStockTotal() {
                       <td> ${item.nombreProducto} </td>
                       <td> ${item.unidad} </td>
                       <td> ${item.cantidad} </td>
-                       <td><input type="button" class="btn btn-sm btn-primary" onclick="Transito(${item.idArticulo})" value="Transit" style="width:100px;" ></td>
+                       <td><input type="button" class="btn btn-sm btn-primary" onclick="Transito(${item.idArticulo})" value="${Transit}" style="width:100px;" ></td>
                       </tr>`;
                     $('#tablaStock tbody').append(tr);
                 });
@@ -76,7 +85,7 @@ function InicializarDataTable() {
                 pagingType: "simple"
             });
         }
-    } catch { console.log(''); }
+    } catch { console.log('ERROR'); }
 
     $("#tablaStock").addClass("display compact dt-center");
 }

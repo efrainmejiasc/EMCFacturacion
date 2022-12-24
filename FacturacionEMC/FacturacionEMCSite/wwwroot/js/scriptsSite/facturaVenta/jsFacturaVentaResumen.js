@@ -1,12 +1,19 @@
-﻿$(document).ready(function () {
+﻿var cultureInfo = '';
+
+$(document).ready(function () {
     console.log("ready!");
+    setTimeout(DocumentoListo, 2000);
+});
+
+function DocumentoListo() {
+    var obje = $(document).find('#cultureInfo').prop('disabled', true);
+    cultureInfo = $('#cultureInfo').val();
     $('#rVenta_').hide();
     var date = FechaActual();
     $('#fechaInicio').val(date);
     $('#fechaFinal').val(date);
-
     GetFacturas();
-});
+}
 
 
 function FechaActual() {
@@ -33,7 +40,7 @@ function GetFacturas() {
                     let tr = `<tr>
                       <td> <a href="javascript:void(0);" onclick="MostrarDetalle('${item.numeroFactura}');">${item.numeroFactura}</a></td>
                       <td> ${item.fecha.substring(0, 10)} </td>
-                      <td> ${item.nombreProveedor} </td>
+                      <td> ${item.nombreCliente} </td>
                       <td> ${item.rfc} </td>
                       <td> ${item.metodoPago} </td>
                       <td> ${item.subtotal} </td>

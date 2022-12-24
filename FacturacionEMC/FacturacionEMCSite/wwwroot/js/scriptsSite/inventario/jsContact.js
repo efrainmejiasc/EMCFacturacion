@@ -1,11 +1,18 @@
-﻿$(document).ready(function () {
+﻿var cultureInfo = '';
+
+$(document).ready(function () {
     console.log('!ready');
+    setTimeout(DocumentoListo, 2000);
+});
+
+function DocumentoListo() {
+    var obje = $(document).find('#cultureInfo').prop('disabled', true);
+    cultureInfo = $('#cultureInfo').val();
     GetUsuarios();
     var date = FechaActual();
     $('#fechaInicio').val(date);
     $('#fechaFinal').val(date);
-});
-
+}
 
 function FechaActual() {
 
@@ -20,6 +27,9 @@ function FechaActual() {
 
 
 function GetUsuarios() {
+
+    var Assignment = cultureInfo == 'en-US' ? 'Assignment' : 'Asignaciones';
+
     $.ajax({
         type: "GET",
         url: urlGetUsuarios,
@@ -36,14 +46,14 @@ function GetUsuarios() {
                       <td style=color:red;> ${est} </td>
                       <td> ${item.nombre} </td>
                       <td> ${item.apellido} </td>
-                      <td><input type="button" class="btn btn-sm btn-primary" onclick="GetAsignacionVendedor(${item.id} , ${item.idEmpresa})" value="Assignment" style="width:100px;"></td>
+                      <td><input type="button" class="btn btn-sm btn-primary" onclick="GetAsignacionVendedor(${item.id} , ${item.idEmpresa})" value="${Assignment}" style="width:100px;"></td>
                       </tr>`;
                     else
                         tr = `<tr>
                       <td style=color:green;> ${est} </td>
                       <td> ${item.nombre} </td>
                       <td> ${item.apellido} </td>
-                      <td><input type="button" class="btn btn-sm btn-primary" onclick="GetAsignacionVendedor(${item.id} , ${item.idEmpresa})" value="Assignment" style="width:100px;"></td>
+                      <td><input type="button" class="btn btn-sm btn-primary" onclick="GetAsignacionVendedor(${item.id} , ${item.idEmpresa})" value="${Assignment}" style="width:100px;"></td>
                       </tr>`;
 
                     $('#tablaUsuarios tbody').append(tr);

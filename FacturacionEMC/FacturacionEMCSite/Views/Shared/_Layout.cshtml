@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using FacturacionEMCSite.StringResources;
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -23,34 +25,34 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between" id="submenu" style="color: #0268b8;">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a href="@Url.Action("Index","Home")" class="nav-link text-info" id="logout_">Logout</a>
+                            <a href="@Url.Action("Index","Home")" class="nav-link text-info" id="logout_">@Resources.LogOut</a>
                         </li>
                         <li class="nav-item">
-                            <a href="@Url.Action("Index","Usuario")" class="nav-link text-info" id="usuario_">Users</a>
+                            <a href="@Url.Action("Index","Usuario")" class="nav-link text-info" id="usuario_">@Resources.Users</a>
                         </li>
                         <li class="nav-item">
-                            <a href="@Url.Action("About","Home")" class="nav-link text-info" id="dashboard_">Dashboard</a>
+                            <a href="@Url.Action("About","Home")" class="nav-link text-info" id="dashboard_">@Resources.Dashboard</a>
                         </li>
                         <li class="nav-item">
-                            <a href="@Url.Action("Index","FacturaVenta")" class="nav-link text-info" id="fVenta_">Sales Record</a>
+                            <a href="@Url.Action("Index","FacturaVenta")" class="nav-link text-info" id="fVenta_">@Resources.SalesRecord</a>
                         </li>
                         <li class="nav-item">
-                            <a href="@Url.Action("Index","FacturaCompra")" class="nav-link text-info" id="fCompra_">Purchases Record</a>
+                            <a href="@Url.Action("Index","FacturaCompra")" class="nav-link text-info" id="fCompra_">@Resources.PurchasesRecord</a>
                         </li>
                         <li class="nav-item">
-                            <a href="@Url.Action("About","FacturaVenta")" class="nav-link text-info" id="rVenta_">Sales Summary</a>
+                            <a href="@Url.Action("About","FacturaVenta")" class="nav-link text-info" id="rVenta_">@Resources.SalesSummary</a>
                         </li>
                         <li class="nav-item">
-                            <a href="@Url.Action("About","FacturaCompra")" class="nav-link text-info" id="rCompra_">Purchase Summary</a>
+                            <a href="@Url.Action("About","FacturaCompra")" class="nav-link text-info" id="rCompra_">@Resources.PurchasesSummary</a>
                         </li>
                         <li class="nav-item">
-                            <a href="@Url.Action("Index","Inventario")" class="nav-link text-info" id="stock_">Stock</a>
+                            <a href="@Url.Action("Index","Inventario")" class="nav-link text-info" id="stock_">@Resources.Stock</a>
                         </li>
                         <li class="nav-item">
-                            <a href="@Url.Action("About","Inventario")" class="nav-link text-info" id="asignacion_">Assignments</a>
+                            <a href="@Url.Action("About","Inventario")" class="nav-link text-info" id="asignacion_">@Resources.Assignments</a>
                         </li>
                         <li class="nav-item">
-                            <a href="@Url.Action("Index","InicioFacturacion")" class="nav-link text-info" id="inicioFact_">Home Billing</a>
+                            <a href="@Url.Action("Index","InicioFacturacion")" class="nav-link text-info" id="inicioFact_">@Resources.HomeBilling</a>
                         </li>
                     </ul>
                 </div>
@@ -60,6 +62,7 @@
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
+                <input type="hidden" id="cultureInfo"  disabled="false"/>
         </main>
     </div>
 
@@ -73,5 +76,27 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
+
 </body>
 </html>
+<script>
+    var urlGetCultureInfo = '@Url.Action("GetCultureInfo","Empresa")';
+
+    $(document).ready(function () {
+        GetCultureInfo();
+    });
+
+    function GetCultureInfo() {
+
+    $.ajax({
+        type: "GET",
+        url: urlGetCultureInfo,
+        datatype: "json",
+        success: function (data) {
+            $('#cultureInfo').val(data);
+        }
+    });
+
+    return false;
+}
+</script>

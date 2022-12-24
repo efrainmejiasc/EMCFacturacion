@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -26,6 +27,13 @@ namespace FacturacionEMCSite.Controllers
         {
             var empresas = await this.clientApi.GetEmpresasAsync() as List<EmpresaDTO>;
             return Json(empresas);
+        }
+
+
+        [HttpGet]
+        public IActionResult GetCultureInfo()
+        {
+            return Json(CultureInfo.CurrentCulture.Name);
         }
     }
 }

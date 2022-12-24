@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31613.86
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32602.215
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FacturacionEMCApi", "FacturacionEMCApi\FacturacionEMCApi.csproj", "{A12BAA35-1B3B-4FBC-84E6-F60FD5EA0463}"
 EndProject
@@ -10,6 +10,11 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DatosEMC", "DatosEMC\DatosEMC.csproj", "{86F09D5F-FF3C-423F-8725-59867F84F4DD}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FacturacionEMCSite", "FacturacionEMCSite\FacturacionEMCSite.csproj", "{C3B95756-08EE-4F9D-B6E1-8469C63ADECA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8592890D-5D69-498B-A9D8-A71FB897AECB}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,4 +1,4 @@
-﻿
+﻿@using FacturacionEMCSite.StringResources;
 @{ 
     Layout = "~/Views/Shared/_Layout.cshtml";
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
@@ -21,7 +21,7 @@
             <div class="d-flex align-items-end flex-wrap">
                 <div class="mr-md-3 mr-xl-5">
                     <div class="mr-md-3 mr-xl-5">
-                        <h2>Summary Stock</h2>
+                        <h2>@Resources.SummaryStock</h2>
                         <small class="mb-md-0 text-gray"></small>
                     </div>
                 </div>
@@ -41,10 +41,10 @@
             <table id="tablaStock" class="display compact dt-center table table-striped table-light" style="width:100%">
                 <thead class="thead-dark">
                     <tr>
-                        <th>Id</th>
-                        <th>Product</th>
-                        <th>Unit</th>
-                        <th>Stock</th>
+                        <th>@Resources.Id</th>
+                        <th>@Resources.Product</th>
+                        <th>@Resources.Unit</th>
+                        <th>@Resources.Stock</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -63,11 +63,11 @@
                     <table id="tablaTransito" class="display compact dt-center table table-striped table-light" style="width:100%">
                         <thead class="thead-dark">
                             <tr>
-                                <th>Id</th>
-                                <th>Seller</th>
-                                <th>Article</th>
-                                <th>Unit</th>
-                                <th>Amount</th>
+                                <th>@Resources.Id</th>
+                                <th>@Resources.Seller</th>
+                                <th>@Resources.Article</th>
+                                <th>@Resources.Unit</th>
+                                <th>@Resources.Amount</th>
                             </tr>
                         </thead>
                         <tbody>

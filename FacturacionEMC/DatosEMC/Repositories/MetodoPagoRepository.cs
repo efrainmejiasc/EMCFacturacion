@@ -17,7 +17,7 @@ namespace DatosEMC.Repositories
         }
         public List<MetodoPago> GetMetodoPago(string idioma)
         {
-            return this.db.MetodoPago.Where(x => x.Idioma == idioma).ToList();
+            return this.db.MetodoPago.Where(x => x.Idioma == idioma.ToUpper()).ToList();
         }
     }
 }

@@ -4,6 +4,8 @@ using DatosEMC.DataModels;
 using DatosEMC.IRepositories;
 using DatosEMC.Repositories;
 using EMCApi.Client;
+using FacturacionEMCSite.Application;
+using FacturacionEMCSite.Filters;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -28,9 +30,12 @@ namespace FacturacionEMCSite
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        private readonly IWebHostEnvironment _hostingEnvironment;
+
+        public Startup(IConfiguration configuration, IWebHostEnvironment hostingEnvironment)
         {
             Configuration = configuration;
+            _hostingEnvironment = hostingEnvironment;
         }
 
         public IConfiguration Configuration { get; }
@@ -39,6 +44,7 @@ namespace FacturacionEMCSite
         public void ConfigureServices(IServiceCollection services)
         {
             //**************************************************************************
+          
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddTransient<IHttpContextAccessor, HttpContextAccessor>();
             services.AddDistributedMemoryCache();
@@ -54,6 +60,8 @@ namespace FacturacionEMCSite
             //*****************************************************************************
 
             services.AddScoped<ClientEMCApi, ClientEMCApi>();
+            services.AddSingleton<StringResources.Resources>(new StringResources.Resources(_hostingEnvironment));
+            AppMethods.PathFolderImgProducts = Configuration.GetValue<string>("HostSettings:PathFolderImgProducts");
 
             var mapperConfig = new MapperConfiguration(mc =>
             {
@@ -62,6 +70,11 @@ namespace FacturacionEMCSite
             IMapper mapper = mapperConfig.CreateMapper();
             services.AddSingleton(mapper);
 
+            services.AddControllers(config =>
+            {
+                config.Filters.Add(new CustomAuthenticationFilter());
+                //config.Filters.Add(new CustomActionFilter());
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -90,24 +103,31 @@ namespace FacturacionEMCSite
                 endpoints.MapControllerRoute(
                 name: "default",
                 pattern: "{controller}/{action}/{id?}",
-                defaults: new { controller = "Home", action = "Index" });
+                defaults: new { controller = "Home", action = "Init" });
             });
 
             //******************************************************************************
-            var defaultDateCulture = "en-US";
-            var ci = new CultureInfo(defaultDateCulture);
+            var culturaInglesa = "en-US";
+            var culturaEspañola = "es-ES";
+            var ci = new CultureInfo(culturaInglesa);
             ci.NumberFormat.NumberDecimalSeparator = ".";
             ci.NumberFormat.CurrencyDecimalSeparator = ".";
+            var ce = new CultureInfo(culturaEspañola);
+            ce.NumberFormat.NumberDecimalSeparator = ",";
+            ce.NumberFormat.CurrencyDecimalSeparator = ",";
+            CultureInfo.DefaultThreadCurrentCulture = ce;
+            CultureInfo.DefaultThreadCurrentUICulture = ce;
+
             app.UseRequestLocalization(new RequestLocalizationOptions
             {
                 DefaultRequestCulture = new RequestCulture(ci),
                 SupportedCultures = new List<CultureInfo>
                 {
-                    ci,
+                    ci,ce
                 },
                 SupportedUICultures = new List<CultureInfo>
                 {
-                    ci,
+                    ci,ce
                 }
             });
             //******************************************************************************

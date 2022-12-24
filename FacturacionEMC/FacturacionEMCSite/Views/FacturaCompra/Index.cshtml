@@ -1,4 +1,4 @@
-﻿
+﻿@using FacturacionEMCSite.StringResources;
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
@@ -21,99 +21,100 @@
 <div class="card" style="margin-top: 5%; background-color: #ddf6fa; color: dimgray;">
     <div class="card-body">
         <div class="form-horizontal" style="color: dimgray;">
-            <h1 style="color:dimgray"> Add Purchase Invoice</h1><hr />
+            <h1 style="color:dimgray"> @Resources.AddPurchaseInvoice</h1><hr />
 
             <div class="form-group row">
                 <div class="col-md-3 text-md-right">
-                    <label class="control-label">Nº Invoice</label>
+                    <label class="control-label">Nº @Resources.Invoice</label>
                 </div>
                 <div class="col-md-8">
                     <input type="text" id="nFactura" name="nFactura" class="form form-control" style="text-transform:uppercase" />
                 </div>
                 <div class="col-md-3 text-md-right">
-                    <label class="control-label">Payment Method</label>
+                    <label class="control-label">@Resources.PaymentMethod</label>
                 </div>
                 <div class="col-md-8">
                     <select id="metodoPago" name="metodoPago" class="form-control form-control-sm" onchange="" required>
                     </select>
                 </div>
                 <div class="col-md-3 text-md-right">
-                    <label class="control-label">Supplier</label>
+                    <label class="control-label">@Resources.Supplier</label>
                 </div>
                 <div class="col-md-8">
                     <select id="proveedor" name="proveedor" class="form-control form-control-sm" onchange="" required> </select>
                 </div><br />
                 <div class="col-md-12 text-md-right">
-                    <button class="btn btn-success" onclick="MostrarModalProveedor();" ><i class="bi bi-plus-circle-fill"> Supplier</i></button>
+                    <button class="btn btn-success" onclick="MostrarModalProveedor();" ><i class="bi bi-plus-circle-fill"> @Resources.Supplier</i></button>
                 </div>
             </div>
         </div>
         <div>
-            <h3 style="color:dimgray">Add Detail </h3>
+            <h3 style="color:dimgray">@Resources.AddDetail </h3>
             <div class="form-group row">
                 <div class="col-md-3 text-md-right">
-                    <label class="control-label">Article</label>
+                    <label class="control-label">@Resources.Article</label>
                 </div>
                 <div class="col-md-8">
                     <select id="lstArticulo" name="lstArticulo" class="form-control form-control-sm" onchange="SetArticulo();"></select>
                 </div>
                 <div class="col-md-12 text-md-right">
-                    <button class="btn btn-success" onclick="MostrarModalArticulo();"><i class="bi bi-plus-circle-fill"> Article</i></button>
+                    <button class="btn btn-success" onclick="MostrarModalArticulo();"><i class="bi bi-plus-circle-fill"> @Resources.Article</i></button>
                 </div>
                 <br /><br />
                 <div class="col-md-8" style="display:none;">
                     <input type="text" id="articulo" name="articulo" class="form form-control" />
                 </div>
                 <div class="col-md-3 text-md-right">
-                    <label class="control-label">Unit</label>
+                    <label class="control-label">@Resources.Unit</label>
                 </div>
                 <div class="col-md-8">
                     <select id="unidad" name="unidad" class="form-control form-control-sm" onchange="" required>
                     </select>
                 </div>
                 <div class="col-md-3 text-md-right">
-                    <label class="control-label">Description</label>
+                    <label class="control-label">@Resources.Description</label>
                 </div>
                 <div class="col-md-8">
                     <input type="text" id="descripcion" name="descripcion" class="form form-control" />
                 </div>
                 <div class="col-md-3 text-md-right">
-                    <label class="control-label">Amount</label>
+                    <label class="control-label">@Resources.Amount</label>
                 </div>
                 <div class="col-md-8">
                     <input type="number" id="cantidad" name="cantidad" class="form form-control" min="0" placeholder="0" />
                 </div>
                 <div class="col-md-3 text-md-right">
-                    <label class="control-label">Price</label>
+                    <label class="control-label">@Resources.Price</label>
                 </div>
                 <div class="col-md-8">
                     <input type="number" id="precio" name="precio" class="form form-control" min="0" onblur="SubtotalLinea();" placeholder="0.0" />
                 </div>
                 <div class="col-md-3 text-md-right">
-                    <label class="control-label">SubTotal</label>
+                    <label class="control-label">@Resources.Subtotal</label>
                 </div>
                 <div class="col-md-8">
                     <input type="number" id="subTotalLinea" name="subTotalLinea" class="form form-control" min="0" disabled placeholder="0.0" />
                 </div>
                 <div class="col-md-12 text-md-right">
                     <button class="btn btn-success" onclick="AddLinea();"><i class="bi bi-plus-circle-fill"> </i></button>
+                    <button class="btn btn-success" onclick="MostrarModalPrinter();"><i class="bi bi-printer"> </i></button>
                 </div>
             </div>
         </div>
 
         <hr />
         <div class="form-horizontal" style="color:dimgray">
-            <h3 style="color:dimgray">Invoice Detail </h3>
+            <h3 style="color:dimgray">@Resources.InvoiceDetail </h3>
             <table id="tablaLineas" class="display compact dt-center table table-striped table-light" style="width:100%">
                 <thead class="thead-dark">
                     <tr>
                         <th style="display:none;">Nº</th>
-                        <th>Article</th>
-                        <th>Description</th>
-                        <th>Amount</th>
-                        <th>Unit</th>
-                        <th>Price</th>
-                        <th>Subtotal</th>
+                        <th>@Resources.Article</th>
+                        <th>@Resources.Description</th>
+                        <th>@Resources.Amount</th>
+                        <th>@Resources.Unit</th>
+                        <th>@Resources.Price</th>
+                        <th>@Resources.Subtotal</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -131,19 +132,19 @@
                 <input type="number" id="subtotal" name="subtotal" class="form form-control" min="0" placeholder="0.0" readonly />
             </div>
             <div class="col-md-3 text-md-right">
-                <label class="control-label">% Discount</label>
+                <label class="control-label">% @Resources.Discount</label>
             </div>
             <div class="col-md-8">
                 <input type="number" id="pDescuento" name="pDescuento" class="form form-control" min="0" placeholder="0.0" />
             </div>
             <div class="col-md-3 text-md-right">
-                <label class="control-label">% Tax</label>
+                <label class="control-label">% @Resources.Tax</label>
             </div>
             <div class="col-md-8">
                 <input type="number" id="pImpuesto" name="pImpuesto" class="form form-control" min="0" placeholder="0.0" />
             </div>
             <div class="col-md-3 text-md-right">
-                <label class="control-label">Total</label>
+                <label class="control-label">@Resources.Total</label>
             </div>
             <div class="col-md-8">
                 <input type="number" id="total" name="total" class="form form-control" min="0" placeholder="0.0" readonly />
@@ -152,10 +153,10 @@
         <div>
             <div class="form-group row text-center">
                 <div class="col-md-6 text-md-left">
-                    <input type="button" value="Save" class="btn btn-success form-control" onclick="GuardarFactura();" style="width:200px;" />
+                    <input type="button" value="@Resources.Save" class="btn btn-success form-control" onclick="GuardarFactura();" style="width:200px;" />
                 </div>
                 <div class="col-md-6 text-md-right">
-                    <input type="reset" value="Cancel" class="btn btn-danger form-control" onclick="Reset()" style="width:200px;" />
+                    <input type="reset" value="@Resources.Cancel" class="btn btn-danger form-control" onclick="Reset()" style="width:200px;" />
                 </div>
             </div>
             <hr />
@@ -169,20 +170,20 @@
                         <div class="col-md-12">
                             <h3> Add New Supplier</h3>
                             <div class="form-group row">
-                                <label class="form form-label">Name / Social Reason </label>
+                                <label class="form form-label">@Resources.NameSocialReason </label>
                                 <input type="text" id="_nombre" class="form-control text-box single-line" />
-                                <label class="form form-label">RFC</label>
+                                <label class="form form-label">@Resources.RFC</label>
                                 <input type="text" id="_rfc" class="form-control text-box single-line" />
-                                <label class="form form-label">Email</label>
+                                <label class="form form-label">@Resources.Email</label>
                                 <input type="text" id="_email" class="form-control text-box single-line" />
-                                <label class="form form-label">Address</label>
+                                <label class="form form-label">@Resources.Address</label>
                                 <input type="text" id="_direccion" class="form-control text-box single-line" />
-                                <label class="form form-label">Phone Number</label>
+                                <label class="form form-label">@Resources.PhoneNumber</label>
                                 <input type="text" id="_telefono" class="form-control text-box single-line" />
                             </div>
                             <div class="col-md-12">
-                                <input type="submit" value="Save" class="btn btn-success" style="float:left;" onclick="AgregarProveedor();" />
-                                <input type="submit" value="Cancel" class="btn btn-danger" style="float:right;" onclick="OcultarModalProveedor();" />
+                                <input type="submit" value="@Resources.Save" class="btn btn-success" style="float:left;" onclick="AgregarProveedor();" />
+                                <input type="submit" value="@Resources.Cancel" class="btn btn-danger" style="float:right;" onclick="OcultarModalProveedor();" />
                             </div>
                         </div>
                     </div>
@@ -198,11 +199,11 @@
                         <div class="col-md-12">
                             <h3> Add New Article</h3>
                             <div class="form-group row">
-                                <label class="form form-label">Name Article</label>
+                                <label class="form form-label">@Resources.NameArticle</label>
                                 <input type="text" id="_nombreArt" class="form-control text-box single-line" />
-                                <label class="form form-label">Description Product</label>
+                                <label class="form form-label">@Resources.Description @Resources.Product</label>
                                 <input type="text" id="_descripcionArticulo" class="form-control text-box single-line" />
-                                <label class="form form-label">Unit Price</label>
+                                <label class="form form-label">U.@Resources.Price</label>
                                 <input type="number" id="_precioArticulo" class="form-control text-box single-line" min="0" step="1" />
                                 <label class="form form-label">Presentacion</label>
                                 <select id="_unidad" class="form-control form-control-sm" onchange="SetPresentacion();">
@@ -210,8 +211,42 @@
                                 <input type="text" id="_presentacionArticulo" class="form-control text-box single-line" disabled/>
                             </div>
                             <div class="col-md-12">
-                                <input type="submit" value="Save" class="btn btn-success" style="float:left;" onclick="AgregarArticulo();" />
-                                <input type="submit" value="Cancel" class="btn btn-danger" style="float:right;" onclick="OcultarModalArticulo();" />
+                                <input type="submit" value="@Resources.Save" class="btn btn-success" style="float:left;" onclick="AgregarArticulo();" />
+                                <input type="submit" value="@Resources.Cancel" class="btn btn-danger" style="float:right;" onclick="OcultarModalArticulo();" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+         <div class="container" style="color:dimgray;">
+            <div class="modalTipo" id="printer_">
+                <div class="modal-content2">
+                    <div class="row">
+                        <div class="col-md-12">
+                           
+                            <div class="form-horizontal">
+                                <div id="impresionante">
+                                    <span id="empresaP"> </span>
+                                    <table id="tablaTicket" class="display compact dt-center table table-striped table-light" style="width:100%">
+                                        <thead class="thead-light">
+                                            <tr>
+                                                <th>@Resources.Article</th>
+                                                <th>@Resources.Price</th>
+                                                <th>@Resources.Unit</th>
+                                                <th>@Resources.Total</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                           <tr></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <input type="submit" value="@Resources.Print" class="btn btn-success" style="float:left;" onclick="ImprimirTicket();" />
+                                <input type="submit" value="@Resources.Cancel" class="btn btn-danger" style="float:right;" onclick="OcultarModalPrinter();" />
                             </div>
                         </div>
                     </div>
@@ -225,7 +260,7 @@
 
 <input type="hidden" id="numeroLinea_" />
 
-
+<input type="hidden" id="existenciaProducto_" />
 
 @*@{
         Html.RenderAction("_Facturas", new { idUsuario = ViewContext.ViewBag.IdUsuario });
