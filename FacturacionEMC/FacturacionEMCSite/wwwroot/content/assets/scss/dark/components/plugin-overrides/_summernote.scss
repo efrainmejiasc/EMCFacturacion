@@ -1,0 +1,31 @@
+/* Summernote Editor */
+
+.note-editor{
+  &.note-frame {
+    border: 1px solid $border-color;
+    .note-editing-area {
+      .note-editable {
+        background-color: inherit;
+        color: $white;
+      }
+    }
+    .note-statusbar {
+      .note-resizebar {
+        background: $card-bg;
+      }
+    }
+  }
+}
+.note-popover {
+  border: 1px solid $border-color;
+}
+
+.card-header {
+  &.note-toolbar {
+    background: inherit;
+    .btn {
+      @extend .bg-dark;
+      border: none;
+    }
+  }
+}

@@ -40,4 +40,8 @@
     <ProjectReference Include="..\NegocioEMC\NegocioEMC.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\content\" />
+  </ItemGroup>
+
 </Project>

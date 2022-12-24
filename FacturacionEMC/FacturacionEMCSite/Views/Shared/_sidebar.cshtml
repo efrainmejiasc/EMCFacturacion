@@ -1,0 +1,177 @@
+﻿
+
+@{ 
+  <script src="~/lib/jquery/dist/jquery.min.js"></script>
+}
+
+        @*<nav class="sidebar sidebar-offcanvas" id="sidebar">
+            <ul class="nav nav-height">
+
+                <li class="nav-item nav-profile border-bottom">
+                    <a href="#" class="nav-link flex-column">
+                        <div class="nav-profile-text d-flex ms-0 mb-3 flex-column">
+                            <span class="font-weight-semibold mb-1 mt-2 text-center" style="font-size:14px;">@usuario.Nombre</span>
+                            <span class="text-secondary icon-sm text-center" style="font-size:14px;">@usuario.Email</span>
+                        </div>
+                    </a>
+                </li>
+
+                <li class="pt-2 pb-1 text-center">
+                    <span class="nav-item-head">Principal</span>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Index","Documento")">
+                        <i class="mdi mdi-file-check menu-icon"></i>
+                        <span class="menu-title"> Gastos </span>
+                    </a>
+                </li>
+
+
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Index","RefDocumento")">
+                        <i class="mdi mdi-file menu-icon"></i>
+                        <span class="menu-title"> Requerimientos </span>
+                    </a>
+                </li>
+
+                @if (!snProveedor)
+                {
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("Index","Usuario")">
+                            <i class="fa fa-group menu-icon"></i>
+                            <span class="menu-title"> Usuarios </span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("Index","Proveedor")">
+                            <i class="fa fa-user-circle menu-icon"></i>
+                            <span class="menu-title">Proveedores</span>
+                        </a>
+                    </li>
+                }
+
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Logout","Home")">
+                        <i class="mdi mdi-exponent-box"></i>
+                        <span class="menu-title">Salir</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>*@
+
+
+<nav class="sidebar sidebar-offcanvas" id="sidebar">
+    <ul class="nav nav-height">
+        <li class="nav-item nav-profile border-bottom">
+            <a href="#" class="nav-link flex-column">
+                <div class="nav-profile-image">
+                    <img src="~/Content/img/logo-e.png" alt="profile">
+                    <!--change to offline or busy as needed-->
+                </div>
+                <div class="nav-profile-text d-flex ms-0 mb-3 flex-column">
+                     <span class="font-weight-semibold mb-1 mt-2 text-center" style="font-size:14px;" id="nombreUsuario"> </span>
+                    <span class="text-secondary icon-sm text-center" style="font-size:14px;" id="emailUsuario"> </span>
+                </div>
+            </a>
+        </li>
+
+        <li class="pt-2 pb-1 text-center">
+            <span class="nav-item-head">Principal</span>
+        </li>
+
+     
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("Registro","Home")">
+                    <i class="mdi mdi-file-check menu-icon"></i>
+                    <span class="menu-title"> Registro </span>
+                </a>
+            </li>
+
+       
+
+       
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("ResponsabledeFamilia","Home")">
+                    <i class="mdi mdi-file-check menu-icon"></i>
+                    <span class="menu-title"> Resposable Familia</span>
+                </a>
+            </li>
+
+     
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("CorredorHumanitario","Home")">
+                    <i class="mdi mdi-exponent-box menu-icon"></i>
+                    <span class="menu-title"> Corredor Humanitario </span>
+                </a>
+            </li>
+ 
+
+      
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("CargaFamiliar","Home")">
+                    <i class="fa fa-group menu-icon"></i>
+                    <span class="menu-title"> Carga Familiar </span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("Vivienda","Home")">
+                    <i class="fa fa-user-circle menu-icon"></i>
+                    <span class="menu-title">Vivienda</span>
+                </a>
+            </li>
+     
+
+        <li class="nav-item">
+            <a class="nav-link" href="@Url.Action("SoloParaUsodelGestorylaFundacion","Home")">
+                <i class="mdi mdi-account-key"></i>
+                <span class="menu-title"> Fundacion</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+<script>
+
+    var urlGetCultureInfo = '@Url.Action("GetCultureInfo","Empresa")';
+
+ $(document).ready(function () {
+    console.log("ready layout!");
+            GetCultureInfo();
+   // setTimeout(GetUsuarioLogeado,1000);
+});
+
+    
+    function GetCultureInfo() {
+
+        $.ajax({
+            type: "GET",
+            url: urlGetCultureInfo,
+            datatype: "json",
+            success: function (data) {
+                $('#cultureInfo').val(data);
+            }
+        });
+
+        return false;
+    }
+
+
+    function GetUsuarioLogeado() {
+
+        var urlGetUsuarioLogeado = '@Url.Action("GetUsuarioLogeado","Login")';
+    $.ajax({
+        type: "GET",
+        url: urlGetUsuarioLogeado,
+        datatype: "json",
+        success: function (data) {
+            $('#nombreUsuario').html(data.nombre);
+            $('#emailUsuario').html(data.email);
+        }
+    });
+    return false;
+}
+
+</script>
+
