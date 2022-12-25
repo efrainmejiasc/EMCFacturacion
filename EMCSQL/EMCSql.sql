@@ -23,6 +23,8 @@ SELECT * FROM ProductoImg
 TRUNCATE TABLE ProductoImgInfo
 TRUNCATE TABLE ProductoImg
 
+--Update ProductoImgInfo SET Precio = 345.52
+
 SELECT * FROM ROLES
 SELECT * FROM MetodoPago
 SELECT * FROM UnidadMedida

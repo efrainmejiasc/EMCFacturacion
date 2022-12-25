@@ -20,7 +20,8 @@ namespace FacturacionEMCSite.Filters
             {
                 base.OnActionExecuting(filterContext);
 
-                if (filterContext.Controller is HomeController != true && filterContext.Controller is EmpresaController != true)
+                if (filterContext.Controller is HomeController != true && filterContext.Controller is EmpresaController != true
+                    && filterContext.Controller is ProductosClienteController != true)
                 {
                     if (string.IsNullOrEmpty(this.httpContext.HttpContext.Session.GetString("UserLogin")))
                     {

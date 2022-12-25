@@ -19,84 +19,91 @@
             </a>
         </li>
 
-        <li class="pt-2 pb-1 text-center">
-            <span class="nav-item-head">Principal</span>
+        <li class="pt-2 pb-1 text-center" id="head">
+            <span class="nav-item-head">@Resources.Dashboard </span>
         </li>
 
-        <li class="nav-item">
+        <li class="nav-item" id="logout">
             <a class="nav-link" href="@Url.Action("Index","Home")">
                 <i class="mdi mdi-file-check menu-icon"></i>
                 <span class="menu-title"> @Resources.LogOut </span>
             </a>
         </li>
 
-        <li class="nav-item">
+        <li class="nav-item" id="usuario">
             <a class="nav-link" href="@Url.Action("Index","Usuario")">
-                <i class="mdi mdi-file-check menu-icon"></i>
+                <i class="fa fa-group menu-icon"></i>
                 <span class="menu-title"> @Resources.Users</span>
             </a>
         </li>
 
-        <li class="nav-item">
+        <li class="nav-item" id = "tablero">
             <a class="nav-link" href="@Url.Action("About","Home")">
                 <i class="mdi mdi-exponent-box menu-icon"></i>
                 <span class="menu-title"> @Resources.Dashboard </span>
             </a>
         </li>
 
-        <li class="nav-item">
+        <li class="nav-item" id = "facturaVenta">
             <a class="nav-link" href="@Url.Action("Index","FacturaVenta")">
-                <i class="fa fa-group menu-icon"></i>
-                <span class="menu-title"> @Resources.SalesRecord </span>
+                <i class="bi bi-bag-check-fill"></i>
+                <span class="menu-title"> &nbsp;&nbsp;@Resources.SalesRecord </span>
             </a>
         </li>
 
-        <li class="nav-item">
+        <li class="nav-item" id = "facturaCompra">
             <a class="nav-link" href="@Url.Action("Index","FacturaCompra")">
-                <i class="fa fa-user-circle menu-icon"></i>
-                <span class="menu-title">@Resources.PurchasesRecord</span>
+                <i class="bi bi-bag-check"></i>
+                <span class="menu-title">&nbsp;&nbsp;@Resources.PurchasesRecord</span>
             </a>
         </li>
 
-        <li class="nav-item">
+        <li class="nav-item" id="resumenFV">
             <a class="nav-link" href="@Url.Action("About","FacturaVenta")">
-                <i class="mdi mdi-account-key"></i>
-                <span class="menu-title"> @Resources.SalesSummary </span>
+                <i class="bi bi-sticky-fill"></i>
+                <span class="menu-title"> &nbsp;&nbsp;@Resources.SalesSummary </span>
             </a>
         </li>
 
-         <li class="nav-item">
+         <li class="nav-item" id = "resumenFC">
             <a class="nav-link" href="@Url.Action("About","FacturaCompra")">
-                <i class="mdi mdi-account-key"></i>
-                <span class="menu-title"> @Resources.PurchasesSummary </span>
+                <i class="bi bi-sticky"></i>
+                <span class="menu-title"> &nbsp;&nbsp;@Resources.PurchasesSummary </span>
             </a>
         </li>
 
-         <li class="nav-item">
+        <li class="nav-item" id="stock">
             <a class="nav-link" href="@Url.Action("Index","Inventario")">
-                <i class="mdi mdi-account-key"></i>
-                <span class="menu-title"> @Resources.Stock </span>
+                <i class="bi bi-graph-up-arrow"></i>
+                <span class="menu-title"> &nbsp;&nbsp;@Resources.Stock </span>
             </a>
         </li>
 
-         <li class="nav-item">
+        <li class="nav-item" id="asignacion">
             <a class="nav-link" href="@Url.Action("About","Inventario")">
                 <i class="mdi mdi-account-key"></i>
-                <span class="menu-title"> @Resources.Assignments </span>
+                <span class="menu-title"> &nbsp;&nbsp;@Resources.Assignments </span>
             </a>
         </li>
 
-         <li class="nav-item">
+        <li class="nav-item" id="inicioFacturacion">
             <a class="nav-link" href="@Url.Action("Index","InicioFacturacion")">
-                <i class="mdi mdi-account-key"></i>
-                <span class="menu-title"> @Resources.HomeBilling</span>
+                <i class="bi bi-briefcase"></i>
+                <span class="menu-title">&nbsp;&nbsp;@Resources.HomeBilling</span>
             </a>
         </li>
 
-        <li class="nav-item">
-            <a class="nav-link" href="@Url.Action("Index","ProductoManager")">
-                <i class="mdi mdi-account-key"></i>
-                <span class="menu-title">@Resources.ManagerProducts </span>
+        <li class="nav-item" id = "productosManager">
+            <a class="nav-link" href="@Url.Action("Index","ProductosManager")">
+                <i class="bi bi-gear"></i>
+                <span class="menu-title">&nbsp;&nbsp;@Resources.ManagerProducts </span>
+            </a>
+        </li>
+
+        <li class="nav-item" id="productosCliente">
+            <a class="nav-link" href="@Url.Action("Index","ProductosCliente")">
+                <i class="bi bi-search"></i>
+                <span class="menu-title">&nbsp;&nbsp;@Resources.Product </span>
             </a>
         </li>
     </ul>
@@ -107,8 +114,9 @@
 
  $(document).ready(function () {
     console.log("ready layout!");
-            GetCultureInfo();
+    GetCultureInfo();
     setTimeout(GetUsuarioLogeado,1000);
+    setTimeout(SetClassLi('active nav-item'), 1000);
 });
 
     
@@ -140,6 +148,11 @@
         }
     });
     return false;
+}
+
+
+function SetClassLi(class) {
+        $('li').addClass(class);
 }
 
 </script>
