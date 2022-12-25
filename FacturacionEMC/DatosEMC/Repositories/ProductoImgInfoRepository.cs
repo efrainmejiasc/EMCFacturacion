@@ -41,6 +41,7 @@ namespace DatosEMC.Repositories
                        Tamaño = info.Tamaño,
                        Peso = info.Peso,
                        Descripcion = info.Descripcion,
+                       Precio = Math.Round(info.Precio,2),
                        NombreImg = img.NombreArchivo,
                        Identificador = img.Identificador,
                        StrBase64  = img.StrBase64,
@@ -76,6 +77,7 @@ namespace DatosEMC.Repositories
                            Tamaño = info.Tamaño,
                            Peso = info.Peso,
                            Descripcion = info.Descripcion,
+                           Precio = Math.Round(info.Precio, 2),
                            InfoImg = this.db.ProductoImg.Where(x => x.ProductoImgInfoId == info.Id).ToList()
 
                        }).ToList();
@@ -96,6 +98,7 @@ namespace DatosEMC.Repositories
                            Tamaño = info.Tamaño,
                            Peso = info.Peso,
                            Descripcion = info.Descripcion,
+                           Precio = Math.Round(info.Precio, 2),
                            InfoImg = this.db.ProductoImg.Where(x => x.ProductoImgInfoId == info.Id).ToList()
 
                        }).ToList();

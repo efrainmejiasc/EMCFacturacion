@@ -31,7 +31,8 @@ namespace NegocioEMC.Services
                 Peso = model.Peso,
                 Descripcion = model.Descripcion,
                 Id = 0,
-                IdEmpresa = model.IdEmpresa
+                IdEmpresa = model.IdEmpresa,
+                Precio = model.Precio
             };
             modelo =  this.productoImgInfoRepository.InsertProductImgInfo(modelo);
 

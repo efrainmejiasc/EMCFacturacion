@@ -44,6 +44,7 @@ function UploadFileMethod() {
     var pesoArticulo = $('#pesoArticulo').val();
     var tamañoArticulo = $('#tamañoArticulo').val();
     var descripcionArticulo = $('#descripcionArticulo').val();
+    var precioArticulo = $('#precioArticulo').val();
     var messaje = '';
 
     if (files.length == 0) {
@@ -72,7 +73,7 @@ function UploadFileMethod() {
         timeout: 0,
         success: function (data) {
             if (data.estatus) {
-                SendParametrosImg(nombreArticulo, categoriaArticulo, pesoArticulo, tamañoArticulo, descripcionArticulo, data.nombres, data.identidades);
+                SendParametrosImg(nombreArticulo, categoriaArticulo, pesoArticulo, tamañoArticulo, descripcionArticulo,precioArticulo, data.nombres, data.identidades);
             }
             else {
                 var messaje = cultureInfo === 'es-ES' ? "Transaccion fallida" : "Failure transaction";
@@ -86,7 +87,7 @@ function UploadFileMethod() {
     return false;
 }
 
-function SendParametrosImg(nombreArticulo, categoriaArticulo, pesoArticulo, tamañoArticulo, descripcionArticulo, nombreImagenes, identidadesImagenes) {
+function SendParametrosImg(nombreArticulo, categoriaArticulo, pesoArticulo, tamañoArticulo, descripcionArticulo, precioArticulo,nombreImagenes, identidadesImagenes) {
 
     var productManagerImgDTO = {
         Id: 0,
@@ -94,7 +95,8 @@ function SendParametrosImg(nombreArticulo, categoriaArticulo, pesoArticulo, tama
         Categoria: categoriaArticulo,
         Peso: pesoArticulo,
         Tamaño: tamañoArticulo,
-        Descripcion : descripcionArticulo,
+        Descripcion: descripcionArticulo,
+        Precio: precioArticulo,
         NombresImg: nombreImagenes,
         Identidades: identidadesImagenes
     };
@@ -135,6 +137,7 @@ function GetImgInfoProductosUploads(id) {
     var tamaño = cultureInfo === 'es-ES' ? "Tamaño" : "Size";
     var peso = cultureInfo === 'es-ES' ? "Peso" : "Weight";
     var descripcion = cultureInfo === 'es-ES' ? "Descripcion" : "Description";
+    var precio = cultureInfo === 'es-ES' ? "Precio" : "Price";
 
     $.ajax({
         url: urlGetImgInfoProductosUploads,
@@ -147,6 +150,7 @@ function GetImgInfoProductosUploads(id) {
                 var car =  `<div class=col-md-12>
                               <span> ${nombre}: </span> <span> ${data[0].nombre} </span><br>
                               <span> ${categoria}: </span> <span> ${data[0].categoria} </span><br>
+                              <span> ${precio}: </span> <span> ${data[0].precio} </span><br>
                               <span> ${tamaño}: </span> <span> ${data[0].tamaño} </span><br>
                               <span> ${peso}: </span> <span> ${data[0].peso} </span><br>
                               <span> ${descripcion}: </span> <span> ${data[0].descripcion}</span><br><br>
@@ -178,4 +182,5 @@ function ResetForm() {
      $('#pesoArticulo').val('');
      $('#tamañoArticulo').val('');
      $('#descripcionArticulo').val('');
+     $('#precioArticulo').val('');
 }

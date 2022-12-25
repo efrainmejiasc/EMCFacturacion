@@ -24,7 +24,9 @@ function BuscarProducto() {
     var tamaño = cultureInfo === 'es-ES' ? "Tamaño" : "Size";
     var peso = cultureInfo === 'es-ES' ? "Peso" : "Weight";
     var descripcion = cultureInfo === 'es-ES' ? "Descripcion" : "Description";
-    var ids =  [];
+    var precio = cultureInfo === 'es-ES' ? "Precio" : "Price";
+    var ids = [];
+
     $.ajax({
         url: urlGetInfoProducto,
         data: {strProducto: strProducto},
@@ -40,6 +42,7 @@ function BuscarProducto() {
                         var car = `<hr /><div class=col-md-6>
                               <span> ${nombre}: </span> <span> ${item.nombre} </span><br>
                               <span> ${categoria}: </span> <span> ${item.categoria} </span><br>
+                              <span> ${precio}: </span> <span> ${item.precio} </span><br>
                               <span> ${tamaño}: </span> <span> ${item.tamaño} </span><br>
                               <span> ${peso}: </span> <span> ${item.peso} </span><br>
                               <span> ${descripcion}: </span> <span> ${item.descripcion}</span><br><br>

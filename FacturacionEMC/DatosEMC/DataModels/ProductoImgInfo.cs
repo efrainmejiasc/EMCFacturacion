@@ -33,5 +33,8 @@ namespace DatosEMC.DataModels
 
         [Column(Order = 7, TypeName = "INT")]
         public int IdEmpresa { get; set; }
+
+        [Column(Order = 8, TypeName = "MONEY")]
+        public decimal Precio{ get; set; }
     }
 }

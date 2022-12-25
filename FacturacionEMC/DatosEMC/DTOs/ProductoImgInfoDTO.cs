@@ -18,5 +18,6 @@ namespace DatosEMC.DTOs
         public string Peso { get; set; }
         public string Tamaño { get; set; }
         public string Descripcion { get; set; }
+        public decimal Precio{ get; set; }
     }
 }

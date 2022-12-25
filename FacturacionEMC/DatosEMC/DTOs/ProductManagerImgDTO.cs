@@ -19,6 +19,7 @@ namespace DatosEMC.DTOs
         public string Identificador { get; set; }
         public string Ubicacion { get; set; }
         public string NombreImg { get; set; }
+        public  decimal Precio { get; set; }
         public List<string> Identidades { get; set; }
         public List<string> NombresImg { get; set; }
         public List<DatosEMC.DataModels.ProductoImg> InfoImg { get; set; }
