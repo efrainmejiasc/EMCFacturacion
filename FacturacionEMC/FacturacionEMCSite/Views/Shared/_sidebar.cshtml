@@ -4,6 +4,13 @@
   <script src="~/lib/jquery/dist/jquery.min.js"></script>
 }
 
+<style>
+
+    ul,li,a:hover {
+        background-color: #5ABE33;
+    }
+</style>
+
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
     <ul class="nav nav-height">
         <li class="nav-item nav-profile border-bottom">
@@ -111,12 +118,13 @@
 <script>
 
     var urlGetCultureInfo = '@Url.Action("GetCultureInfo","Empresa")';
+    var lis1 = ['#tablero', '#resumenFV', '#resumenFC', '#asignacion', '#logout', '#usuario', '#facturaVenta', '#facturaCompra', '#stock', '#inicioFacturacion', '#productosManager', '#productosCliente'];
 
  $(document).ready(function () {
     console.log("ready layout!");
     GetCultureInfo();
     setTimeout(GetUsuarioLogeado,1000);
-        setTimeout(SetClassLi, 1000, 'active nav-item');
+     SetClassLi('active nav-item');
 });
 
     
@@ -152,8 +160,14 @@
 
 
 function SetClassLi(classe) {
-        $('li').addClass(classe);
+
+       for(var i = 0; i < lis1.length ; i++){
+            $(lis1[i]).addClass(classe);
+            console.log(lis1[i]);
+       }
 }
+
+
 
 </script>
 
