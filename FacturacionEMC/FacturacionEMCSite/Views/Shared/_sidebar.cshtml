@@ -1,66 +1,8 @@
-﻿
+﻿@using FacturacionEMCSite.StringResources;
 
 @{ 
   <script src="~/lib/jquery/dist/jquery.min.js"></script>
 }
-
-        @*<nav class="sidebar sidebar-offcanvas" id="sidebar">
-            <ul class="nav nav-height">
-
-                <li class="nav-item nav-profile border-bottom">
-                    <a href="#" class="nav-link flex-column">
-                        <div class="nav-profile-text d-flex ms-0 mb-3 flex-column">
-                            <span class="font-weight-semibold mb-1 mt-2 text-center" style="font-size:14px;">@usuario.Nombre</span>
-                            <span class="text-secondary icon-sm text-center" style="font-size:14px;">@usuario.Email</span>
-                        </div>
-                    </a>
-                </li>
-
-                <li class="pt-2 pb-1 text-center">
-                    <span class="nav-item-head">Principal</span>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="@Url.Action("Index","Documento")">
-                        <i class="mdi mdi-file-check menu-icon"></i>
-                        <span class="menu-title"> Gastos </span>
-                    </a>
-                </li>
-
-
-                <li class="nav-item">
-                    <a class="nav-link" href="@Url.Action("Index","RefDocumento")">
-                        <i class="mdi mdi-file menu-icon"></i>
-                        <span class="menu-title"> Requerimientos </span>
-                    </a>
-                </li>
-
-                @if (!snProveedor)
-                {
-                    <li class="nav-item">
-                        <a class="nav-link" href="@Url.Action("Index","Usuario")">
-                            <i class="fa fa-group menu-icon"></i>
-                            <span class="menu-title"> Usuarios </span>
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="@Url.Action("Index","Proveedor")">
-                            <i class="fa fa-user-circle menu-icon"></i>
-                            <span class="menu-title">Proveedores</span>
-                        </a>
-                    </li>
-                }
-
-                <li class="nav-item">
-                    <a class="nav-link" href="@Url.Action("Logout","Home")">
-                        <i class="mdi mdi-exponent-box"></i>
-                        <span class="menu-title">Salir</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>*@
-
 
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
     <ul class="nav nav-height">
@@ -81,53 +23,80 @@
             <span class="nav-item-head">Principal</span>
         </li>
 
-     
-            <li class="nav-item">
-                <a class="nav-link" href="@Url.Action("Registro","Home")">
-                    <i class="mdi mdi-file-check menu-icon"></i>
-                    <span class="menu-title"> Registro </span>
-                </a>
-            </li>
-
-       
-
-       
-            <li class="nav-item">
-                <a class="nav-link" href="@Url.Action("ResponsabledeFamilia","Home")">
-                    <i class="mdi mdi-file-check menu-icon"></i>
-                    <span class="menu-title"> Resposable Familia</span>
-                </a>
-            </li>
-
-     
-            <li class="nav-item">
-                <a class="nav-link" href="@Url.Action("CorredorHumanitario","Home")">
-                    <i class="mdi mdi-exponent-box menu-icon"></i>
-                    <span class="menu-title"> Corredor Humanitario </span>
-                </a>
-            </li>
- 
-
-      
-            <li class="nav-item">
-                <a class="nav-link" href="@Url.Action("CargaFamiliar","Home")">
-                    <i class="fa fa-group menu-icon"></i>
-                    <span class="menu-title"> Carga Familiar </span>
-                </a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="@Url.Action("Vivienda","Home")">
-                    <i class="fa fa-user-circle menu-icon"></i>
-                    <span class="menu-title">Vivienda</span>
-                </a>
-            </li>
-     
+        <li class="nav-item">
+            <a class="nav-link" href="@Url.Action("Index","Home")">
+                <i class="mdi mdi-file-check menu-icon"></i>
+                <span class="menu-title"> @Resources.LogOut </span>
+            </a>
+        </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="@Url.Action("SoloParaUsodelGestorylaFundacion","Home")">
+            <a class="nav-link" href="@Url.Action("Index","Usuario")">
+                <i class="mdi mdi-file-check menu-icon"></i>
+                <span class="menu-title"> @Resources.Users</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="@Url.Action("About","Home")">
+                <i class="mdi mdi-exponent-box menu-icon"></i>
+                <span class="menu-title"> @Resources.Dashboard </span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="@Url.Action("Index","FacturaVenta")">
+                <i class="fa fa-group menu-icon"></i>
+                <span class="menu-title"> @Resources.SalesRecord </span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="@Url.Action("Index","FacturaCompra")">
+                <i class="fa fa-user-circle menu-icon"></i>
+                <span class="menu-title">@Resources.PurchasesRecord</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="@Url.Action("About","FacturaVenta")">
                 <i class="mdi mdi-account-key"></i>
-                <span class="menu-title"> Fundacion</span>
+                <span class="menu-title"> @Resources.SalesSummary </span>
+            </a>
+        </li>
+
+         <li class="nav-item">
+            <a class="nav-link" href="@Url.Action("About","FacturaCompra")">
+                <i class="mdi mdi-account-key"></i>
+                <span class="menu-title"> @Resources.PurchasesSummary </span>
+            </a>
+        </li>
+
+         <li class="nav-item">
+            <a class="nav-link" href="@Url.Action("Index","Inventario")">
+                <i class="mdi mdi-account-key"></i>
+                <span class="menu-title"> @Resources.Stock </span>
+            </a>
+        </li>
+
+         <li class="nav-item">
+            <a class="nav-link" href="@Url.Action("About","Inventario")">
+                <i class="mdi mdi-account-key"></i>
+                <span class="menu-title"> @Resources.Assignments </span>
+            </a>
+        </li>
+
+         <li class="nav-item">
+            <a class="nav-link" href="@Url.Action("Index","InicioFacturacion")">
+                <i class="mdi mdi-account-key"></i>
+                <span class="menu-title"> @Resources.HomeBilling</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="@Url.Action("Index","ProductoManager")">
+                <i class="mdi mdi-account-key"></i>
+                <span class="menu-title">@Resources.ManagerProducts </span>
             </a>
         </li>
     </ul>
@@ -139,7 +108,7 @@
  $(document).ready(function () {
     console.log("ready layout!");
             GetCultureInfo();
-   // setTimeout(GetUsuarioLogeado,1000);
+    setTimeout(GetUsuarioLogeado,1000);
 });
 
     
@@ -160,7 +129,7 @@
 
     function GetUsuarioLogeado() {
 
-        var urlGetUsuarioLogeado = '@Url.Action("GetUsuarioLogeado","Login")';
+        var urlGetUsuarioLogeado = '@Url.Action("GetUsuarioLogger","Usuario")';
     $.ajax({
         type: "GET",
         url: urlGetUsuarioLogeado,
