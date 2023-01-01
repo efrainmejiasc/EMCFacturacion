@@ -13,17 +13,24 @@ namespace NegocioEMC.Commons
     public class EngineImg
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Interoperability", "CA1416:Validar la compatibilidad de la plataforma", Justification = "<pendiente>")]
-        public static void MarcaDeAgua(string path, string pathName)
+        public static Bitmap MarcaDeAgua(Bitmap bmp)
         {
-            Image image = Image.FromFile(path);
-            Bitmap bmp = new Bitmap(image);
+            //Image image = Image.FromFile(path);
+            //Bitmap bmp = new Bitmap(image);
             Graphics graphicsobj = Graphics.FromImage(bmp);
             Brush brush = new SolidBrush(Color.FromArgb(80, 255, 255, 255));
-            Point postionWaterMark = new Point((bmp.Width / 9), (bmp.Height - 50));
-            graphicsobj.DrawString("www.productos.cl", new System.Drawing.Font("Arial", 30, FontStyle.Bold, GraphicsUnit.Pixel), brush, postionWaterMark);
-            Image img = (Image)bmp;
-            img.Save(pathName, System.Drawing.Imaging.ImageFormat.Jpeg);
+            //Brush brush = new SolidBrush(Color.Red);
+            var pointX = 5;
+            var pointY = bmp.Height / 2 ;
+            Point postionWaterMark = new Point(pointX, pointY);
+           // graphicsobj.RotateTransform(-45.0f);
+            graphicsobj.DrawString("www.emcids.com", new System.Drawing.Font("Arial", 30, FontStyle.Bold, GraphicsUnit.Pixel), brush, postionWaterMark);
+            //Image img = bmp as Image;
+            //Image img = bmp as Image
+            //img.Save(path, System.Drawing.Imaging.ImageFormat.Jpeg);
             graphicsobj.Dispose();
+
+            return bmp;
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Interoperability", "CA1416:Validar la compatibilidad de la plataforma", Justification = "<pendiente>")]
@@ -52,9 +59,7 @@ namespace NegocioEMC.Commons
 
             return destImage;
         }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Interoperability", "CA1416:Validar la compatibilidad de la plataforma", Justification = "<pendiente>")]
-
+ 
         public static string ConvertImageToBase64Str(string path)
         {
             var contents = System.IO.File.ReadAllBytes(path);

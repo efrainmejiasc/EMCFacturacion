@@ -39,19 +39,19 @@ function BuscarProducto() {
                 $.each(data, function (index, item) {
                     if (!ids.includes(item.id)) {
                         ids.push(item.id);
-                        var car = `<hr /><div class=col-md-6>
+                        var car = `<hr /> <div class=card-body><div class=col-md-12>
                               <span> ${nombre}: </span> <span> ${item.nombre} </span><br>
                               <span> ${categoria}: </span> <span> ${item.categoria} </span><br>
                               <span> ${precio}: </span> <span> ${item.precio} </span><br>
                               <span> ${tamaño}: </span> <span> ${item.tamaño} </span><br>
                               <span> ${peso}: </span> <span> ${item.peso} </span><br>
                               <span> ${descripcion}: </span> <span> ${item.descripcion}</span><br><br>
-                              </div>  <hr />`;
+                              </div> </div><br><br> <hr />`;
                         $('#imgns').append(car);
                         $.each(item.infoImg, function (index, itemn) {
-                            let img = `<div class=col-md-6>
-                                 <img  id='${itemn.identificador}' src='${itemn.strBase64}' class=img-thumbnail style='height:150px;weight=130px;' />
-                              </div>`;
+                            let img = `<div class=card-body product-preview slick-slide slick-current slick-active > <div class=col-md-12 >
+                                 <img  id='${itemn.identificador}' src='${itemn.strBase64}' class=img-thumbnail style=top:50.6667px;opacity: 0;width:200px;height:200px;border:none;max-width:none;max-height:none; />
+                              </div> </div><br><br>`;
                             $('#imgns').append(img);
                         });
                     }

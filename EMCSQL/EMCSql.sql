@@ -20,6 +20,9 @@ SELECT * FROM TipoFactura
 SELECT * FROM ProductoImgInfo
 SELECT * FROM ProductoImg
 
+DELETE ProductoImgInfo WHERE Id <= 10
+DELETE  ProductoImg WHERE ProductoImgInfoId <> 1004
+
 TRUNCATE TABLE ProductoImgInfo
 TRUNCATE TABLE ProductoImg
 

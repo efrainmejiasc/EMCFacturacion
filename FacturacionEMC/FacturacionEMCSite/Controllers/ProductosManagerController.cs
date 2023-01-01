@@ -3,6 +3,7 @@ using EMCApi.Client;
 using FacturacionEMCSite.Application;
 using FacturacionEMCSite.Models;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Hosting.Server;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NegocioEMC.Commons;
@@ -10,6 +11,10 @@ using NegocioEMC.IServices;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace FacturacionEMCSite.Controllers
@@ -44,6 +49,7 @@ namespace FacturacionEMCSite.Controllers
             return View();
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Interoperability", "CA1416:Validar la compatibilidad de la plataforma", Justification = "<pendiente>")]
         [HttpPost]
         public IActionResult UploadDataImg(List<IFormFile> files)
         {
@@ -67,12 +73,28 @@ namespace FacturacionEMCSite.Controllers
 
                         EngineTool.CreateFolder(this._webHostEnvironment.WebRootPath, AppMethods.PathFolderImgProducts, strIdentificador);
                         var pathReadFile = this._webHostEnvironment.WebRootPath + AppMethods.PathFolderImgProducts + strIdentificador + "\\" + name;
-                        var stream = System.IO.File.Create(pathReadFile);
+                        /*var stream = System.IO.File.Create(pathReadFile);
                         file.CopyTo(stream);
-                        stream.Dispose();
+                        stream.Dispose();*/
+
+                        var image = Image.FromStream(file.OpenReadStream());
+                        var bm = new Bitmap(image, new Size(300, 300));
+                        bm = EngineImg.MarcaDeAgua(bm);
+
+                        using (var imageStream = new MemoryStream())
+                        {
+                            bm.Save(imageStream, ImageFormat.Jpeg);
+                            var imageBytes = imageStream.ToArray();
+                            using (var ms = new MemoryStream(imageBytes))
+                            {
+                                using (var fs = new FileStream(pathReadFile, FileMode.Create))
+                                {
+                                    ms.WriteTo(fs);
+                                }
+                            }
+                        }
                     }
                 }
-
                 response.Estatus = true;
                 response.Descripcion = "EXITO";
             }
