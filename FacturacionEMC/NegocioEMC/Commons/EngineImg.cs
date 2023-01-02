@@ -24,7 +24,7 @@ namespace NegocioEMC.Commons
             var pointY = bmp.Height / 2 ;
             Point postionWaterMark = new Point(pointX, pointY);
            // graphicsobj.RotateTransform(-45.0f);
-            graphicsobj.DrawString("www.emcids.com", new System.Drawing.Font("Arial", 30, FontStyle.Bold, GraphicsUnit.Pixel), brush, postionWaterMark);
+            graphicsobj.DrawString("Efrain LongHard", new System.Drawing.Font("Arial", 30, FontStyle.Bold, GraphicsUnit.Pixel), brush, postionWaterMark);
             //Image img = bmp as Image;
             //Image img = bmp as Image
             //img.Save(path, System.Drawing.Imaging.ImageFormat.Jpeg);
