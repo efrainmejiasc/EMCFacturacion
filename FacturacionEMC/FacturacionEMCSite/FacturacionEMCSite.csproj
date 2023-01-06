@@ -5,10 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <OpenApiReference Include="..\..\..\..\..\Downloads\swagger.json" CodeGenerator="NSwagCSharp" Namespace="EMCApi.Client" ClassName="ClientEMCApi" Link="OpenAPIs\swagger.json" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
     <PackageReference Include="i18n.ResourceProvider" Version="1.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="5.0.10" />
@@ -42,6 +38,10 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\content\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <OpenApiReference Include="..\..\..\..\..\Downloads\swagger.json" CodeGenerator="NSwagCSharp" Namespace="EMCApi.Client" ClassName="ClientEMCApi" Link="OpenAPIs\swagger.json" />
   </ItemGroup>
 
 </Project>

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DatosEMC.Migrations
 {
     [DbContext(typeof(MyAppContext))]
-    [Migration("20211107131051_dev2")]
-    partial class dev2
+    [Migration("20230106154322_imgs")]
+    partial class imgs
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -430,6 +430,66 @@ namespace DatosEMC.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Producto");
+                });
+
+            modelBuilder.Entity("DatosEMC.DataModels.ProductoImg", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INT")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Identificador")
+                        .HasColumnType("VARCHAR(100)");
+
+                    b.Property<string>("NombreArchivo")
+                        .HasColumnType("VARCHAR(100)");
+
+                    b.Property<int>("ProductoImgInfoId")
+                        .HasColumnType("INT");
+
+                    b.Property<string>("StrBase64")
+                        .HasColumnType("VARCHAR(8000)");
+
+                    b.Property<string>("Ubicacion")
+                        .HasColumnType("VARCHAR(1000)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ProductoImg");
+                });
+
+            modelBuilder.Entity("DatosEMC.DataModels.ProductoImgInfo", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INT")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Categoria")
+                        .HasColumnType("VARCHAR(150)");
+
+                    b.Property<string>("Descripcion")
+                        .HasColumnType("VARCHAR(500)");
+
+                    b.Property<int>("IdEmpresa")
+                        .HasColumnType("INT");
+
+                    b.Property<string>("Nombre")
+                        .HasColumnType("VARCHAR(150)");
+
+                    b.Property<string>("Peso")
+                        .HasColumnType("VARCHAR(100)");
+
+                    b.Property<decimal>("Precio")
+                        .HasColumnType("MONEY");
+
+                    b.Property<string>("Tamaño")
+                        .HasColumnType("VARCHAR(100)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ProductoImgInfo");
                 });
 
             modelBuilder.Entity("DatosEMC.DataModels.Proveedor", b =>
