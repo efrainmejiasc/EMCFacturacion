@@ -9,15 +9,15 @@ $(document).ready(function () {
 function DocumentoListo() {
     var obje = $(document).find('#cultureInfo').prop('disabled', true);
     cultureInfo = $('#cultureInfo').val();
-    GetProductos();
     console.log(cultureInfo);
+    GetInfoImagenes();
 }
 
-function GetFacturas() {
+function GetInfoImagenes() {
 
     $.ajax({
         type: "GET",
-        url: urlGetInfoImg,
+        url: urlGetProductAllImgInfoAsync,
         datatype: "json",
         success: function (data) {
             if (data != null) {
@@ -25,11 +25,11 @@ function GetFacturas() {
                 $.each(data, function (index, item) {
                     let tr = `<tr>
                       <td> ${item.id} </td>
-                      <td> ${item.categoria} </td>
                       <td> ${item.descripcion} </td>
-                      <td> <img  id='${item.identificador}' src='${item.strBase64}' class=img-thumbnail style='height:80px;weight=80px;' /></td>
-                      <td> <input type=button class=btn btn-primary value=EDITAR /> </td>
-                      <td> <input type=button class=btn btn-primary value=ELIMINAR /> </td>
+                      <td> ${item.categoria} </td>
+                      <td> <img  id='${item.id}' src='${item.strBase64}'  class="img-fluid img-thumbnail" style="width:70%; min-width:70px; min-height:50px; height:auto;"/></td>
+                      <td>  <input type="button" onclick="Editar();" class="btn btn-warning" value="Editar" /> </td>
+                      <td>  <input type="button" onclick="Eliminar();" class="btn btn-danger" value="Eliminar"  /> </td>
                       </tr>`;
                     $('#tablaImg tbody').append(tr);
                 });

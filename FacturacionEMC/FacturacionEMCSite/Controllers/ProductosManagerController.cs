@@ -49,6 +49,16 @@ namespace FacturacionEMCSite.Controllers
             return View();
         }
 
+        public IActionResult About()
+        {
+            if (this.usuario == null)
+                return RedirectToAction("Index", "Home");
+            else if (this.usuario.Id == 2 || this.usuario.Id == 3)
+                return RedirectToAction("Index", "Home");
+
+            return View();
+        }
+
         #region UPLOAD_PRODUCTO_MANAGER
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Interoperability", "CA1416:Validar la compatibilidad de la plataforma", Justification = "<pendiente>")]
@@ -167,25 +177,25 @@ namespace FacturacionEMCSite.Controllers
 
         #region EDIT_PRODUCTO_MANAGER
 
-        //[HttpGet]
+        [HttpGet]
 
-        //public async Task<IActionResult> GetInfoProducto(string strProducto)
-        //{
-        //    var imgInfoProductos = new List<EMCApi.Client.ProductManagerEditImgDTO>();
-        //    try
-        //    {
-        //        imgInfoProductos = await this.clientApi.GetProductImgInfoExtendAsync(strProducto) as List<EMCApi.Client.ProductManagerImgDTO>;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        var response = new RespuestaModel();
-        //        response.Estatus = false;
-        //        response.Descripcion = ex.Message;
-        //        return Json(response);
-        //    }
+        public async Task<IActionResult> GetProductAllImgInfoAsync()
+        {
+            var imgInfoProductos = new List<EMCApi.Client.ProductManagerImgDTO>();
+            try
+            {
+                imgInfoProductos = await this.clientApi.GetProductAllImgInfoAsync(this.usuario.Id) as List<EMCApi.Client.ProductManagerImgDTO>;
+            }
+            catch (Exception ex)
+            {
+                var response = new RespuestaModel();
+                response.Estatus = false;
+                response.Descripcion = ex.Message;
+                return Json(response);
+            }
 
-        //    return Json(imgInfoProductos);
-        //}
+            return Json(imgInfoProductos);
+        }
 
         #endregion
 

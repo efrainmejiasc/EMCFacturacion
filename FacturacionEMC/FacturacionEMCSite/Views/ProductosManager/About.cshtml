@@ -8,22 +8,29 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 }
 <script>
-    var urlUploadDataImg = '@Url.Action("UploadDataImg", "ProductosManager")';
+    var urlGetProductAllImgInfoAsync = '@Url.Action("GetProductAllImgInfo", "ProductosManager")';
 </script>
+
+<style>
+    img:hover{
+        -webkit-transform: scale(0.8);
+        transform: scale(0.8);
+    }
+</style>
 
 <div class="card" style="margin-top:5%;">
     <div class="card-body">
         <div class="form-horizontal" style="color:dimgray">
 
-            <table id="tablaLineas" class="display compact dt-center table table-striped table-light" style="width:100%">
+            <table id="tablaImg" class="display compact dt-center table table-striped table-light" style="width:100%">
                 <thead class="thead-dark">
                     <tr>
-                        <th style="display:none;">Nº</th>
+                        <th>Nº</th>
                         <th>@Resources.Article</th>
                         <th>@Resources.Description</th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
+                        <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp</th>
+                        <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp</th>
+                        <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp</th>
                     </tr>
                 </thead>
                 <tbody>
