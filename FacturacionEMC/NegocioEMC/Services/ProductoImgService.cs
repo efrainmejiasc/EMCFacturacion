@@ -50,5 +50,12 @@ namespace NegocioEMC.Services
             else
                 return EngineService.SetGenericResponse(false, "No se pudo registrar la información");
         }
+
+
+        public List<ProductManagerImgDTO> GetAllProductImgInfo(int id)
+        {
+            return this.productoImgRepository.GetAllProductImgInfo(id);
+        }
+
     }
 }
