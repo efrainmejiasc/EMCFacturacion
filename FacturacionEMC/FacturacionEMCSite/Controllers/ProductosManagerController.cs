@@ -49,6 +49,8 @@ namespace FacturacionEMCSite.Controllers
             return View();
         }
 
+        #region UPLOAD_PRODUCTO_MANAGER
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Interoperability", "CA1416:Validar la compatibilidad de la plataforma", Justification = "<pendiente>")]
         [HttpPost]
         public IActionResult UploadDataImg(List<IFormFile> files)
@@ -98,7 +100,7 @@ namespace FacturacionEMCSite.Controllers
                 response.Estatus = true;
                 response.Descripcion = "EXITO";
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 response.Descripcion = ex.Message;
             }
@@ -112,7 +114,7 @@ namespace FacturacionEMCSite.Controllers
         {
             var response = new RespuestaModel();
             response.Estatus = false;
-          
+
             try
             {
                 var productoImgInfo = AppMethods.SetProductImgInfo(productManagerImgDTO, this.usuario.IdEmpresa);
@@ -149,7 +151,7 @@ namespace FacturacionEMCSite.Controllers
             var imgInfoProductos = new List<EMCApi.Client.ProductManagerImgDTO>();
             try
             {
-                imgInfoProductos = await this.clientApi.GetProductImgInfoAsync(id) as List<EMCApi.Client.ProductManagerImgDTO> ;
+                imgInfoProductos = await this.clientApi.GetProductImgInfoAsync(id) as List<EMCApi.Client.ProductManagerImgDTO>;
             }
             catch (Exception ex)
             {
@@ -161,5 +163,32 @@ namespace FacturacionEMCSite.Controllers
 
             return Json(imgInfoProductos);
         }
+        #endregion
+
+        #region EDIT_PRODUCTO_MANAGER
+
+        //[HttpGet]
+
+        //public async Task<IActionResult> GetInfoProducto(string strProducto)
+        //{
+        //    var imgInfoProductos = new List<EMCApi.Client.ProductManagerEditImgDTO>();
+        //    try
+        //    {
+        //        imgInfoProductos = await this.clientApi.GetProductImgInfoExtendAsync(strProducto) as List<EMCApi.Client.ProductManagerImgDTO>;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        var response = new RespuestaModel();
+        //        response.Estatus = false;
+        //        response.Descripcion = ex.Message;
+        //        return Json(response);
+        //    }
+
+        //    return Json(imgInfoProductos);
+        //}
+
+        #endregion
+
+
     }
 }

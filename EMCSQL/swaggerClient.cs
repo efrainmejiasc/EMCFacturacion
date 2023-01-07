@@ -10,10 +10,13 @@
 #pragma warning disable 1573 // Disable "CS1573 Parameter '...' has no matching param tag in the XML comment for ...
 #pragma warning disable 1591 // Disable "CS1591 Missing XML comment for publicly visible type or member ..."
 
+using DatosEMC.DataModels;
+using System.Collections.Generic;
+
 namespace EMCApi.Client
 {
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.0.5.0 (NJsonSchema v10.0.22.0 (Newtonsoft.Json v11.0.0.0))")]
-    public partial class ClientEMCApi 
+    public partial class ClientEMCApi
     {
         private string _baseUrl = "";
         private System.Net.Http.HttpClient _httpClient;
@@ -40,36 +43,36 @@ namespace EMCApi.Client
 
         public ClientEMCApi(string baseUrl, System.Net.Http.HttpClient httpClient)
         {
-            BaseUrl = baseUrl; 
-            _httpClient = httpClient; 
-            _settings = new System.Lazy<Newtonsoft.Json.JsonSerializerSettings>(() => 
+            BaseUrl = baseUrl;
+            _httpClient = httpClient;
+            _settings = new System.Lazy<Newtonsoft.Json.JsonSerializerSettings>(() =>
             {
                 var settings = new Newtonsoft.Json.JsonSerializerSettings();
                 UpdateJsonSerializerSettings(settings);
                 return settings;
             });
         }
-    
-        public string BaseUrl 
+
+        public string BaseUrl
         {
             get { return _baseUrl; }
             set { _baseUrl = value; }
         }
-    
+
         protected Newtonsoft.Json.JsonSerializerSettings JsonSerializerSettings { get { return _settings.Value; } }
-    
+
         partial void UpdateJsonSerializerSettings(Newtonsoft.Json.JsonSerializerSettings settings);
         partial void PrepareRequest(System.Net.Http.HttpClient client, System.Net.Http.HttpRequestMessage request, string url);
         partial void PrepareRequest(System.Net.Http.HttpClient client, System.Net.Http.HttpRequestMessage request, System.Text.StringBuilder urlBuilder);
         partial void ProcessResponse(System.Net.Http.HttpClient client, System.Net.Http.HttpResponseMessage response);
-    
+
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public System.Threading.Tasks.Task<AccessToken> LoginAsync(CredencialesDTO body)
         {
             return LoginAsync(body, System.Threading.CancellationToken.None);
         }
-    
+
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
@@ -77,7 +80,7 @@ namespace EMCApi.Client
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Autentificacion/Login");
-    
+
             var client_ = _httpClient;
             try
             {
@@ -88,12 +91,12 @@ namespace EMCApi.Client
                     request_.Content = content_;
                     request_.Method = new System.Net.Http.HttpMethod("POST");
                     request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("text/plain"));
-    
+
                     PrepareRequest(client_, request_, urlBuilder_);
                     var url_ = urlBuilder_.ToString();
                     request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
                     PrepareRequest(client_, request_, url_);
-    
+
                     var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
                     try
                     {
@@ -103,17 +106,17 @@ namespace EMCApi.Client
                             foreach (var item_ in response_.Content.Headers)
                                 headers_[item_.Key] = item_.Value;
                         }
-    
+
                         ProcessResponse(client_, response_);
-    
+
                         var status_ = ((int)response_.StatusCode).ToString();
-                        if (status_ == "200") 
+                        if (status_ == "200")
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<AccessToken>(response_, headers_).ConfigureAwait(false);
                             return objectResponse_.Object;
                         }
                         else
-                        if (status_ == "400") 
+                        if (status_ == "400")
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<ProblemDetails>(response_, headers_).ConfigureAwait(false);
                             throw new ApiException<ProblemDetails>("Bad Request", (int)response_.StatusCode, objectResponse_.Text, headers_, objectResponse_.Object, null);
@@ -121,10 +124,10 @@ namespace EMCApi.Client
                         else
                         if (status_ != "200" && status_ != "204")
                         {
-                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
                             throw new ApiException("The HTTP status code of the response was not expected (" + (int)response_.StatusCode + ").", (int)response_.StatusCode, responseData_, headers_, null);
                         }
-            
+
                         return default(AccessToken);
                     }
                     finally
@@ -138,14 +141,14 @@ namespace EMCApi.Client
             {
             }
         }
-    
+
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public System.Threading.Tasks.Task<GenericResponse> PostClienteAsync(ClienteDTO body)
         {
             return PostClienteAsync(body, System.Threading.CancellationToken.None);
         }
-    
+
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
@@ -153,7 +156,7 @@ namespace EMCApi.Client
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Cliente");
-    
+
             var client_ = _httpClient;
             try
             {
@@ -164,12 +167,12 @@ namespace EMCApi.Client
                     request_.Content = content_;
                     request_.Method = new System.Net.Http.HttpMethod("POST");
                     request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("text/plain"));
-    
+
                     PrepareRequest(client_, request_, urlBuilder_);
                     var url_ = urlBuilder_.ToString();
                     request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
                     PrepareRequest(client_, request_, url_);
-    
+
                     var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
                     try
                     {
@@ -179,17 +182,17 @@ namespace EMCApi.Client
                             foreach (var item_ in response_.Content.Headers)
                                 headers_[item_.Key] = item_.Value;
                         }
-    
+
                         ProcessResponse(client_, response_);
-    
+
                         var status_ = ((int)response_.StatusCode).ToString();
-                        if (status_ == "200") 
+                        if (status_ == "200")
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<GenericResponse>(response_, headers_).ConfigureAwait(false);
                             return objectResponse_.Object;
                         }
                         else
-                        if (status_ == "400") 
+                        if (status_ == "400")
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<GenericResponse>(response_, headers_).ConfigureAwait(false);
                             throw new ApiException<GenericResponse>("Bad Request", (int)response_.StatusCode, objectResponse_.Text, headers_, objectResponse_.Object, null);
@@ -197,10 +200,10 @@ namespace EMCApi.Client
                         else
                         if (status_ != "200" && status_ != "204")
                         {
-                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
                             throw new ApiException("The HTTP status code of the response was not expected (" + (int)response_.StatusCode + ").", (int)response_.StatusCode, responseData_, headers_, null);
                         }
-            
+
                         return default(GenericResponse);
                     }
                     finally
@@ -214,14 +217,14 @@ namespace EMCApi.Client
             {
             }
         }
-    
+
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public System.Threading.Tasks.Task<System.Collections.Generic.ICollection<ClienteDTO>> GetClientesAsync(int idEmpresa)
         {
             return GetClientesAsync(idEmpresa, System.Threading.CancellationToken.None);
         }
-    
+
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
@@ -229,11 +232,11 @@ namespace EMCApi.Client
         {
             if (idEmpresa == null)
                 throw new System.ArgumentNullException("idEmpresa");
-    
+
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Cliente/{idEmpresa}");
             urlBuilder_.Replace("{idEmpresa}", System.Uri.EscapeDataString(ConvertToString(idEmpresa, System.Globalization.CultureInfo.InvariantCulture)));
-    
+
             var client_ = _httpClient;
             try
             {
@@ -241,12 +244,12 @@ namespace EMCApi.Client
                 {
                     request_.Method = new System.Net.Http.HttpMethod("GET");
                     request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("text/plain"));
-    
+
                     PrepareRequest(client_, request_, urlBuilder_);
                     var url_ = urlBuilder_.ToString();
                     request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
                     PrepareRequest(client_, request_, url_);
-    
+
                     var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
                     try
                     {
@@ -256,17 +259,17 @@ namespace EMCApi.Client
                             foreach (var item_ in response_.Content.Headers)
                                 headers_[item_.Key] = item_.Value;
                         }
-    
+
                         ProcessResponse(client_, response_);
-    
+
                         var status_ = ((int)response_.StatusCode).ToString();
-                        if (status_ == "200") 
+                        if (status_ == "200")
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<System.Collections.Generic.ICollection<ClienteDTO>>(response_, headers_).ConfigureAwait(false);
                             return objectResponse_.Object;
                         }
                         else
-                        if (status_ == "400") 
+                        if (status_ == "400")
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<GenericResponse>(response_, headers_).ConfigureAwait(false);
                             throw new ApiException<GenericResponse>("Bad Request", (int)response_.StatusCode, objectResponse_.Text, headers_, objectResponse_.Object, null);
@@ -274,10 +277,10 @@ namespace EMCApi.Client
                         else
                         if (status_ != "200" && status_ != "204")
                         {
-                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
                             throw new ApiException("The HTTP status code of the response was not expected (" + (int)response_.StatusCode + ").", (int)response_.StatusCode, responseData_, headers_, null);
                         }
-            
+
                         return default(System.Collections.Generic.ICollection<ClienteDTO>);
                     }
                     finally
@@ -291,14 +294,14 @@ namespace EMCApi.Client
             {
             }
         }
-    
+
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public System.Threading.Tasks.Task<System.Collections.Generic.ICollection<EmpresaDTO>> GetEmpresasAsync()
         {
             return GetEmpresasAsync(System.Threading.CancellationToken.None);
         }
-    
+
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
@@ -306,7 +309,7 @@ namespace EMCApi.Client
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Empresa");
-    
+
             var client_ = _httpClient;
             try
             {
@@ -314,12 +317,12 @@ namespace EMCApi.Client
                 {
                     request_.Method = new System.Net.Http.HttpMethod("GET");
                     request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("text/plain"));
-    
+
                     PrepareRequest(client_, request_, urlBuilder_);
                     var url_ = urlBuilder_.ToString();
                     request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
                     PrepareRequest(client_, request_, url_);
-    
+
                     var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
                     try
                     {
@@ -329,17 +332,17 @@ namespace EMCApi.Client
                             foreach (var item_ in response_.Content.Headers)
                                 headers_[item_.Key] = item_.Value;
                         }
-    
+
                         ProcessResponse(client_, response_);
-    
+
                         var status_ = ((int)response_.StatusCode).ToString();
-                        if (status_ == "200") 
+                        if (status_ == "200")
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<System.Collections.Generic.ICollection<EmpresaDTO>>(response_, headers_).ConfigureAwait(false);
                             return objectResponse_.Object;
                         }
                         else
-                        if (status_ == "400") 
+                        if (status_ == "400")
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<GenericResponse>(response_, headers_).ConfigureAwait(false);
                             throw new ApiException<GenericResponse>("Bad Request", (int)response_.StatusCode, objectResponse_.Text, headers_, objectResponse_.Object, null);
@@ -347,10 +350,10 @@ namespace EMCApi.Client
                         else
                         if (status_ != "200" && status_ != "204")
                         {
-                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
                             throw new ApiException("The HTTP status code of the response was not expected (" + (int)response_.StatusCode + ").", (int)response_.StatusCode, responseData_, headers_, null);
                         }
-            
+
                         return default(System.Collections.Generic.ICollection<EmpresaDTO>);
                     }
                     finally
@@ -364,14 +367,14 @@ namespace EMCApi.Client
             {
             }
         }
-    
+
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public System.Threading.Tasks.Task<GenericResponse> PostFacturaCompraAsync(FacturaCompraDTO body)
         {
             return PostFacturaCompraAsync(body, System.Threading.CancellationToken.None);
         }
-    
+
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
@@ -379,7 +382,7 @@ namespace EMCApi.Client
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/FacturaCompra/PostFacturaCompra");
-    
+
             var client_ = _httpClient;
             try
             {
@@ -390,12 +393,12 @@ namespace EMCApi.Client
                     request_.Content = content_;
                     request_.Method = new System.Net.Http.HttpMethod("POST");
                     request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("text/plain"));
-    
+
                     PrepareRequest(client_, request_, urlBuilder_);
                     var url_ = urlBuilder_.ToString();
                     request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
                     PrepareRequest(client_, request_, url_);
-    
+
                     var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
                     try
                     {
@@ -405,17 +408,17 @@ namespace EMCApi.Client
                             foreach (var item_ in response_.Content.Headers)
                                 headers_[item_.Key] = item_.Value;
                         }
-    
+
                         ProcessResponse(client_, response_);
-    
+
                         var status_ = ((int)response_.StatusCode).ToString();
-                        if (status_ == "200") 
+                        if (status_ == "200")
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<GenericResponse>(response_, headers_).ConfigureAwait(false);
                             return objectResponse_.Object;
                         }
                         else
-                        if (status_ == "400") 
+                        if (status_ == "400")
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<GenericResponse>(response_, headers_).ConfigureAwait(false);
                             throw new ApiException<GenericResponse>("Bad Request", (int)response_.StatusCode, objectResponse_.Text, headers_, objectResponse_.Object, null);
@@ -423,10 +426,10 @@ namespace EMCApi.Client
                         else
                         if (status_ != "200" && status_ != "204")
                         {
-                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
                             throw new ApiException("The HTTP status code of the response was not expected (" + (int)response_.StatusCode + ").", (int)response_.StatusCode, responseData_, headers_, null);
                         }
-            
+
                         return default(GenericResponse);
                     }
                     finally
@@ -440,14 +443,14 @@ namespace EMCApi.Client
             {
             }
         }
-    
+
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public System.Threading.Tasks.Task<System.Collections.Generic.ICollection<FacturaCompraDTO>> GetFacturasComprasFechasAsync(int idEmpresa, System.DateTimeOffset fechaInicial, System.DateTimeOffset fechaFinal)
         {
             return GetFacturasComprasFechasAsync(idEmpresa, fechaInicial, fechaFinal, System.Threading.CancellationToken.None);
         }
-    
+
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
@@ -455,19 +458,19 @@ namespace EMCApi.Client
         {
             if (idEmpresa == null)
                 throw new System.ArgumentNullException("idEmpresa");
-    
+
             if (fechaInicial == null)
                 throw new System.ArgumentNullException("fechaInicial");
-    
+
             if (fechaFinal == null)
                 throw new System.ArgumentNullException("fechaFinal");
-    
+
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/FacturaCompra/GetFacturasComprasFechas/{idEmpresa}/{fechaInicial}/{fechaFinal}");
             urlBuilder_.Replace("{idEmpresa}", System.Uri.EscapeDataString(ConvertToString(idEmpresa, System.Globalization.CultureInfo.InvariantCulture)));
             urlBuilder_.Replace("{fechaInicial}", System.Uri.EscapeDataString(fechaInicial.ToString("s", System.Globalization.CultureInfo.InvariantCulture)));
             urlBuilder_.Replace("{fechaFinal}", System.Uri.EscapeDataString(fechaFinal.ToString("s", System.Globalization.CultureInfo.InvariantCulture)));
-    
+
             var client_ = _httpClient;
             try
             {
@@ -475,12 +478,12 @@ namespace EMCApi.Client
                 {
                     request_.Method = new System.Net.Http.HttpMethod("GET");
                     request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("text/plain"));
-    
+
                     PrepareRequest(client_, request_, urlBuilder_);
                     var url_ = urlBuilder_.ToString();
                     request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
                     PrepareRequest(client_, request_, url_);
-    
+
                     var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
                     try
                     {
@@ -490,17 +493,17 @@ namespace EMCApi.Client
                             foreach (var item_ in response_.Content.Headers)
                                 headers_[item_.Key] = item_.Value;
                         }
-    
+
                         ProcessResponse(client_, response_);
-    
+
                         var status_ = ((int)response_.StatusCode).ToString();
-                        if (status_ == "200") 
+                        if (status_ == "200")
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<System.Collections.Generic.ICollection<FacturaCompraDTO>>(response_, headers_).ConfigureAwait(false);
                             return objectResponse_.Object;
                         }
                         else
-                        if (status_ == "400") 
+                        if (status_ == "400")
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<GenericResponse>(response_, headers_).ConfigureAwait(false);
                             throw new ApiException<GenericResponse>("Bad Request", (int)response_.StatusCode, objectResponse_.Text, headers_, objectResponse_.Object, null);
@@ -508,10 +511,10 @@ namespace EMCApi.Client
                         else
                         if (status_ != "200" && status_ != "204")
                         {
-                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
                             throw new ApiException("The HTTP status code of the response was not expected (" + (int)response_.StatusCode + ").", (int)response_.StatusCode, responseData_, headers_, null);
                         }
-            
+
                         return default(System.Collections.Generic.ICollection<FacturaCompraDTO>);
                     }
                     finally
@@ -525,14 +528,14 @@ namespace EMCApi.Client
             {
             }
         }
-    
+
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public System.Threading.Tasks.Task<System.Collections.Generic.ICollection<FacturaCompraDTO>> GetFacturasComprasAsync(int idEmpresa)
         {
             return GetFacturasComprasAsync(idEmpresa, System.Threading.CancellationToken.None);
         }
-    
+
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
@@ -540,11 +543,11 @@ namespace EMCApi.Client
         {
             if (idEmpresa == null)
                 throw new System.ArgumentNullException("idEmpresa");
-    
+
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/FacturaCompra/GetFacturasCompras/{idEmpresa}");
             urlBuilder_.Replace("{idEmpresa}", System.Uri.EscapeDataString(ConvertToString(idEmpresa, System.Globalization.CultureInfo.InvariantCulture)));
-    
+
             var client_ = _httpClient;
             try
             {
@@ -552,12 +555,12 @@ namespace EMCApi.Client
                 {
                     request_.Method = new System.Net.Http.HttpMethod("GET");
                     request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("text/plain"));
-    
+
                     PrepareRequest(client_, request_, urlBuilder_);
                     var url_ = urlBuilder_.ToString();
                     request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
                     PrepareRequest(client_, request_, url_);
-    
+
                     var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
                     try
                     {
@@ -567,17 +570,17 @@ namespace EMCApi.Client
                             foreach (var item_ in response_.Content.Headers)
                                 headers_[item_.Key] = item_.Value;
                         }
-    
+
                         ProcessResponse(client_, response_);
-    
+
                         var status_ = ((int)response_.StatusCode).ToString();
-                        if (status_ == "200") 
+                        if (status_ == "200")
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<System.Collections.Generic.ICollection<FacturaCompraDTO>>(response_, headers_).ConfigureAwait(false);
                             return objectResponse_.Object;
                         }
                         else
-                        if (status_ == "400") 
+                        if (status_ == "400")
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<GenericResponse>(response_, headers_).ConfigureAwait(false);
                             throw new ApiException<GenericResponse>("Bad Request", (int)response_.StatusCode, objectResponse_.Text, headers_, objectResponse_.Object, null);
@@ -585,10 +588,10 @@ namespace EMCApi.Client
                         else
                         if (status_ != "200" && status_ != "204")
                         {
-                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
                             throw new ApiException("The HTTP status code of the response was not expected (" + (int)response_.StatusCode + ").", (int)response_.StatusCode, responseData_, headers_, null);
                         }
-            
+
                         return default(System.Collections.Generic.ICollection<FacturaCompraDTO>);
                     }
                     finally
@@ -602,14 +605,14 @@ namespace EMCApi.Client
             {
             }
         }
-    
+
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public System.Threading.Tasks.Task<GenericResponse> PostFacturaCompraDetalleAsync(System.Collections.Generic.IEnumerable<FacturaCompraDetalleDTO> body)
         {
             return PostFacturaCompraDetalleAsync(body, System.Threading.CancellationToken.None);
         }
-    
+
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
@@ -617,7 +620,7 @@ namespace EMCApi.Client
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/FacturaCompraDetalle");
-    
+
             var client_ = _httpClient;
             try
             {
@@ -628,12 +631,12 @@ namespace EMCApi.Client
                     request_.Content = content_;
                     request_.Method = new System.Net.Http.HttpMethod("POST");
                     request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("text/plain"));
-    
+
                     PrepareRequest(client_, request_, urlBuilder_);
                     var url_ = urlBuilder_.ToString();
                     request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
                     PrepareRequest(client_, request_, url_);
-    
+
                     var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
                     try
                     {
@@ -643,17 +646,17 @@ namespace EMCApi.Client
                             foreach (var item_ in response_.Content.Headers)
                                 headers_[item_.Key] = item_.Value;
                         }
-    
+
                         ProcessResponse(client_, response_);
-    
+
                         var status_ = ((int)response_.StatusCode).ToString();
-                        if (status_ == "200") 
+                        if (status_ == "200")
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<GenericResponse>(response_, headers_).ConfigureAwait(false);
                             return objectResponse_.Object;
                         }
                         else
-                        if (status_ == "400") 
+                        if (status_ == "400")
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<GenericResponse>(response_, headers_).ConfigureAwait(false);
                             throw new ApiException<GenericResponse>("Bad Request", (int)response_.StatusCode, objectResponse_.Text, headers_, objectResponse_.Object, null);
@@ -661,10 +664,10 @@ namespace EMCApi.Client
                         else
                         if (status_ != "200" && status_ != "204")
                         {
-                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
                             throw new ApiException("The HTTP status code of the response was not expected (" + (int)response_.StatusCode + ").", (int)response_.StatusCode, responseData_, headers_, null);
                         }
-            
+
                         return default(GenericResponse);
                     }
                     finally
@@ -678,14 +681,14 @@ namespace EMCApi.Client
             {
             }
         }
-    
+
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public System.Threading.Tasks.Task<System.Collections.Generic.ICollection<FacturaCompraDetalleDTO>> GetFacturaCompraDetalleAsync(int idEmpresa, string numeroFactura)
         {
             return GetFacturaCompraDetalleAsync(idEmpresa, numeroFactura, System.Threading.CancellationToken.None);
         }
-    
+
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
@@ -693,12 +696,12 @@ namespace EMCApi.Client
         {
             if (idEmpresa == null)
                 throw new System.ArgumentNullException("idEmpresa");
-    
+
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/FacturaCompraDetalle/{idEmpresa}/{numeroFactura}");
             urlBuilder_.Replace("{idEmpresa}", System.Uri.EscapeDataString(ConvertToString(idEmpresa, System.Globalization.CultureInfo.InvariantCulture)));
             urlBuilder_.Replace("{numeroFactura}", System.Uri.EscapeDataString(ConvertToString(numeroFactura, System.Globalization.CultureInfo.InvariantCulture)));
-    
+
             var client_ = _httpClient;
             try
             {
@@ -706,12 +709,12 @@ namespace EMCApi.Client
                 {
                     request_.Method = new System.Net.Http.HttpMethod("GET");
                     request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("text/plain"));
-    
+
                     PrepareRequest(client_, request_, urlBuilder_);
                     var url_ = urlBuilder_.ToString();
                     request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
                     PrepareRequest(client_, request_, url_);
-    
+
                     var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
                     try
                     {
@@ -721,17 +724,17 @@ namespace EMCApi.Client
                             foreach (var item_ in response_.Content.Headers)
                                 headers_[item_.Key] = item_.Value;
                         }
-    
+
                         ProcessResponse(client_, response_);
-    
+
                         var status_ = ((int)response_.StatusCode).ToString();
-                        if (status_ == "200") 
+                        if (status_ == "200")
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<System.Collections.Generic.ICollection<FacturaCompraDetalleDTO>>(response_, headers_).ConfigureAwait(false);
                             return objectResponse_.Object;
                         }
                         else
-                        if (status_ == "400") 
+                        if (status_ == "400")
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<GenericResponse>(response_, headers_).ConfigureAwait(false);
                             throw new ApiException<GenericResponse>("Bad Request", (int)response_.StatusCode, objectResponse_.Text, headers_, objectResponse_.Object, null);
@@ -739,10 +742,10 @@ namespace EMCApi.Client
                         else
                         if (status_ != "200" && status_ != "204")
                         {
-                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
                             throw new ApiException("The HTTP status code of the response was not expected (" + (int)response_.StatusCode + ").", (int)response_.StatusCode, responseData_, headers_, null);
                         }
-            
+
                         return default(System.Collections.Generic.ICollection<FacturaCompraDetalleDTO>);
                     }
                     finally
@@ -756,14 +759,14 @@ namespace EMCApi.Client
             {
             }
         }
-    
+
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public System.Threading.Tasks.Task<GenericResponse> PostFacturaVentaAsync(FacturaVentaDTO body)
         {
             return PostFacturaVentaAsync(body, System.Threading.CancellationToken.None);
         }
-    
+
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
@@ -771,7 +774,7 @@ namespace EMCApi.Client
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/FacturaVenta/PostFacturaVenta");
-    
+
             var client_ = _httpClient;
             try
             {
@@ -782,12 +785,12 @@ namespace EMCApi.Client
                     request_.Content = content_;
                     request_.Method = new System.Net.Http.HttpMethod("POST");
                     request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("text/plain"));
-    
+
                     PrepareRequest(client_, request_, urlBuilder_);
                     var url_ = urlBuilder_.ToString();
                     request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
                     PrepareRequest(client_, request_, url_);
-    
+
                     var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
                     try
                     {
@@ -797,17 +800,17 @@ namespace EMCApi.Client
                             foreach (var item_ in response_.Content.Headers)
                                 headers_[item_.Key] = item_.Value;
                         }
-    
+
                         ProcessResponse(client_, response_);
-    
+
                         var status_ = ((int)response_.StatusCode).ToString();
-                        if (status_ == "200") 
+                        if (status_ == "200")
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<GenericResponse>(response_, headers_).ConfigureAwait(false);
                             return objectResponse_.Object;
                         }
                         else
-                        if (status_ == "400") 
+                        if (status_ == "400")
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<GenericResponse>(response_, headers_).ConfigureAwait(false);
                             throw new ApiException<GenericResponse>("Bad Request", (int)response_.StatusCode, objectResponse_.Text, headers_, objectResponse_.Object, null);
@@ -815,10 +818,10 @@ namespace EMCApi.Client
                         else
                         if (status_ != "200" && status_ != "204")
                         {
-                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
                             throw new ApiException("The HTTP status code of the response was not expected (" + (int)response_.StatusCode + ").", (int)response_.StatusCode, responseData_, headers_, null);
                         }
-            
+
                         return default(GenericResponse);
                     }
                     finally
@@ -832,14 +835,14 @@ namespace EMCApi.Client
             {
             }
         }
-    
+
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public System.Threading.Tasks.Task<System.Collections.Generic.ICollection<FacturaVentaDTO>> GetFacturasVentasFechasAsync(int idEmpresa, System.DateTimeOffset fechaInicial, System.DateTimeOffset fechaFinal)
         {
             return GetFacturasVentasFechasAsync(idEmpresa, fechaInicial, fechaFinal, System.Threading.CancellationToken.None);
         }
-    
+
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
@@ -847,19 +850,19 @@ namespace EMCApi.Client
         {
             if (idEmpresa == null)
                 throw new System.ArgumentNullException("idEmpresa");
-    
+
             if (fechaInicial == null)
                 throw new System.ArgumentNullException("fechaInicial");
-    
+
             if (fechaFinal == null)
                 throw new System.ArgumentNullException("fechaFinal");
-    
+
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/FacturaVenta/GetFacturasVentasFechas/{idEmpresa}/{fechaInicial}/{fechaFinal}");
             urlBuilder_.Replace("{idEmpresa}", System.Uri.EscapeDataString(ConvertToString(idEmpresa, System.Globalization.CultureInfo.InvariantCulture)));
             urlBuilder_.Replace("{fechaInicial}", System.Uri.EscapeDataString(fechaInicial.ToString("s", System.Globalization.CultureInfo.InvariantCulture)));
             urlBuilder_.Replace("{fechaFinal}", System.Uri.EscapeDataString(fechaFinal.ToString("s", System.Globalization.CultureInfo.InvariantCulture)));
-    
+
             var client_ = _httpClient;
             try
             {
@@ -867,12 +870,12 @@ namespace EMCApi.Client
                 {
                     request_.Method = new System.Net.Http.HttpMethod("GET");
                     request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("text/plain"));
-    
+
                     PrepareRequest(client_, request_, urlBuilder_);
                     var url_ = urlBuilder_.ToString();
                     request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
                     PrepareRequest(client_, request_, url_);
-    
+
                     var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
                     try
                     {
@@ -882,17 +885,17 @@ namespace EMCApi.Client
                             foreach (var item_ in response_.Content.Headers)
                                 headers_[item_.Key] = item_.Value;
                         }
-    
+
                         ProcessResponse(client_, response_);
-    
+
                         var status_ = ((int)response_.StatusCode).ToString();
-                        if (status_ == "200") 
+                        if (status_ == "200")
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<System.Collections.Generic.ICollection<FacturaVentaDTO>>(response_, headers_).ConfigureAwait(false);
                             return objectResponse_.Object;
                         }
                         else
-                        if (status_ == "400") 
+                        if (status_ == "400")
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<GenericResponse>(response_, headers_).ConfigureAwait(false);
                             throw new ApiException<GenericResponse>("Bad Request", (int)response_.StatusCode, objectResponse_.Text, headers_, objectResponse_.Object, null);
@@ -900,10 +903,10 @@ namespace EMCApi.Client
                         else
                         if (status_ != "200" && status_ != "204")
                         {
-                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
                             throw new ApiException("The HTTP status code of the response was not expected (" + (int)response_.StatusCode + ").", (int)response_.StatusCode, responseData_, headers_, null);
                         }
-            
+
                         return default(System.Collections.Generic.ICollection<FacturaVentaDTO>);
                     }
                     finally
@@ -917,14 +920,14 @@ namespace EMCApi.Client
             {
             }
         }
-    
+
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public System.Threading.Tasks.Task<System.Collections.Generic.ICollection<FacturaVentaDTO>> GetFacturasVentasAsync(int idEmpresa)
         {
             return GetFacturasVentasAsync(idEmpresa, System.Threading.CancellationToken.None);
         }
-    
+
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
@@ -932,11 +935,11 @@ namespace EMCApi.Client
         {
             if (idEmpresa == null)
                 throw new System.ArgumentNullException("idEmpresa");
-    
+
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/FacturaVenta/GetFacturasVentas/{idEmpresa}");
             urlBuilder_.Replace("{idEmpresa}", System.Uri.EscapeDataString(ConvertToString(idEmpresa, System.Globalization.CultureInfo.InvariantCulture)));
-    
+
             var client_ = _httpClient;
             try
             {
@@ -944,12 +947,12 @@ namespace EMCApi.Client
                 {
                     request_.Method = new System.Net.Http.HttpMethod("GET");
                     request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("text/plain"));
-    
+
                     PrepareRequest(client_, request_, urlBuilder_);
                     var url_ = urlBuilder_.ToString();
                     request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
                     PrepareRequest(client_, request_, url_);
-    
+
                     var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
                     try
                     {
@@ -959,17 +962,17 @@ namespace EMCApi.Client
                             foreach (var item_ in response_.Content.Headers)
                                 headers_[item_.Key] = item_.Value;
                         }
-    
+
                         ProcessResponse(client_, response_);
-    
+
                         var status_ = ((int)response_.StatusCode).ToString();
-                        if (status_ == "200") 
+                        if (status_ == "200")
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<System.Collections.Generic.ICollection<FacturaVentaDTO>>(response_, headers_).ConfigureAwait(false);
                             return objectResponse_.Object;
                         }
                         else
-                        if (status_ == "400") 
+                        if (status_ == "400")
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<GenericResponse>(response_, headers_).ConfigureAwait(false);
                             throw new ApiException<GenericResponse>("Bad Request", (int)response_.StatusCode, objectResponse_.Text, headers_, objectResponse_.Object, null);
@@ -977,10 +980,10 @@ namespace EMCApi.Client
                         else
                         if (status_ != "200" && status_ != "204")
                         {
-                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
                             throw new ApiException("The HTTP status code of the response was not expected (" + (int)response_.StatusCode + ").", (int)response_.StatusCode, responseData_, headers_, null);
                         }
-            
+
                         return default(System.Collections.Generic.ICollection<FacturaVentaDTO>);
                     }
                     finally
@@ -994,14 +997,14 @@ namespace EMCApi.Client
             {
             }
         }
-    
+
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public System.Threading.Tasks.Task<InicioFacturacionDTO> GetNumeroFacturaAsync(int idEmpresa)
         {
             return GetNumeroFacturaAsync(idEmpresa, System.Threading.CancellationToken.None);
         }
-    
+
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
@@ -1009,11 +1012,11 @@ namespace EMCApi.Client
         {
             if (idEmpresa == null)
                 throw new System.ArgumentNullException("idEmpresa");
-    
+
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/FacturaVenta/GetNumeroFactura/{idEmpresa}");
             urlBuilder_.Replace("{idEmpresa}", System.Uri.EscapeDataString(ConvertToString(idEmpresa, System.Globalization.CultureInfo.InvariantCulture)));
-    
+
             var client_ = _httpClient;
             try
             {
@@ -1021,12 +1024,12 @@ namespace EMCApi.Client
                 {
                     request_.Method = new System.Net.Http.HttpMethod("GET");
                     request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("text/plain"));
-    
+
                     PrepareRequest(client_, request_, urlBuilder_);
                     var url_ = urlBuilder_.ToString();
                     request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
                     PrepareRequest(client_, request_, url_);
-    
+
                     var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
                     try
                     {
@@ -1036,17 +1039,17 @@ namespace EMCApi.Client
                             foreach (var item_ in response_.Content.Headers)
                                 headers_[item_.Key] = item_.Value;
                         }
-    
+
                         ProcessResponse(client_, response_);
-    
+
                         var status_ = ((int)response_.StatusCode).ToString();
-                        if (status_ == "200") 
+                        if (status_ == "200")
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<InicioFacturacionDTO>(response_, headers_).ConfigureAwait(false);
                             return objectResponse_.Object;
                         }
                         else
-                        if (status_ == "400") 
+                        if (status_ == "400")
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<GenericResponse>(response_, headers_).ConfigureAwait(false);
                             throw new ApiException<GenericResponse>("Bad Request", (int)response_.StatusCode, objectResponse_.Text, headers_, objectResponse_.Object, null);
@@ -1054,10 +1057,10 @@ namespace EMCApi.Client
                         else
                         if (status_ != "200" && status_ != "204")
                         {
-                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
                             throw new ApiException("The HTTP status code of the response was not expected (" + (int)response_.StatusCode + ").", (int)response_.StatusCode, responseData_, headers_, null);
                         }
-            
+
                         return default(InicioFacturacionDTO);
                     }
                     finally
@@ -1071,14 +1074,14 @@ namespace EMCApi.Client
             {
             }
         }
-    
+
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public System.Threading.Tasks.Task<GenericResponse> PostFacturaVentaDetalleAsync(System.Collections.Generic.IEnumerable<FacturaVentaDetalleDTO> body)
         {
             return PostFacturaVentaDetalleAsync(body, System.Threading.CancellationToken.None);
         }
-    
+
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
@@ -1086,7 +1089,7 @@ namespace EMCApi.Client
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/FacturaVentaDetalle");
-    
+
             var client_ = _httpClient;
             try
             {
@@ -1097,12 +1100,12 @@ namespace EMCApi.Client
                     request_.Content = content_;
                     request_.Method = new System.Net.Http.HttpMethod("POST");
                     request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("text/plain"));
-    
+
                     PrepareRequest(client_, request_, urlBuilder_);
                     var url_ = urlBuilder_.ToString();
                     request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
                     PrepareRequest(client_, request_, url_);
-    
+
                     var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
                     try
                     {
@@ -1112,17 +1115,17 @@ namespace EMCApi.Client
                             foreach (var item_ in response_.Content.Headers)
                                 headers_[item_.Key] = item_.Value;
                         }
-    
+
                         ProcessResponse(client_, response_);
-    
+
                         var status_ = ((int)response_.StatusCode).ToString();
-                        if (status_ == "200") 
+                        if (status_ == "200")
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<GenericResponse>(response_, headers_).ConfigureAwait(false);
                             return objectResponse_.Object;
                         }
                         else
-                        if (status_ == "400") 
+                        if (status_ == "400")
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<GenericResponse>(response_, headers_).ConfigureAwait(false);
                             throw new ApiException<GenericResponse>("Bad Request", (int)response_.StatusCode, objectResponse_.Text, headers_, objectResponse_.Object, null);
@@ -1130,10 +1133,10 @@ namespace EMCApi.Client
                         else
                         if (status_ != "200" && status_ != "204")
                         {
-                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
                             throw new ApiException("The HTTP status code of the response was not expected (" + (int)response_.StatusCode + ").", (int)response_.StatusCode, responseData_, headers_, null);
                         }
-            
+
                         return default(GenericResponse);
                     }
                     finally
@@ -1147,14 +1150,14 @@ namespace EMCApi.Client
             {
             }
         }
-    
+
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public System.Threading.Tasks.Task<System.Collections.Generic.ICollection<FacturaVentaDetalleDTO>> GetFacturaVentaDetalleAsync(int idEmpresa, string numeroFactura)
         {
             return GetFacturaVentaDetalleAsync(idEmpresa, numeroFactura, System.Threading.CancellationToken.None);
         }
-    
+
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
@@ -1162,12 +1165,12 @@ namespace EMCApi.Client
         {
             if (idEmpresa == null)
                 throw new System.ArgumentNullException("idEmpresa");
-    
+
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/FacturaVentaDetalle/{idEmpresa}/{numeroFactura}");
             urlBuilder_.Replace("{idEmpresa}", System.Uri.EscapeDataString(ConvertToString(idEmpresa, System.Globalization.CultureInfo.InvariantCulture)));
             urlBuilder_.Replace("{numeroFactura}", System.Uri.EscapeDataString(ConvertToString(numeroFactura, System.Globalization.CultureInfo.InvariantCulture)));
-    
+
             var client_ = _httpClient;
             try
             {
@@ -1175,12 +1178,12 @@ namespace EMCApi.Client
                 {
                     request_.Method = new System.Net.Http.HttpMethod("GET");
                     request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("text/plain"));
-    
+
                     PrepareRequest(client_, request_, urlBuilder_);
                     var url_ = urlBuilder_.ToString();
                     request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
                     PrepareRequest(client_, request_, url_);
-    
+
                     var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
                     try
                     {
@@ -1190,17 +1193,17 @@ namespace EMCApi.Client
                             foreach (var item_ in response_.Content.Headers)
                                 headers_[item_.Key] = item_.Value;
                         }
-    
+
                         ProcessResponse(client_, response_);
-    
+
                         var status_ = ((int)response_.StatusCode).ToString();
-                        if (status_ == "200") 
+                        if (status_ == "200")
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<System.Collections.Generic.ICollection<FacturaVentaDetalleDTO>>(response_, headers_).ConfigureAwait(false);
                             return objectResponse_.Object;
                         }
                         else
-                        if (status_ == "400") 
+                        if (status_ == "400")
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<GenericResponse>(response_, headers_).ConfigureAwait(false);
                             throw new ApiException<GenericResponse>("Bad Request", (int)response_.StatusCode, objectResponse_.Text, headers_, objectResponse_.Object, null);
@@ -1208,10 +1211,10 @@ namespace EMCApi.Client
                         else
                         if (status_ != "200" && status_ != "204")
                         {
-                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
                             throw new ApiException("The HTTP status code of the response was not expected (" + (int)response_.StatusCode + ").", (int)response_.StatusCode, responseData_, headers_, null);
                         }
-            
+
                         return default(System.Collections.Generic.ICollection<FacturaVentaDetalleDTO>);
                     }
                     finally
@@ -1225,14 +1228,14 @@ namespace EMCApi.Client
             {
             }
         }
-    
+
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public System.Threading.Tasks.Task<GenericResponse> PostInicioFacturacionAsync(InicioFacturacionDTO body)
         {
             return PostInicioFacturacionAsync(body, System.Threading.CancellationToken.None);
         }
-    
+
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
@@ -1240,7 +1243,7 @@ namespace EMCApi.Client
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/InicioFacturacion/PostInicioFacturacion");
-    
+
             var client_ = _httpClient;
             try
             {
@@ -1251,12 +1254,12 @@ namespace EMCApi.Client
                     request_.Content = content_;
                     request_.Method = new System.Net.Http.HttpMethod("POST");
                     request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("text/plain"));
-    
+
                     PrepareRequest(client_, request_, urlBuilder_);
                     var url_ = urlBuilder_.ToString();
                     request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
                     PrepareRequest(client_, request_, url_);
-    
+
                     var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
                     try
                     {
@@ -1266,17 +1269,17 @@ namespace EMCApi.Client
                             foreach (var item_ in response_.Content.Headers)
                                 headers_[item_.Key] = item_.Value;
                         }
-    
+
                         ProcessResponse(client_, response_);
-    
+
                         var status_ = ((int)response_.StatusCode).ToString();
-                        if (status_ == "200") 
+                        if (status_ == "200")
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<GenericResponse>(response_, headers_).ConfigureAwait(false);
                             return objectResponse_.Object;
                         }
                         else
-                        if (status_ == "400") 
+                        if (status_ == "400")
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<GenericResponse>(response_, headers_).ConfigureAwait(false);
                             throw new ApiException<GenericResponse>("Bad Request", (int)response_.StatusCode, objectResponse_.Text, headers_, objectResponse_.Object, null);
@@ -1284,10 +1287,10 @@ namespace EMCApi.Client
                         else
                         if (status_ != "200" && status_ != "204")
                         {
-                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
                             throw new ApiException("The HTTP status code of the response was not expected (" + (int)response_.StatusCode + ").", (int)response_.StatusCode, responseData_, headers_, null);
                         }
-            
+
                         return default(GenericResponse);
                     }
                     finally
@@ -1301,14 +1304,14 @@ namespace EMCApi.Client
             {
             }
         }
-    
+
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public System.Threading.Tasks.Task<InicioFacturacionDTO> GetInicioFacturacionCtrlAsync(int idEmpresa)
         {
             return GetInicioFacturacionCtrlAsync(idEmpresa, System.Threading.CancellationToken.None);
         }
-    
+
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
@@ -1316,11 +1319,11 @@ namespace EMCApi.Client
         {
             if (idEmpresa == null)
                 throw new System.ArgumentNullException("idEmpresa");
-    
+
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/InicioFacturacion/GetInicioFacturacionCtrl/{idEmpresa}");
             urlBuilder_.Replace("{idEmpresa}", System.Uri.EscapeDataString(ConvertToString(idEmpresa, System.Globalization.CultureInfo.InvariantCulture)));
-    
+
             var client_ = _httpClient;
             try
             {
@@ -1328,12 +1331,12 @@ namespace EMCApi.Client
                 {
                     request_.Method = new System.Net.Http.HttpMethod("GET");
                     request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("text/plain"));
-    
+
                     PrepareRequest(client_, request_, urlBuilder_);
                     var url_ = urlBuilder_.ToString();
                     request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
                     PrepareRequest(client_, request_, url_);
-    
+
                     var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
                     try
                     {
@@ -1343,17 +1346,17 @@ namespace EMCApi.Client
                             foreach (var item_ in response_.Content.Headers)
                                 headers_[item_.Key] = item_.Value;
                         }
-    
+
                         ProcessResponse(client_, response_);
-    
+
                         var status_ = ((int)response_.StatusCode).ToString();
-                        if (status_ == "200") 
+                        if (status_ == "200")
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<InicioFacturacionDTO>(response_, headers_).ConfigureAwait(false);
                             return objectResponse_.Object;
                         }
                         else
-                        if (status_ == "400") 
+                        if (status_ == "400")
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<GenericResponse>(response_, headers_).ConfigureAwait(false);
                             throw new ApiException<GenericResponse>("Bad Request", (int)response_.StatusCode, objectResponse_.Text, headers_, objectResponse_.Object, null);
@@ -1361,10 +1364,10 @@ namespace EMCApi.Client
                         else
                         if (status_ != "200" && status_ != "204")
                         {
-                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
                             throw new ApiException("The HTTP status code of the response was not expected (" + (int)response_.StatusCode + ").", (int)response_.StatusCode, responseData_, headers_, null);
                         }
-            
+
                         return default(InicioFacturacionDTO);
                     }
                     finally
@@ -1378,14 +1381,14 @@ namespace EMCApi.Client
             {
             }
         }
-    
+
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public System.Threading.Tasks.Task<GenericResponse> ReInicioFacturacionAsync(int idEmpresa)
         {
             return ReInicioFacturacionAsync(idEmpresa, System.Threading.CancellationToken.None);
         }
-    
+
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
@@ -1393,11 +1396,11 @@ namespace EMCApi.Client
         {
             if (idEmpresa == null)
                 throw new System.ArgumentNullException("idEmpresa");
-    
+
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/InicioFacturacion/ReInicioFacturacion/{idEmpresa}");
             urlBuilder_.Replace("{idEmpresa}", System.Uri.EscapeDataString(ConvertToString(idEmpresa, System.Globalization.CultureInfo.InvariantCulture)));
-    
+
             var client_ = _httpClient;
             try
             {
@@ -1406,12 +1409,12 @@ namespace EMCApi.Client
                     request_.Content = new System.Net.Http.StringContent(string.Empty, System.Text.Encoding.UTF8, "text/plain");
                     request_.Method = new System.Net.Http.HttpMethod("PUT");
                     request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("text/plain"));
-    
+
                     PrepareRequest(client_, request_, urlBuilder_);
                     var url_ = urlBuilder_.ToString();
                     request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
                     PrepareRequest(client_, request_, url_);
-    
+
                     var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
                     try
                     {
@@ -1421,17 +1424,17 @@ namespace EMCApi.Client
                             foreach (var item_ in response_.Content.Headers)
                                 headers_[item_.Key] = item_.Value;
                         }
-    
+
                         ProcessResponse(client_, response_);
-    
+
                         var status_ = ((int)response_.StatusCode).ToString();
-                        if (status_ == "200") 
+                        if (status_ == "200")
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<GenericResponse>(response_, headers_).ConfigureAwait(false);
                             return objectResponse_.Object;
                         }
                         else
-                        if (status_ == "400") 
+                        if (status_ == "400")
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<GenericResponse>(response_, headers_).ConfigureAwait(false);
                             throw new ApiException<GenericResponse>("Bad Request", (int)response_.StatusCode, objectResponse_.Text, headers_, objectResponse_.Object, null);
@@ -1439,10 +1442,10 @@ namespace EMCApi.Client
                         else
                         if (status_ != "200" && status_ != "204")
                         {
-                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
                             throw new ApiException("The HTTP status code of the response was not expected (" + (int)response_.StatusCode + ").", (int)response_.StatusCode, responseData_, headers_, null);
                         }
-            
+
                         return default(GenericResponse);
                     }
                     finally
@@ -1456,14 +1459,14 @@ namespace EMCApi.Client
             {
             }
         }
-    
+
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public System.Threading.Tasks.Task<GenericResponse> PostStockTotalAddAsync(System.Collections.Generic.IEnumerable<FacturaCompraDetalleDTO> body)
         {
             return PostStockTotalAddAsync(body, System.Threading.CancellationToken.None);
         }
-    
+
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
@@ -1471,7 +1474,7 @@ namespace EMCApi.Client
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Inventario/PostStockTotalAdd");
-    
+
             var client_ = _httpClient;
             try
             {
@@ -1482,12 +1485,12 @@ namespace EMCApi.Client
                     request_.Content = content_;
                     request_.Method = new System.Net.Http.HttpMethod("POST");
                     request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("text/plain"));
-    
+
                     PrepareRequest(client_, request_, urlBuilder_);
                     var url_ = urlBuilder_.ToString();
                     request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
                     PrepareRequest(client_, request_, url_);
-    
+
                     var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
                     try
                     {
@@ -1497,17 +1500,17 @@ namespace EMCApi.Client
                             foreach (var item_ in response_.Content.Headers)
                                 headers_[item_.Key] = item_.Value;
                         }
-    
+
                         ProcessResponse(client_, response_);
-    
+
                         var status_ = ((int)response_.StatusCode).ToString();
-                        if (status_ == "200") 
+                        if (status_ == "200")
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<GenericResponse>(response_, headers_).ConfigureAwait(false);
                             return objectResponse_.Object;
                         }
                         else
-                        if (status_ == "400") 
+                        if (status_ == "400")
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<GenericResponse>(response_, headers_).ConfigureAwait(false);
                             throw new ApiException<GenericResponse>("Bad Request", (int)response_.StatusCode, objectResponse_.Text, headers_, objectResponse_.Object, null);
@@ -1515,10 +1518,10 @@ namespace EMCApi.Client
                         else
                         if (status_ != "200" && status_ != "204")
                         {
-                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
                             throw new ApiException("The HTTP status code of the response was not expected (" + (int)response_.StatusCode + ").", (int)response_.StatusCode, responseData_, headers_, null);
                         }
-            
+
                         return default(GenericResponse);
                     }
                     finally
@@ -1532,14 +1535,14 @@ namespace EMCApi.Client
             {
             }
         }
-    
+
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public System.Threading.Tasks.Task<GenericResponse> PostStockTotalRemoveAsync(System.Collections.Generic.IEnumerable<FacturaVentaDetalleDTO> body)
         {
             return PostStockTotalRemoveAsync(body, System.Threading.CancellationToken.None);
         }
-    
+
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
@@ -1547,7 +1550,7 @@ namespace EMCApi.Client
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Inventario/PostStockTotalRemove");
-    
+
             var client_ = _httpClient;
             try
             {
@@ -1558,12 +1561,12 @@ namespace EMCApi.Client
                     request_.Content = content_;
                     request_.Method = new System.Net.Http.HttpMethod("POST");
                     request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("text/plain"));
-    
+
                     PrepareRequest(client_, request_, urlBuilder_);
                     var url_ = urlBuilder_.ToString();
                     request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
                     PrepareRequest(client_, request_, url_);
-    
+
                     var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
                     try
                     {
@@ -1573,17 +1576,17 @@ namespace EMCApi.Client
                             foreach (var item_ in response_.Content.Headers)
                                 headers_[item_.Key] = item_.Value;
                         }
-    
+
                         ProcessResponse(client_, response_);
-    
+
                         var status_ = ((int)response_.StatusCode).ToString();
-                        if (status_ == "200") 
+                        if (status_ == "200")
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<GenericResponse>(response_, headers_).ConfigureAwait(false);
                             return objectResponse_.Object;
                         }
                         else
-                        if (status_ == "400") 
+                        if (status_ == "400")
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<GenericResponse>(response_, headers_).ConfigureAwait(false);
                             throw new ApiException<GenericResponse>("Bad Request", (int)response_.StatusCode, objectResponse_.Text, headers_, objectResponse_.Object, null);
@@ -1591,10 +1594,10 @@ namespace EMCApi.Client
                         else
                         if (status_ != "200" && status_ != "204")
                         {
-                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
                             throw new ApiException("The HTTP status code of the response was not expected (" + (int)response_.StatusCode + ").", (int)response_.StatusCode, responseData_, headers_, null);
                         }
-            
+
                         return default(GenericResponse);
                     }
                     finally
@@ -1608,14 +1611,14 @@ namespace EMCApi.Client
             {
             }
         }
-    
+
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public System.Threading.Tasks.Task<System.Collections.Generic.ICollection<StockTotalDTO>> GetStockBodegaAsync(int idEmpresa, bool activo)
         {
             return GetStockBodegaAsync(idEmpresa, activo, System.Threading.CancellationToken.None);
         }
-    
+
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
@@ -1623,15 +1626,15 @@ namespace EMCApi.Client
         {
             if (idEmpresa == null)
                 throw new System.ArgumentNullException("idEmpresa");
-    
+
             if (activo == null)
                 throw new System.ArgumentNullException("activo");
-    
+
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Inventario/GetStockBodega/{idEmpresa}/{activo}");
             urlBuilder_.Replace("{idEmpresa}", System.Uri.EscapeDataString(ConvertToString(idEmpresa, System.Globalization.CultureInfo.InvariantCulture)));
             urlBuilder_.Replace("{activo}", System.Uri.EscapeDataString(ConvertToString(activo, System.Globalization.CultureInfo.InvariantCulture)));
-    
+
             var client_ = _httpClient;
             try
             {
@@ -1639,12 +1642,12 @@ namespace EMCApi.Client
                 {
                     request_.Method = new System.Net.Http.HttpMethod("GET");
                     request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("text/plain"));
-    
+
                     PrepareRequest(client_, request_, urlBuilder_);
                     var url_ = urlBuilder_.ToString();
                     request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
                     PrepareRequest(client_, request_, url_);
-    
+
                     var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
                     try
                     {
@@ -1654,17 +1657,17 @@ namespace EMCApi.Client
                             foreach (var item_ in response_.Content.Headers)
                                 headers_[item_.Key] = item_.Value;
                         }
-    
+
                         ProcessResponse(client_, response_);
-    
+
                         var status_ = ((int)response_.StatusCode).ToString();
-                        if (status_ == "200") 
+                        if (status_ == "200")
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<System.Collections.Generic.ICollection<StockTotalDTO>>(response_, headers_).ConfigureAwait(false);
                             return objectResponse_.Object;
                         }
                         else
-                        if (status_ == "400") 
+                        if (status_ == "400")
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<GenericResponse>(response_, headers_).ConfigureAwait(false);
                             throw new ApiException<GenericResponse>("Bad Request", (int)response_.StatusCode, objectResponse_.Text, headers_, objectResponse_.Object, null);
@@ -1672,10 +1675,10 @@ namespace EMCApi.Client
                         else
                         if (status_ != "200" && status_ != "204")
                         {
-                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
                             throw new ApiException("The HTTP status code of the response was not expected (" + (int)response_.StatusCode + ").", (int)response_.StatusCode, responseData_, headers_, null);
                         }
-            
+
                         return default(System.Collections.Generic.ICollection<StockTotalDTO>);
                     }
                     finally
@@ -1689,14 +1692,14 @@ namespace EMCApi.Client
             {
             }
         }
-    
+
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public System.Threading.Tasks.Task<StockTotalDTO> GetStockProductoBodegaAsync(int idEmpresa, int idArticulo, bool activo)
         {
             return GetStockProductoBodegaAsync(idEmpresa, idArticulo, activo, System.Threading.CancellationToken.None);
         }
-    
+
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
@@ -1704,19 +1707,19 @@ namespace EMCApi.Client
         {
             if (idEmpresa == null)
                 throw new System.ArgumentNullException("idEmpresa");
-    
+
             if (idArticulo == null)
                 throw new System.ArgumentNullException("idArticulo");
-    
+
             if (activo == null)
                 throw new System.ArgumentNullException("activo");
-    
+
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Inventario/GetStockProductoBodega/{idEmpresa}/{idArticulo}/{activo}");
             urlBuilder_.Replace("{idEmpresa}", System.Uri.EscapeDataString(ConvertToString(idEmpresa, System.Globalization.CultureInfo.InvariantCulture)));
             urlBuilder_.Replace("{idArticulo}", System.Uri.EscapeDataString(ConvertToString(idArticulo, System.Globalization.CultureInfo.InvariantCulture)));
             urlBuilder_.Replace("{activo}", System.Uri.EscapeDataString(ConvertToString(activo, System.Globalization.CultureInfo.InvariantCulture)));
-    
+
             var client_ = _httpClient;
             try
             {
@@ -1724,12 +1727,12 @@ namespace EMCApi.Client
                 {
                     request_.Method = new System.Net.Http.HttpMethod("GET");
                     request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("text/plain"));
-    
+
                     PrepareRequest(client_, request_, urlBuilder_);
                     var url_ = urlBuilder_.ToString();
                     request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
                     PrepareRequest(client_, request_, url_);
-    
+
                     var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
                     try
                     {
@@ -1739,17 +1742,17 @@ namespace EMCApi.Client
                             foreach (var item_ in response_.Content.Headers)
                                 headers_[item_.Key] = item_.Value;
                         }
-    
+
                         ProcessResponse(client_, response_);
-    
+
                         var status_ = ((int)response_.StatusCode).ToString();
-                        if (status_ == "200") 
+                        if (status_ == "200")
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<StockTotalDTO>(response_, headers_).ConfigureAwait(false);
                             return objectResponse_.Object;
                         }
                         else
-                        if (status_ == "400") 
+                        if (status_ == "400")
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<GenericResponse>(response_, headers_).ConfigureAwait(false);
                             throw new ApiException<GenericResponse>("Bad Request", (int)response_.StatusCode, objectResponse_.Text, headers_, objectResponse_.Object, null);
@@ -1757,10 +1760,10 @@ namespace EMCApi.Client
                         else
                         if (status_ != "200" && status_ != "204")
                         {
-                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
                             throw new ApiException("The HTTP status code of the response was not expected (" + (int)response_.StatusCode + ").", (int)response_.StatusCode, responseData_, headers_, null);
                         }
-            
+
                         return default(StockTotalDTO);
                     }
                     finally
@@ -1774,14 +1777,14 @@ namespace EMCApi.Client
             {
             }
         }
-    
+
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public System.Threading.Tasks.Task<GenericResponse> PostStockTransitoAsync(System.Collections.Generic.IEnumerable<StockTransitoDTO> body)
         {
             return PostStockTransitoAsync(body, System.Threading.CancellationToken.None);
         }
-    
+
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
@@ -1789,7 +1792,7 @@ namespace EMCApi.Client
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Inventario/PostStockTransito");
-    
+
             var client_ = _httpClient;
             try
             {
@@ -1800,12 +1803,12 @@ namespace EMCApi.Client
                     request_.Content = content_;
                     request_.Method = new System.Net.Http.HttpMethod("POST");
                     request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("text/plain"));
-    
+
                     PrepareRequest(client_, request_, urlBuilder_);
                     var url_ = urlBuilder_.ToString();
                     request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
                     PrepareRequest(client_, request_, url_);
-    
+
                     var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
                     try
                     {
@@ -1815,17 +1818,17 @@ namespace EMCApi.Client
                             foreach (var item_ in response_.Content.Headers)
                                 headers_[item_.Key] = item_.Value;
                         }
-    
+
                         ProcessResponse(client_, response_);
-    
+
                         var status_ = ((int)response_.StatusCode).ToString();
-                        if (status_ == "200") 
+                        if (status_ == "200")
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<GenericResponse>(response_, headers_).ConfigureAwait(false);
                             return objectResponse_.Object;
                         }
                         else
-                        if (status_ == "400") 
+                        if (status_ == "400")
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<GenericResponse>(response_, headers_).ConfigureAwait(false);
                             throw new ApiException<GenericResponse>("Bad Request", (int)response_.StatusCode, objectResponse_.Text, headers_, objectResponse_.Object, null);
@@ -1833,10 +1836,10 @@ namespace EMCApi.Client
                         else
                         if (status_ != "200" && status_ != "204")
                         {
-                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
                             throw new ApiException("The HTTP status code of the response was not expected (" + (int)response_.StatusCode + ").", (int)response_.StatusCode, responseData_, headers_, null);
                         }
-            
+
                         return default(GenericResponse);
                     }
                     finally
@@ -1850,14 +1853,14 @@ namespace EMCApi.Client
             {
             }
         }
-    
+
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public System.Threading.Tasks.Task<System.Collections.Generic.ICollection<StockTransitoDTO>> GetAsignacionesVendedorAsync(int idEmpresa, int idUsuario, bool activo)
         {
             return GetAsignacionesVendedorAsync(idEmpresa, idUsuario, activo, System.Threading.CancellationToken.None);
         }
-    
+
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
@@ -1865,19 +1868,19 @@ namespace EMCApi.Client
         {
             if (idEmpresa == null)
                 throw new System.ArgumentNullException("idEmpresa");
-    
+
             if (idUsuario == null)
                 throw new System.ArgumentNullException("idUsuario");
-    
+
             if (activo == null)
                 throw new System.ArgumentNullException("activo");
-    
+
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Inventario/GetAsignacionesVendedor/{idEmpresa}/{idUsuario}/{activo}");
             urlBuilder_.Replace("{idEmpresa}", System.Uri.EscapeDataString(ConvertToString(idEmpresa, System.Globalization.CultureInfo.InvariantCulture)));
             urlBuilder_.Replace("{idUsuario}", System.Uri.EscapeDataString(ConvertToString(idUsuario, System.Globalization.CultureInfo.InvariantCulture)));
             urlBuilder_.Replace("{activo}", System.Uri.EscapeDataString(ConvertToString(activo, System.Globalization.CultureInfo.InvariantCulture)));
-    
+
             var client_ = _httpClient;
             try
             {
@@ -1885,12 +1888,12 @@ namespace EMCApi.Client
                 {
                     request_.Method = new System.Net.Http.HttpMethod("GET");
                     request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("text/plain"));
-    
+
                     PrepareRequest(client_, request_, urlBuilder_);
                     var url_ = urlBuilder_.ToString();
                     request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
                     PrepareRequest(client_, request_, url_);
-    
+
                     var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
                     try
                     {
@@ -1900,17 +1903,17 @@ namespace EMCApi.Client
                             foreach (var item_ in response_.Content.Headers)
                                 headers_[item_.Key] = item_.Value;
                         }
-    
+
                         ProcessResponse(client_, response_);
-    
+
                         var status_ = ((int)response_.StatusCode).ToString();
-                        if (status_ == "200") 
+                        if (status_ == "200")
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<System.Collections.Generic.ICollection<StockTransitoDTO>>(response_, headers_).ConfigureAwait(false);
                             return objectResponse_.Object;
                         }
                         else
-                        if (status_ == "400") 
+                        if (status_ == "400")
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<GenericResponse>(response_, headers_).ConfigureAwait(false);
                             throw new ApiException<GenericResponse>("Bad Request", (int)response_.StatusCode, objectResponse_.Text, headers_, objectResponse_.Object, null);
@@ -1918,10 +1921,10 @@ namespace EMCApi.Client
                         else
                         if (status_ != "200" && status_ != "204")
                         {
-                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
                             throw new ApiException("The HTTP status code of the response was not expected (" + (int)response_.StatusCode + ").", (int)response_.StatusCode, responseData_, headers_, null);
                         }
-            
+
                         return default(System.Collections.Generic.ICollection<StockTransitoDTO>);
                     }
                     finally
@@ -1935,14 +1938,14 @@ namespace EMCApi.Client
             {
             }
         }
-    
+
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public System.Threading.Tasks.Task<System.Collections.Generic.ICollection<StockTransitoDTO>> GetStockTransitoProductoAsync(int? idEmpresa, int? idProducto, bool? activo)
         {
             return GetStockTransitoProductoAsync(idEmpresa, idProducto, activo, System.Threading.CancellationToken.None);
         }
-    
+
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
@@ -1950,20 +1953,20 @@ namespace EMCApi.Client
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Inventario/GetStockTransitoProducto/idEmpresa/idProducto/activo?");
-            if (idEmpresa != null) 
+            if (idEmpresa != null)
             {
                 urlBuilder_.Append(System.Uri.EscapeDataString("idEmpresa") + "=").Append(System.Uri.EscapeDataString(ConvertToString(idEmpresa, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             }
-            if (idProducto != null) 
+            if (idProducto != null)
             {
                 urlBuilder_.Append(System.Uri.EscapeDataString("idProducto") + "=").Append(System.Uri.EscapeDataString(ConvertToString(idProducto, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             }
-            if (activo != null) 
+            if (activo != null)
             {
                 urlBuilder_.Append(System.Uri.EscapeDataString("activo") + "=").Append(System.Uri.EscapeDataString(ConvertToString(activo, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             }
             urlBuilder_.Length--;
-    
+
             var client_ = _httpClient;
             try
             {
@@ -1971,12 +1974,12 @@ namespace EMCApi.Client
                 {
                     request_.Method = new System.Net.Http.HttpMethod("GET");
                     request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("text/plain"));
-    
+
                     PrepareRequest(client_, request_, urlBuilder_);
                     var url_ = urlBuilder_.ToString();
                     request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
                     PrepareRequest(client_, request_, url_);
-    
+
                     var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
                     try
                     {
@@ -1986,17 +1989,17 @@ namespace EMCApi.Client
                             foreach (var item_ in response_.Content.Headers)
                                 headers_[item_.Key] = item_.Value;
                         }
-    
+
                         ProcessResponse(client_, response_);
-    
+
                         var status_ = ((int)response_.StatusCode).ToString();
-                        if (status_ == "200") 
+                        if (status_ == "200")
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<System.Collections.Generic.ICollection<StockTransitoDTO>>(response_, headers_).ConfigureAwait(false);
                             return objectResponse_.Object;
                         }
                         else
-                        if (status_ == "400") 
+                        if (status_ == "400")
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<GenericResponse>(response_, headers_).ConfigureAwait(false);
                             throw new ApiException<GenericResponse>("Bad Request", (int)response_.StatusCode, objectResponse_.Text, headers_, objectResponse_.Object, null);
@@ -2004,10 +2007,10 @@ namespace EMCApi.Client
                         else
                         if (status_ != "200" && status_ != "204")
                         {
-                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
                             throw new ApiException("The HTTP status code of the response was not expected (" + (int)response_.StatusCode + ").", (int)response_.StatusCode, responseData_, headers_, null);
                         }
-            
+
                         return default(System.Collections.Generic.ICollection<StockTransitoDTO>);
                     }
                     finally
@@ -2021,14 +2024,14 @@ namespace EMCApi.Client
             {
             }
         }
-    
+
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public System.Threading.Tasks.Task<System.Collections.Generic.ICollection<MetodoPagoDTO>> GetMetodosPagoAsync(string idioma)
         {
             return GetMetodosPagoAsync(idioma, System.Threading.CancellationToken.None);
         }
-    
+
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
@@ -2037,7 +2040,7 @@ namespace EMCApi.Client
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/MetodoPago/{idioma}");
             urlBuilder_.Replace("{idioma}", System.Uri.EscapeDataString(ConvertToString(idioma, System.Globalization.CultureInfo.InvariantCulture)));
-    
+
             var client_ = _httpClient;
             try
             {
@@ -2045,12 +2048,12 @@ namespace EMCApi.Client
                 {
                     request_.Method = new System.Net.Http.HttpMethod("GET");
                     request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("text/plain"));
-    
+
                     PrepareRequest(client_, request_, urlBuilder_);
                     var url_ = urlBuilder_.ToString();
                     request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
                     PrepareRequest(client_, request_, url_);
-    
+
                     var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
                     try
                     {
@@ -2060,17 +2063,17 @@ namespace EMCApi.Client
                             foreach (var item_ in response_.Content.Headers)
                                 headers_[item_.Key] = item_.Value;
                         }
-    
+
                         ProcessResponse(client_, response_);
-    
+
                         var status_ = ((int)response_.StatusCode).ToString();
-                        if (status_ == "200") 
+                        if (status_ == "200")
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<System.Collections.Generic.ICollection<MetodoPagoDTO>>(response_, headers_).ConfigureAwait(false);
                             return objectResponse_.Object;
                         }
                         else
-                        if (status_ == "400") 
+                        if (status_ == "400")
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<GenericResponse>(response_, headers_).ConfigureAwait(false);
                             throw new ApiException<GenericResponse>("Bad Request", (int)response_.StatusCode, objectResponse_.Text, headers_, objectResponse_.Object, null);
@@ -2078,10 +2081,10 @@ namespace EMCApi.Client
                         else
                         if (status_ != "200" && status_ != "204")
                         {
-                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
                             throw new ApiException("The HTTP status code of the response was not expected (" + (int)response_.StatusCode + ").", (int)response_.StatusCode, responseData_, headers_, null);
                         }
-            
+
                         return default(System.Collections.Generic.ICollection<MetodoPagoDTO>);
                     }
                     finally
@@ -2095,14 +2098,14 @@ namespace EMCApi.Client
             {
             }
         }
-    
+
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public System.Threading.Tasks.Task<GenericResponse> PostProductoAsync(ProductoDTO body)
         {
             return PostProductoAsync(body, System.Threading.CancellationToken.None);
         }
-    
+
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
@@ -2110,7 +2113,7 @@ namespace EMCApi.Client
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Producto");
-    
+
             var client_ = _httpClient;
             try
             {
@@ -2121,12 +2124,12 @@ namespace EMCApi.Client
                     request_.Content = content_;
                     request_.Method = new System.Net.Http.HttpMethod("POST");
                     request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("text/plain"));
-    
+
                     PrepareRequest(client_, request_, urlBuilder_);
                     var url_ = urlBuilder_.ToString();
                     request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
                     PrepareRequest(client_, request_, url_);
-    
+
                     var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
                     try
                     {
@@ -2136,17 +2139,17 @@ namespace EMCApi.Client
                             foreach (var item_ in response_.Content.Headers)
                                 headers_[item_.Key] = item_.Value;
                         }
-    
+
                         ProcessResponse(client_, response_);
-    
+
                         var status_ = ((int)response_.StatusCode).ToString();
-                        if (status_ == "200") 
+                        if (status_ == "200")
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<GenericResponse>(response_, headers_).ConfigureAwait(false);
                             return objectResponse_.Object;
                         }
                         else
-                        if (status_ == "400") 
+                        if (status_ == "400")
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<GenericResponse>(response_, headers_).ConfigureAwait(false);
                             throw new ApiException<GenericResponse>("Bad Request", (int)response_.StatusCode, objectResponse_.Text, headers_, objectResponse_.Object, null);
@@ -2154,10 +2157,10 @@ namespace EMCApi.Client
                         else
                         if (status_ != "200" && status_ != "204")
                         {
-                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
                             throw new ApiException("The HTTP status code of the response was not expected (" + (int)response_.StatusCode + ").", (int)response_.StatusCode, responseData_, headers_, null);
                         }
-            
+
                         return default(GenericResponse);
                     }
                     finally
@@ -2171,14 +2174,14 @@ namespace EMCApi.Client
             {
             }
         }
-    
+
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public System.Threading.Tasks.Task<System.Collections.Generic.ICollection<ProductoDTO>> GetProductosAsync(int idEmpresa, bool activo)
         {
             return GetProductosAsync(idEmpresa, activo, System.Threading.CancellationToken.None);
         }
-    
+
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
@@ -2186,15 +2189,15 @@ namespace EMCApi.Client
         {
             if (idEmpresa == null)
                 throw new System.ArgumentNullException("idEmpresa");
-    
+
             if (activo == null)
                 throw new System.ArgumentNullException("activo");
-    
+
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Producto/{idEmpresa}/{activo}");
             urlBuilder_.Replace("{idEmpresa}", System.Uri.EscapeDataString(ConvertToString(idEmpresa, System.Globalization.CultureInfo.InvariantCulture)));
             urlBuilder_.Replace("{activo}", System.Uri.EscapeDataString(ConvertToString(activo, System.Globalization.CultureInfo.InvariantCulture)));
-    
+
             var client_ = _httpClient;
             try
             {
@@ -2202,12 +2205,12 @@ namespace EMCApi.Client
                 {
                     request_.Method = new System.Net.Http.HttpMethod("GET");
                     request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("text/plain"));
-    
+
                     PrepareRequest(client_, request_, urlBuilder_);
                     var url_ = urlBuilder_.ToString();
                     request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
                     PrepareRequest(client_, request_, url_);
-    
+
                     var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
                     try
                     {
@@ -2217,17 +2220,17 @@ namespace EMCApi.Client
                             foreach (var item_ in response_.Content.Headers)
                                 headers_[item_.Key] = item_.Value;
                         }
-    
+
                         ProcessResponse(client_, response_);
-    
+
                         var status_ = ((int)response_.StatusCode).ToString();
-                        if (status_ == "200") 
+                        if (status_ == "200")
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<System.Collections.Generic.ICollection<ProductoDTO>>(response_, headers_).ConfigureAwait(false);
                             return objectResponse_.Object;
                         }
                         else
-                        if (status_ == "400") 
+                        if (status_ == "400")
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<GenericResponse>(response_, headers_).ConfigureAwait(false);
                             throw new ApiException<GenericResponse>("Bad Request", (int)response_.StatusCode, objectResponse_.Text, headers_, objectResponse_.Object, null);
@@ -2235,10 +2238,10 @@ namespace EMCApi.Client
                         else
                         if (status_ != "200" && status_ != "204")
                         {
-                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
                             throw new ApiException("The HTTP status code of the response was not expected (" + (int)response_.StatusCode + ").", (int)response_.StatusCode, responseData_, headers_, null);
                         }
-            
+
                         return default(System.Collections.Generic.ICollection<ProductoDTO>);
                     }
                     finally
@@ -2252,14 +2255,14 @@ namespace EMCApi.Client
             {
             }
         }
-    
+
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public System.Threading.Tasks.Task<GenericResponse> PostProveedorAsync(ProveedorDTO body)
         {
             return PostProveedorAsync(body, System.Threading.CancellationToken.None);
         }
-    
+
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
@@ -2267,7 +2270,7 @@ namespace EMCApi.Client
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Proveedor");
-    
+
             var client_ = _httpClient;
             try
             {
@@ -2278,12 +2281,12 @@ namespace EMCApi.Client
                     request_.Content = content_;
                     request_.Method = new System.Net.Http.HttpMethod("POST");
                     request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("text/plain"));
-    
+
                     PrepareRequest(client_, request_, urlBuilder_);
                     var url_ = urlBuilder_.ToString();
                     request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
                     PrepareRequest(client_, request_, url_);
-    
+
                     var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
                     try
                     {
@@ -2293,17 +2296,17 @@ namespace EMCApi.Client
                             foreach (var item_ in response_.Content.Headers)
                                 headers_[item_.Key] = item_.Value;
                         }
-    
+
                         ProcessResponse(client_, response_);
-    
+
                         var status_ = ((int)response_.StatusCode).ToString();
-                        if (status_ == "200") 
+                        if (status_ == "200")
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<GenericResponse>(response_, headers_).ConfigureAwait(false);
                             return objectResponse_.Object;
                         }
                         else
-                        if (status_ == "400") 
+                        if (status_ == "400")
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<GenericResponse>(response_, headers_).ConfigureAwait(false);
                             throw new ApiException<GenericResponse>("Bad Request", (int)response_.StatusCode, objectResponse_.Text, headers_, objectResponse_.Object, null);
@@ -2311,10 +2314,10 @@ namespace EMCApi.Client
                         else
                         if (status_ != "200" && status_ != "204")
                         {
-                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
                             throw new ApiException("The HTTP status code of the response was not expected (" + (int)response_.StatusCode + ").", (int)response_.StatusCode, responseData_, headers_, null);
                         }
-            
+
                         return default(GenericResponse);
                     }
                     finally
@@ -2328,14 +2331,14 @@ namespace EMCApi.Client
             {
             }
         }
-    
+
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public System.Threading.Tasks.Task<System.Collections.Generic.ICollection<ProveedorDTO>> GetProveedoresAsync(int idEmpresa)
         {
             return GetProveedoresAsync(idEmpresa, System.Threading.CancellationToken.None);
         }
-    
+
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
@@ -2343,11 +2346,11 @@ namespace EMCApi.Client
         {
             if (idEmpresa == null)
                 throw new System.ArgumentNullException("idEmpresa");
-    
+
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Proveedor/{idEmpresa}");
             urlBuilder_.Replace("{idEmpresa}", System.Uri.EscapeDataString(ConvertToString(idEmpresa, System.Globalization.CultureInfo.InvariantCulture)));
-    
+
             var client_ = _httpClient;
             try
             {
@@ -2355,12 +2358,12 @@ namespace EMCApi.Client
                 {
                     request_.Method = new System.Net.Http.HttpMethod("GET");
                     request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("text/plain"));
-    
+
                     PrepareRequest(client_, request_, urlBuilder_);
                     var url_ = urlBuilder_.ToString();
                     request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
                     PrepareRequest(client_, request_, url_);
-    
+
                     var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
                     try
                     {
@@ -2370,17 +2373,17 @@ namespace EMCApi.Client
                             foreach (var item_ in response_.Content.Headers)
                                 headers_[item_.Key] = item_.Value;
                         }
-    
+
                         ProcessResponse(client_, response_);
-    
+
                         var status_ = ((int)response_.StatusCode).ToString();
-                        if (status_ == "200") 
+                        if (status_ == "200")
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<System.Collections.Generic.ICollection<ProveedorDTO>>(response_, headers_).ConfigureAwait(false);
                             return objectResponse_.Object;
                         }
                         else
-                        if (status_ == "400") 
+                        if (status_ == "400")
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<GenericResponse>(response_, headers_).ConfigureAwait(false);
                             throw new ApiException<GenericResponse>("Bad Request", (int)response_.StatusCode, objectResponse_.Text, headers_, objectResponse_.Object, null);
@@ -2388,10 +2391,10 @@ namespace EMCApi.Client
                         else
                         if (status_ != "200" && status_ != "204")
                         {
-                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
                             throw new ApiException("The HTTP status code of the response was not expected (" + (int)response_.StatusCode + ").", (int)response_.StatusCode, responseData_, headers_, null);
                         }
-            
+
                         return default(System.Collections.Generic.ICollection<ProveedorDTO>);
                     }
                     finally
@@ -2405,14 +2408,14 @@ namespace EMCApi.Client
             {
             }
         }
-    
+
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public System.Threading.Tasks.Task<System.Collections.Generic.ICollection<UnidadMedidaDTO>> GetUnidadesMedidaAsync(int idEmpresa, string idioma)
         {
             return GetUnidadesMedidaAsync(idEmpresa, idioma, System.Threading.CancellationToken.None);
         }
-    
+
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
@@ -2420,12 +2423,12 @@ namespace EMCApi.Client
         {
             if (idEmpresa == null)
                 throw new System.ArgumentNullException("idEmpresa");
-    
+
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/UnidadMedida/{idEmpresa}/{idioma}");
             urlBuilder_.Replace("{idEmpresa}", System.Uri.EscapeDataString(ConvertToString(idEmpresa, System.Globalization.CultureInfo.InvariantCulture)));
             urlBuilder_.Replace("{idioma}", System.Uri.EscapeDataString(ConvertToString(idioma, System.Globalization.CultureInfo.InvariantCulture)));
-    
+
             var client_ = _httpClient;
             try
             {
@@ -2433,12 +2436,12 @@ namespace EMCApi.Client
                 {
                     request_.Method = new System.Net.Http.HttpMethod("GET");
                     request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("text/plain"));
-    
+
                     PrepareRequest(client_, request_, urlBuilder_);
                     var url_ = urlBuilder_.ToString();
                     request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
                     PrepareRequest(client_, request_, url_);
-    
+
                     var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
                     try
                     {
@@ -2448,17 +2451,17 @@ namespace EMCApi.Client
                             foreach (var item_ in response_.Content.Headers)
                                 headers_[item_.Key] = item_.Value;
                         }
-    
+
                         ProcessResponse(client_, response_);
-    
+
                         var status_ = ((int)response_.StatusCode).ToString();
-                        if (status_ == "200") 
+                        if (status_ == "200")
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<System.Collections.Generic.ICollection<UnidadMedidaDTO>>(response_, headers_).ConfigureAwait(false);
                             return objectResponse_.Object;
                         }
                         else
-                        if (status_ == "400") 
+                        if (status_ == "400")
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<GenericResponse>(response_, headers_).ConfigureAwait(false);
                             throw new ApiException<GenericResponse>("Bad Request", (int)response_.StatusCode, objectResponse_.Text, headers_, objectResponse_.Object, null);
@@ -2466,10 +2469,10 @@ namespace EMCApi.Client
                         else
                         if (status_ != "200" && status_ != "204")
                         {
-                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
                             throw new ApiException("The HTTP status code of the response was not expected (" + (int)response_.StatusCode + ").", (int)response_.StatusCode, responseData_, headers_, null);
                         }
-            
+
                         return default(System.Collections.Generic.ICollection<UnidadMedidaDTO>);
                     }
                     finally
@@ -2483,14 +2486,14 @@ namespace EMCApi.Client
             {
             }
         }
-    
+
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public System.Threading.Tasks.Task<UsuarioDTO> GetUserDataAsync(int idEmpresa, string userMail, string password)
         {
             return GetUserDataAsync(idEmpresa, userMail, password, System.Threading.CancellationToken.None);
         }
-    
+
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
@@ -2498,13 +2501,13 @@ namespace EMCApi.Client
         {
             if (idEmpresa == null)
                 throw new System.ArgumentNullException("idEmpresa");
-    
+
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Usuario/GetUserData/{idEmpresa}/{userMail}/{password}");
             urlBuilder_.Replace("{idEmpresa}", System.Uri.EscapeDataString(ConvertToString(idEmpresa, System.Globalization.CultureInfo.InvariantCulture)));
             urlBuilder_.Replace("{userMail}", System.Uri.EscapeDataString(ConvertToString(userMail, System.Globalization.CultureInfo.InvariantCulture)));
             urlBuilder_.Replace("{password}", System.Uri.EscapeDataString(ConvertToString(password, System.Globalization.CultureInfo.InvariantCulture)));
-    
+
             var client_ = _httpClient;
             try
             {
@@ -2512,12 +2515,12 @@ namespace EMCApi.Client
                 {
                     request_.Method = new System.Net.Http.HttpMethod("GET");
                     request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("text/plain"));
-    
+
                     PrepareRequest(client_, request_, urlBuilder_);
                     var url_ = urlBuilder_.ToString();
                     request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
                     PrepareRequest(client_, request_, url_);
-    
+
                     var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
                     try
                     {
@@ -2527,17 +2530,17 @@ namespace EMCApi.Client
                             foreach (var item_ in response_.Content.Headers)
                                 headers_[item_.Key] = item_.Value;
                         }
-    
+
                         ProcessResponse(client_, response_);
-    
+
                         var status_ = ((int)response_.StatusCode).ToString();
-                        if (status_ == "200") 
+                        if (status_ == "200")
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<UsuarioDTO>(response_, headers_).ConfigureAwait(false);
                             return objectResponse_.Object;
                         }
                         else
-                        if (status_ == "400") 
+                        if (status_ == "400")
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<GenericResponse>(response_, headers_).ConfigureAwait(false);
                             throw new ApiException<GenericResponse>("Bad Request", (int)response_.StatusCode, objectResponse_.Text, headers_, objectResponse_.Object, null);
@@ -2545,10 +2548,10 @@ namespace EMCApi.Client
                         else
                         if (status_ != "200" && status_ != "204")
                         {
-                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
                             throw new ApiException("The HTTP status code of the response was not expected (" + (int)response_.StatusCode + ").", (int)response_.StatusCode, responseData_, headers_, null);
                         }
-            
+
                         return default(UsuarioDTO);
                     }
                     finally
@@ -2562,14 +2565,14 @@ namespace EMCApi.Client
             {
             }
         }
-    
+
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public System.Threading.Tasks.Task<System.Collections.Generic.ICollection<UsuarioDTO>> GeUsuariosAsync(int? idEmpresa)
         {
             return GeUsuariosAsync(idEmpresa, System.Threading.CancellationToken.None);
         }
-    
+
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
@@ -2577,12 +2580,12 @@ namespace EMCApi.Client
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Usuario/GetUsuarios/idEmpresa?");
-            if (idEmpresa != null) 
+            if (idEmpresa != null)
             {
                 urlBuilder_.Append(System.Uri.EscapeDataString("idEmpresa") + "=").Append(System.Uri.EscapeDataString(ConvertToString(idEmpresa, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             }
             urlBuilder_.Length--;
-    
+
             var client_ = _httpClient;
             try
             {
@@ -2590,12 +2593,12 @@ namespace EMCApi.Client
                 {
                     request_.Method = new System.Net.Http.HttpMethod("GET");
                     request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("text/plain"));
-    
+
                     PrepareRequest(client_, request_, urlBuilder_);
                     var url_ = urlBuilder_.ToString();
                     request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
                     PrepareRequest(client_, request_, url_);
-    
+
                     var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
                     try
                     {
@@ -2605,17 +2608,17 @@ namespace EMCApi.Client
                             foreach (var item_ in response_.Content.Headers)
                                 headers_[item_.Key] = item_.Value;
                         }
-    
+
                         ProcessResponse(client_, response_);
-    
+
                         var status_ = ((int)response_.StatusCode).ToString();
-                        if (status_ == "200") 
+                        if (status_ == "200")
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<System.Collections.Generic.ICollection<UsuarioDTO>>(response_, headers_).ConfigureAwait(false);
                             return objectResponse_.Object;
                         }
                         else
-                        if (status_ == "400") 
+                        if (status_ == "400")
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<GenericResponse>(response_, headers_).ConfigureAwait(false);
                             throw new ApiException<GenericResponse>("Bad Request", (int)response_.StatusCode, objectResponse_.Text, headers_, objectResponse_.Object, null);
@@ -2623,10 +2626,10 @@ namespace EMCApi.Client
                         else
                         if (status_ != "200" && status_ != "204")
                         {
-                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
                             throw new ApiException("The HTTP status code of the response was not expected (" + (int)response_.StatusCode + ").", (int)response_.StatusCode, responseData_, headers_, null);
                         }
-            
+
                         return default(System.Collections.Generic.ICollection<UsuarioDTO>);
                     }
                     finally
@@ -2640,14 +2643,14 @@ namespace EMCApi.Client
             {
             }
         }
-    
+
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public System.Threading.Tasks.Task<GenericResponse> PostUsuarioAsync(UsuarioDTO body)
         {
             return PostUsuarioAsync(body, System.Threading.CancellationToken.None);
         }
-    
+
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
@@ -2655,7 +2658,7 @@ namespace EMCApi.Client
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Usuario/PostUsuario");
-    
+
             var client_ = _httpClient;
             try
             {
@@ -2666,12 +2669,12 @@ namespace EMCApi.Client
                     request_.Content = content_;
                     request_.Method = new System.Net.Http.HttpMethod("POST");
                     request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("text/plain"));
-    
+
                     PrepareRequest(client_, request_, urlBuilder_);
                     var url_ = urlBuilder_.ToString();
                     request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
                     PrepareRequest(client_, request_, url_);
-    
+
                     var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
                     try
                     {
@@ -2681,17 +2684,17 @@ namespace EMCApi.Client
                             foreach (var item_ in response_.Content.Headers)
                                 headers_[item_.Key] = item_.Value;
                         }
-    
+
                         ProcessResponse(client_, response_);
-    
+
                         var status_ = ((int)response_.StatusCode).ToString();
-                        if (status_ == "200") 
+                        if (status_ == "200")
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<GenericResponse>(response_, headers_).ConfigureAwait(false);
                             return objectResponse_.Object;
                         }
                         else
-                        if (status_ == "400") 
+                        if (status_ == "400")
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<GenericResponse>(response_, headers_).ConfigureAwait(false);
                             throw new ApiException<GenericResponse>("Bad Request", (int)response_.StatusCode, objectResponse_.Text, headers_, objectResponse_.Object, null);
@@ -2699,10 +2702,10 @@ namespace EMCApi.Client
                         else
                         if (status_ != "200" && status_ != "204")
                         {
-                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
                             throw new ApiException("The HTTP status code of the response was not expected (" + (int)response_.StatusCode + ").", (int)response_.StatusCode, responseData_, headers_, null);
                         }
-            
+
                         return default(GenericResponse);
                     }
                     finally
@@ -2716,14 +2719,14 @@ namespace EMCApi.Client
             {
             }
         }
-    
+
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public System.Threading.Tasks.Task<GenericResponse> UpdateEstatusUsuarioAsync(UsuarioDTO body)
         {
             return UpdateEstatusUsuarioAsync(body, System.Threading.CancellationToken.None);
         }
-    
+
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
@@ -2731,7 +2734,7 @@ namespace EMCApi.Client
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Usuario/UpdateEstatusUsuario");
-    
+
             var client_ = _httpClient;
             try
             {
@@ -2742,12 +2745,12 @@ namespace EMCApi.Client
                     request_.Content = content_;
                     request_.Method = new System.Net.Http.HttpMethod("PUT");
                     request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("text/plain"));
-    
+
                     PrepareRequest(client_, request_, urlBuilder_);
                     var url_ = urlBuilder_.ToString();
                     request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
                     PrepareRequest(client_, request_, url_);
-    
+
                     var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
                     try
                     {
@@ -2757,17 +2760,17 @@ namespace EMCApi.Client
                             foreach (var item_ in response_.Content.Headers)
                                 headers_[item_.Key] = item_.Value;
                         }
-    
+
                         ProcessResponse(client_, response_);
-    
+
                         var status_ = ((int)response_.StatusCode).ToString();
-                        if (status_ == "200") 
+                        if (status_ == "200")
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<GenericResponse>(response_, headers_).ConfigureAwait(false);
                             return objectResponse_.Object;
                         }
                         else
-                        if (status_ == "400") 
+                        if (status_ == "400")
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<GenericResponse>(response_, headers_).ConfigureAwait(false);
                             throw new ApiException<GenericResponse>("Bad Request", (int)response_.StatusCode, objectResponse_.Text, headers_, objectResponse_.Object, null);
@@ -2775,10 +2778,10 @@ namespace EMCApi.Client
                         else
                         if (status_ != "200" && status_ != "204")
                         {
-                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
                             throw new ApiException("The HTTP status code of the response was not expected (" + (int)response_.StatusCode + ").", (int)response_.StatusCode, responseData_, headers_, null);
                         }
-            
+
                         return default(GenericResponse);
                     }
                     finally
@@ -2792,14 +2795,14 @@ namespace EMCApi.Client
             {
             }
         }
-    
+
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public System.Threading.Tasks.Task<GenericResponse> EliminarUsuarioAsync(UsuarioDTO body)
         {
             return EliminarUsuarioAsync(body, System.Threading.CancellationToken.None);
         }
-    
+
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
@@ -2807,7 +2810,7 @@ namespace EMCApi.Client
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Usuario/EliminarUsuario");
-    
+
             var client_ = _httpClient;
             try
             {
@@ -2818,12 +2821,12 @@ namespace EMCApi.Client
                     request_.Content = content_;
                     request_.Method = new System.Net.Http.HttpMethod("DELETE");
                     request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("text/plain"));
-    
+
                     PrepareRequest(client_, request_, urlBuilder_);
                     var url_ = urlBuilder_.ToString();
                     request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
                     PrepareRequest(client_, request_, url_);
-    
+
                     var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
                     try
                     {
@@ -2833,17 +2836,17 @@ namespace EMCApi.Client
                             foreach (var item_ in response_.Content.Headers)
                                 headers_[item_.Key] = item_.Value;
                         }
-    
+
                         ProcessResponse(client_, response_);
-    
+
                         var status_ = ((int)response_.StatusCode).ToString();
-                        if (status_ == "200") 
+                        if (status_ == "200")
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<GenericResponse>(response_, headers_).ConfigureAwait(false);
                             return objectResponse_.Object;
                         }
                         else
-                        if (status_ == "400") 
+                        if (status_ == "400")
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<GenericResponse>(response_, headers_).ConfigureAwait(false);
                             throw new ApiException<GenericResponse>("Bad Request", (int)response_.StatusCode, objectResponse_.Text, headers_, objectResponse_.Object, null);
@@ -2851,10 +2854,10 @@ namespace EMCApi.Client
                         else
                         if (status_ != "200" && status_ != "204")
                         {
-                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
                             throw new ApiException("The HTTP status code of the response was not expected (" + (int)response_.StatusCode + ").", (int)response_.StatusCode, responseData_, headers_, null);
                         }
-            
+
                         return default(GenericResponse);
                     }
                     finally
@@ -2868,14 +2871,14 @@ namespace EMCApi.Client
             {
             }
         }
-    
+
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public System.Threading.Tasks.Task<System.Collections.Generic.ICollection<WeatherForecast>> WeatherForecastAsync()
         {
             return WeatherForecastAsync(System.Threading.CancellationToken.None);
         }
-    
+
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
@@ -2883,7 +2886,7 @@ namespace EMCApi.Client
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/WeatherForecast");
-    
+
             var client_ = _httpClient;
             try
             {
@@ -2891,12 +2894,12 @@ namespace EMCApi.Client
                 {
                     request_.Method = new System.Net.Http.HttpMethod("GET");
                     request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("text/plain"));
-    
+
                     PrepareRequest(client_, request_, urlBuilder_);
                     var url_ = urlBuilder_.ToString();
                     request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
                     PrepareRequest(client_, request_, url_);
-    
+
                     var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
                     try
                     {
@@ -2906,11 +2909,11 @@ namespace EMCApi.Client
                             foreach (var item_ in response_.Content.Headers)
                                 headers_[item_.Key] = item_.Value;
                         }
-    
+
                         ProcessResponse(client_, response_);
-    
+
                         var status_ = ((int)response_.StatusCode).ToString();
-                        if (status_ == "200") 
+                        if (status_ == "200")
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<System.Collections.Generic.ICollection<WeatherForecast>>(response_, headers_).ConfigureAwait(false);
                             return objectResponse_.Object;
@@ -2918,10 +2921,10 @@ namespace EMCApi.Client
                         else
                         if (status_ != "200" && status_ != "204")
                         {
-                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
                             throw new ApiException("The HTTP status code of the response was not expected (" + (int)response_.StatusCode + ").", (int)response_.StatusCode, responseData_, headers_, null);
                         }
-            
+
                         return default(System.Collections.Generic.ICollection<WeatherForecast>);
                     }
                     finally
@@ -3089,6 +3092,162 @@ namespace EMCApi.Client
             }
         }
 
+        /// <summary>Obtiene informacion de imagenes y productos</summary>
+        /// <returns>Success</returns>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        public System.Threading.Tasks.Task<System.Collections.Generic.ICollection<ProductManagerImgDTO>> GetProductImgInfoAsync(int id)
+        {
+            return GetProductImgInfoAsync(id, System.Threading.CancellationToken.None);
+        }
+
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <summary>Obtiene informacion de imagenes y productos</summary>
+        /// <returns>Success</returns>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        public async System.Threading.Tasks.Task<System.Collections.Generic.ICollection<ProductManagerImgDTO>> GetProductImgInfoAsync(int id, System.Threading.CancellationToken cancellationToken)
+        {
+            if (id == null)
+                throw new System.ArgumentNullException("id");
+
+            var urlBuilder_ = new System.Text.StringBuilder();
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/ProductoManager/GetProductImgInfo/{id}");
+            urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(ConvertToString(id, System.Globalization.CultureInfo.InvariantCulture)));
+
+            var client_ = _httpClient;
+            try
+            {
+                using (var request_ = new System.Net.Http.HttpRequestMessage())
+                {
+                    request_.Method = new System.Net.Http.HttpMethod("GET");
+                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("text/plain"));
+
+                    PrepareRequest(client_, request_, urlBuilder_);
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
+                    PrepareRequest(client_, request_, url_);
+
+                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+                    try
+                    {
+                        var headers_ = System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
+                        if (response_.Content != null && response_.Content.Headers != null)
+                        {
+                            foreach (var item_ in response_.Content.Headers)
+                                headers_[item_.Key] = item_.Value;
+                        }
+
+                        ProcessResponse(client_, response_);
+
+                        var status_ = ((int)response_.StatusCode).ToString();
+                        if (status_ == "200")
+                        {
+                            var objectResponse_ = await ReadObjectResponseAsync<System.Collections.Generic.ICollection<ProductManagerImgDTO>>(response_, headers_).ConfigureAwait(false);
+                            return objectResponse_.Object;
+                        }
+                        else
+                        if (status_ == "400")
+                        {
+                            var objectResponse_ = await ReadObjectResponseAsync<GenericResponse>(response_, headers_).ConfigureAwait(false);
+                            throw new ApiException<GenericResponse>("Bad Request", (int)response_.StatusCode, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                        }
+                        else
+                        if (status_ != "200" && status_ != "204")
+                        {
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            throw new ApiException("The HTTP status code of the response was not expected (" + (int)response_.StatusCode + ").", (int)response_.StatusCode, responseData_, headers_, null);
+                        }
+
+                        return default(System.Collections.Generic.ICollection<ProductManagerImgDTO>);
+                    }
+                    finally
+                    {
+                        if (response_ != null)
+                            response_.Dispose();
+                    }
+                }
+            }
+            finally
+            {
+            }
+        }
+        /// <summary>Obtiene informacion de imagenes y productos</summary>
+        /// <returns>Success</returns>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        public System.Threading.Tasks.Task<System.Collections.Generic.ICollection<ProductManagerImgDTO>> GetProductImgInfoExtendAsync(string strProducto)
+        {
+            return GetProductImgInfoExtendAsync(strProducto, System.Threading.CancellationToken.None);
+        }
+
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <summary>Obtiene informacion de imagenes y productos</summary>
+        /// <returns>Success</returns>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        public async System.Threading.Tasks.Task<System.Collections.Generic.ICollection<ProductManagerImgDTO>> GetProductImgInfoExtendAsync(string strProducto, System.Threading.CancellationToken cancellationToken)
+        {
+            var urlBuilder_ = new System.Text.StringBuilder();
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/ProductoManager/GetProductImgInfoExtend/{strProducto}");
+            urlBuilder_.Replace("{strProducto}", System.Uri.EscapeDataString(ConvertToString(strProducto, System.Globalization.CultureInfo.InvariantCulture)));
+
+            var client_ = _httpClient;
+            try
+            {
+                using (var request_ = new System.Net.Http.HttpRequestMessage())
+                {
+                    request_.Method = new System.Net.Http.HttpMethod("GET");
+                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("text/plain"));
+
+                    PrepareRequest(client_, request_, urlBuilder_);
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
+                    PrepareRequest(client_, request_, url_);
+
+                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+                    try
+                    {
+                        var headers_ = System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
+                        if (response_.Content != null && response_.Content.Headers != null)
+                        {
+                            foreach (var item_ in response_.Content.Headers)
+                                headers_[item_.Key] = item_.Value;
+                        }
+
+                        ProcessResponse(client_, response_);
+
+                        var status_ = ((int)response_.StatusCode).ToString();
+                        if (status_ == "200")
+                        {
+                            var objectResponse_ = await ReadObjectResponseAsync<System.Collections.Generic.ICollection<ProductManagerImgDTO>>(response_, headers_).ConfigureAwait(false);
+                            return objectResponse_.Object;
+                        }
+                        else
+                        if (status_ == "400")
+                        {
+                            var objectResponse_ = await ReadObjectResponseAsync<GenericResponse>(response_, headers_).ConfigureAwait(false);
+                            throw new ApiException<GenericResponse>("Bad Request", (int)response_.StatusCode, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                        }
+                        else
+                        if (status_ != "200" && status_ != "204")
+                        {
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            throw new ApiException("The HTTP status code of the response was not expected (" + (int)response_.StatusCode + ").", (int)response_.StatusCode, responseData_, headers_, null);
+                        }
+
+                        return default(System.Collections.Generic.ICollection<ProductManagerImgDTO>);
+                    }
+                    finally
+                    {
+                        if (response_ != null)
+                            response_.Dispose();
+                    }
+                }
+            }
+            finally
+            {
+            }
+        }
+
+
+
         protected struct ObjectResponseResult<T>
         {
             public ObjectResponseResult(T responseObject, string responseText)
@@ -3096,21 +3255,21 @@ namespace EMCApi.Client
                 this.Object = responseObject;
                 this.Text = responseText;
             }
-    
+
             public T Object { get; }
-    
+
             public string Text { get; }
         }
-    
+
         public bool ReadResponseAsString { get; set; }
-        
+
         protected virtual async System.Threading.Tasks.Task<ObjectResponseResult<T>> ReadObjectResponseAsync<T>(System.Net.Http.HttpResponseMessage response, System.Collections.Generic.IReadOnlyDictionary<string, System.Collections.Generic.IEnumerable<string>> headers)
         {
             if (response == null || response.Content == null)
             {
                 return new ObjectResponseResult<T>(default(T), string.Empty);
             }
-        
+
             if (ReadResponseAsString)
             {
                 var responseText = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
@@ -3145,7 +3304,7 @@ namespace EMCApi.Client
                 }
             }
         }
-    
+
         private string ConvertToString(object value, System.Globalization.CultureInfo cultureInfo)
         {
             if (value is System.Enum)
@@ -3156,7 +3315,7 @@ namespace EMCApi.Client
                     var field = System.Reflection.IntrospectionExtensions.GetTypeInfo(value.GetType()).GetDeclaredField(name);
                     if (field != null)
                     {
-                        var attribute = System.Reflection.CustomAttributeExtensions.GetCustomAttribute(field, typeof(System.Runtime.Serialization.EnumMemberAttribute)) 
+                        var attribute = System.Reflection.CustomAttributeExtensions.GetCustomAttribute(field, typeof(System.Runtime.Serialization.EnumMemberAttribute))
                             as System.Runtime.Serialization.EnumMemberAttribute;
                         if (attribute != null)
                         {
@@ -3165,674 +3324,679 @@ namespace EMCApi.Client
                     }
                 }
             }
-            else if (value is bool) {
+            else if (value is bool)
+            {
                 return System.Convert.ToString(value, cultureInfo).ToLowerInvariant();
             }
             else if (value is byte[])
             {
-                return System.Convert.ToBase64String((byte[]) value);
+                return System.Convert.ToBase64String((byte[])value);
             }
             else if (value != null && value.GetType().IsArray)
             {
-                var array = System.Linq.Enumerable.OfType<object>((System.Array) value);
+                var array = System.Linq.Enumerable.OfType<object>((System.Array)value);
                 return string.Join(",", System.Linq.Enumerable.Select(array, o => ConvertToString(o, cultureInfo)));
             }
-        
+
             return System.Convert.ToString(value, cultureInfo);
         }
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.0.22.0 (Newtonsoft.Json v11.0.0.0)")]
-    public partial class CredencialesDTO 
+    public partial class CredencialesDTO
     {
         [Newtonsoft.Json.JsonProperty("idEmpresa", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int IdEmpresa { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("userMail", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string UserMail { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("password", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Password { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("idRol", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int IdRol { get; set; }
-    
-    
+
+
     }
-    
+
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.0.22.0 (Newtonsoft.Json v11.0.0.0)")]
-    public partial class AccessToken 
+    public partial class AccessToken
     {
         [Newtonsoft.Json.JsonProperty("token", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Token { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("expires", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.DateTimeOffset Expires { get; set; }
-    
-    
+
+
     }
-    
+
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.0.22.0 (Newtonsoft.Json v11.0.0.0)")]
-    public partial class ProblemDetails 
+    public partial class ProblemDetails
     {
         [Newtonsoft.Json.JsonProperty("type", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Type { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("title", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Title { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("status", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int? Status { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("detail", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Detail { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("instance", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Instance { get; set; }
-    
+
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-    
+
         [Newtonsoft.Json.JsonExtensionData]
         public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
         {
             get { return _additionalProperties; }
             set { _additionalProperties = value; }
         }
-    
-    
+
+
     }
-    
+
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.0.22.0 (Newtonsoft.Json v11.0.0.0)")]
-    public partial class ClienteDTO 
+    public partial class ClienteDTO
     {
         [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int Id { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("identificador", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid Identificador { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("nombreCliente", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string NombreCliente { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("rfc", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Rfc { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("direccion", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Direccion { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("telefono", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Telefono { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("email", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Email { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("activo", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool Activo { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("idEmpresa", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int IdEmpresa { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("fecha", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.DateTimeOffset Fecha { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("fechaModificacion", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.DateTimeOffset FechaModificacion { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("longitud", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public double Longitud { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("latitud", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public double Latitud { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("altitud", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public double Altitud { get; set; }
-    
-    
+
+
     }
-    
+
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.0.22.0 (Newtonsoft.Json v11.0.0.0)")]
-    public partial class GenericResponse 
+    public partial class GenericResponse
     {
         [Newtonsoft.Json.JsonProperty("ok", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool Ok { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("mensaje", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Mensaje { get; set; }
 
         [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int Id { get; set; }
     }
-    
+
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.0.22.0 (Newtonsoft.Json v11.0.0.0)")]
-    public partial class EmpresaDTO 
+    public partial class EmpresaDTO
     {
         [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int Id { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("identificador", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid Identificador { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("nombreEmpresa", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string NombreEmpresa { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("rfc", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Rfc { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("email", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Email { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("fecha", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.DateTimeOffset Fecha { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("activo", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool Activo { get; set; }
-    
-    
+
+
     }
-    
+
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.0.22.0 (Newtonsoft.Json v11.0.0.0)")]
-    public partial class FacturaCompraDTO 
+    public partial class FacturaCompraDTO
     {
         [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int Id { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("numeroFactura", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string NumeroFactura { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("idEmpresa", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int IdEmpresa { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("nombreProveedor", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string NombreProveedor { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("rfc", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Rfc { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("idProveedor", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int IdProveedor { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("subtotal", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public double Subtotal { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("porcentajeImpuesto", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public double PorcentajeImpuesto { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("impuesto", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public double Impuesto { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("porcentajeDescuento", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public double PorcentajeDescuento { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("descuento", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public double Descuento { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("total", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public double Total { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("fecha", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.DateTimeOffset Fecha { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("fechaModificacion", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.DateTimeOffset FechaModificacion { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("idUsuario", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int IdUsuario { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("activo", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool Activo { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("idMetodoPago", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int IdMetodoPago { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("metodoPago", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string MetodoPago { get; set; }
-    
-    
+
+
     }
-    
+
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.0.22.0 (Newtonsoft.Json v11.0.0.0)")]
-    public partial class FacturaCompraDetalleDTO 
+    public partial class FacturaCompraDetalleDTO
     {
         [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int Id { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("numeroFactura", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string NumeroFactura { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("linea", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int Linea { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("idArticulo", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int IdArticulo { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("nombreArticulo", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string NombreArticulo { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("descripcion", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Descripcion { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("cantidad", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public double Cantidad { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("unidad", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int Unidad { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("unidadMedida", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string UnidadMedida { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("precioUnitario", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public double PrecioUnitario { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("subtotal", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public double Subtotal { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("porcentajeImpuesto", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public double PorcentajeImpuesto { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("impuesto", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public double Impuesto { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("porcentajeDescuento", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public double PorcentajeDescuento { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("descuento", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public double Descuento { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("total", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public double Total { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("fecha", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.DateTimeOffset Fecha { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("fechaModificacion", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.DateTimeOffset FechaModificacion { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("idUsuario", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int IdUsuario { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("activo", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool Activo { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("idEmpresa", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int IdEmpresa { get; set; }
-    
-    
+
+
     }
-    
+
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.0.22.0 (Newtonsoft.Json v11.0.0.0)")]
-    public partial class FacturaVentaDTO 
+    public partial class FacturaVentaDTO
     {
         [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int Id { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("numeroFactura", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string NumeroFactura { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("idEmpresa", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int IdEmpresa { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("nombreCliente", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string NombreCliente { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("rfc", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Rfc { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("idCliente", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int IdCliente { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("subtotal", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public double Subtotal { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("porcentajeImpuesto", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public double PorcentajeImpuesto { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("impuesto", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public double Impuesto { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("porcentajeDescuento", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public double PorcentajeDescuento { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("descuento", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public double Descuento { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("total", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public double Total { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("fecha", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.DateTimeOffset Fecha { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("fechaModificacion", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.DateTimeOffset FechaModificacion { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("idUsuario", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int IdUsuario { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("activo", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool Activo { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("idMetodoPago", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int IdMetodoPago { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("metodoPago", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string MetodoPago { get; set; }
-    
-    
+
+
     }
-    
+
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.0.22.0 (Newtonsoft.Json v11.0.0.0)")]
-    public partial class InicioFacturacionDTO 
+    public partial class InicioFacturacionDTO
     {
         [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int Id { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("idEmpresa", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int IdEmpresa { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("fecha", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.DateTimeOffset Fecha { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("activo", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool Activo { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("numeroFactura", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string NumeroFactura { get; set; }
-    
-    
+
+
     }
-    
+
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.0.22.0 (Newtonsoft.Json v11.0.0.0)")]
-    public partial class FacturaVentaDetalleDTO 
+    public partial class FacturaVentaDetalleDTO
     {
         [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int Id { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("numeroFactura", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string NumeroFactura { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("linea", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int Linea { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("idArticulo", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int IdArticulo { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("nombreArticulo", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string NombreArticulo { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("descripcion", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Descripcion { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("cantidad", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public double Cantidad { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("unidad", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int Unidad { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("unidadMedida", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string UnidadMedida { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("precioUnitario", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public double PrecioUnitario { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("subtotal", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public double Subtotal { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("porcentajeImpuesto", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public double PorcentajeImpuesto { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("impuesto", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public double Impuesto { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("porcentajeDescuento", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public double PorcentajeDescuento { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("descuento", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public double Descuento { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("total", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public double Total { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("fecha", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.DateTimeOffset Fecha { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("fechaModificacion", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.DateTimeOffset FechaModificacion { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("idUsuario", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int IdUsuario { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("activo", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool Activo { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("idEmpresa", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int IdEmpresa { get; set; }
-    
-    
+
+
     }
-    
+
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.0.22.0 (Newtonsoft.Json v11.0.0.0)")]
-    public partial class StockTotalDTO 
+    public partial class StockTotalDTO
     {
         [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int Id { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("idEmpresa", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int IdEmpresa { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("numeroFactura", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string NumeroFactura { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("linea", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int Linea { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("fecha", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.DateTimeOffset Fecha { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("fechaModificacion", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.DateTimeOffset FechaModificacion { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("activo", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool Activo { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("idUsuario", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int IdUsuario { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("identificador", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Identificador { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("idArticulo", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int IdArticulo { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("nombreProducto", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string NombreProducto { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("cantidad", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public double Cantidad { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("cantidadPositiva", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public double CantidadPositiva { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("cantidadNegativa", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public double CantidadNegativa { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("unidad", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Unidad { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("tipoFactura", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int TipoFactura { get; set; }
-    
-    
+
+
     }
-    
+
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.0.22.0 (Newtonsoft.Json v11.0.0.0)")]
-    public partial class StockTransitoDTO 
+    public partial class StockTransitoDTO
     {
         [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int Id { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("idEmpresa", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int IdEmpresa { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("cantidad", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public double Cantidad { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("idArticulo", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int IdArticulo { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("nombreArticulo", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string NombreArticulo { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("unidad", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int Unidad { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("strUnidad", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string StrUnidad { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("fecha", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.DateTimeOffset Fecha { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("fechaModificacion", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.DateTimeOffset FechaModificacion { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("activo", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool Activo { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("idVendedor", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int IdVendedor { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("nombreVendedor", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string NombreVendedor { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("identificador", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Identificador { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("idUsuario", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int IdUsuario { get; set; }
-    
-    
+
+
     }
-    
+
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.0.22.0 (Newtonsoft.Json v11.0.0.0)")]
-    public partial class MetodoPagoDTO 
+    public partial class MetodoPagoDTO
     {
         [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int Id { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("metodo", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Metodo { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("idioma", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Idioma { get; set; }
-    
-    
+
+
     }
-    
+
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.0.22.0 (Newtonsoft.Json v11.0.0.0)")]
-    public partial class ProductoDTO 
+    public partial class ProductoDTO
     {
         [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int Id { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("identificador", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid Identificador { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("idEmpresa", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int IdEmpresa { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("nombreProducto", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string NombreProducto { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("descripcion", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Descripcion { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("precioUnidad", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public double PrecioUnidad { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("presentacion", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Presentacion { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("fecha", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.DateTimeOffset Fecha { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("idUsuario", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int IdUsuario { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("activo", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool Activo { get; set; }
-    
-    
+
+
     }
-    
+
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.0.22.0 (Newtonsoft.Json v11.0.0.0)")]
-    public partial class ProveedorDTO 
+    public partial class ProveedorDTO
     {
         [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int Id { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("identificador", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid Identificador { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("nombreProveedor", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string NombreProveedor { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("rfc", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Rfc { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("direccion", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Direccion { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("telefono", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Telefono { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("email", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Email { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("activo", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool Activo { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("idEmpresa", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int IdEmpresa { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("fecha", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.DateTimeOffset Fecha { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("fechaModificacion", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.DateTimeOffset FechaModificacion { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("longitud", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public double Longitud { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("latitud", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public double Latitud { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("altitud", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public double Altitud { get; set; }
-    
-    
+
+
     }
-    
+
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.0.22.0 (Newtonsoft.Json v11.0.0.0)")]
-    public partial class UnidadMedidaDTO 
+    public partial class UnidadMedidaDTO
     {
         [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int Id { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("unidad", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Unidad { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("idEmpresa", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int IdEmpresa { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("sistema", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Sistema { get; set; }
-    
-    
+
+
     }
+
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.0.22.0 (Newtonsoft.Json v11.0.0.0)")]
     public partial class ProductoImgInfoDTO
     {
         [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int Id { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("idEmpresa", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public int IdEmpresa { get; set; }
 
         [Newtonsoft.Json.JsonProperty("nombre", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Nombre { get; set; }
@@ -3849,7 +4013,8 @@ namespace EMCApi.Client
         [Newtonsoft.Json.JsonProperty("descripcion", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Descripcion { get; set; }
 
-
+        [Newtonsoft.Json.JsonProperty("precio", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal Precio { get; set; }
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.0.22.0 (Newtonsoft.Json v11.0.0.0)")]
@@ -3877,11 +4042,59 @@ namespace EMCApi.Client
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.0.22.0 (Newtonsoft.Json v11.0.0.0)")]
-    public partial class UsuarioDTO 
+    public partial class ProductManagerImgDTO
     {
         [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int Id { get; set; }
-    
+
+        [Newtonsoft.Json.JsonProperty("idEmpresa", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public int IdEmpresa { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("nombre", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string Nombre { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("categoria", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string Categoria { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("peso", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string Peso { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("tamaño", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string Tamaño { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("descripcion", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string Descripcion { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("strBase64", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string StrBase64 { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("identificador", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string Identificador { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("ubicacion", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string Ubicacion { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("nombreImg", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string NombreImg { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("identidades", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public System.Collections.Generic.ICollection<string> Identidades { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("nombresImg", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public System.Collections.Generic.ICollection<string> NombresImg { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("infoImg", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public System.Collections.Generic.ICollection<ProductoImg> InfoImg { get; set; }
+
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.0.22.0 (Newtonsoft.Json v11.0.0.0)")]
+    public partial class UsuarioDTO
+    {
+        [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public int Id { get; set; }
+
         [Newtonsoft.Json.JsonProperty("nombre", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Nombre { get; set; }
 
@@ -3890,59 +4103,59 @@ namespace EMCApi.Client
 
         [Newtonsoft.Json.JsonProperty("apellido", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Apellido { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("username", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Username { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("email", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Email { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("idRol", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int IdRol { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("idEmpresa", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int IdEmpresa { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("token", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Token { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("activo", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool Activo { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("fecha", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.DateTimeOffset Fecha { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("password", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Password { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("password2", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Password2 { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("inicioFacturacion", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool InicioFacturacion { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("inicioFacturacionNumero", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string InicioFacturacionNumero { get; set; }
-    
-    
+
+
     }
-    
+
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.0.22.0 (Newtonsoft.Json v11.0.0.0)")]
-    public partial class WeatherForecast 
+    public partial class WeatherForecast
     {
         [Newtonsoft.Json.JsonProperty("date", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.DateTimeOffset Date { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("temperatureC", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int TemperatureC { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("temperatureF", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int TemperatureF { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("summary", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Summary { get; set; }
-    
-    
+
+
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.0.5.0 (NJsonSchema v10.0.22.0 (Newtonsoft.Json v11.0.0.0))")]
@@ -3954,11 +4167,11 @@ namespace EMCApi.Client
 
         public System.Collections.Generic.IReadOnlyDictionary<string, System.Collections.Generic.IEnumerable<string>> Headers { get; private set; }
 
-        public ApiException(string message, int statusCode, string response, System.Collections.Generic.IReadOnlyDictionary<string, System.Collections.Generic.IEnumerable<string>> headers, System.Exception innerException) 
+        public ApiException(string message, int statusCode, string response, System.Collections.Generic.IReadOnlyDictionary<string, System.Collections.Generic.IEnumerable<string>> headers, System.Exception innerException)
             : base(message + "\n\nStatus: " + statusCode + "\nResponse: \n" + response.Substring(0, response.Length >= 512 ? 512 : response.Length), innerException)
         {
             StatusCode = statusCode;
-            Response = response; 
+            Response = response;
             Headers = headers;
         }
 
@@ -3973,7 +4186,7 @@ namespace EMCApi.Client
     {
         public TResult Result { get; private set; }
 
-        public ApiException(string message, int statusCode, string response, System.Collections.Generic.IReadOnlyDictionary<string, System.Collections.Generic.IEnumerable<string>> headers, TResult result, System.Exception innerException) 
+        public ApiException(string message, int statusCode, string response, System.Collections.Generic.IReadOnlyDictionary<string, System.Collections.Generic.IEnumerable<string>> headers, TResult result, System.Exception innerException)
             : base(message, statusCode, response, headers, innerException)
         {
             Result = result;
@@ -3984,6 +4197,6 @@ namespace EMCApi.Client
 
 #pragma warning restore 1591
 #pragma warning restore 1573
-#pragma warning restore  472
-#pragma warning restore  114
-#pragma warning restore  108
+#pragma warning restore 472
+#pragma warning restore 114
+#pragma warning restore 108			
