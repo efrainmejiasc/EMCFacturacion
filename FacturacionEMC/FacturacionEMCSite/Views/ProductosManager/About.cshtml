@@ -1,13 +1,16 @@
 ﻿@using FacturacionEMCSite.StringResources;
 
 @{
-    Layout = "~/Views/Shared/_LayoutNew.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/js/scriptsSite/productosManager/jsEditProductosManager.js"></script>
+    <link rel="stylesheet" type="text/css" href="~/js/dataTables/datatables.css" />
+    <script type="text/javascript" src="~/js/dataTables/datatables.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 }
 <script>
+    var urlGetProductos = '@Url.Action("GetProductos", "Producto")';
     var urlGetProductAllImgInfoAsync = '@Url.Action("GetProductAllImgInfo", "ProductosManager")';
 </script>
 
@@ -16,18 +19,26 @@
         -webkit-transform: scale(1.5);
         transform: scale(1.5);
     }
+
+    .circular--square {
+        border-top-left-radius: 50% 50%;
+        border-top-right-radius: 50% 50%;
+        border-bottom-right-radius: 50% 50%;
+        border-bottom-left-radius: 50% 50%;
+    }
 </style>
 
 <div class="card" style="margin-top:5%;">
     <div class="card-body">
         <div class="form-horizontal" style="color:dimgray">
 
+            <input type="hidden" id="initDataTable" value="no" />
             <table id="tablaImg" class="display compact dt-center table table-striped table-light" style="width:100%">
-                <thead class="thead-dark">
+                <thead class="thead-light">
                     <tr>
                         <th>Nº</th>
-                        <th>@Resources.Article</th>
-                        <th>@Resources.Description</th>
+                        <th>@Resources.Name</th>
+                        <th>@Resources.Category</th>
                         <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp</th>
                         <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp</th>
                         <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp</th>
@@ -41,13 +52,40 @@
     </div>
 </div>
 
-<div class="form-horizontal" style="color:dimgray">
-    <div class="container" style="color:#0268b8;">
-        <div class="modalTipo" id="modalEdicion">
-            <div class="modal-content">
-                <span class="close" onclick="CloseEditar();">&times;</span><br /><br />
-                <h2 style="color:#0268b8;">@Resources.Notice</h2>
-               
+<div class="container" style="color:dimgray;">
+    <div class="modalTipo" id="modalEdicion">
+        <div class="modal-content2">
+            <span class="close" onclick="CloseEditar();">&times;</span><br /><br />
+            <div class="row">
+                <div class="col-md-12">
+                 
+                    <div class="form-group row">
+                        <input type="hidden" id="_idArticulo" />
+
+                        <label class="form form-label">@Resources.NameArticle</label>
+                        <input type="text" id="_nombreArticulo" class="form-control text-box single-line" />
+                       
+                        <label class="form form-label">@Resources.Category</label>
+                        <select id="lstArticulo" class="form-control form-control-sm" onchange="SetCategoriaArticulo()"></select>
+                        <input type="text" id="_categoriaArticulo" class="form-control text-box single-line" disabled/>
+
+                        <label class="form form-label">@Resources.Price</label>
+                        <input type="number" id="_precioArticulo" class="form-control text-box single-line" min="0" step="1" />
+
+                        <label class="form form-label">@Resources.Tamaño</label>
+                        <input type="text" id="_tamañoArticulo" class="form-control text-box single-line" />
+
+                        <label class="form form-label">@Resources.Peso</label>
+                        <input type="text" id="_pesoArticulo" class="form-control text-box single-line" />
+
+                        <label class="form form-label">@Resources.Description @Resources.Product</label>
+                        <input type="text" id="_descripcionArticulo" class="form-control text-box single-line" />
+                    </div>
+                    <div class="col-md-12">
+                        <input type="submit" value="@Resources.Save" class="btn btn-success" style="float:left;" onclick="GuardarEdicion();" />
+                        <input type="submit" value="@Resources.Cancel" class="btn btn-danger" style="float:right;" onclick="CloseEditar();" />
+                    </div>
+                </div>
             </div>
         </div>
     </div>

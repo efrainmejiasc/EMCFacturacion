@@ -1,6 +1,6 @@
 ﻿@using FacturacionEMCSite.StringResources;
 @{
-    Layout = "~/Views/Shared/_LayoutNew.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/js/scriptsSite/usuario/jsIndex.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -12,7 +12,7 @@
 <script>
     var urlAddUsuario = '@Url.Action("AddUsuario","Usuario")';
     var urlAllUsers = '@Url.Action("About","Usuario")';
-    var urlGetCultureInfo = '@Url.Action("GetCultureInfo","Usuario")';
+    var urlGetCultureInfo = '@Url.Action("GetCultureInfo","Empresa")';
 </script>
 
 

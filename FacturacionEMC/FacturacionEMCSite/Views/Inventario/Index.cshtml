@@ -1,6 +1,6 @@
 ﻿@using FacturacionEMCSite.StringResources;
 @{ 
-    Layout = "~/Views/Shared/_LayoutNew.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/js/scriptsSite/inventario/jsIndex.js"></script>
     <link rel="stylesheet" type="text/css" href="~/js/dataTables/datatables.css" />
@@ -39,7 +39,7 @@
         <div class="form-horizontal" style="color:dimgray">
 
             <table id="tablaStock" class="display compact dt-center table table-striped table-light" style="width:100%">
-                <thead class="thead-dark">
+                <thead class="thead-light">
                     <tr>
                         <th>@Resources.Id</th>
                         <th>@Resources.Product</th>
@@ -61,7 +61,7 @@
                 <div class="modal-content2">
                     <span class="close" onclick="OcultarModalTransito();">&times;</span><br /><br />
                     <table id="tablaTransito" class="display compact dt-center table table-striped table-light" style="width:100%">
-                        <thead class="thead-dark">
+                        <thead class="thead-light">
                             <tr>
                                 <th>@Resources.Id</th>
                                 <th>@Resources.Seller</th>

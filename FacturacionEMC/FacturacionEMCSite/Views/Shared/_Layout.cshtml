@@ -15,49 +15,21 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand"></a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between" id="submenu" style="color: #0268b8;">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a href="@Url.Action("Index","Home")" class="nav-link text-info" id="logout_">@Resources.LogOut</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="@Url.Action("Index","Usuario")" class="nav-link text-info" id="usuario_">@Resources.Users</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="@Url.Action("About","Home")" class="nav-link text-info" id="dashboard_">@Resources.Dashboard</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="@Url.Action("Index","FacturaVenta")" class="nav-link text-info" id="fVenta_">@Resources.SalesRecord</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="@Url.Action("Index","FacturaCompra")" class="nav-link text-info" id="fCompra_">@Resources.PurchasesRecord</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="@Url.Action("About","FacturaVenta")" class="nav-link text-info" id="rVenta_">@Resources.SalesSummary</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="@Url.Action("About","FacturaCompra")" class="nav-link text-info" id="rCompra_">@Resources.PurchasesSummary</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="@Url.Action("Index","Inventario")" class="nav-link text-info" id="stock_">@Resources.Stock</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="@Url.Action("About","Inventario")" class="nav-link text-info" id="asignacion_">@Resources.Assignments</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="@Url.Action("Index","InicioFacturacion")" class="nav-link text-info" id="inicioFact_">@Resources.HomeBilling</a>
-                        </li>
-
-                    </ul>
+     <nav class="sidebar sidebar-offcanvas" id="sidebar">
+    <ul class="nav nav-height">
+        <li class="nav-item nav-profile border-bottom">
+            <a href="#" class="nav-link flex-column">
+                <div class="nav-profile-image">
+                    <img src="~/Content/img/logo-e.png" alt="profile" style="width:30%;height:27%;">
+                    <!--change to offline or busy as needed-->
                 </div>
-            </div>
+                <div class="nav-profile-text d-flex ms-0 mb-3 flex-column">
+                     <span class="font-weight-semibold mb-1 mt-2 text-center" style="font-size:14px;" id="nombreUsuario"> </span>
+                    <span class="text-secondary icon-sm text-center" style="font-size:14px;" id="emailUsuario"> </span>
+                </div>
+            </a>
+        </li>
+        </ul>
         </nav>
     </header>
     <div class="container">
@@ -85,6 +57,7 @@
 
     $(document).ready(function () {
         GetCultureInfo();
+        GetUsuarioLogeado();
     });
 
     function GetCultureInfo() {
@@ -100,4 +73,20 @@
 
     return false;
 }
+
+    function GetUsuarioLogeado() {
+
+        var urlGetUsuarioLogeado = '@Url.Action("GetUsuarioLogger","Usuario")';
+        $.ajax({
+            type: "GET",
+            url: urlGetUsuarioLogeado,
+            datatype: "json",
+            success: function (data) {
+                console.log(data);
+                $('#nombreUsuario').html(data.username);
+                $('#emailUsuario').html(data.email);
+            }
+        });
+        return false;
+    }
 </script>

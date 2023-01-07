@@ -1,6 +1,6 @@
 ﻿@using FacturacionEMCSite.StringResources;
 @{
-    Layout = "~/Views/Shared/_LayoutNew.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/js/scriptsSite/usuario/jsAbout.js"></script>
     <link rel="stylesheet" type="text/css" href="~/js/dataTables/datatables.css" />
@@ -33,7 +33,7 @@
 
             <input type="hidden" id="initDataTable" value="no" />
             <table id="tablaUsuarios" class="display compact dt-center table table-striped table-light" style="width:100%">
-                <thead class="thead-dark">
+                <thead class="thead-light">
                     <tr>
                         <th>@Resources.Status</th>
                         <th>@Resources.Name</th>

@@ -1,0 +1,44 @@
+<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand"></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between" id="submenu" style="color: #0268b8;">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a href="@Url.Action("Index","Home")" class="nav-link text-info" id="logout_">@Resources.LogOut</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="@Url.Action("Index","Usuario")" class="nav-link text-info" id="usuario_">@Resources.Users</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="@Url.Action("About","Home")" class="nav-link text-info" id="dashboard_">@Resources.Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="@Url.Action("Index","FacturaVenta")" class="nav-link text-info" id="fVenta_">@Resources.SalesRecord</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="@Url.Action("Index","FacturaCompra")" class="nav-link text-info" id="fCompra_">@Resources.PurchasesRecord</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="@Url.Action("About","FacturaVenta")" class="nav-link text-info" id="rVenta_">@Resources.SalesSummary</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="@Url.Action("About","FacturaCompra")" class="nav-link text-info" id="rCompra_">@Resources.PurchasesSummary</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="@Url.Action("Index","Inventario")" class="nav-link text-info" id="stock_">@Resources.Stock</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="@Url.Action("About","Inventario")" class="nav-link text-info" id="asignacion_">@Resources.Assignments</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="@Url.Action("Index","InicioFacturacion")" class="nav-link text-info" id="inicioFact_">@Resources.HomeBilling</a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </nav>

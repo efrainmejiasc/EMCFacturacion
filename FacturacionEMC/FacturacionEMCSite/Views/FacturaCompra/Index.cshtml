@@ -1,6 +1,6 @@
 ﻿@using FacturacionEMCSite.StringResources;
 @{
-    Layout = "~/Views/Shared/_LayoutNew.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/js/scriptsSite/facturaCompra/jsFacturaCompra.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -107,7 +107,7 @@
         <div class="form-horizontal" style="color:dimgray">
             <h3 style="color:dimgray">@Resources.InvoiceDetail </h3>
             <table id="tablaLineas" class="display compact dt-center table table-striped table-light" style="width:100%">
-                <thead class="thead-dark">
+                <thead class="thead-light">
                     <tr>
                         <th style="display:none;">Nº</th>
                         <th>@Resources.Article</th>
@@ -169,7 +169,7 @@
                 <div class="modal-content2">
                     <div class="row">
                         <div class="col-md-12">
-                            <h3> Add New Supplier</h3>
+                            <h3> @Resources.AddNewSupplier </h3>
                             <div class="form-group row">
                                 <label class="form form-label">@Resources.NameSocialReason </label>
                                 <input type="text" id="_nombre" class="form-control text-box single-line" />
@@ -198,7 +198,7 @@
                 <div class="modal-content2">
                     <div class="row">
                         <div class="col-md-12">
-                            <h3> Add New Article</h3>
+                            <h3>@Resources.AddNewArticle</h3>
                             <div class="form-group row">
                                 <label class="form form-label">@Resources.NameArticle</label>
                                 <input type="text" id="_nombreArt" class="form-control text-box single-line" />
@@ -206,7 +206,7 @@
                                 <input type="text" id="_descripcionArticulo" class="form-control text-box single-line" />
                                 <label class="form form-label">U.@Resources.Price</label>
                                 <input type="number" id="_precioArticulo" class="form-control text-box single-line" min="0" step="1" />
-                                <label class="form form-label">Presentacion</label>
+                                <label class="form form-label">@Resources.Presentation</label>
                                 <select id="_unidad" class="form-control form-control-sm" onchange="SetPresentacion();">
                                 </select>
                                 <input type="text" id="_presentacionArticulo" class="form-control text-box single-line" disabled/>

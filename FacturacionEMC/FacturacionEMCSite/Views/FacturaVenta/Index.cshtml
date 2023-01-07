@@ -1,6 +1,6 @@
 ﻿@using FacturacionEMCSite.StringResources;
 @{
-    Layout = "~/Views/Shared/_LayoutNew.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/js/scriptsSite/facturaVenta/jsFacturaVenta.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -108,7 +108,7 @@
         <div class="form-horizontal" style="color:dimgray">
             <h3 style="color:dimgray">@Resources.InvoiceDetail</h3>
             <table id="tablaLineas" class="display compact dt-center table table-striped table-light" style="width:100%">
-                <thead class="thead-dark">
+                <thead class="thead-light">
                     <tr>
                         <th style="display:none;">Nº</th>
                         <th>@Resources.Article</th>

@@ -43,6 +43,8 @@ SELECT * FROM InicioFacturacion
 --TRUNCATE TABLE FacturaCompra
 --TRUNCATE TABLE FacturaCompraDetalle
 --TRUNCATE TABLE StockTotal
+--TRUNCATE TABLE StockTransito
+--TRUNCATE TABLE StockBodega
 --TRUNCATE TABLE Proveedor
 
 
