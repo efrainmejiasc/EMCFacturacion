@@ -8,28 +8,47 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 }
 <script>
-    var urlUploadDataImg = '@Url.Action("UploadDataImg", "ProductosManager")';
+    var urlGetProductAllImgInfoAsync = '@Url.Action("GetProductAllImgInfo", "ProductosManager")';
 </script>
+
+<style>
+    img:hover{
+        -webkit-transform: scale(1.5);
+        transform: scale(1.5);
+    }
+</style>
 
 <div class="card" style="margin-top:5%;">
     <div class="card-body">
         <div class="form-horizontal" style="color:dimgray">
 
-            <table id="tablaLineas" class="display compact dt-center table table-striped table-light" style="width:100%">
+            <table id="tablaImg" class="display compact dt-center table table-striped table-light" style="width:100%">
                 <thead class="thead-dark">
                     <tr>
-                        <th style="display:none;">Nº</th>
+                        <th>Nº</th>
                         <th>@Resources.Article</th>
                         <th>@Resources.Description</th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
+                        <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp</th>
+                        <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp</th>
+                        <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp</th>
                     </tr>
                 </thead>
                 <tbody>
                 </tbody>
             </table>
 
+        </div>
+    </div>
+</div>
+
+<div class="form-horizontal" style="color:dimgray">
+    <div class="container" style="color:#0268b8;">
+        <div class="modalTipo" id="modalEdicion">
+            <div class="modal-content">
+                <span class="close" onclick="CloseEditar();">&times;</span><br /><br />
+                <h2 style="color:#0268b8;">@Resources.Notice</h2>
+               
+            </div>
         </div>
     </div>
 </div>

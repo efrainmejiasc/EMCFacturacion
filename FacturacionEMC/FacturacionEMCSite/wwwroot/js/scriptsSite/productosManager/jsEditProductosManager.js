@@ -2,6 +2,7 @@
 
 $(document).ready(function () {
     console.log("ready!");
+    $('#modalEdicion').hide();
     setTimeout(DocumentoListo, 2000);
 });
 
@@ -9,15 +10,15 @@ $(document).ready(function () {
 function DocumentoListo() {
     var obje = $(document).find('#cultureInfo').prop('disabled', true);
     cultureInfo = $('#cultureInfo').val();
-    GetProductos();
     console.log(cultureInfo);
+    GetInfoImagenes();
 }
 
-function GetFacturas() {
+function GetInfoImagenes() {
 
     $.ajax({
         type: "GET",
-        url: urlGetInfoImg,
+        url: urlGetProductAllImgInfoAsync,
         datatype: "json",
         success: function (data) {
             if (data != null) {
@@ -25,11 +26,11 @@ function GetFacturas() {
                 $.each(data, function (index, item) {
                     let tr = `<tr>
                       <td> ${item.id} </td>
-                      <td> ${item.categoria} </td>
                       <td> ${item.descripcion} </td>
-                      <td> <img  id='${item.identificador}' src='${item.strBase64}' class=img-thumbnail style='height:80px;weight=80px;' /></td>
-                      <td> <input type=button class=btn btn-primary value=EDITAR /> </td>
-                      <td> <input type=button class=btn btn-primary value=ELIMINAR /> </td>
+                      <td> ${item.categoria} </td>
+                      <td> <img  id='${item.id}' src='${item.strBase64}'  class="img-fluid img-thumbnail" style="width:40%; min-width:70px; min-height:25px; height:auto;"/></td>
+                      <td>  <input type="button" onclick="Editar();" class="btn btn-warning" value="Editar"   style="width:125px;" /> </td>
+                      <td>  <input type="button" onclick="Eliminar();" class="btn btn-danger" value="Eliminar" style="width:125px;" /> </td>
                       </tr>`;
                     $('#tablaImg tbody').append(tr);
                 });
@@ -46,4 +47,16 @@ function GetFacturas() {
     $("#tablaImg").addClass("display compact dt-center");
 
     return false;
+}
+
+function Editar() {
+    $('#modalEdicion').show();
+}
+
+function CloseEditar() {
+    $('#modalEdicion').hide();
+}
+
+function Eliminar() {
+
 }
