@@ -122,7 +122,16 @@ function Editar() {
     var precioArticulo= $('#_precioArticulo').val();
     var pesoArticulo = $('#_pesoArticulo').val();
     var tamañoArticulo = $('#_tamañoArticulo').val();
-    var descripcionArticulo $('#_descripcionArticulo').val();
+    var descripcionArticulo = $('#_descripcionArticulo').val();
+    var message = '';
+
+    if (id === '' || nombreArticulo === '' || categoriaArticulo === '' || precioArticulo <= 0
+        || pesoArticulo === '' || tamañoArticulo === '' || descripcionArticulo === '')
+    {
+        message = cultureInfo === 'es-ES' ? "Todos los campos (*) son requeridos" : "All fields (*) are required";
+        toastr.warning(message);
+        return false;
+    }
 
     var productManagerImgDTO = {
         Id: id,
@@ -132,8 +141,8 @@ function Editar() {
         Tamaño: tamañoArticulo,
         Descripcion: descripcionArticulo,
         Precio: precioArticulo,
-        NombresImg: nombreImagenes,
-        Identidades: identidadesImagenes
+        NombresImg: null,
+        Identidades: null
     };
 
     $.ajax({
@@ -144,14 +153,14 @@ function Editar() {
         timeout: 0,
         success: function (data) {
             if (data.estatus) {
-            
-                var messaje = cultureInfo === 'es-ES' ? "Transaccion exitosa" : "Succes transaction";
-                toastr.success(messaje);
-                setTimeout(location.reload(), 2500);
+                message = cultureInfo === 'es-ES' ? "Transaccion exitosa" : "Succes transaction";
+                CloseEditar();
+                toastr.success(message);
+                setTimeout(RecargarPagina, 2500);
             }
             else {
-                var messaje = cultureInfo === 'es-ES' ? "Transaccion fallida" : "Failure transaction";
-                toastr.error(messaje);
+                message = cultureInfo === 'es-ES' ? "Transaccion fallida" : "Failure transaction";
+                toastr.error(message);
             }
         }, error: function (jqXHR, textStatus, errorThrown) {
             toastr.error('ERROR INESPERADO: ' + textStatus + ' ' + jqXHR + ' ' + errorThrown);
@@ -163,6 +172,13 @@ function Editar() {
 }
 
 function Eliminar(id) {
+    var message = '';
+
+    if (id === '' || id <= 0) {
+        message = cultureInfo === 'es-ES' ? "Todos los campos (*) son requeridos" : "All fields (*) are required";
+        toastr.warning(message);
+        return false;
+    }
 
     $.ajax({
         url: urlDeleteImgProduct,
@@ -171,14 +187,14 @@ function Eliminar(id) {
         timeout: 0,
         success: function (data) {
             if (data.estatus) {
-
-                var messaje = cultureInfo === 'es-ES' ? "Transaccion exitosa" : "Succes transaction";
-                toastr.success(messaje);
-                setTimeout(location.reload(), 2500);
+                message = cultureInfo === 'es-ES' ? "Transaccion exitosa" : "Succes transaction";
+                CloseEditar();
+                toastr.success(message);
+                setTimeout(RecargarPagina, 2500);
             }
             else {
-                var messaje = cultureInfo === 'es-ES' ? "Transaccion fallida" : "Failure transaction";
-                toastr.error(messaje);
+                message = cultureInfo === 'es-ES' ? "Transaccion fallida" : "Failure transaction";
+                toastr.error(message);
             }
         }, error: function (jqXHR, textStatus, errorThrown) {
             toastr.error('ERROR INESPERADO: ' + textStatus + ' ' + jqXHR + ' ' + errorThrown);
@@ -194,4 +210,8 @@ function SetCategoriaArticulo() {
     var categoria = $("#lstArticulo option:selected").text();
     $('#_categoriaArticulo').val(categoria);
 
+}
+
+function RecargarPagina() {
+    location.reload();
 }

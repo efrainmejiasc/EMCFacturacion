@@ -123,7 +123,6 @@ namespace DatosEMC.Repositories
                 nuevo.Precio = model.Precio;
                 nuevo.Descripcion = model.Descripcion;
 
-                this.db.ProductoImgInfo.Add(nuevo);
                 this.db.SaveChanges();
             }
 

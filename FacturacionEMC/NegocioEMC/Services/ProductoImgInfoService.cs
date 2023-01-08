@@ -57,12 +57,12 @@ namespace NegocioEMC.Services
         {
             var modelo = new ProductoImgInfo()
             {
+                Id = model.Id,
                 Nombre = model.Nombre,
                 Categoria = model.Categoria,
                 Tamaño = model.Tamaño,
                 Peso = model.Peso,
                 Descripcion = model.Descripcion,
-                Id = 0,
                 IdEmpresa = model.IdEmpresa,
                 Precio = model.Precio
             };

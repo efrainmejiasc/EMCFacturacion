@@ -208,23 +208,15 @@ namespace FacturacionEMCSite.Controllers
             try
             {
                 var productoImgInfo = AppMethods.SetProductImgInfo(productManagerImgDTO, this.usuario.IdEmpresa);
-                var result = await this.clientApi.PostProductoImgInfoAsync(productoImgInfo);
-
-                var lstProductImg = new List<EMCApi.Client.ProductoImgDTO>();
+                var result = await this.clientApi.EditImgProductAsync(productoImgInfo);
 
                 if (result.Ok)
                 {
-                    response.Id = result.Id;
-                    lstProductImg = AppMethods.SetProductImg(productManagerImgDTO, result.Id, this._webHostEnvironment.WebRootPath + AppMethods.PathFolderImgProducts);
-                    result = await this.clientApi.PostProductoImgAsync(lstProductImg);
-                    if (!result.Ok)
-                        return Json(response);
+                    response.Estatus = true;
+                    response.Descripcion = "EXITO";
                 }
                 else
                     return Json(response);
-
-                response.Estatus = true;
-                response.Descripcion = "EXITO";
             }
             catch (Exception ex)
             {
@@ -243,8 +235,14 @@ namespace FacturacionEMCSite.Controllers
 
             try
             {
-                response.Estatus = true;
-                response.Descripcion = "EXITO";
+                var result = await this.clientApi.DeleteImgProductAsync(id);
+                if (result.Ok)
+                {
+                    response.Estatus = true;
+                    response.Descripcion = "EXITO";
+                }
+                else
+                    return Json(response);
             }
             catch (Exception ex)
             {
