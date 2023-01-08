@@ -110,5 +110,24 @@ namespace FacturacionEMCApi.Controllers
             else
                 return BadRequest(EngineService.SetGenericResponse(false, "No se encontró información"));
         }
+
+
+        /// <summary>
+        /// Crear registro 
+        /// </summary>
+
+        [HttpPost(Name = "EditImgProduct")]
+        [ProducesResponseType(statusCode: (int)HttpStatusCode.OK, Type = typeof(GenericResponse))]
+        [ProducesResponseType(statusCode: (int)HttpStatusCode.BadRequest, Type = typeof(GenericResponse))]
+        public IActionResult EditImgProduct ([FromBody] ProductoImgInfoDTO productImg)
+        {
+            var genericResponse = this.productoImgInfoService.EditImgProduct(productImg);
+
+            if (genericResponse.Ok)
+                return Ok(genericResponse);
+
+            else
+                return BadRequest(genericResponse);
+        }
     }
 }

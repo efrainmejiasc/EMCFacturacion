@@ -52,7 +52,7 @@ function GetInfoImagenes() {
                       <td> ${item.nombre} </td>
                       <td> ${item.categoria} </td>
                       <td> <img  id='${item.id}' src='${item.strBase64}'  class="img-fluid img-thumbnail circular--square" style="width:40%; min-width:70px; min-height:25px; height:auto;"/></td>
-                      <td>  <input type="button" onclick="Editar(${item.id},'${item.nombre}','${item.categoria}','${item.precio}' ,'${item.peso}','${item.tamaño}','${item.descripcion}' );" class="btn btn-warning" value='${editar}'    style="width:125px;" /> </td>
+                      <td>  <input type="button" onclick="SetEditar(${item.id},'${item.nombre}','${item.categoria}','${item.precio}' ,'${item.peso}','${item.tamaño}','${item.descripcion}' );" class="btn btn-warning" value='${editar}'    style="width:125px;" /> </td>
                       <td>  <input type="button" onclick="Eliminar(${item.id});" class="btn btn-danger" value='${eliminar}'  style="width:125px;" /> </td>
                       </tr>`;
                     $('#tablaImg tbody').append(tr);
@@ -99,7 +99,8 @@ function InicializarDataTable() {
     $("#tablaImg").addClass("display compact dt-center");
 }
 
-function Editar(id, nombre, categoria, precio, peso, tamaño, descripcion) {
+function SetEditar(id, nombre, categoria, precio, peso, tamaño, descripcion) {
+    $('#_idArticulo').val(id);
     $('#_nombreArticulo').val(nombre);
     $("#lstArticulo option:selected").text(categoria);
     $('#_categoriaArticulo').val(categoria);
@@ -114,8 +115,77 @@ function CloseEditar() {
     $('#modalEdicion').hide();
 }
 
+function Editar() {
+    var id = $('#_idArticulo').val();
+    var nombreArticulo = $('#_nombreArticulo').val();
+    var categoriaArticulo = $('#_categoriaArticulo').val();
+    var precioArticulo= $('#_precioArticulo').val();
+    var pesoArticulo = $('#_pesoArticulo').val();
+    var tamañoArticulo = $('#_tamañoArticulo').val();
+    var descripcionArticulo $('#_descripcionArticulo').val();
+
+    var productManagerImgDTO = {
+        Id: id,
+        Nombre: nombreArticulo,
+        Categoria: categoriaArticulo,
+        Peso: pesoArticulo,
+        Tamaño: tamañoArticulo,
+        Descripcion: descripcionArticulo,
+        Precio: precioArticulo,
+        NombresImg: nombreImagenes,
+        Identidades: identidadesImagenes
+    };
+
+    $.ajax({
+        url: urlEditImgProduct,
+        data: JSON.stringify(productManagerImgDTO),
+        contentType: 'application/json',
+        type: "POST",
+        timeout: 0,
+        success: function (data) {
+            if (data.estatus) {
+            
+                var messaje = cultureInfo === 'es-ES' ? "Transaccion exitosa" : "Succes transaction";
+                toastr.success(messaje);
+                setTimeout(location.reload(), 2500);
+            }
+            else {
+                var messaje = cultureInfo === 'es-ES' ? "Transaccion fallida" : "Failure transaction";
+                toastr.error(messaje);
+            }
+        }, error: function (jqXHR, textStatus, errorThrown) {
+            toastr.error('ERROR INESPERADO: ' + textStatus + ' ' + jqXHR + ' ' + errorThrown);
+        }
+    });
+
+    return false;
+
+}
+
 function Eliminar(id) {
 
+    $.ajax({
+        url: urlDeleteImgProduct,
+        data: {id: id},
+        type: "POST",
+        timeout: 0,
+        success: function (data) {
+            if (data.estatus) {
+
+                var messaje = cultureInfo === 'es-ES' ? "Transaccion exitosa" : "Succes transaction";
+                toastr.success(messaje);
+                setTimeout(location.reload(), 2500);
+            }
+            else {
+                var messaje = cultureInfo === 'es-ES' ? "Transaccion fallida" : "Failure transaction";
+                toastr.error(messaje);
+            }
+        }, error: function (jqXHR, textStatus, errorThrown) {
+            toastr.error('ERROR INESPERADO: ' + textStatus + ' ' + jqXHR + ' ' + errorThrown);
+        }
+    });
+
+    return false;
 }
 
 

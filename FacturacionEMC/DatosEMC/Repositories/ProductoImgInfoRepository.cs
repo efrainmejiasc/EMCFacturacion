@@ -4,6 +4,7 @@ using DatosEMC.IRepositories;
 using DatosEMC.Migrations;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -106,6 +107,46 @@ namespace DatosEMC.Repositories
 ;
 
             return lst;
+        }
+
+
+        public ProductoImgInfo EditImgProduct(ProductoImgInfo model)
+        {
+            var nuevo = new ProductoImgInfo();
+            nuevo = this.db.ProductoImgInfo.Where(x => x.Id == model.Id).FirstOrDefault();
+            if(nuevo != null)
+            {
+                nuevo.Nombre = model.Nombre;
+                nuevo.Categoria = model.Categoria;
+                nuevo.Peso = model.Peso;
+                nuevo.Tamaño = model.Tamaño;
+                nuevo.Precio = model.Precio;
+                nuevo.Descripcion = model.Descripcion;
+
+                this.db.ProductoImgInfo.Add(nuevo);
+                this.db.SaveChanges();
+            }
+
+            return nuevo;
+        }
+
+        public bool DeleteImgProduct(int id)
+        {
+            var registro = this.db.ProductoImgInfo.Where(x => x.Id == id).FirstOrDefault();
+            if(registro != null)
+            {
+                this.db.ProductoImgInfo.Attach(registro);
+                this.db.ProductoImgInfo.Remove(registro);
+                this.db.SaveChanges();
+
+                var detail = this.db.ProductoImg.Where(x => x.ProductoImgInfoId == id).ToList();
+                this.db.ProductoImg.AttachRange(detail);
+                this.db.ProductoImg.RemoveRange(detail);
+                this.db.SaveChanges();
+            }
+       
+
+            return true;
         }
 
     }

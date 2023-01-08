@@ -197,6 +197,64 @@ namespace FacturacionEMCSite.Controllers
             return Json(imgInfoProductos);
         }
 
+
+        [HttpPost]
+
+        public async Task<IActionResult> EditImgProduct([FromBody] DatosEMC.DTOs.ProductManagerImgDTO productManagerImgDTO)
+        {
+            var response = new RespuestaModel();
+            response.Estatus = false;
+
+            try
+            {
+                var productoImgInfo = AppMethods.SetProductImgInfo(productManagerImgDTO, this.usuario.IdEmpresa);
+                var result = await this.clientApi.PostProductoImgInfoAsync(productoImgInfo);
+
+                var lstProductImg = new List<EMCApi.Client.ProductoImgDTO>();
+
+                if (result.Ok)
+                {
+                    response.Id = result.Id;
+                    lstProductImg = AppMethods.SetProductImg(productManagerImgDTO, result.Id, this._webHostEnvironment.WebRootPath + AppMethods.PathFolderImgProducts);
+                    result = await this.clientApi.PostProductoImgAsync(lstProductImg);
+                    if (!result.Ok)
+                        return Json(response);
+                }
+                else
+                    return Json(response);
+
+                response.Estatus = true;
+                response.Descripcion = "EXITO";
+            }
+            catch (Exception ex)
+            {
+                response.Descripcion = ex.Message;
+            }
+
+            return Json(response);
+        }
+
+        [HttpPost]
+
+        public async Task<IActionResult> DeleteImgProduct(int id)
+        {
+            var response = new RespuestaModel();
+            response.Estatus = false;
+
+            try
+            {
+                response.Estatus = true;
+                response.Descripcion = "EXITO";
+            }
+            catch (Exception ex)
+            {
+                response.Descripcion = ex.Message;
+            }
+
+            return Json(response);
+        }
+
+
         #endregion
 
 
