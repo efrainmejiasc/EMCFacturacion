@@ -377,5 +377,10 @@ namespace FacturacionEMCSite.StringResources
         {
             get { return resourceProvider.GetResource("Inventory", CultureInfo.CurrentUICulture.Name).ToString(); }
         }
+
+        public static string EditArticle
+        {
+            get { return resourceProvider.GetResource("EditArticle", CultureInfo.CurrentUICulture.Name).ToString(); }
+        }
     }
 }

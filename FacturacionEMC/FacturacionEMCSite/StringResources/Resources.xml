@@ -168,4 +168,6 @@
 	<resource culture="en-US" name="Sales" value="Sales"></resource>
 	<resource culture="es-ES" name="Inventory" value="Inventario"></resource>
 	<resource culture="en-US" name="Inventory" value="Inventory"></resource>
+	<resource culture="es-ES" name="EditArticle" value="Editar Articulo"></resource>
+	<resource culture="en-US" name="EditArticle" value="Article Edit"></resource>
 </resources>
