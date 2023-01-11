@@ -26,6 +26,7 @@ function BuscarProducto() {
     var descripcion = cultureInfo === 'es-ES' ? "Descripcion" : "Description";
     var precio = cultureInfo === 'es-ES' ? "Precio" : "Price";
     var ids = [];
+    var coin = cultureInfo === 'es-ES' ? " Bs" : " $";
 
     $.ajax({
         url: urlGetInfoProducto,
@@ -33,26 +34,31 @@ function BuscarProducto() {
         type: "GET",
         timeout: 0,
         success: function (data) {
-            if (data != null) {
-                console.log(data)
+            console.log(data)
+            if (data.length > 0) {
                 $('#imgns').empty();
                 $.each(data, function (index, item) {
                     if (!ids.includes(item.id)) {
-                        ids.push(item.id);
+                        ids.push(item.id); 
                         var _id = item.id;
-                        var car = `<div class=card-body><div class=col-md-12>
-                              <span> ${nombre}: </span> <span> ${item.nombre} </span><br>
-                              <span> ${categoria}: </span> <span> ${item.categoria} </span><br>
-                              <span> ${precio}: </span> <span> ${item.precio} </span><br>
-                              <span> ${tamaño}: </span> <span> ${item.tamaño} </span><br>
-                              <span> ${peso}: </span> <span> ${item.peso} </span><br>
-                              <span> ${descripcion}: </span> <span> ${item.descripcion}</span><br><br>
-                              </div> </div>`;
+                        var car = `<div class="card-body darkdiv">
+                                       <div class=col-md-12 darkdiv">
+                                            <span style=color:navajowhite;> ${nombre}: </span>     <span style=color:navajowhite;> ${item.nombre} </span><br>
+                                            <span style=color:navajowhite;> ${categoria}: </span>  <span style=color:navajowhite;> ${item.categoria} </span><br>
+                                            <span style=color:navajowhite;> ${precio}: </span>     <span style=color:red;> ${item.precio} ${coin} </span><br>
+                                            <span style=color:navajowhite;> ${tamaño}: </span>     <span style=color:navajowhite;> ${item.tamaño} </span><br>
+                                            <span style=color:navajowhite;> ${peso}: </span>       <span style=color:navajowhite;> ${item.peso} </span><br>
+                                            <span style=color:navajowhite;> ${descripcion}:</span> <span style=color:mediumvioletred;> ${item.descripcion}</span><br>
+                                        </div>
+                                    </div>`;
                         $('#imgns').append(car);
                         $.each(item.infoImg, function (index, itemn) {
-                            let img = `<div class=card-body> <div class=col-md-12>
-                                 <img  id='${itemn.identificador}' src='${itemn.strBase64}' class=img-thumbnail style=top:50.6667px;opacity: 0;width:200px;height:200px;border:none;max-width:none;max-height:none; onClick=ImgZoom('${itemn.strBase64}') />
-                              </div> </div><br><br><hr>`;
+                            let img = `<div class="card-body darkdiv"> 
+                                          <div class = "col-md-12">
+                                              <img  id='${itemn.identificador}' src='${itemn.strBase64}' class=img-thumbnail style=top:50.6667px;opacity: 0;width:200px;height:200px;border:none;max-width:none;max-height:none; onClick=ImgZoom('${itemn.strBase64}') />
+                                          </div>
+                                       </div>
+                                      <br><hr>`;
                             $('#imgns').append(img);
                         });
                     }
@@ -60,8 +66,9 @@ function BuscarProducto() {
 
             }
             else {
-                var messaje = cultureInfo === 'es-ES' ? "Transaccion fallida" : "Failure transaction";
-                toastr.error(messaje);
+                $('#imgns').empty();
+                var messaje = cultureInfo === 'es-ES' ? "Transaccion fallida, No existe " + strProducto : "Failure transaction, Don't find " + strProducto ;
+                toastr.warning(messaje);
             }
         }, error: function (jqXHR, textStatus, errorThrown) {
             toastr.error('ERROR INESPERADO: ' + textStatus + ' ' + jqXHR + ' ' + errorThrown);

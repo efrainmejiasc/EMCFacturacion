@@ -12,29 +12,59 @@
         -webkit-transform: scale(0.8);
         transform: scale(0.8);
     }
+
+    body, html {
+        height: 100%;
+        background-color:black;
+    }
+
+    .darkdiv{
+        background-color: black;
+    
+    }
+
+    spanblank{
+        color:red;
+        color:mediumvioletred;
+        color:navajowhite;
+    }
+
+    
+
+    .product {
+        position: relative;
+        margin: 15px 0px;
+        -webkit-box-shadow: 0px 0px 0px 0px #E4E7ED, 0px 0px 0px 1px #E4E7ED;
+        box-shadow: 0px 0px 0px 0px #E4E7ED, 0px 0px 0px 1px #E4E7ED;
+        -webkit-transition: 0.2s all;
+        transition: 0.2s all;
+        border:none;
+    }
 </style>
 
 <script>
     var urlGetInfoProducto = '@Url.Action("GetInfoProducto", "ProductosCliente")';
   </script>
 
-<div class="card" style="margin-top:5%;">
-    <div class="card-body">
-        <div class="form-horizontal" style="color:dimgray">
+<div class="card" style="margin-top:5%">
+    <div class="card-body darkdiv">
+        <div class="form-horizontal darkdiv" >
            
-            <div class="form-group row">
-                <div class="col-md-10">
+            <div class="form-group row darkdiv" >
+                <div class="col-md-10 darkdiv">
                     <input type="text" id="strBusqueda" class="form form-control" />
                 </div>
-                <div class="col-md-2">
-                    <button class="btn btn-primary" onclick="BuscarProducto();"><i class="bi bi-search"> @Resources.Search </i></button>
+                <div class="col-md-2  darkdiv">
+                    <button class="btn btn-light" onclick="BuscarProducto();"><i class="bi bi-search"> @Resources.Search </i></button>
                 </div>
             </div>
-
-            <div id="imgns" class="card form-group row">
-
-            </div>
-
         </div>
+
+        <div class="form-horizontal darkdiv">
+            <div id="imgns" class="card form-group row darkdiv"></div>
+        </div>
+        
     </div>
 </div>
+
+
