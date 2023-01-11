@@ -1,26 +1,65 @@
 ﻿@using FacturacionEMCSite.StringResources;
+
 @{
-    Layout = "~/Views/Shared/_LayoutSimple.cshtml";
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/js/scriptsSite/login/jsInit.js"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/font-awesome.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 }
+
+<style>
+    body, html {
+        height: 100%;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    .bg-img {
+        /* The image used */
+        background-image: url("../css/ImgSite/CentralImgAcceso.png");
+        height: 100vh;
+
+        /* Control the height of the image */
+        min-height: 380px;
+        /* Center and scale the image nicely */
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+    }
+
+</style>
 
 <script>
     var urlLogin = '@Url.Action("Login", "Home")';
 </script>
 
-<div class="card" style="margin-top:5%;">
-    <div class="card-body">
-        <div class="form-horizontal" style="color:dimgray">
-             
-            <div class="form group-row">
-                <div class="text-right">
-                    <a href='@Url.Action("Index", "Home")'>@Resources.Login</a>
-                </div>
-            </div> 
 
+<div class="bg-img">
+    <div class="container" style="">
+        <div class="card-body">
+            <div class="form-horizontal" style="color:white;font-weight: bold; ">
+                <a href='@Url.Action("Index", "Home")'>@Resources.Login</a>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownmenu" data-bs-toggle="dropdown" aria-expanded="false">
+                       FACTURACION
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownmenu">
+                        <h6 class="dropdown-header">Dropdown Header</h6>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href='@Url.Action("Login", "Home")'>Dropdown One</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Dropdown Two</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Dropdown Three</a>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </div>
 </div>
