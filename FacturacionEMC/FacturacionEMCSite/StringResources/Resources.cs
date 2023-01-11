@@ -363,5 +363,19 @@ namespace FacturacionEMCSite.StringResources
         {
             get { return resourceProvider.GetResource("Presentation", CultureInfo.CurrentUICulture.Name).ToString(); }
         }
+
+        public static string Purchases
+        {
+            get { return resourceProvider.GetResource("Purchases", CultureInfo.CurrentUICulture.Name).ToString(); }
+        }
+
+        public static string Sales
+        {
+            get { return resourceProvider.GetResource("Sales", CultureInfo.CurrentUICulture.Name).ToString(); }
+        }
+        public static string Inventory
+        {
+            get { return resourceProvider.GetResource("Inventory", CultureInfo.CurrentUICulture.Name).ToString(); }
+        }
     }
 }
