@@ -234,7 +234,7 @@
       </div>
     </header>
 
-    <div class="container-fluid">
+    <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
                 <input type="hidden" id="cultureInfo"  disabled/>
@@ -272,6 +272,7 @@
         datatype: "json",
         success: function (data) {
             $('#cultureInfo').val(data);
+            console.log(data);
         }
     });
 
