@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\css\ImgSite\ImgWeb.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Views\FacturaVenta\Index.cshtml~RF6c6565b.TMP" />
   </ItemGroup>
 
@@ -43,6 +47,10 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\content\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\css\ImgSite\ImgWeb.png" />
   </ItemGroup>
 
   <ItemGroup>

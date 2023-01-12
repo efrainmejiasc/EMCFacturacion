@@ -206,8 +206,16 @@ namespace FacturacionEMCApi
             var ce = new CultureInfo(culturaEspañola);
             ce.NumberFormat.NumberDecimalSeparator = ",";
             ce.NumberFormat.CurrencyDecimalSeparator = ",";
+#if DEBUG
+
             CultureInfo.DefaultThreadCurrentCulture = ce;
             CultureInfo.DefaultThreadCurrentUICulture = ce;
+#else
+
+            CultureInfo.DefaultThreadCurrentCulture = ci;
+            CultureInfo.DefaultThreadCurrentUICulture = ci;
+#endif
+
 
             app.UseRequestLocalization(new RequestLocalizationOptions
             {
