@@ -51,5 +51,39 @@ namespace NegocioEMC.Services
         {
             return this.productoImgInfoRepository.GetProductImgInfo(strProducto);
         }
+
+
+        public GenericResponse EditImgProduct(ProductoImgInfoDTO model)
+        {
+            var modelo = new ProductoImgInfo()
+            {
+                Id = model.Id,
+                Nombre = model.Nombre,
+                Categoria = model.Categoria,
+                Tamaño = model.Tamaño,
+                Peso = model.Peso,
+                Descripcion = model.Descripcion,
+                IdEmpresa = model.IdEmpresa,
+                Precio = model.Precio
+            };
+
+            modelo =  this.productoImgInfoRepository.EditImgProduct(modelo);
+
+            if (modelo.Id > 0)
+                return EngineService.SetGenericResponse(true, "La información ha sido registrada", modelo.Id);
+            else
+                return EngineService.SetGenericResponse(false, "No se pudo registrar la información");
+        }
+
+        public GenericResponse DeleteImgProduct(int id)
+        {
+            var result = this.productoImgInfoRepository.DeleteImgProduct(id);
+
+            if (result)
+                return EngineService.SetGenericResponse(true, "La información ha sido eliminada", 0);
+            else
+                return EngineService.SetGenericResponse(false, "No se pudo registrar la información");
+        }
+
     }
 }

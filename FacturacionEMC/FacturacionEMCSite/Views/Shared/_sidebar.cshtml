@@ -120,19 +120,19 @@
 </nav>
 <script>
 
-    var urlGetCultureInfo = '@Url.Action("GetCultureInfo","Empresa")';
+   
     var lis1 = ['#tablero', '#resumenFV', '#resumenFC', '#asignacion', '#logout', '#usuario', '#facturaVenta', '#facturaCompra', '#stock', '#inicioFacturacion', '#productosManager', '#productosCliente'];
 
  $(document).ready(function () {
     console.log("ready layout!");
-    GetCultureInfo();
+    setTimeout(GetCultureInfo(), 1000);
     setTimeout(GetUsuarioLogeado,1000);
-     SetClassLi('active nav-item');
+    SetClassLi('active nav-item');
 });
 
     
     function GetCultureInfo() {
-
+        var urlGetCultureInfo = '@Url.Action("GetCultureInfo","Empresa")';
         $.ajax({
             type: "GET",
             url: urlGetCultureInfo,

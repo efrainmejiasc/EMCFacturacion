@@ -16,7 +16,7 @@ namespace FacturacionEMCSite.Application
         {
             var productoImgInfo = new EMCApi.Client.ProductoImgInfoDTO()
             {
-                Id = 0,
+                Id = productoImgInfoDTO.Id,
                 Nombre = productoImgInfoDTO.Nombre,
                 Categoria = productoImgInfoDTO.Categoria,
                 Peso = productoImgInfoDTO.Peso,

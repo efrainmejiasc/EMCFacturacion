@@ -1759,7 +1759,7 @@ pre code {
   background-color: rgba(0, 0, 0, 0.075);
 }
 
-.table .thead-dark th {
+.table .thead-light th {
   color: #fff;
   background-color: #343a40;
   border-color: #454d55;
@@ -10030,7 +10030,7 @@ a.text-dark:hover, a.text-dark:focus {
   .table-dark tbody + tbody {
     border-color: #dee2e6;
   }
-  .table .thead-dark th {
+  .table .thead-light th {
     color: inherit;
     border-color: #dee2e6;
   }

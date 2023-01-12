@@ -156,4 +156,16 @@
 	<resource culture="en-US" name="Category" value="Category"></resource>
 	<resource culture="es-ES" name="ManagerProducts" value="Gestionar Productos"></resource>
 	<resource culture="en-US" name="ManagerProducts" value="Manager Products"></resource>
+	<resource culture="es-ES" name="AddNewArticle" value="Nuevo Articulo"></resource>
+	<resource culture="en-US" name="AddNewArticle" value="Add New Article"></resource>
+	<resource culture="es-ES" name="AddNewSupplier" value="Nuevo Proveedor"></resource>
+	<resource culture="en-US" name="AddNewSupplier" value="Add New Supplier"></resource>
+	<resource culture="es-ES" name="Presentation" value="Presentacion"></resource>
+	<resource culture="en-US" name="Presentation" value="Presentation"></resource>
+	<resource culture="es-ES" name="Purchases" value="Compras"></resource>
+	<resource culture="en-US" name="Purchases" value="Purchases"></resource>
+	<resource culture="es-ES" name="Sales" value="Ventas"></resource>
+	<resource culture="en-US" name="Sales" value="Sales"></resource>
+	<resource culture="es-ES" name="Inventory" value="Inventario"></resource>
+	<resource culture="en-US" name="Inventory" value="Inventory"></resource>
 </resources>

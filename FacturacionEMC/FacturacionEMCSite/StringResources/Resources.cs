@@ -18,7 +18,7 @@ namespace FacturacionEMCSite.StringResources
             _hostingEnvironment = hostingEnvironment;
             pathResourceFile = new System.IO.FileInfo(_hostingEnvironment.ContentRootPath + @"/StringResources/Resources.xml");
             resourceProvider = new XmlResourceProvider(pathResourceFile.ToString());
-    }
+        }
         public static string GetStarted
         {
             get { return resourceProvider.GetResource("GetStarted", CultureInfo.CurrentUICulture.Name) as String; }
@@ -350,5 +350,32 @@ namespace FacturacionEMCSite.StringResources
             get { return resourceProvider.GetResource("ManagerProducts", CultureInfo.CurrentUICulture.Name).ToString(); }
         }
 
+        public static string AddNewArticle
+        {
+            get { return resourceProvider.GetResource("AddNewArticle", CultureInfo.CurrentUICulture.Name).ToString(); }
+        }
+
+        public static string AddNewSupplier
+        {
+            get { return resourceProvider.GetResource("AddNewSupplier", CultureInfo.CurrentUICulture.Name).ToString(); }
+        }
+        public static string Presentation
+        {
+            get { return resourceProvider.GetResource("Presentation", CultureInfo.CurrentUICulture.Name).ToString(); }
+        }
+
+        public static string Purchases
+        {
+            get { return resourceProvider.GetResource("Purchases", CultureInfo.CurrentUICulture.Name).ToString(); }
+        }
+
+        public static string Sales
+        {
+            get { return resourceProvider.GetResource("Sales", CultureInfo.CurrentUICulture.Name).ToString(); }
+        }
+        public static string Inventory
+        {
+            get { return resourceProvider.GetResource("Inventory", CultureInfo.CurrentUICulture.Name).ToString(); }
+        }
     }
 }

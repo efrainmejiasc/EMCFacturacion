@@ -197,6 +197,62 @@ namespace FacturacionEMCSite.Controllers
             return Json(imgInfoProductos);
         }
 
+
+        [HttpPost]
+
+        public async Task<IActionResult> EditImgProduct([FromBody] DatosEMC.DTOs.ProductManagerImgDTO productManagerImgDTO)
+        {
+            var response = new RespuestaModel();
+            response.Estatus = false;
+
+            try
+            {
+                var productoImgInfo = AppMethods.SetProductImgInfo(productManagerImgDTO, this.usuario.IdEmpresa);
+                var result = await this.clientApi.EditImgProductAsync(productoImgInfo);
+
+                if (result.Ok)
+                {
+                    response.Estatus = true;
+                    response.Descripcion = "EXITO";
+                }
+                else
+                    return Json(response);
+            }
+            catch (Exception ex)
+            {
+                response.Descripcion = ex.Message;
+            }
+
+            return Json(response);
+        }
+
+        [HttpPost]
+
+        public async Task<IActionResult> DeleteImgProduct(int id)
+        {
+            var response = new RespuestaModel();
+            response.Estatus = false;
+
+            try
+            {
+                var result = await this.clientApi.DeleteImgProductAsync(id);
+                if (result.Ok)
+                {
+                    response.Estatus = true;
+                    response.Descripcion = "EXITO";
+                }
+                else
+                    return Json(response);
+            }
+            catch (Exception ex)
+            {
+                response.Descripcion = ex.Message;
+            }
+
+            return Json(response);
+        }
+
+
         #endregion
 
 

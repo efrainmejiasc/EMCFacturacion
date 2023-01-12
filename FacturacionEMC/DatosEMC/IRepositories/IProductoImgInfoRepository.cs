@@ -10,7 +10,9 @@ namespace DatosEMC.IRepositories
 {
     public interface IProductoImgInfoRepository
     {
+        bool DeleteImgProduct(int id);
         List<ProductManagerImgDTO> GetProductImgInfo(int id);
+        ProductoImgInfo EditImgProduct(ProductoImgInfo model);
         ProductoImgInfo InsertProductImgInfo(ProductoImgInfo model);
         List<ProductManagerImgDTO> GetProductImgInfo(string strProducto);
     }
