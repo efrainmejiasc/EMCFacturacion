@@ -1,4 +1,5 @@
 using AutoMapper;
+using DatosEMC.Clases;
 using DatosEMC.DataModels;
 using DatosEMC.IRepositories;
 using DatosEMC.Repositories;
@@ -43,8 +44,8 @@ namespace FacturacionEMCApi
         {
             services.AddControllers();
 
-          #if DEBUG
-
+            #if DEBUG
+            EngineData.ConnectionDb = Configuration.GetConnectionString("DefaultConnectionLocal");
             services.AddDbContext<MyAppContext>(op => op.UseSqlServer(Configuration.GetConnectionString("DefaultConnectionLocal"),
                                                        b => b.MigrationsAssembly("DatosEMC")));
           #else

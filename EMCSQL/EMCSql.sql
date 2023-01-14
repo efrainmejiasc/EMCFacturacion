@@ -124,4 +124,7 @@ SELECT * FROM InicioFacturacion
   SELECT C.NombreProducto, B.Cantidad, A.Total, A.Fecha FROM FacturaVenta A INNER  JOIN FacturaVentaDetalle B  ON A.NumeroFactura = B.NumeroFactura
                                                                              INNER JOIN Producto C ON B.NombreArticulo LIKE '%' + C.NombreProducto + '%'
 
-  SELECT * FROM PRODUCTO
+  
+
+UPDATE PRODUCTO SET NombreProducto = 'Galletas' Where Id = 6
+SELECT * FROM PRODUCTO
