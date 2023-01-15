@@ -27,6 +27,7 @@ TRUNCATE TABLE ProductoImgInfo
 TRUNCATE TABLE ProductoImg
 
 --Update ProductoImgInfo SET Precio = 345.52
+  --Update ProductoImgInfo SET Categoria = 'Refresco' WHERE ID = 4
 
 SELECT * FROM ROLES
 SELECT * FROM MetodoPago
@@ -126,5 +127,5 @@ SELECT * FROM InicioFacturacion
 
   
 
-UPDATE PRODUCTO SET NombreProducto = 'Galletas' Where Id = 6
+--UPDATE PRODUCTO SET NombreProducto = 'Galletas' Where Id = 6
 SELECT * FROM PRODUCTO
