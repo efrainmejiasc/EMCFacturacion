@@ -3,7 +3,7 @@ EMCApi.Client
 ClientEMCApi
 
 
-        urlweb: http://efrainweb-001-site1.gtempurl.com
+        urlweb: http://apiemc-001-site1.dtempurl.com/
 
 
 

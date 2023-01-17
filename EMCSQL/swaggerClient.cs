@@ -28,7 +28,7 @@ namespace EMCApi.Client
         public ClientEMCApi()
         {
 #if RELEASE
-             BaseUrl = "http://efrainapi-001-site1.itempurl.com";
+             BaseUrl = "http://apiemc-001-site1.dtempurl.com";
 #else
             BaseUrl = "http://localhost:13170";
 #endif

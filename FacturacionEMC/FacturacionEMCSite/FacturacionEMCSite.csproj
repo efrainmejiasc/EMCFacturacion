@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <Content Remove="wwwroot\css\ImgSite\ImgWeb.png" />
+    <Content Remove="wwwroot\OpenApisJson\swagger.json" />
   </ItemGroup>
 
   <ItemGroup>
@@ -58,7 +59,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <OpenApiReference Include="..\..\..\..\..\Downloads\swagger.json" CodeGenerator="NSwagCSharp" Namespace="EMCApi.Client" ClassName="ClientEMCApi" Link="OpenAPIs\swagger.json" />
+    <OpenApiReference Include="wwwroot\OpenApisJson\swagger.json" CodeGenerator="NSwagCSharp" Namespace="EMCApi.Client" ClassName="ClientEMCApi" />
   </ItemGroup>
 
 </Project>
