@@ -61,7 +61,8 @@ namespace FacturacionEMCSite
             //*****************************************************************************
 
             services.AddScoped<ClientEMCApi, ClientEMCApi>();
-            services.AddSingleton<StringResources.Resources>(new StringResources.Resources(_hostingEnvironment));
+            //services.AddSingleton<StringResources.Resources>(new StringResources.Resources(_hostingEnvironment));
+            services.AddSingleton<StringResources.Resources,StringResources.Resources>();
             AppMethods.PathFolderImgProducts = Configuration.GetValue<string>("HostSettings:PathFolderImgProducts");
 
             var mapperConfig = new MapperConfiguration(mc =>
@@ -119,8 +120,8 @@ namespace FacturacionEMCSite
             ce.NumberFormat.CurrencyDecimalSeparator = ",";
 #if DEBUG
 
-            CultureInfo.DefaultThreadCurrentCulture = ce;
-            CultureInfo.DefaultThreadCurrentUICulture = ce;
+            CultureInfo.DefaultThreadCurrentCulture = ci;
+            CultureInfo.DefaultThreadCurrentUICulture = ci;
 #else
 
             CultureInfo.DefaultThreadCurrentCulture = ci;
