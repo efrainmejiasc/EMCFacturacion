@@ -57,6 +57,7 @@ namespace FacturacionEMCSite
             services.AddControllersWithViews();
             services.AddRazorPages();
             services.AddMvc();
+            
             //*****************************************************************************
 
             services.AddScoped<ClientEMCApi, ClientEMCApi>();
@@ -89,6 +90,7 @@ namespace FacturacionEMCSite
                 app.UseExceptionHandler("/Error");
             }
 
+
             app.UseStaticFiles();
 
             app.UseRouting();
@@ -96,7 +98,6 @@ namespace FacturacionEMCSite
            // app.UseAuthorization();
 
             app.UseSession();
-
             app.UseEndpoints(endpoints =>
             {
                // endpoints.MapRazorPages();
@@ -105,6 +106,7 @@ namespace FacturacionEMCSite
                 pattern: "{controller}/{action}/{id?}",
                 defaults: new { controller = "Home", action = "Init" });
             });
+            
 
             //******************************************************************************
             var culturaInglesa = "en-US";
