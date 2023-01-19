@@ -61,8 +61,7 @@ namespace FacturacionEMCSite
             //*****************************************************************************
 
             services.AddScoped<ClientEMCApi, ClientEMCApi>();
-            //services.AddSingleton<StringResources.Resources>(new StringResources.Resources(_hostingEnvironment));
-            services.AddSingleton<StringResources.Resources,StringResources.Resources>();
+            services.AddSingleton<StringResources.Resources>(new StringResources.Resources(_hostingEnvironment));
             AppMethods.PathFolderImgProducts = Configuration.GetValue<string>("HostSettings:PathFolderImgProducts");
 
             var mapperConfig = new MapperConfiguration(mc =>
