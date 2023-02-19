@@ -44,6 +44,7 @@
 
 <script>
     var urlGetInfoProducto = '@Url.Action("GetInfoProducto", "ProductosCliente")';
+    var urlGetCategorias = '@Url.Action("GetProductosCategory", "ProductosCliente")';
   </script>
 
 <div class="card" style="margin-top:5%">
@@ -52,7 +53,7 @@
            
             <div class="form-group row darkdiv" >
                 <div class="col-md-10 darkdiv">
-                    <input type="text" id="strBusqueda" class="form form-control" />
+                  <select id="strBusqueda" class="form form-control" ></select>
                 </div>
                 <div class="col-md-2  darkdiv">
                     <button class="btn btn-light" onclick="BuscarProducto();"><i class="bi bi-search"> @Resources.Search </i></button>

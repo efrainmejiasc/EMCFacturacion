@@ -44,14 +44,17 @@ namespace FacturacionEMCApi
         {
             services.AddControllers();
 
-            #if DEBUG
+
+#if DEBUG
             EngineData.ConnectionDb = Configuration.GetConnectionString("DefaultConnectionLocal");
             services.AddDbContext<MyAppContext>(op => op.UseSqlServer(Configuration.GetConnectionString("DefaultConnectionLocal"),
                                                        b => b.MigrationsAssembly("DatosEMC")));
-          #else
+#else
+            EngineData.ConnectionDb = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<MyAppContext>(op => op.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
                                                       b => b.MigrationsAssembly("DatosEMC")));
-           #endif
+#endif
+
             services.AddDbContext<MyAppContext>();
 
             // Asigna la configuracion de la seguridad del JWT
@@ -175,7 +178,10 @@ namespace FacturacionEMCApi
 
             services.AddScoped<IProductoImgInfoService, ProductoImgInfoService>();
             services.AddScoped<IProductoImgInfoRepository, ProductoImgInfoRepository>();
-         
+
+            services.AddScoped<ITrazabilidadEnvioService, TrazabilidadEnvioService>();
+            services.AddScoped<ITrazabilidadEnvioRepository, TrazabilidadEnvioRepository>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DatosEMC.Migrations
 {
     [DbContext(typeof(MyAppContext))]
-    [Migration("20230112152200_online")]
-    partial class online
+    [Migration("20230219184226_inicial")]
+    partial class inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -715,6 +715,54 @@ namespace DatosEMC.Migrations
                     b.HasKey("Inventario");
 
                     b.ToTable("TipoInventario");
+                });
+
+            modelBuilder.Entity("DatosEMC.DataModels.TrazabilidadEnvio", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INT")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("Activo")
+                        .HasColumnType("BIT");
+
+                    b.Property<string>("Direccion")
+                        .HasColumnType("VARCHAR(300)");
+
+                    b.Property<string>("Dni")
+                        .HasColumnType("VARCHAR(50)");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("VARCHAR(50)");
+
+                    b.Property<DateTime>("FechaEnvio")
+                        .HasColumnType("DATETIME");
+
+                    b.Property<DateTime>("FechaLlegada")
+                        .HasColumnType("DATETIME");
+
+                    b.Property<DateTime>("FechaReclamo")
+                        .HasColumnType("DATETIME");
+
+                    b.Property<int>("IdEmpresa")
+                        .HasColumnType("INT");
+
+                    b.Property<Guid>("Identificador")
+                        .HasColumnType("UNIQUEIDENTIFIER");
+
+                    b.Property<string>("Nombre")
+                        .HasColumnType("VARCHAR(250)");
+
+                    b.Property<string>("Observacion")
+                        .HasColumnType("VARCHAR(500)");
+
+                    b.Property<string>("Telefono")
+                        .HasColumnType("VARCHAR(50)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TrazabilidadEnvio");
                 });
 
             modelBuilder.Entity("DatosEMC.DataModels.UnidadMedida", b =>

@@ -10,11 +10,12 @@ function DocumentoListo() {
     var obje = $(document).find('#cultureInfo').prop('disabled', true);
     cultureInfo = $('#cultureInfo').val();
     console.log(cultureInfo);
+    GetCategorias();
 }
 
 function BuscarProducto() {
 
-    var strProducto = $('#strBusqueda').val();
+    var strProducto = $('#strBusqueda option: selected').text();
 
     if (strProducto == '')
         return false;
@@ -80,5 +81,29 @@ function BuscarProducto() {
 
 function ImgZoom(id) {
     console.log(id);
+}
+
+
+function GetCategorias() {
+
+    var articulo = cultureInfo == 'en-US' ? 'Select article...' : 'Seleccione articulo...';
+    productosArray = []
+
+    $.ajax({
+        type: "GET",
+        url: urlGetCategorias,
+        datatype: "json",
+        success: function (data) {
+            console.log(data);
+            $('#strBusqueda').empty();
+            $('#strBusqueda').append('<option value="-1" disabled selected>' + articulo + '</option>');
+            $.each(data, function (index, item) {
+                $('#strBusqueda').append("<option value=\"" + item.id + "\">" + item.nombreProducto + " - " + item.presentacion + "</option>");
+                productosArray.push(item.nombreProducto + " - " + item.presentacion);
+            });
+        }
+    });
+
+    return false;
 }
 

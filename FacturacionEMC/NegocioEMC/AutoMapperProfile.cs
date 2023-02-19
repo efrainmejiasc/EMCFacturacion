@@ -30,6 +30,7 @@ namespace NegocioEMC
             CreateMap<InicioFacturacionDTO, InicioFacturacion>().ReverseMap();
             CreateMap<ProductoImgInfoDTO, ProductoImgInfo>().ReverseMap();
             CreateMap<ProductoImgDTO, ProductoImg>().ReverseMap();
+            CreateMap<TrazabilidadEnvioDTO, TrazabilidadEnvio>().ReverseMap();
         }
     }
 }

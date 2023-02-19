@@ -46,6 +46,9 @@ namespace DatosEMC.DataModels
         public virtual DbSet<ProductoImg> ProductoImg { get; set; }
 
 
+        public virtual DbSet<TrazabilidadEnvio> TrazabilidadEnvio { get; set; }
+
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
