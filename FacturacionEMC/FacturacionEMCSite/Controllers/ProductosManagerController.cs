@@ -43,7 +43,7 @@ namespace FacturacionEMCSite.Controllers
         {
             if(this.usuario == null)
                 return RedirectToAction("Index", "Home");
-            else if (this.usuario.Id == 2 || this.usuario.Id == 3)
+            else if (this.usuario.IdRol == 2 || this.usuario.IdRol == 3)
                 return RedirectToAction("Index", "Home");
 
             return View();
@@ -254,7 +254,6 @@ namespace FacturacionEMCSite.Controllers
 
 
         #endregion
-
 
     }
 }

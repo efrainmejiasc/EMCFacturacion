@@ -147,5 +147,25 @@ namespace FacturacionEMCApi.Controllers
             else
                 return BadRequest(genericResponse);
         }
+
+
+
+        /// <summary>
+        /// Obtiene descripcion y categorias de productos 
+        /// </summary>
+        /// <returns>Lista informacion de imagenes y productos </returns>
+        [HttpGet("{idEmpresa}", Name = "GetCategoryDescription")]
+        [ProducesResponseType(statusCode: (int)HttpStatusCode.OK, Type = typeof(List<string>))]
+        [ProducesResponseType(statusCode: (int)HttpStatusCode.BadRequest, Type = typeof(GenericResponse))]
+        public IActionResult GetCategoryDescription(int idEmpresa)
+        {
+            var info  = this.productoImgInfoService.GetCategoryDescription(idEmpresa);
+
+            if (info.Count > 0)
+                return Ok(info);
+
+            else
+                return BadRequest(EngineService.SetGenericResponse(false, "No se encontró información"));
+        }
     }
 }

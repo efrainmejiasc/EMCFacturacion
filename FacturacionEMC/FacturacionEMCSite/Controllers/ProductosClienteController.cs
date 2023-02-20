@@ -53,20 +53,24 @@ namespace FacturacionEMCSite.Controllers
 
             return Json(imgInfoProductos);
         }
+
         [HttpGet]
-        public async Task<IActionResult> GetProductosCategory()
+        public async Task<IActionResult> GetCategoriaDescripcion()
         {
-            ICollection<ProductoDTO> productos = new List<ProductoDTO>();
+            var info = new List<string>();
             try
             {
-                productos = await this.clientApi.GetProductosAsync(this.usuario.IdEmpresa, true);
+                info = await this.clientApi.GetCategoryDescriptionAsync(1) as List<string>;
             }
             catch (Exception ex)
             {
-                var error = ex.Message;
+                var response = new RespuestaModel();
+                response.Estatus = false;
+                response.Descripcion = ex.Message;
+                return Json(response);
             }
 
-            return Json(productos);
+            return Json(info);
         }
     }
 }

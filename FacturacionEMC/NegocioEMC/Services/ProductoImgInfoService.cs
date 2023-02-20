@@ -85,5 +85,10 @@ namespace NegocioEMC.Services
                 return EngineService.SetGenericResponse(false, "No se pudo registrar la información");
         }
 
+        public List<string> GetCategoryDescription(int idEmpresa = 1)
+        {
+            return this.productoImgInfoRepository.GetCategoryDescription(idEmpresa);
+        }
+
     }
 }

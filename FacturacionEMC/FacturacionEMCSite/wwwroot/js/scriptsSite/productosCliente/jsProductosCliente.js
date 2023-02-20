@@ -87,19 +87,17 @@ function ImgZoom(id) {
 function GetCategorias() {
 
     var articulo = cultureInfo == 'en-US' ? 'Select article...' : 'Seleccione articulo...';
-    productosArray = []
 
     $.ajax({
         type: "GET",
-        url: urlGetCategorias,
+        url: urlGetCategoriaDescripcion,
         datatype: "json",
         success: function (data) {
             console.log(data);
             $('#strBusqueda').empty();
             $('#strBusqueda').append('<option value="-1" disabled selected>' + articulo + '</option>');
             $.each(data, function (index, item) {
-                $('#strBusqueda').append("<option value=\"" + item.id + "\">" + item.nombreProducto + " - " + item.presentacion + "</option>");
-                productosArray.push(item.nombreProducto + " - " + item.presentacion);
+                $('#strBusqueda').append("<option value=\"" + item + "\">" + item + "</option>");
             });
         }
     });
