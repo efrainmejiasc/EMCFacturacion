@@ -74,7 +74,7 @@ namespace FacturacionEMCApi.Controllers
         /// Obtiene Envio - Guia por idEmpresa e identificador
         /// </summary>
         /// <returns>Envio - Guia</returns>
-        [HttpGet("{idEmpresa}/{guid}}", Name = "GetTrazabilidadEnvioIdentidad")]
+        [HttpGet("{idEmpresa}/{guid}", Name = "GetTrazabilidadEnvioIdentidad")]
         [ProducesResponseType(statusCode: (int)HttpStatusCode.OK, Type = typeof(TrazabilidadEnvio))]
         [ProducesResponseType(statusCode: (int)HttpStatusCode.BadRequest, Type = typeof(GenericResponse))]
         public IActionResult GetTrazabilidadEnvioIdentidad(int idEmpresa,string guid)
@@ -99,7 +99,7 @@ namespace FacturacionEMCApi.Controllers
         /// Obtiene Envio - Guia por idEmpresa y dni
         /// </summary>
         /// <returns>Envio - Guia</returns>
-        [HttpGet("{idEmpresa}/{guid}}", Name = "GetTrazabilidadesEnvioDni")]
+        [HttpGet("{idEmpresa}/{dni}", Name = "GetTrazabilidadesEnvioDni")]
         [ProducesResponseType(statusCode: (int)HttpStatusCode.OK, Type = typeof(TrazabilidadEnvio))]
         [ProducesResponseType(statusCode: (int)HttpStatusCode.BadRequest, Type = typeof(GenericResponse))]
         public IActionResult GetTrazabilidadesEnvioDni(int idEmpresa, string dni)
