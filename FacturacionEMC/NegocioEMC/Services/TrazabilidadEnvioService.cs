@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using DatosEMC.DataModels;
+using DatosEMC.DTOs;
 using DatosEMC.IRepositories;
+using NegocioEMC.Commons;
 using NegocioEMC.IServices;
 using System;
 using System.Collections.Generic;
@@ -12,25 +14,30 @@ namespace NegocioEMC.Services
 {
     public class TrazabilidadEnvioService: ITrazabilidadEnvioService
     {
+        private readonly IMapper mapper;
         private readonly ITrazabilidadEnvioRepository trazabilidadEnvioRepository;
 
-        public TrazabilidadEnvioService(ITrazabilidadEnvioRepository _trazabilidadEnvioRepository)
+        public TrazabilidadEnvioService(ITrazabilidadEnvioRepository _trazabilidadEnvioRepository, IMapper mapper)
         {
             this.trazabilidadEnvioRepository = _trazabilidadEnvioRepository;
+            this.mapper = mapper;
         }
 
 
-        public bool AddTrazabilidadEnvio(TrazabilidadEnvio x)
+        public GenericResponse AddTrazabilidadEnvio(TrazabilidadEnvioDTO model)
         {
             var result = false;
+            var x = this.mapper.Map<TrazabilidadEnvio>(model);
             x = this.trazabilidadEnvioRepository.AddTrazabilidadEnvioAsync(x);
             if (x.Id > 0)
-                result = true;
+                return EngineService.SetGenericResponse(true, "La información ha sido registrada");
 
-            return result;
+            else
+                return EngineService.SetGenericResponse(false, "No se pudo registrar la información");
+
         }
 
-        public TrazabilidadEnvio GetTrazabilidadEnvio(int idEmpresa, string dni)
+        public List<TrazabilidadEnvio> GetTrazabilidadEnvio(int idEmpresa, string dni)
         {
             return this.trazabilidadEnvioRepository.GetTrazabilidadEnvio(idEmpresa, dni);
         }

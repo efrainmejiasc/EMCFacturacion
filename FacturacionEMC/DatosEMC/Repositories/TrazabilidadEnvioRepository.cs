@@ -38,10 +38,10 @@ namespace DatosEMC.Repositories
                                                    x.IdEmpresa == idEmpresa).FirstOrDefault();
         }
 
-        public TrazabilidadEnvio GetTrazabilidadEnvio(int idEmpresa, string dni)
+        public List<TrazabilidadEnvio> GetTrazabilidadEnvio(int idEmpresa, string dni)
         {
             return db.TrazabilidadEnvio.Where(x => x.Dni == dni &&
-                                                   x.IdEmpresa == idEmpresa).FirstOrDefault();
+                                                   x.IdEmpresa == idEmpresa).ToList();
         }
     }
 }

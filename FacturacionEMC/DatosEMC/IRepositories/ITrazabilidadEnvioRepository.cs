@@ -10,7 +10,7 @@ namespace DatosEMC.IRepositories
     public interface ITrazabilidadEnvioRepository
     {
         TrazabilidadEnvio AddTrazabilidadEnvioAsync(TrazabilidadEnvio x);
-        TrazabilidadEnvio GetTrazabilidadEnvio(int idEmpresa, string dni);
+        List<TrazabilidadEnvio> GetTrazabilidadEnvio(int idEmpresa, string dni);
         TrazabilidadEnvio GetTrazabilidadEnvio(int idEmpresa, Guid identificador);
         List<TrazabilidadEnvio> GetTrazabilidadEnvio(int idEmpresa, DateTime fechaInicio, DateTime fechaFinal);
     }

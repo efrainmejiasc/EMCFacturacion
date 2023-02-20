@@ -1,4 +1,5 @@
 ﻿using DatosEMC.DataModels;
+using DatosEMC.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,11 +10,9 @@ namespace NegocioEMC.IServices
 {
     public interface ITrazabilidadEnvioService
     {
-        bool AddTrazabilidadEnvio(TrazabilidadEnvio x);
+        GenericResponse AddTrazabilidadEnvio(TrazabilidadEnvioDTO x);
 
-
-        TrazabilidadEnvio GetTrazabilidadEnvio(int idEmpresa, string dni);
-
+        List<TrazabilidadEnvio> GetTrazabilidadEnvio(int idEmpresa, string dni);
 
         TrazabilidadEnvio GetTrazabilidadEnvio(int idEmpresa, Guid identificador);
 
