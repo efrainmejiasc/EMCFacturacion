@@ -13,7 +13,7 @@ namespace DatosEMC.IRepositories
         bool DeleteImgProduct(int id);
         List<ProductManagerImgDTO> GetProductImgInfo(int id);
         ProductoImgInfo EditImgProduct(ProductoImgInfo model);
-        List<string> GetCategoryDescription(int idEmpresa = 1);
+        List<string> GetCategoryDescription(int idEmpresa = 0);
         ProductoImgInfo InsertProductImgInfo(ProductoImgInfo model);
         List<ProductManagerImgDTO> GetProductImgInfo(string strProducto);
 

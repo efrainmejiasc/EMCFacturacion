@@ -147,12 +147,22 @@ namespace DatosEMC.Repositories
             return true;
         }
 
-        public List<string> GetCategoryDescription(int idEmpresa = 1)
+        public List<string> GetCategoryDescription(int idEmpresa = 0)
         {
             var lst = new List<string>();
+            var lst1 = new List<string>();
 
-            var lst1 = this.db.ProductoImgInfo.Where(x => x.IdEmpresa == idEmpresa).Select(x => x.Descripcion).ToList();
-            lst1.AddRange(this.db.ProductoImgInfo.Where(x => x.IdEmpresa == idEmpresa).Select(x => x.Categoria).ToList());
+            if(idEmpresa > 0)
+            {
+                lst1 = this.db.ProductoImgInfo.Where(x => x.IdEmpresa == idEmpresa).Select(x => x.Descripcion).ToList();
+                lst1.AddRange(this.db.ProductoImgInfo.Where(x => x.IdEmpresa == idEmpresa).Select(x => x.Categoria).ToList());
+            }
+            else
+            {
+                lst1 = this.db.ProductoImgInfo.Select(x => x.Descripcion).ToList();
+                lst1.AddRange(this.db.ProductoImgInfo.Select(x => x.Categoria).ToList());
+            }
+
 
             foreach (var item in lst1)
             {

@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System;
+using NegocioEMC.Settings;
 
 namespace FacturacionEMCSite.Controllers
 {
@@ -58,9 +59,10 @@ namespace FacturacionEMCSite.Controllers
         public async Task<IActionResult> GetCategoriaDescripcion()
         {
             var info = new List<string>();
+            var idEmpresa = EmpresaSettings.IdEmpresa;
             try
             {
-                info = await this.clientApi.GetCategoryDescriptionAsync(1) as List<string>;
+                info = await this.clientApi.GetCategoryDescriptionAsync(idEmpresa) as List<string>;
             }
             catch (Exception ex)
             {

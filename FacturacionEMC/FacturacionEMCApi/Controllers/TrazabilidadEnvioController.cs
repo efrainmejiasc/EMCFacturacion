@@ -28,7 +28,7 @@ namespace FacturacionEMCApi.Controllers
         [ProducesResponseType(statusCode: (int)HttpStatusCode.OK, Type = typeof(GenericResponse))]
         [ProducesResponseType(statusCode: (int)HttpStatusCode.BadRequest, Type = typeof(GenericResponse))]
 
-        public IActionResult PostFacturaCompra([FromBody] TrazabilidadEnvioDTO model)
+        public IActionResult PostTrazabilidadEnvio([FromBody] TrazabilidadEnvioDTO model)
         {
             try
             {

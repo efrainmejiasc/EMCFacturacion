@@ -18,6 +18,7 @@ using Microsoft.Extensions.Hosting;
 using NegocioEMC;
 using NegocioEMC.IServices;
 using NegocioEMC.Services;
+using NegocioEMC.Settings;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -63,6 +64,7 @@ namespace FacturacionEMCSite
             services.AddScoped<ClientEMCApi, ClientEMCApi>();
             services.AddSingleton<StringResources.Resources>(new StringResources.Resources(_hostingEnvironment));
             AppMethods.PathFolderImgProducts = Configuration.GetValue<string>("HostSettings:PathFolderImgProducts");
+            SettingsClass();
 
             var mapperConfig = new MapperConfiguration(mc =>
             {
@@ -119,8 +121,8 @@ namespace FacturacionEMCSite
             ce.NumberFormat.CurrencyDecimalSeparator = ",";
 #if DEBUG
 
-            CultureInfo.DefaultThreadCurrentCulture = ci;
-            CultureInfo.DefaultThreadCurrentUICulture = ci;
+            CultureInfo.DefaultThreadCurrentCulture = ce;
+            CultureInfo.DefaultThreadCurrentUICulture = ce;
 #else
 
             CultureInfo.DefaultThreadCurrentCulture = ci;
@@ -139,6 +141,11 @@ namespace FacturacionEMCSite
                 }
             });
             //******************************************************************************
+        }
+
+        private void SettingsClass()
+        {
+            EmpresaSettings.IdEmpresa = Configuration.GetValue<int>("EmpresaSettings:IdEmpresa");
         }
     }
 }

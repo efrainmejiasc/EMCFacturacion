@@ -382,5 +382,32 @@ namespace FacturacionEMCSite.StringResources
         {
             get { return resourceProvider.GetResource("EditArticle", CultureInfo.CurrentUICulture.Name).ToString(); }
         }
+
+        public static string TraceabilityNew
+        {
+            get { return resourceProvider.GetResource("TraceabilityNew", CultureInfo.CurrentUICulture.Name).ToString(); }
+        }
+        public static string TraceabilityEdit
+        {
+            get { return resourceProvider.GetResource("TraceabilityEdit", CultureInfo.CurrentUICulture.Name).ToString(); }
+        }
+        public static string TraceabilityQuery
+        {
+            get { return resourceProvider.GetResource("TraceabilityQuery", CultureInfo.CurrentUICulture.Name).ToString(); }
+        }
+        public static string ShippingTraceability
+        {
+            get { return resourceProvider.GetResource("ShippingTraceability", CultureInfo.CurrentUICulture.Name).ToString(); }
+        }
+
+        public static string DocumentId
+        {
+            get { return resourceProvider.GetResource("DocumentId", CultureInfo.CurrentUICulture.Name).ToString(); }
+        }
+
+        public static string DateArrival
+        {
+            get { return resourceProvider.GetResource("DateArrival", CultureInfo.CurrentUICulture.Name).ToString(); }
+        }
     }
 }

@@ -12,7 +12,7 @@ namespace NegocioEMC.IServices
     {
         GenericResponse DeleteImgProduct(int id);
         List<ProductManagerImgDTO> GetProductImgInfo(int id);
-        List<string> GetCategoryDescription(int idEmpresa = 1);
+        List<string> GetCategoryDescription(int idEmpresa = 0);
         GenericResponse EditImgProduct(ProductoImgInfoDTO model);
         GenericResponse InsertProductoImgInfo(ProductoImgInfoDTO model);
         List<ProductManagerImgDTO> GetProductImgInfo(string strProducto);

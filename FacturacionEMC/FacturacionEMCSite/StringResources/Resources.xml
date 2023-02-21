@@ -170,4 +170,16 @@
 	<resource culture="en-US" name="Inventory" value="Inventory"></resource>
 	<resource culture="es-ES" name="EditArticle" value="Editar Articulo"></resource>
 	<resource culture="en-US" name="EditArticle" value="Article Edit"></resource>
+	<resource culture="es-ES" name="TraceabilityNew" value="Nueva Trazabilidad"></resource>
+	<resource culture="en-US" name="TraceabilityNew" value="New Traceability"></resource>
+	<resource culture="es-ES" name="TraceabilityEdit" value="Editar Trazabilidad"></resource>
+	<resource culture="en-US" name="TraceabilityEdit" value= "Traceability Edit"></resource>
+	<resource culture="es-ES" name="TraceabilityQuery" value="ConsultarTrazabilidad"></resource>
+	<resource culture="en-US" name="TraceabilityQuery" value= "Traceability Query"></resource>
+	<resource culture="es-ES" name="ShippingTraceability" value="Trazabilidad de Envio"></resource>
+	<resource culture="en-US" name="ShippingTraceability" value= "Shipping Traceability"></resource>
+    <resource culture="es-ES" name="DocumentId" value="Numero de Documento"></resource>
+	<resource culture="en-US" name="DocumentId" value= "Document Id"></resource>
+    <resource culture="es-ES" name="DateArrival" value="Fecha de Llegada"></resource>
+	<resource culture="en-US" name="DateArrival" value= "Date Arrival"></resource>
 </resources>

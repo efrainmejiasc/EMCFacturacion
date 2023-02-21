@@ -15,7 +15,7 @@ function DocumentoListo() {
 
 function BuscarProducto() {
 
-    var strProducto = $('#strBusqueda option: selected').text();
+    var strProducto = $("#strBusqueda option:selected").text();
 
     if (strProducto == '')
         return false;

@@ -26,9 +26,13 @@ namespace NegocioEMC.Services
 
         public GenericResponse AddTrazabilidadEnvio(TrazabilidadEnvioDTO model)
         {
-            var result = false;
             var x = this.mapper.Map<TrazabilidadEnvio>(model);
+            x.Identificador = EngineTool.CreateUniqueidentifier();
+            x.FechaEnvio = DateTime.Now;
+            x.FechaReclamo = DateTime.Now;
+            x.Activo = true;
             x = this.trazabilidadEnvioRepository.AddTrazabilidadEnvioAsync(x);
+
             if (x.Id > 0)
                 return EngineService.SetGenericResponse(true, "La información ha sido registrada");
 
