@@ -1,5 +1,77 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@using FacturacionEMCSite.StringResources;
 @{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/scriptsSite/trazabilidadEnvio/jsAbout.js"></script>
+    <link rel="stylesheet" type="text/css" href="~/js/dataTables/datatables.css" />
+    <script type="text/javascript" src="~/js/dataTables/datatables.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 }
+
+<script>
+    var urlObtenerTrazabilidadesEnvios = '@Url.Action("ObtenerTrazabilidadesEnvios","TrazabilidadEnvio")';
+</script>
+
+<div class="row" style="color: dimgray;">
+    <div class="col-md-12 grid-margin">
+        <div class="d-flex justify-content-between flex-wrap">
+            <div class="d-flex align-items-end flex-wrap">
+                <div class="mr-md-3 mr-xl-5">
+                    <div class="mr-md-3 mr-xl-5">
+                        <h4>@Resources.TraceabilityQuery</h4>
+                        <small class="mb-md-0 text-gray"></small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card" style="margin-top:0%;">
+    <div class="card-body">
+
+        <div class="row" style="color:dimgray">
+            <div class="col-md-4">
+                <input type="date" id="fechaInicio" class="form-horizontal form-control" />
+            </div>
+            <div class="col-md-4">
+                <input type="date" id="fechaFinal" class="form-horizontal form-control" />
+            </div>
+            <div class="col-md-4">
+                <button class="btn btn-primary" onclick="ObtenerTrazabilidadesEnvios();"><i class="bi bi-search"> @Resources.Search</i></button>
+            </div>
+        </div>
+        <hr />
+
+        <input type="hidden" id="initDataTable" value="no" />
+        <div class="form-horizontal" style="color:dimgray">
+
+            <table id="tablaRegistros" class="display compact dt-center table table-striped table-light" style="width:100%">
+                <thead class="thead-light">
+                    <tr>
+                        <th>Nº</th>
+                        <th>@Resources.Id</th>
+                        <th>@Resources.Name</th>
+                        <th>@Resources.DocumentId</th>
+                        <th>@Resources.Address</th>
+                        <th>@Resources.PhoneNumber</th>
+                        <th>@Resources.Email</th>
+                        <th>@Resources.Status</th>
+                        <th>@Resources.Date</th>
+                        <th>@Resources.DateArrival</th>
+                        <th>@Resources.Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+</div>
+
+

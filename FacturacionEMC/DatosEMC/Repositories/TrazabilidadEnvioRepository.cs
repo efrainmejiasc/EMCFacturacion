@@ -26,7 +26,7 @@ namespace DatosEMC.Repositories
 
         public List<TrazabilidadEnvio> GetTrazabilidadEnvio(int idEmpresa, DateTime fechaInicio , DateTime fechaFinal)
         {
-            return db.TrazabilidadEnvio.Where(x => x.Activo == true && 
+            return db.TrazabilidadEnvio.Where(x => 
                                                    x.IdEmpresa == idEmpresa && 
                                                    x.FechaEnvio >= fechaInicio &&
                                                    x.FechaEnvio <= fechaFinal).ToList();

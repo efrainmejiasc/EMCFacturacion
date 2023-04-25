@@ -28,7 +28,7 @@ TRUNCATE TABLE ProductoImgInfo
 TRUNCATE TABLE ProductoImg
 
 --Update ProductoImgInfo SET Precio = 345.52
-  --Update ProductoImgInfo SET Categoria = 'Refresco' WHERE ID = 4
+  --Update ProductoImgInfo SET Categoria = 'In' WHERE ID = 4
 
 SELECT * FROM ROLES
 SELECT * FROM MetodoPago
@@ -37,6 +37,7 @@ SELECT * FROM UnidadMedida WHERE Sistema = 'EN-US'
 SELECT * FROM UnidadMedida WHERE Sistema = 'ES-ES'
 SELECT * FROM TipoFactura
 SELECT * FROM InicioFacturacion
+SELECT * FROM TrazabilidadEnvio
 
 --UPDATE UnidadMedida SET Sistema = 'ES-ES' WHERE Id = 10
 

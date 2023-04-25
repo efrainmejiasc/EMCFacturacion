@@ -58,7 +58,7 @@ function GuardarTrazabilidadEnvio() {
         url: urlGuardarTrazabilidadEnvio,
         data: {
             nombre: nombre, dni: dni, direccion: direccion, telefono: telefono,
-            email: email, fechaLlegada: fechaLlegada, descripcion: observacion
+            email: email, fechaLlegada: fechaLlegada, observacion: observacion
         },
         datatype: "json",
         success: function (data) {

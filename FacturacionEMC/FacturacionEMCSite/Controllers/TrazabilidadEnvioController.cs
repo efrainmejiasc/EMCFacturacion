@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace FacturacionEMCSite.Controllers
@@ -58,6 +59,46 @@ namespace FacturacionEMCSite.Controllers
             }
 
             return Json(response);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> ObtenerTrazabilidadesEnvio(string dni)
+        {
+            var trazabilidadEnvio = new List<EMCApi.Client.TrazabilidadEnvio>();
+            try
+            {
+               var idEmpresa = this.usuario.IdEmpresa;
+               trazabilidadEnvio = await this.clientApi.GetTrazabilidadesEnvioDniAsync(idEmpresa, dni);                   
+
+            }
+            catch (Exception ex)
+            {
+                var error = ex.Message;
+                trazabilidadEnvio = null;
+            }
+
+            return Json(trazabilidadEnvio);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> ObtenerTrazabilidadesEnvios(string fInicial, string fFinal)
+        {
+            var trazabilidadEnvio = new List<EMCApi.Client.TrazabilidadEnvio>();
+            try
+            {
+                var idEmpresa = this.usuario.IdEmpresa;
+                var fechaInicial = Convert.ToDateTime(fInicial);
+                var fechaFinal = Convert.ToDateTime(fFinal);
+                trazabilidadEnvio = (List<EMCApi.Client.TrazabilidadEnvio>)await this.clientApi.GetTrazabilidadesEnvioAsync(idEmpresa,fechaInicial,fechaFinal);
+
+            }
+            catch (Exception ex)
+            {
+                var error = ex.Message;
+                trazabilidadEnvio = null;
+            }
+
+            return Json(trazabilidadEnvio);
         }
     }
 }
