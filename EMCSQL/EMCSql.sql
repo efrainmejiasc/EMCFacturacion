@@ -39,6 +39,8 @@ SELECT * FROM TipoFactura
 SELECT * FROM InicioFacturacion
 SELECT * FROM TrazabilidadEnvio
 
+--UPDATE TRAZABILIDADENVIO SET Dni = '113456727'
+
 --UPDATE UnidadMedida SET Sistema = 'ES-ES' WHERE Id = 10
 
 --TRUNCATE TABLE FacturaVenta

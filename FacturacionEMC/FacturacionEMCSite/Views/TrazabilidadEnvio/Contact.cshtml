@@ -1,5 +1,61 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@using FacturacionEMCSite.StringResources;
 @{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/scriptsSite/trazabilidadEnvio/jsContact.js"></script>
+    <link rel="stylesheet" type="text/css" href="~/js/dataTables/datatables.css" />
+    <script type="text/javascript" src="~/js/dataTables/datatables.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 }
+
+<script>
+    var urlObtenerTrazabilidadEnvio = '@Url.Action("ObtenerTrazabilidadEnvio","TrazabilidadEnvio")';
+    var urlObtenerTrazabilidadesEnvio = '@Url.Action("ObtenerTrazabilidadesEnvio","TrazabilidadEnvio")';
+</script>
+
+<div class="row" style="color: dimgray;">
+    <div class="col-md-12 grid-margin">
+        <div class="d-flex justify-content-between flex-wrap">
+            <div class="d-flex align-items-end flex-wrap">
+                <div class="mr-md-3 mr-xl-5">
+                    <div class="mr-md-3 mr-xl-5">
+                        <h4>@Resources.TraceabilityQuery</h4>
+                        <small class="mb-md-0 text-gray"></small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card" style="margin-top:0%;">
+    <div class="card-body">
+
+        <div class="form-group row" style="color:dimgray">
+            <div class="col-md-4 text-md-right">
+                <label class="control-label">@Resources.Id</label>
+            </div>
+            <div class="col-md-4">
+                <input type="text" id="guid" class="form-horizontal form-control" />
+            </div>
+            <div class="col-md-4">
+                <button class="btn btn-primary" onclick="ObtenerTrazabilidadEnvio();"><i class="bi bi-search"> @Resources.Search</i></button>
+            </div>
+        </div>
+
+        <div class="form-group row" style="color:dimgray">
+            <div class="col-md-4 text-md-right">
+                <label class="control-label">@Resources.DocumentId</label>
+            </div>
+            <div class="col-md-4">
+                <input type="text" id="dni" class="form-horizontal form-control" />
+            </div>
+            <div class="col-md-4">
+                <button class="btn btn-primary" onclick="ObtenerTrazabilidadesEnvio();"><i class="bi bi-search"> @Resources.Search</i></button>
+            </div>
+        </div>
+
+        <hr />
+    </div>
+</div>

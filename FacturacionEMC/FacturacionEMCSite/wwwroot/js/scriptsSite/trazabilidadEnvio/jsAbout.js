@@ -35,6 +35,8 @@ function ObtenerTrazabilidadesEnvios() {
             toastr.warning("All fields are required.");
         else if (cultureInfo == 'es-ES')
             toastr.warning("Todos los campos son requeridos.");
+
+        return false;
     }
 
     $.ajax({
@@ -44,7 +46,7 @@ function ObtenerTrazabilidadesEnvios() {
         datatype: "json",
         success: function (data) {
             if (data != null) {
-                console.log(data);
+                console.log(data); 
             }
         }
     });
@@ -52,22 +54,3 @@ function ObtenerTrazabilidadesEnvios() {
     return false;
 }
 
-function ObtenerTrazabilidadesEnvio() {
-
-    $.ajax({
-        type: "GET",
-        url: urlObtenerTrazabilidadesEnvios,
-        data: { dni: '11346727' },
-        datatype: "json",
-        success: function (data) {
-            if (data != null) {
-                if (cultureInfo == 'en-US')
-                    toastr.success("Traceability saved successfully.");
-                else if (cultureInfo == 'es-ES')
-                    toastr.success("Trazabilidad guardada correctamente.");
-            }
-        }
-    });
-
-    return false;
-}

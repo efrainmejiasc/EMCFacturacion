@@ -81,6 +81,25 @@ namespace FacturacionEMCSite.Controllers
         }
 
         [HttpGet]
+        public async Task<IActionResult> ObtenerTrazabilidadEnvio(string guid)
+        {
+            var trazabilidadEnvio = new EMCApi.Client.TrazabilidadEnvio();
+            try
+            {
+                var idEmpresa = this.usuario.IdEmpresa;
+                trazabilidadEnvio = await this.clientApi.GetTrazabilidadEnvioIdentidadAsync(idEmpresa,guid);
+
+            }
+            catch (Exception ex)
+            {
+                var error = ex.Message;
+                trazabilidadEnvio = null;
+            }
+
+            return Json(trazabilidadEnvio);
+        }
+
+        [HttpGet]
         public async Task<IActionResult> ObtenerTrazabilidadesEnvios(string fInicial, string fFinal)
         {
             var trazabilidadEnvio = new List<EMCApi.Client.TrazabilidadEnvio>();
