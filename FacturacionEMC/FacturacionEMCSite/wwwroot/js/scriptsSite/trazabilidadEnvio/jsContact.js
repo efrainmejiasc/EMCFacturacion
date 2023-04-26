@@ -32,25 +32,23 @@ function ObtenerTrazabilidadEnvio() {
         datatype: "json",
         success: function (data) {
             if (data != null) {
-                console.log(data);
                 $('#tablaRegistros tbody tr').remove();
-                $.each(data, function (index, item) {
-                    activo = item.activo ? 'green' : 'red';
+                    activo = data.activo ? 'green' : 'red';
                     let tr = `<tr>
-                      <td style='color: ${activo}'> ${item.id} </td>
-                      <td style='color: ${activo}'> ${item.nombre} </td>
-                      <td style='color: ${activo}'> ${item.dni} </td>
-                      <td style='color: ${activo}'> ${item.direccion} </td>
-                      <td style='color: ${activo}'> ${item.telefono} </td>
-                      <td style='color: ${activo}'> ${item.email} </td>
-                      <td style='color: ${activo}'> ${item.fechaEnvio.substring(0, 10)} </td>
-                      <td style='color: ${activo}'> ${item.fechaLlegada.substring(0, 10)} </td>
-                      <td style='color: ${activo}'> ${item.observacion} </td>
-                     <td><a href="javascript:void(0)" class="btn btn-sm btn-warning" onclick="Editar(${item.id})">${editar}</a></td>
-                     <td><a href="javascript:void(0)" class="btn btn-sm btn-danger" onclick="Quitar(${item.id})">${eliminar}</a></td>
+                      <td style='color: ${activo}'> ${data.id} </td>
+                      <td style='color: ${activo}'> ${data.nombre} </td>
+                      <td style='color: ${activo}'> ${data.dni} </td>
+                      <td style='color: ${activo}'> ${data.direccion} </td>
+                      <td style='color: ${activo}'> ${data.telefono} </td>
+                      <td style='color: ${activo}'> ${data.email} </td>
+                      <td style='color: ${activo}'> ${data.fechaEnvio.substring(0, 10)} </td>
+                      <td style='color: ${activo}'> ${data.fechaLlegada.substring(0, 10)} </td>
+                      <td style='color: ${activo}'> ${data.observacion} </td>
+                     <td><a href="javascript:void(0)" class="btn btn-sm btn-warning" onclick="Editar(${data.id})">${editar}</a></td>
+                     <td><a href="javascript:void(0)" class="btn btn-sm btn-danger" onclick="Quitar(${data.id})">${eliminar}</a></td>
                       </tr>`;
                     $('#tablaRegistros tbody').append(tr);
-                });
+                
                 setTimeout(InicializarDataTable, 1000);
             }
             else {
