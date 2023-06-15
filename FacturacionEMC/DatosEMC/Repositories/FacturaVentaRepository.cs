@@ -52,7 +52,7 @@ namespace DatosEMC.Repositories
             var facturas = (from f in db.FacturaVenta
                             join p in db.Cliente on f.IdCliente equals p.Id
                             join m in db.MetodoPago on f.IdMetodoPago equals m.Id
-                            where f.IdEmpresa == idEmpresa && f.Fecha >= fInicio && f.Fecha <= fFinal
+                            where f.IdEmpresa == idEmpresa && f.Fecha >= fInicio && f.Fecha.AddDays(1) < fFinal
                             select new FacturaVentaDTO
                             {
                                 NumeroFactura = f.NumeroFactura,

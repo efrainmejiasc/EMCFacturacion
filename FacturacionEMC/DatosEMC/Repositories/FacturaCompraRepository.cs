@@ -53,7 +53,7 @@ namespace DatosEMC.Repositories
             var facturas = (from f in db.FacturaCompra
                             join p in db.Proveedor on f.IdProveedor equals p.Id
                             join m in db.MetodoPago on f.IdMetodoPago equals m.Id
-                            where f.IdEmpresa == idEmpresa && f.Fecha >= fInicio && f.Fecha <= fFinal
+                            where f.IdEmpresa == idEmpresa && f.Fecha >= fInicio && f.Fecha.AddDays(1) < fFinal
                             select new FacturaCompraDTO
                             {
                                 NumeroFactura = f.NumeroFactura,

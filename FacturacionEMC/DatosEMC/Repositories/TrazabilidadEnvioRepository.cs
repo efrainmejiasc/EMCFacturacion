@@ -29,7 +29,7 @@ namespace DatosEMC.Repositories
             return db.TrazabilidadEnvio.Where(x => 
                                                    x.IdEmpresa == idEmpresa && 
                                                    x.FechaEnvio >= fechaInicio &&
-                                                   x.FechaEnvio <= fechaFinal).ToList();
+                                                   x.FechaEnvio < fechaFinal.AddDays(1)).ToList();
         }
 
         public TrazabilidadEnvio GetTrazabilidadEnvio(int idEmpresa, Guid identificador)

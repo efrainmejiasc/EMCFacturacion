@@ -84,7 +84,7 @@ namespace FacturacionEMCApi.Controllers
                 var identificador = new Guid(guid);
                 var modelo = this.trazabilidadEnvioService.GetTrazabilidadEnvio(idEmpresa,identificador);
 
-                if (modelo.Id > 0)
+                if (modelo != null  && modelo.Id > 0)
                     return Ok(modelo);
                 else
                     return BadRequest(EngineService.SetGenericResponse(false, "No se encontró información"));
@@ -95,10 +95,10 @@ namespace FacturacionEMCApi.Controllers
             }
         }
 
-        /// <summary 
-        /// Obtiene Envio - Guia por idEmpresa y dni
-        /// </summary>
-        /// <returns>Envio - Guia</returns>
+        ///// <summary 
+        ///// Obtiene Envio - Guia por idEmpresa y dni
+        ///// </summary>
+        ///// <returns>Envio - Guia</returns>
         [HttpGet("{idEmpresa}/{dni}", Name = "GetTrazabilidadesEnvioDni")]
         [ProducesResponseType(statusCode: (int)HttpStatusCode.OK, Type = typeof(List<TrazabilidadEnvio>))]
         [ProducesResponseType(statusCode: (int)HttpStatusCode.BadRequest, Type = typeof(GenericResponse))]
