@@ -169,10 +169,34 @@ function Editar() {
                 toaster.success(success);
             }
             else {
-                toaster.success(error);
+                toaster.warning(error);
             }
         }
     });
     return false;
 }
+
+function Eliminar(id) {
+
+    var success = cultureInfo == 'en-US' ? 'Removed success.' : 'Eliminacion exitosa.';
+    var error = cultureInfo == 'en-US' ? 'Removed failed.' : 'Error al eliminar.';
+
+    $.ajax({
+        type: "POST",
+        url: urlEliminarTrazabilidad,
+        data: { id: id},
+        datatype: "json",
+        success: function (data) {
+            if (data != null) {
+                console.log(data);
+                toaster.success(success);
+            }
+            else {
+                toaster.warning(error);
+            }
+        }
+    });
+    return false;
+}
+
 

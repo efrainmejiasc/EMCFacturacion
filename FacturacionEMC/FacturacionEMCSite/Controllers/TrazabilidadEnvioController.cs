@@ -142,5 +142,25 @@ namespace FacturacionEMCSite.Controllers
             return Json(response);
         }
 
+
+        [HttpPost]
+        public async Task<IActionResult> EliminarTrazabilidad(string id)
+        {
+            var response = new RespuestaModel();
+            response.Estatus = false;
+
+            try
+            {
+
+
+            }
+            catch (Exception ex)
+            {
+                var error = ex.Message;
+            }
+
+            return Json(response);
+        }
+
     }
 }
