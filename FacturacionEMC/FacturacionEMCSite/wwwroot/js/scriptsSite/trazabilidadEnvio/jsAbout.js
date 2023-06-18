@@ -161,7 +161,7 @@ function Editar() {
         type: "POST",
         url: urlUpdateTrazabilidad,
         data: { id: id, nombre: nombre, dni: dni, direccion: direccion, telefono: telefono,
-            email: email, fecha: fecha, fechaLlegada: fechaLlegada, observacion: descripcion },
+            email: email, fechaEnvio: fecha, fechaLlegada: fechaLlegada, observacion: descripcion },
         datatype: "json",
         success: function (data) {
             if (data != null) {
