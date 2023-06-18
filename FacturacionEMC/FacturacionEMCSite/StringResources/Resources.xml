@@ -182,4 +182,6 @@
 	<resource culture="en-US" name="DocumentId" value= "Document Id"></resource>
     <resource culture="es-ES" name="DateArrival" value="Fecha de Llegada"></resource>
 	<resource culture="en-US" name="DateArrival" value= "Date Arrival"></resource>
+	<resource culture="es-ES" name="DocumentNumber" value="Numero"></resource>
+	<resource culture="en-US" name="DocumentNumber" value= "Date Arrival"></resource>
 </resources>

@@ -63,7 +63,7 @@ function ObtenerTrazabilidadesEnvios() {
                       <td style='color: ${activo}'> ${item.fechaEnvio.substring(0, 10)} </td>
                       <td style='color: ${activo}'> ${item.fechaLlegada.substring(0, 10)} </td>
                       <td style='color: ${activo}'> ${item.observacion} </td>
-                     <td><a href="javascript:void(0)" class="btn btn-sm btn-warning" onclick="Editar(${item.id})">${editar}</a></td>
+                     <td><a href="javascript:void(0)" class="btn btn-sm btn-warning" onclick="OpenModalEditar(${item.id},'${item.nombre}','${item.dni}','${item.direccion}','${item.telefono}','${item.email}','${item.fechaEnvio.substring(0, 10)}','${item.fechaLlegada.substring(0, 10)}','${item.observacion}')">${editar}</a></td>
                      <td><a href="javascript:void(0)" class="btn btn-sm btn-danger" onclick="Quitar(${item.id})">${eliminar}</a></td>
                       </tr>`;
                     $('#tablaRegistros tbody').append(tr);
@@ -109,5 +109,70 @@ function InicializarDataTable() {
     } catch { console.log(''); }
 
     $("#tablaRegistros").addClass("display compact dt-center");
+}
+
+function OpenModalEditar(id,nombre,dni,direccion,telefono,email,fecha,fechaLlegada,observacion) {
+    $("#_id").val(id);
+    $('#_nombre').val(nombre);
+    $('#_dni').val(dni);
+    $('#_direccion').val(direccion);
+    $('#_telefono').val(telefono);
+    $('#_email').val(email);
+    $('#_fecha').val(fecha);
+    $('#_fechaLlegada').val(fechaLlegada);
+    $('#_descripcion').val(observacion);
+
+    $("#modalEditar").show();
+}
+
+function CloseModalEditar(id) {
+    $("#modalEditar").hide();
+
+}
+
+function Editar() {
+
+    var id = $("#_id").val();
+    var nombre = $('#_nombre').val();
+    var dni = $('#_dni').val();
+    var direccion = $('#_direccion').val();
+    var telefono = $('#_telefono').val();
+    var email = $('#_email').val();
+    var fecha = $('#_fecha').val();
+    var fechaLlegada = $('#_fechaLlegada').val();
+    var descripcion = $('#_descripcion').val();
+    var msj = '';
+
+    if (cultureInfo == 'en-US')
+        msj = "All fields are required.";
+    else if (cultureInfo == 'es-ES')
+      msj = "Todos los campos son requeridos.";
+
+    if (id === '' || nombre === '' || dni === '' || direccion === '' || telefono === '' ||
+        email === '' || fecha === '' || fechaLlegada === '' || descripcion === '') {
+        toastr.warning(msj);
+        return false;
+    }
+
+    var success = cultureInfo == 'en-US' ? 'Update success.' : 'Actualizacion exitosa.';
+    var error = cultureInfo == 'en-US' ? 'Update failed.' : 'Error al actualizar.';
+
+    $.ajax({
+        type: "POST",
+        url: urlUpdateTrazabilidad,
+        data: { id: id, nombre: nombre, dni: dni, direccion: direccion, telefono: telefono,
+            email: email, fecha: fecha, fechaLlegada: fechaLlegada, observacion: descripcion },
+        datatype: "json",
+        success: function (data) {
+            if (data != null) {
+                console.log(data);
+                toaster.success(success);
+            }
+            else {
+                toaster.success(error);
+            }
+        }
+    });
+    return false;
 }
 

@@ -119,5 +119,28 @@ namespace FacturacionEMCSite.Controllers
 
             return Json(trazabilidadEnvio);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateTrazabilidad(EMCApi.Client.TrazabilidadEnvioDTO modelo)
+        {
+            var response = new RespuestaModel();
+            response.Estatus = false;
+
+            try
+            {
+                modelo.IdEmpresa = this.usuario.IdEmpresa;
+                var result = await this.clientApi.PostTrazabilidadEnvioAsync(modelo);
+                if (result.Ok)
+                    response.Estatus = true;
+
+            }
+            catch (Exception ex)
+            {
+                var error = ex.Message;
+            }
+
+            return Json(response);
+        }
+
     }
 }
