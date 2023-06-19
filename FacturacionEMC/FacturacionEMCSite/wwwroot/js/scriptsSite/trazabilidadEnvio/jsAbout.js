@@ -64,7 +64,7 @@ function ObtenerTrazabilidadesEnvios() {
                       <td style='color: ${activo}'> ${item.fechaLlegada.substring(0, 10)} </td>
                       <td style='color: ${activo}'> ${item.fechaReclamo.substring(0, 10)} </td>
                       <td style='color: ${activo}'> ${item.observacion} </td>
-                     <td><a href="javascript:void(0)" class="btn btn-sm btn-warning" onclick="OpenModalEditar(${item.id},'${item.nombre}','${item.dni}','${item.direccion}','${item.telefono}','${item.email}','${item.fechaEnvio.substring(0, 10)}','${item.fechaLlegada.substring(0, 10)}','${item.observacion}')">${editar}</a></td>
+                     <td><a href="javascript:void(0)" class="btn btn-sm btn-warning" onclick="OpenModalEditar(${item.id},'${item.nombre}','${item.dni}','${item.direccion}','${item.telefono}','${item.email}','${item.fechaEnvio.substring(0, 10)}','${item.fechaLlegada.substring(0, 10)}','${item.fechaReclamo.substring(0, 10)}','${item.observacion}')">${editar}</a></td>
                      <td><a href="javascript:void(0)" class="btn btn-sm btn-danger" onclick="Quitar(${item.id})">${eliminar}</a></td>
                       </tr>`;
                     $('#tablaRegistros tbody').append(tr);
@@ -172,7 +172,9 @@ function Editar() {
             if (data.estatus) 
                 toastr.success(success);
             else 
-                toastr.error(error);         
+                toastr.error(error);   
+
+            setTimeout(1500, CloseModalEditar);
         }
     });
     return false;

@@ -131,7 +131,6 @@ namespace FacturacionEMCApi.Controllers
         {
             try
             {
-                model.Id = 0;
                 var genericResponse = this.trazabilidadEnvioService.UpdateTrazabilidadEnvio(model);
 
                 if (genericResponse.Ok)

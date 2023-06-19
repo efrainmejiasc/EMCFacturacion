@@ -208,8 +208,9 @@ function Editar() {
             if (data.estatus)
                 toastr.success(success);
             else
-                toastr.error(error);         
+                toastr.error(error); 
 
+            setTimeout(1500, CloseModalEditar);
         }
     });
     return false;
