@@ -56,5 +56,26 @@ namespace NegocioEMC.Services
             return this.trazabilidadEnvioRepository.GetTrazabilidadEnvio(idEmpresa, fechaInicio, fechaFinal);
         }
 
+        public GenericResponse UpdateTrazabilidadEnvio(TrazabilidadEnvioDTO x)
+        {
+            var xt = this.mapper.Map<TrazabilidadEnvio>(x);
+            var model = this.trazabilidadEnvioRepository.UpdateTrazabilidadEnvio(xt);
+
+            if (model != null)
+                return EngineService.SetGenericResponse(true, "La información ha sido actualizada");
+
+            else
+                return EngineService.SetGenericResponse(false, "No se pudo registrar la información");
+        }
+
+        public GenericResponse DeleteTrazabilidadEnvio(int id)
+        {
+           var result = this.trazabilidadEnvioRepository.DeleteTrazabilidadEnvio(id);
+            if (result)
+                return EngineService.SetGenericResponse(true, "La información ha sido eliminada");
+
+            else
+                return EngineService.SetGenericResponse(false, "No se pudo registrar la información");
+        }
     }
 }

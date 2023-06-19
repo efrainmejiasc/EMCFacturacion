@@ -118,5 +118,57 @@ namespace FacturacionEMCApi.Controllers
                 return BadRequest(EngineService.SetGenericResponse(false, ex.Message));
             }
         }
+
+        /// <summary>
+        /// Actualizar registro de Envio - Guia
+        /// </summary>
+        /// <returns>Estado de la solicitud</returns>
+        [HttpPut(Name = "UpdateTrazabilidadEnvio")]
+        [ProducesResponseType(statusCode: (int)HttpStatusCode.OK, Type = typeof(GenericResponse))]
+        [ProducesResponseType(statusCode: (int)HttpStatusCode.BadRequest, Type = typeof(GenericResponse))]
+
+        public IActionResult UpdateTrazabilidadEnvio([FromBody] TrazabilidadEnvioDTO model)
+        {
+            try
+            {
+                model.Id = 0;
+                var genericResponse = this.trazabilidadEnvioService.UpdateTrazabilidadEnvio(model);
+
+                if (genericResponse.Ok)
+                    return Ok(genericResponse);
+                else
+                    return BadRequest(genericResponse);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(EngineService.SetGenericResponse(false, ex.Message));
+            }
+        }
+
+
+        /// <summary>
+        /// Eliminar registro de Envio - Guia
+        /// </summary>
+        /// <returns>Estado de la solicitud</returns>
+        [HttpDelete("{id}", Name = "DeleteTrazabilidadEnvio")]
+        [ProducesResponseType(statusCode: (int)HttpStatusCode.OK, Type = typeof(GenericResponse))]
+        [ProducesResponseType(statusCode: (int)HttpStatusCode.BadRequest, Type = typeof(GenericResponse))]
+
+        public IActionResult DeleteTrazabilidadEnvio(int id)
+        {
+            try
+            {
+                var genericResponse = this.trazabilidadEnvioService.DeleteTrazabilidadEnvio(id);
+
+                if (genericResponse.Ok)
+                    return Ok(genericResponse);
+                else
+                    return BadRequest(genericResponse);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(EngineService.SetGenericResponse(false, ex.Message));
+            }
+        }
     }
 }

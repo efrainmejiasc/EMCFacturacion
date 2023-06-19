@@ -2823,13 +2823,13 @@
         }
       }
     },
-    "/api/TrazabilidadEnvio/PostFacturaCompra": {
+    "/api/TrazabilidadEnvio/PostTrazabilidadEnvio": {
       "post": {
         "tags": [
           "TrazabilidadEnvio"
         ],
         "summary": "Crear registro de Envio - Guia",
-        "operationId": "TrazabilidadEnvio_PostFacturaCompra",
+        "operationId": "TrazabilidadEnvio_PostTrazabilidadEnvio",
         "requestBody": {
           "content": {
             "application/json": {
@@ -3058,7 +3058,6 @@
         "tags": [
           "TrazabilidadEnvio"
         ],
-        "summary": "Obtiene Envio - Guia por idEmpresa y dni",
         "operationId": "TrazabilidadEnvio_GetTrazabilidadesEnvioDni",
         "parameters": [
           {
@@ -3086,17 +3085,158 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/TrazabilidadEnvio"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TrazabilidadEnvio"
+                  }
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/TrazabilidadEnvio"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TrazabilidadEnvio"
+                  }
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/TrazabilidadEnvio"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TrazabilidadEnvio"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenericResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenericResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenericResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/TrazabilidadEnvio/UpdateTrazabilidadEnvio": {
+      "put": {
+        "tags": [
+          "TrazabilidadEnvio"
+        ],
+        "summary": "Actualizar registro de Envio - Guia",
+        "operationId": "TrazabilidadEnvio_UpdateTrazabilidadEnvio",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TrazabilidadEnvioDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TrazabilidadEnvioDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/TrazabilidadEnvioDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenericResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenericResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenericResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenericResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenericResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenericResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/TrazabilidadEnvio/DeleteTrazabilidadEnvio/{id}": {
+      "delete": {
+        "tags": [
+          "TrazabilidadEnvio"
+        ],
+        "summary": "Eliminar registro de Envio - Guia",
+        "operationId": "TrazabilidadEnvio_DeleteTrazabilidadEnvio",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenericResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenericResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenericResponse"
                 }
               }
             }

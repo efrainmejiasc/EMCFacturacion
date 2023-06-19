@@ -180,8 +180,8 @@
 	<resource culture="en-US" name="ShippingTraceability" value= "Shipping Traceability"></resource>
     <resource culture="es-ES" name="DocumentId" value="Numero de Documento"></resource>
 	<resource culture="en-US" name="DocumentId" value= "Document Id"></resource>
-    <resource culture="es-ES" name="DateArrival" value="Fecha de Llegada"></resource>
-	<resource culture="en-US" name="DateArrival" value= "Date Arrival"></resource>
-	<resource culture="es-ES" name="DocumentNumber" value="Numero"></resource>
-	<resource culture="en-US" name="DocumentNumber" value= "Date Arrival"></resource>
+	<resource culture="es-ES" name="DateArrival" value="Fecha de Llegada"></resource>
+	<resource culture="en-US" name="DateArrival" value= "Date Arrived"></resource>
+    <resource culture="es-ES" name="DateDelivery" value="Fecha de Entrega"></resource>
+	<resource culture="en-US" name="DateDelivery" value= "Date Delivery"></resource>
 </resources>

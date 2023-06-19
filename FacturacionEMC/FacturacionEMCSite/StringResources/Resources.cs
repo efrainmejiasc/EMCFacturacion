@@ -409,5 +409,9 @@ namespace FacturacionEMCSite.StringResources
         {
             get { return resourceProvider.GetResource("DateArrival", CultureInfo.CurrentUICulture.Name).ToString(); }
         }
+        public static string DateDelivery
+        {
+            get { return resourceProvider.GetResource("DateDelivery", CultureInfo.CurrentUICulture.Name).ToString(); }
+        }
     }
 }

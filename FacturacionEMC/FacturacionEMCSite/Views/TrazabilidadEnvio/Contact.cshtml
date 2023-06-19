@@ -72,6 +72,7 @@
                         <th>@Resources.Email</th>
                         <th>@Resources.Date</th>
                         <th>@Resources.DateArrival</th>
+                        <th>@Resources.DateDelivery</th>
                         <th>@Resources.Description</th>
                         <th></th>
                         <th></th>
@@ -83,6 +84,44 @@
                 </tbody>
             </table>
 
+        </div>
+
+
+        <div class="container" style="color:dimgray;">
+            <div class="modalTipo" id="modalEditar">
+                <div class="modal-content2">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3> @Resources.TraceabilityEdit</h3>
+                            <div class="form-group row">
+                                <input type="hidden" id="_id" />
+                                <label class="form form-label">@Resources.Name </label>
+                                <input type="text" id="_nombre" class="form-control text-box single-line" />
+                                <label class="form form-label">@Resources.DocumentId</label>
+                                <input type="text" id="_dni" class="form-control text-box single-line" />
+                                <label class="form form-label">@Resources.Address</label>
+                                <input type="text" id="_direccion" class="form-control text-box single-line" />
+                                <label class="form form-label">@Resources.PhoneNumber</label>
+                                <input type="text" id="_telefono" class="form-control text-box single-line" />
+                                <label class="form form-label">@Resources.Email</label>
+                                <input type="text" id="_email" class="form-control text-box single-line" />
+                                <label class="form form-label">@Resources.Date</label>
+                                <input type="date" id="_fecha" class="form-control text-box single-line" />
+                                <label class="form form-label">@Resources.DateArrival</label>
+                                <input type="date" id="_fechaLlegada" class="form-control text-box single-line" />
+                                <label class="form form-label">@Resources.DateDelivery</label>
+                                <input type="date" id="_fechaReclamo" class="form-control text-box single-line" />
+                                <label class="form form-label">@Resources.Description</label>
+                                <input type="text" id="_descripcion" class="form-control text-box single-line" />
+                            </div>
+                            <div class="col-md-12">
+                                <input type="submit" value="@Resources.Save" class="btn btn-success" style="float:left;" onclick="Editar();" />
+                                <input type="submit" value="@Resources.Cancel" class="btn btn-danger" style="float:right;" onclick="CloseModalEditar();" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
     </div>

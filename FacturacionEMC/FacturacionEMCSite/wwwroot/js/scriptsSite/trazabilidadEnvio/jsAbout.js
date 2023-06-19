@@ -62,6 +62,7 @@ function ObtenerTrazabilidadesEnvios() {
                       <td style='color: ${activo}'> ${item.email} </td>
                       <td style='color: ${activo}'> ${item.fechaEnvio.substring(0, 10)} </td>
                       <td style='color: ${activo}'> ${item.fechaLlegada.substring(0, 10)} </td>
+                      <td style='color: ${activo}'> ${item.fechaReclamo.substring(0, 10)} </td>
                       <td style='color: ${activo}'> ${item.observacion} </td>
                      <td><a href="javascript:void(0)" class="btn btn-sm btn-warning" onclick="OpenModalEditar(${item.id},'${item.nombre}','${item.dni}','${item.direccion}','${item.telefono}','${item.email}','${item.fechaEnvio.substring(0, 10)}','${item.fechaLlegada.substring(0, 10)}','${item.observacion}')">${editar}</a></td>
                      <td><a href="javascript:void(0)" class="btn btn-sm btn-danger" onclick="Quitar(${item.id})">${eliminar}</a></td>
@@ -111,7 +112,7 @@ function InicializarDataTable() {
     $("#tablaRegistros").addClass("display compact dt-center");
 }
 
-function OpenModalEditar(id,nombre,dni,direccion,telefono,email,fecha,fechaLlegada,observacion) {
+function OpenModalEditar(id, nombre, dni, direccion, telefono, email, fecha, fechaLlegada, fechaReclamo, observacion) {
     $("#_id").val(id);
     $('#_nombre').val(nombre);
     $('#_dni').val(dni);
@@ -120,6 +121,7 @@ function OpenModalEditar(id,nombre,dni,direccion,telefono,email,fecha,fechaLlega
     $('#_email').val(email);
     $('#_fecha').val(fecha);
     $('#_fechaLlegada').val(fechaLlegada);
+    $('#_fechaReclamo').val(fechaReclamo);
     $('#_descripcion').val(observacion);
 
     $("#modalEditar").show();
@@ -140,16 +142,17 @@ function Editar() {
     var email = $('#_email').val();
     var fecha = $('#_fecha').val();
     var fechaLlegada = $('#_fechaLlegada').val();
+    var fechaReclamo = $('#_fechaReclamo').val();
     var descripcion = $('#_descripcion').val();
     var msj = '';
 
     if (cultureInfo == 'en-US')
         msj = "All fields are required.";
     else if (cultureInfo == 'es-ES')
-      msj = "Todos los campos son requeridos.";
+        msj = "Todos los campos son requeridos.";
 
     if (id === '' || nombre === '' || dni === '' || direccion === '' || telefono === '' ||
-        email === '' || fecha === '' || fechaLlegada === '' || descripcion === '') {
+        email === '' || fecha === '' || fechaLlegada === '' || fechaReclamo === '' || descripcion === '') {
         toastr.warning(msj);
         return false;
     }
@@ -160,17 +163,16 @@ function Editar() {
     $.ajax({
         type: "POST",
         url: urlUpdateTrazabilidad,
-        data: { id: id, nombre: nombre, dni: dni, direccion: direccion, telefono: telefono,
-            email: email, fechaEnvio: fecha, fechaLlegada: fechaLlegada, observacion: descripcion },
+        data: {
+            id: id, nombre: nombre, dni: dni, direccion: direccion, telefono: telefono,
+            email: email, fechaEnvio: fecha, fechaLlegada: fechaLlegada, fechaReclamo: fechaReclamo, observacion: descripcion
+        },
         datatype: "json",
         success: function (data) {
-            if (data != null) {
-                console.log(data);
-                toaster.success(success);
-            }
-            else {
-                toaster.warning(error);
-            }
+            if (data.estatus) 
+                toastr.success(success);
+            else 
+                toastr.error(error);         
         }
     });
     return false;
@@ -184,19 +186,15 @@ function Eliminar(id) {
     $.ajax({
         type: "POST",
         url: urlEliminarTrazabilidad,
-        data: { id: id},
+        data: { id: id },
         datatype: "json",
         success: function (data) {
-            if (data != null) {
-                console.log(data);
-                toaster.success(success);
-            }
-            else {
-                toaster.warning(error);
-            }
+            if (data.estatus)
+                toastr.success(success);
+            else
+                toastr.error(error);         
+
         }
     });
     return false;
 }
-
-

@@ -10,6 +10,8 @@ namespace NegocioEMC.IServices
 {
     public interface ITrazabilidadEnvioService
     {
+        GenericResponse DeleteTrazabilidadEnvio(int id);
+        GenericResponse UpdateTrazabilidadEnvio(TrazabilidadEnvioDTO x);
         GenericResponse AddTrazabilidadEnvio(TrazabilidadEnvioDTO x);
 
         List<TrazabilidadEnvio> GetTrazabilidadEnvio(int idEmpresa, string dni);

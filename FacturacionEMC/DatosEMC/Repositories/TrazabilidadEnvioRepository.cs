@@ -43,5 +43,40 @@ namespace DatosEMC.Repositories
             return db.TrazabilidadEnvio.Where(x => x.Dni == dni &&
                                                    x.IdEmpresa == idEmpresa).ToList();
         }
+
+        public TrazabilidadEnvio UpdateTrazabilidadEnvio(TrazabilidadEnvio x)
+        {
+            var t = db.TrazabilidadEnvio.Where(s => s.Id == x.Id).FirstOrDefault();
+            if (t != null)
+            {
+                t.Nombre = x.Nombre;
+                t.Dni = x.Dni;
+                t.Direccion = x.Direccion;
+                t.Email = x.Email;
+                t.Observacion = x.Observacion;
+                t.FechaEnvio = x.FechaEnvio;
+                t.FechaLlegada = x.FechaLlegada;
+                t.FechaReclamo = x.FechaReclamo;
+                t.Telefono = x.Telefono;
+                t.Activo = t.FechaReclamo != x.FechaReclamo ? false : true;
+                db.SaveChanges();
+            }
+          
+            return x;
+        }
+
+        public bool DeleteTrazabilidadEnvio(int id)
+        {
+            var result = false;
+            var t = this.db.TrazabilidadEnvio.Where(x => x.Id == id).FirstOrDefault();
+            if (t != null)
+            {
+                this.db.TrazabilidadEnvio.Remove(t);
+                this.db.SaveChanges();
+                result = true;
+            }
+
+            return result;
+        }
     }
 }

@@ -129,7 +129,7 @@ namespace FacturacionEMCSite.Controllers
             try
             {
                 modelo.IdEmpresa = this.usuario.IdEmpresa;
-                var result = await this.clientApi.PostTrazabilidadEnvioAsync(modelo);
+                var result = await this.clientApi.UpdateTrazabilidadEnvioAsync(modelo);
                 if (result.Ok)
                     response.Estatus = true;
 
@@ -151,7 +151,9 @@ namespace FacturacionEMCSite.Controllers
 
             try
             {
-
+                var result = await this.clientApi.DeleteTrazabilidadEnvioAsync(Convert.ToInt32(id));
+                if (result.Ok)
+                    response.Estatus = true;
 
             }
             catch (Exception ex)
