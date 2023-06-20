@@ -11,7 +11,9 @@ namespace NegocioEMC.IServices
     public interface IVentaNumeroService
     {
         List<Loterias> GetLoterias();
+        GenericResponse DeleteVentaNumeroById(int id);
         List<VentaNumeroDTO> GetTicket(string ticket);
+        GenericResponse DeleteVentaNumeroTicket(string ticket);
         GenericResponse AddVentaNumeroAsync(VentaNumeroDTO model);
         GenericResponse UpdateVentaNumeroAsync(VentaNumeroDTO model);
         GenericResponse AddVentaNumeroAsync(List<VentaNumeroDTO> lst);

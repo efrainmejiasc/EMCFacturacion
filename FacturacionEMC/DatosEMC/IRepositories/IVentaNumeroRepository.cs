@@ -10,6 +10,8 @@ namespace DatosEMC.IRepositories
     public interface IVentaNumeroRepository
     {
         List<Loterias> GetLoterias();
+        bool DeleteVentaNumeroById(int id);
+        bool DeleteVentaNumeroTicket(string ticket);
         List<VentaNumero> GetTicket(string ticket);
         VentaNumero AddVentaNumeroAsync(VentaNumero x);
         VentaNumero UpdateVentaNumeroAsync(VentaNumero x);

@@ -123,5 +123,25 @@ namespace NegocioEMC.Services
 
             return dto;
         }
+
+        public GenericResponse DeleteVentaNumeroById(int id)
+        {
+            var result = this._ventaNumeroRepository.DeleteVentaNumeroById(id);
+            if (result)
+                return EngineService.SetGenericResponse(true, "La información ha sido eliminada");
+
+            else
+                return EngineService.SetGenericResponse(false, "No se pudo registrar la información");
+        }
+
+        public GenericResponse DeleteVentaNumeroTicket(string ticket)
+        {
+            var result = this._ventaNumeroRepository.DeleteVentaNumeroTicket(ticket);
+            if (result)
+                return EngineService.SetGenericResponse(true, "La información ha sido eliminada");
+
+            else
+                return EngineService.SetGenericResponse(false, "No se pudo registrar la información");
+        }
     }
 }

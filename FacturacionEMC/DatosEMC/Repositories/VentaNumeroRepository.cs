@@ -91,6 +91,34 @@ namespace DatosEMC.Repositories
             return db.VentaNumero.Where(x => x.Ticket == ticket).ToList();
         }
 
+        public bool DeleteVentaNumeroById(int id)
+        {
+            var result = false;
+            var t = this.db.VentaNumero.Where(x => x.Id == id).FirstOrDefault();
+            if (t != null)
+            {
+                this.db.VentaNumero.Remove(t);
+                this.db.SaveChanges();
+                result = true;
+            }
+
+            return result;
+        }
+
+        public bool DeleteVentaNumeroTicket(string ticket)
+        {
+            var result = false;
+            var t = this.db.VentaNumero.Where(x => x.Ticket == ticket).ToList();
+            if (t.Count > 0)
+            {
+                this.db.VentaNumero.RemoveRange(t);
+                this.db.SaveChanges();
+                result = true;
+            }
+
+            return result;
+        }
+
 
     }
 }
