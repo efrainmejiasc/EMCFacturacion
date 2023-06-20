@@ -48,6 +48,9 @@ namespace DatosEMC.DataModels
 
         public virtual DbSet<TrazabilidadEnvio> TrazabilidadEnvio { get; set; }
 
+        public virtual DbSet<VentaNumero> VentaNumero { get; set; }
+        public virtual DbSet<Loterias> Loterias{ get; set; }
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

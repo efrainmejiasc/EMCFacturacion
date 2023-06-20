@@ -38,6 +38,7 @@ SELECT * FROM UnidadMedida WHERE Sistema = 'ES-ES'
 SELECT * FROM TipoFactura
 SELECT * FROM InicioFacturacion
 SELECT * FROM TrazabilidadEnvio
+SELECT * FROM LOTERIAS
 
 --UPDATE TRAZABILIDADENVIO SET Dni = '11346727'
 
@@ -90,6 +91,10 @@ SELECT * FROM TrazabilidadEnvio
 --INSERT INTO UNIDADMEDIDA (UNIDAD, IdEmpresa, Sistema) VALUES ('Pieza',1,'ES-ES')
 
 --update StockTransito Set NombreArticulo = ' Monitor - Unit' Where id = 1 
+
+--INSERT INTO LOTERIAS VALUES ('Caracas','Caracas')
+--INSERT INTO LOTERIAS VALUES ('Tachira','Tachira')
+--INSERT INTO LOTERIAS VALUES ('Zulia','Zulia')
 
 
  -- INSERT INTO EMPRESA VALUES ('4F0EF2D3-A470-4B2D-B2EF-A9B8A8EE1777','Reparaciones CP','V-00000000','efrainmejiasc@hotmail.com','0414401526','Valencia-Venezuela',GetDate(),GetDate(),1)
