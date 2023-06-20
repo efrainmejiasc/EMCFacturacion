@@ -182,6 +182,9 @@ namespace FacturacionEMCApi
             services.AddScoped<ITrazabilidadEnvioService, TrazabilidadEnvioService>();
             services.AddScoped<ITrazabilidadEnvioRepository, TrazabilidadEnvioRepository>();
 
+            services.AddScoped<IVentaNumeroService, VentaNumeroService>();
+            services.AddScoped<IVentaNumeroRepository, VentaNumeroRepository>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
