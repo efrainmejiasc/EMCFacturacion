@@ -4,14 +4,16 @@ using DatosEMC.DataModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DatosEMC.Migrations
 {
     [DbContext(typeof(MyAppContext))]
-    partial class MyAppContextModelSnapshot : ModelSnapshot
+    [Migration("20230620154442_updateLot")]
+    partial class updateLot
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -854,10 +856,10 @@ namespace DatosEMC.Migrations
                         .HasColumnType("VARCHAR(50)");
 
                     b.Property<DateTime>("FechaSorteo")
-                        .HasColumnType("DATETIME");
+                        .HasColumnType("DATE");
 
                     b.Property<DateTime>("FechaVenta")
-                        .HasColumnType("DATETIME");
+                        .HasColumnType("DATE");
 
                     b.Property<int>("IdEmpresa")
                         .HasColumnType("INT");
@@ -867,9 +869,6 @@ namespace DatosEMC.Migrations
 
                     b.Property<string>("Loteria")
                         .HasColumnType("VARCHAR(50)");
-
-                    b.Property<decimal>("Monto")
-                        .HasColumnType("MONEY");
 
                     b.Property<int>("Numero")
                         .HasColumnType("INT");

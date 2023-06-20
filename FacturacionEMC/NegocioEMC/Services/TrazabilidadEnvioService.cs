@@ -35,7 +35,6 @@ namespace NegocioEMC.Services
 
             if (x.Id > 0)
                 return EngineService.SetGenericResponse(true, "La información ha sido registrada");
-
             else
                 return EngineService.SetGenericResponse(false, "No se pudo registrar la información");
 

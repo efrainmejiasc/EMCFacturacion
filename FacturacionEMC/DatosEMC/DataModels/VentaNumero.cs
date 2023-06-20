@@ -22,8 +22,8 @@ namespace DatosEMC.DataModels
         [Column(Order = 3, TypeName = "VARCHAR(250)")]
         public string Vendedor { get; set; }
 
-        [Column(Order = 4, TypeName = "VARCHAR(50)")]
-        public string Numero { get; set; }
+        [Column(Order = 4, TypeName = "INT")]
+        public int Numero { get; set; }
 
         [Column(Order = 5, TypeName = "VARCHAR(50)")]
         public string Telefono { get; set; }
@@ -45,6 +45,12 @@ namespace DatosEMC.DataModels
 
         [Column(Order = 11, TypeName = "INT")]
         public int IdEmpresa { get; set; }
+
+        [Column(Order = 12, TypeName = "MONEY")]
+        public decimal Monto { get; set; }
+
+        [Column(Order = 13, TypeName = "VARCHAR(50)")]
+        public string Ticket{ get; set; }
 
     }
 }
