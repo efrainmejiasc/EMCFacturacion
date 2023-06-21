@@ -13,7 +13,7 @@ namespace DatosEMC.DataModels
     {
         [Key]
         [Column(Order = 1, TypeName = "VARCHAR(50)")]
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         [Column(Order = 3, TypeName = "VARCHAR(50)")]
         public string Nombre { get; set; }
