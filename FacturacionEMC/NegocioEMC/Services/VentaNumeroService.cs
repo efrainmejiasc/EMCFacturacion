@@ -91,15 +91,15 @@ namespace NegocioEMC.Services
             return this._ventaNumeroRepository.GetLoterias();
         }
 
-        public VentaNumeroDTO GetPremio(int idEmpresa, int numero, string loteria)
+        public VentaNumeroDTO GetPremio(int idEmpresa, int numero, string loteria,string ticket)
         {
-           var x = this._ventaNumeroRepository.GetPremio(idEmpresa,numero,loteria);
+           var x = this._ventaNumeroRepository.GetPremio(idEmpresa,numero,loteria,ticket);
 
            return  this.mapper.Map<VentaNumeroDTO>(x);
         }
-        public List<VentaNumeroDTO > GetPremiados(int idEmpresa, int numero, DateTime fecha)
+        public List<VentaNumeroDTO > GetPremiados(int idEmpresa, int numero, DateTime fecha,string loteria)
         {
-            var x = this._ventaNumeroRepository.GetPremiados(idEmpresa, numero, fecha);
+            var x = this._ventaNumeroRepository.GetPremiados(idEmpresa, numero, fecha,loteria);
 
             return this.mapper.Map<List<VentaNumeroDTO>>(x);
         }

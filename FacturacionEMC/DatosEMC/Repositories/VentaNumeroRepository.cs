@@ -65,18 +65,22 @@ namespace DatosEMC.Repositories
             return db.Loterias.ToList();
         }
 
-        public VentaNumero GetPremio(int idEmpresa, int numero, string loteria)
+        public VentaNumero GetPremio(int idEmpresa, int numero, string loteria,string ticket)
         {
             return db.VentaNumero.Where(x => x.Numero == numero && 
                                              x.IdEmpresa == idEmpresa && 
-                                             x.Activo == true && x.Loteria == loteria).FirstOrDefault();
+                                             x.Activo == true &&
+                                             x.Premiado == 1 &&
+                                             x.Loteria == loteria 
+                                             && x.Ticket == ticket ).FirstOrDefault();
         }
-        public List<VentaNumero> GetPremiados(int idEmpresa, int numero, DateTime fecha)
+        public List<VentaNumero> GetPremiados(int idEmpresa, int numero, DateTime fecha, string loteria)
         {
             return db.VentaNumero.Where(x => x.Numero == numero && 
-                                             x.IdEmpresa == idEmpresa && 
+                                             x.IdEmpresa == idEmpresa &&
+                                             x.Premiado == 1 &&
                                              x.FechaSorteo >= fecha && 
-                                             x.FechaSorteo <= fecha).
+                                             x.FechaSorteo <= fecha && x.Loteria == loteria).
                                              OrderBy(x => x.FechaSorteo).ToList();
         }
 

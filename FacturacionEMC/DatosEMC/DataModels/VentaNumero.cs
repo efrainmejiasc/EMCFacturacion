@@ -52,5 +52,8 @@ namespace DatosEMC.DataModels
         [Column(Order = 13, TypeName = "VARCHAR(50)")]
         public string Ticket{ get; set; }
 
+        [Column(Order = 14, TypeName = "INT")]
+        public int Premiado { get; set; }
+
     }
 }

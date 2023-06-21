@@ -19,8 +19,8 @@ namespace NegocioEMC.IServices
         GenericResponse AddVentaNumeroAsync(List<VentaNumeroDTO> lst);
         GenericResponse UpdateVentaNumeroAsync(List<VentaNumeroDTO> model);
         List<VentaNumeroDTO> GetListaVenta(DateTime fecha, string loteria);
-        VentaNumeroDTO GetPremio(int idEmpresa, int numero, string loteria);
-        List<VentaNumeroDTO> GetPremiados(int idEmpresa, int numero, DateTime fecha);
+        VentaNumeroDTO GetPremio(int idEmpresa, int numero, string loteria, string ticket);
+        List<VentaNumeroDTO> GetPremiados(int idEmpresa, int numero, DateTime fecha,string loteria);
 
     }
 }

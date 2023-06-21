@@ -1,4 +1,5 @@
 ﻿using DatosEMC.DataModels;
+using DatosEMC.Migrations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +19,7 @@ namespace DatosEMC.IRepositories
         List<VentaNumero> UpdateVentaNumeroAsync(List<VentaNumero> x);
         List<VentaNumero> AddVentaNumeroAsync(List<VentaNumero> x);
         List<VentaNumero> GetListaVenta(DateTime fecha, string loteria);
-        VentaNumero GetPremio(int idEmpresa, int numero, string loteria);
-        List<VentaNumero> GetPremiados(int idEmpresa, int numero, DateTime fecha);
+        VentaNumero GetPremio(int idEmpresa, int numero, string loteria,string ticket);
+        List<VentaNumero> GetPremiados(int idEmpresa, int numero, DateTime fecha,string loteria);
     }
 }

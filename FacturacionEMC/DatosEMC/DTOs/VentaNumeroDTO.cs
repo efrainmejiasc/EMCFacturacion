@@ -20,6 +20,7 @@ namespace DatosEMC.DTOs
         public DateTime FechaSorteo { get; set; }
         public int IdEmpresa { get; set; }
         public decimal Monto { get; set; }
+        public int Premiado { get; set; }
         public decimal TotalVendido { get; set; }
     }
 }

@@ -169,5 +169,6 @@ namespace FacturacionEMCApi.Controllers
                 return BadRequest(EngineService.SetGenericResponse(false, ex.Message));
             }
         }
+
     }
 }
