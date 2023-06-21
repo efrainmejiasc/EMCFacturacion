@@ -9,7 +9,7 @@ function DocumentoListo() {
     var obje = $(document).find('#cultureInfo').prop('disabled', true);
     cultureInfo = $('#cultureInfo').val();
     GetEmpresas();
-
+    console.log(cultureInfo);
 }
 
 function Login() {
