@@ -29,3 +29,27 @@ function GetLoterias() {
     });
     return false;
 }
+
+function AddLoteria() {
+    var loteria = $('#loteria').val();
+    var toLoteria = $('#toLoteria').val();
+
+   if (!toLoteria.includes(loteria)) {
+        var lot = toLoteria.concat(loteria , '-');
+        $('#toLoteria').val('');
+        $('#toLoteria').val(lot);
+    }
+}
+
+
+function QuitLoteria() {
+    var loteria = $('#loteria').val();
+    var toLoteria = $('#toLoteria').val();
+    var strLot = '';
+
+    if (toLoteria.includes(loteria)) {
+       strLot = strLot.concat(loteria, '-');
+       var lot = toLoteria.replace(strLot, '');
+       $('#toLoteria').val(lot);
+    }
+}

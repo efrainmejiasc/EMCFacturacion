@@ -18,73 +18,91 @@
             <h1 style="color:dimgray">Vender Numero</h1><hr />
 
             <div class="form-group row">
-                  <div class="col-md-3 text-md-right">
+                  <div class="col-md-2 text-md-right">
                     <label class="control-label">Loteria</label>
                 </div>
-                <div class="col-md-8">
-                    <select id="loteria"  class="form-control form-control-sm" onchange="" required>
-                    </select>
+                <div class="col-md-6">
+                    <select id="loteria"  class="form-control form-control-sm" onchange="" required></select>
+                </div>
+                <div class="col-md-2 text-md-right">
+                    <input type="button" id="addLoteria" class="btn btn-primary" value="Agregar" onclick="AddLoteria();" style="width:150px"/>
+                </div>
+                <div class="col-md-2 text-md-left">
+                    <input type="button" id="quitLoteria" class="btn btn-danger" value="Quitar" onclick="QuitLoteria();" style="width:150px" />
                 </div>
             </div>
 
             <hr />
+          <div class="container">
 
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-3">
-                        <input type="button" class="btn btn-light btn-lg btn-block" value="1" style="width: 100px" />
-                    </div>
-                    <div class="col-md-3">
-                        <input type="button" class="btn btn-light btn-lg btn-block" value="2" />
-                    </div>
-                    <div class="col-md-3">
-                        <input type="button" class="btn btn-light btn-lg btn-block" value="3" />
-                    </div>
-                </div>
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-1">
+                                <input type="button" id="uno" class="btn btn-light btn-lg btn-block" value="1" style="width:35px" />
+                            </div>
+                            <div class="col-md-1">
+                                <input type="button" id="dos" class="btn btn-light btn-lg btn-block" value="2" style="width:35px" />
+                            </div>
+                            <div class="col-md-1">
+                                <input type="button" id="tres" class="btn btn-light btn-lg btn-block" value="3" style="width:35px" />
+                            </div>
+                        </div>
 
-                <div class="row">
-                    <div class="col-md-3">
-                        <input type="button" class="btn btn-light btn-lg btn-block" value="4" />
-                    </div>
-                    <div class="col-md-3">
-                        <input type="button" class="btn btn-light btn-lg btn-block" value="5" />
-                    </div>
-                    <div class="col-md-3">
-                        <input type="button" class="btn btn-light btn-lg btn-block" value="6" />
-                    </div>
-                </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                <input type="button" id="cuatro" class="btn btn-light btn-lg btn-block" value="4" style="width:35px" />
+                            </div>
+                            <div class="col-md-1">
+                                <input type="button" id="cinco" class="btn btn-light btn-lg btn-block" value="5" style="width:35px" />
+                            </div>
+                            <div class="col-md-1">
+                                <input type="button" id="seis" class="btn btn-light btn-lg btn-block" value="6" style="width:35px" />
+                            </div>
+                        </div>
 
-                <div class="row">
-                    <div class="col-md-3">
-                        <input type="button" class="btn btn-light btn-lg btn-block" value="7" />
-                    </div>
-                    <div class="col-md-3">
-                        <input type="button" class="btn btn-light btn-lg btn-block" value="8" />
-                    </div>
-                    <div class="col-md-3">
-                        <input type="button" class="btn btn-light btn-lg btn-block" value="9" />
-                    </div>
-                </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                <input type="button" id="siete" class="btn btn-light btn-lg btn-block" value="7" style="width:35px" />
+                            </div>
+                            <div class="col-md-1">
+                                <input type="button" id="ocho" class="btn btn-light btn-lg btn-block" value="8" style="width:35px" />
+                            </div>
+                            <div class="col-md-1">
+                                <input type="button" id="nueve" class="btn btn-light btn-lg btn-block" value="9" style="width:35px" />
+                            </div>
+                        </div>
 
-                <div class="row">
-                    <div class="col-md-3">
-                        <input type="button" class="btn btn-light btn-lg btn-block" value="x" />
-                    </div>
-                    <div class="col-md-3">
-                        <input type="button" class="btn btn-light btn-lg btn-block" value="0" />
-                    </div>
-                    <div class="col-md-3">
-                        <input type="button" class="btn btn-light btn-lg btn-block" value="B" />
-                    </div>
-                </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                <input type="button" id="borrar" class="btn btn-light btn-lg btn-block" value="x" style="width:35px" />
+                            </div>
+                            <div class="col-md-1">
+                                <input type="button" id="cero" class="btn btn-light btn-lg btn-block" value="0" style="width:35px" />
+                            </div>
+                            <div class="col-md-1">
+                                <input type="button" id="monto" class="btn btn-light btn-lg btn-block" value="B" style="width:35px" />
+                            </div>
+                        </div>
 
-                <div class="row">
-                    <div class="col-md-9">
-                        <textarea class="form-control" rows="4"></textarea>
                     </div>
-                </div>
-            </div>
 
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <input type="text" id="toLoteria" class="form-control" rows="8" disabled style="width:200px">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <textarea class="form-control" rows="8" disabled style="width:200px"></textarea>
+                            </div>
+                        </div>
+
+                    </div>
+              </div>
+
+          </div>
 
 
         </div>
