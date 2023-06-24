@@ -116,12 +116,23 @@
                 <span class="menu-title">&nbsp;&nbsp;@Resources.Product </span>
             </a>
         </li>
+
+          <li class="nav-item" id="vendeNumero">
+            <a class="nav-link" href="@Url.Action("Index","VenderNumero")">
+                <i class="bi bi-search"></i>
+                <span class="menu-title">&nbsp;&nbsp;@Resources.Product </span>
+            </a>
+        </li>
     </ul>
 </nav>
 <script>
 
    
-    var lis1 = ['#tablero', '#resumenFV', '#resumenFC', '#asignacion', '#logout', '#usuario', '#facturaVenta', '#facturaCompra', '#stock', '#inicioFacturacion', '#productosManager', '#productosCliente'];
+    var lis1 = ['#tablero', '#resumenFV', '#resumenFC', 
+               '#asignacion', '#logout', '#usuario', 
+               '#facturaVenta', '#facturaCompra', '#stock', 
+               '#inicioFacturacion', '#productosManager', '#productosCliente',
+               '#venderNumero'];
 
  $(document).ready(function () {
     console.log("ready layout!");

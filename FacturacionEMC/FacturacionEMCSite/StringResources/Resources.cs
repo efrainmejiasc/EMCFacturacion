@@ -413,5 +413,31 @@ namespace FacturacionEMCSite.StringResources
         {
             get { return resourceProvider.GetResource("DateDelivery", CultureInfo.CurrentUICulture.Name).ToString(); }
         }
+        public static string Bets
+        {
+            get { return resourceProvider.GetResource("Bets", CultureInfo.CurrentUICulture.Name).ToString(); }
+        }
+        public static string SellNumbers
+        {
+            get { return resourceProvider.GetResource("SellNumbers", CultureInfo.CurrentUICulture.Name).ToString(); }
+        }
+        public static string Lottery
+        {
+            get { return resourceProvider.GetResource("Lottery", CultureInfo.CurrentUICulture.Name).ToString(); }
+        }
+        public static string Add
+        {
+            get { return resourceProvider.GetResource("Add", CultureInfo.CurrentUICulture.Name).ToString(); }
+        }
+
+        public static string Remove
+        {
+            get { return resourceProvider.GetResource("Remove", CultureInfo.CurrentUICulture.Name).ToString(); }
+        }
+
+        public static string New
+        {
+            get { return resourceProvider.GetResource("New", CultureInfo.CurrentUICulture.Name).ToString(); }
+        }
     }
 }

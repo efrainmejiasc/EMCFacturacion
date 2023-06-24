@@ -53,3 +53,40 @@ function QuitLoteria() {
        $('#toLoteria').val(lot);
     }
 }
+
+function SetTicket(n, f) {
+
+    var lst = $('#lst').val();
+
+    if (f !== '' && f === 'x') {
+        lst = lst + f;
+        $('#lst').val(lst);
+        return false;
+    }
+
+    if (f !== '' && f === 'c') {
+        lst = lst.substring(0,lst.length - 1);
+        $('#lst').val(lst);
+        return false;
+    }
+
+    if (n !== '') {
+        lst = lst + n;
+        $('#lst').val(lst);
+        return false;
+    }
+}
+
+function Nuevo() {
+
+    let textarea = $('#lst').val();
+    textarea = textarea.concat("\n");
+    $('#lst').val(textarea);
+    let lineas = textarea.value.split("\n");
+
+    for (let i = 0; i < lineas.length; i++) {
+        let linea = lineas[i];
+        console.log(linea);
+    }
+
+}

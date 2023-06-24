@@ -184,4 +184,16 @@
 	<resource culture="en-US" name="DateArrival" value= "Date Arrived"></resource>
     <resource culture="es-ES" name="DateDelivery" value="Fecha de Entrega"></resource>
 	<resource culture="en-US" name="DateDelivery" value= "Date Delivery"></resource>
+	<resource culture="es-ES" name="Bets" value="Apuestas"></resource>
+	<resource culture="en-US" name="Bets" value= "Best"></resource>
+	<resource culture="es-ES" name="SellNumbers" value="Vender Numeros"></resource>
+	<resource culture="en-US" name="SellNumbers" value= "Sell Numbers"></resource>
+	<resource culture="es-ES" name="Lottery" value="Loteria"></resource>
+	<resource culture="en-US" name="Lottery" value= "Lottery"></resource>
+	<resource culture="es-ES" name="Add" value="Agregar"></resource>
+	<resource culture="en-US" name="Add" value= "Add"></resource>
+	<resource culture="es-ES" name="Remove" value="Quitar"></resource>
+	<resource culture="en-US" name="Remove" value= "Remove"></resource>
+	<resource culture="es-ES" name="New" value="Nuevo"></resource>
+	<resource culture="en-US" name="New" value= "New"></resource>
 </resources>
