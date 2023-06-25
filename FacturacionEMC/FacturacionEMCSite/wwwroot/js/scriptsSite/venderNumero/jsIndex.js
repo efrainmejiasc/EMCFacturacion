@@ -121,10 +121,17 @@ function Imprimir() {
 
 function ValidarTicket() {
     var VentaNumeroDTO = new Array();
+    var ticket = $('#ticket').text();
+    var fechaActual = FechaActual();
     var fechaSorteo = $('#fechaSorteo').val();
     var loterias = $('#toLoteria').val();
     var warning = cultureInfo == 'en-US' ? 'Add a lottery.' : 'Agrega una loteria.';
     if (loterias === '') {
+        toastr.warning(warning);
+        return false;
+    }
+    warning = cultureInfo == 'en-US' ? 'Ticket is empty.' : 'El ticket no puede ser vacio.'; 
+    if (ticket === '') {
         toastr.warning(warning);
         return false;
     }
@@ -134,35 +141,39 @@ function ValidarTicket() {
         return false;
     }
     warning = cultureInfo == 'en-US' ? 'Error in number. ' : 'Error en numero. ';
+    var loteriasLst = loterias.split('-');
     var textarea = $('#lst').val();
     var lines = textarea.split('\n');
     for (var i = 0; i < lines.length; i++) {
         var linea = lines[i];
-        console.log(linea);
         if (linea !== '')
         {
-            var partes = linea.split('x');
-            var numero = partes[0];
-            var valor = partes[1];
-            if (numero === '' || valor === '') {
-                toastr.warning(warning + i);
-                return false;
+            for (var j = 0; j < loteriasLst.length - 1; j++) {
+                var partes = linea.split('x');
+                var numero = partes[0];
+                var valor = partes[1];
+                if (numero === '' || valor === '') {
+                    toastr.warning(warning + i);
+                    return false;
+                }
+                var x = {};
+                x.Vendedor = '';
+                x.Numero = numero;
+                x.Telefono = '';
+                x.Email = '';
+                x.Loteria = loteriasLst[j];
+                x.Activo = true;
+                x.FechaVenta = fechaActual;
+                x.FechaSorteo = fechaSorteo;
+                x.IdEmpresa = '';
+                x.Monto = valor;
+                x.ticket = ticket;
+                VentaNumeroDTO.push(x);
             }
-            var x = {};
-            x.Vendedor = '';
-            x.Numero = numero;
-            x.Telefono = '';
-            x.Email = '';
-            x.Loteria = '';
-            x.Activo = true;
-            x.FechaVenta = fechaFormateada;
-            x.FechaSorteo = fechaSorteo;
-            x.IdEmpresa = '';
-            x.Monto = valor;
-            VentaNumeroDTO.push(x);
+           
         }
     }
-
+    console.log(VentaNumeroDTO);
     return true;
 }
 
