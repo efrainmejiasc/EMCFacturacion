@@ -82,11 +82,56 @@ function Nuevo() {
     let textarea = $('#lst').val();
     textarea = textarea.concat("\n");
     $('#lst').val(textarea);
-    let lineas = textarea.value.split("\n");
+}
 
-    for (let i = 0; i < lineas.length; i++) {
-        let linea = lineas[i];
-        console.log(linea);
+function Guardar() {
+
+    if (!ValidarTicket())
+        return false;
+        
+}
+
+function Imprimir() {
+    if (ValidarTicket()) {
+        var divContents = document.getElementById("impresionante").innerHTML;
+        var textareaValue = document.getElementById("lst").value;
+        var inputValue = document.getElementById("toLoteria").value;
+
+        var printContents = divContents.replace('<textarea id="lst" class="form-control" rows="8" disabled style="width:200px"></textarea>', textareaValue);
+        printContents = printContents.replace('<input type="text" id="toLoteria" class="form-control" disabled style="width:200px">', inputValue);
+
+        var a = window.open('', '', 'height=500, width=500');
+        a.document.write(printContents);
+        a.document.close();
+        a.print();
     }
 
+    return false;
 }
+
+
+
+function ValidarTicket() {
+    var loterias = $('#toLoteria').val();
+    var warning = cultureInfo == 'en-US' ? 'Add a lottery.' : 'Agrega una loteria.';
+    if (loterias === '') {
+        toastr.warning(warning);
+        return false;
+    }
+    warning = cultureInfo == 'en-US' ? 'Error in number. ' : 'Error en numero. ';
+    var textarea = $('#lst').val();
+    var lines = textarea.split('\n');
+    for (var i = 0; i < lines.length; i++) {
+        var linea = lines[i];
+        var partes = linea.split('x');
+        var numero = partes[0];
+        var valor = partes[1];
+        if (numero === '' || valor === '') {
+            toastr.warning(warning + i);
+            return false;
+        }
+    }
+
+    return true;
+}
+
