@@ -8,6 +8,7 @@ $(document).ready(function () {
 function DocumentoListo() {
     var obje = $(document).find('#cultureInfo').prop('disabled', true);
     cultureInfo = $('#cultureInfo').val();
+    $('#fechaSorteo').val(FechaSorteo());
     GetLoterias();
 }
 
@@ -93,13 +94,20 @@ function Guardar() {
 
 function Imprimir() {
     if (ValidarTicket()) {
-        var divContents = document.getElementById("impresionante").innerHTML;
-        var textareaValue = document.getElementById("lst").value;
-        var inputValue = document.getElementById("toLoteria").value;
+        var ticket = $('#ticket').text();
+        var toLoteria = $('#toLoteria').val();
+        var lst = $('#lst').val();
 
-        var printContents = divContents.replace('<textarea id="lst" class="form-control" rows="8" disabled style="width:200px"></textarea>', textareaValue);
-        printContents = printContents.replace('<input type="text" id="toLoteria" class="form-control" disabled style="width:200px">', inputValue);
+        var printContents = ticket + "<br>" + toLoteria + "<br>";
+        var lines = lst.split('\n');
+        for (var i = 0; i < lines.length; i++) {
+            var linea = lines[i];
+            if (linea !== '') {
+                printContents = printContents + linea +  "<br>";
+            }
+        }
 
+        printContents = printContents + FechaActual();
         var a = window.open('', '', 'height=500, width=500');
         a.document.write(printContents);
         a.document.close();
@@ -112,9 +120,16 @@ function Imprimir() {
 
 
 function ValidarTicket() {
+    var VentaNumeroDTO = new Array();
+    var fechaSorteo = $('#fechaSorteo').val();
     var loterias = $('#toLoteria').val();
     var warning = cultureInfo == 'en-US' ? 'Add a lottery.' : 'Agrega una loteria.';
     if (loterias === '') {
+        toastr.warning(warning);
+        return false;
+    }
+    warning = cultureInfo == 'en-US' ? 'Date Lottery is empty.' : 'Fecha sorteo no puede ser vacia.';
+    if (fechaSorteo === '') {
         toastr.warning(warning);
         return false;
     }
@@ -123,15 +138,57 @@ function ValidarTicket() {
     var lines = textarea.split('\n');
     for (var i = 0; i < lines.length; i++) {
         var linea = lines[i];
-        var partes = linea.split('x');
-        var numero = partes[0];
-        var valor = partes[1];
-        if (numero === '' || valor === '') {
-            toastr.warning(warning + i);
-            return false;
+        console.log(linea);
+        if (linea !== '')
+        {
+            var partes = linea.split('x');
+            var numero = partes[0];
+            var valor = partes[1];
+            if (numero === '' || valor === '') {
+                toastr.warning(warning + i);
+                return false;
+            }
+            var x = {};
+            x.Vendedor = '';
+            x.Numero = numero;
+            x.Telefono = '';
+            x.Email = '';
+            x.Loteria = '';
+            x.Activo = true;
+            x.FechaVenta = fechaFormateada;
+            x.FechaSorteo = fechaSorteo;
+            x.IdEmpresa = '';
+            x.Monto = valor;
+            VentaNumeroDTO.push(x);
         }
     }
 
     return true;
 }
 
+
+function FechaActual() {
+    var today = new Date();
+    var year = today.getFullYear();
+    var moth = (today.getMonth() + 1) <= 9 ? "0" + (today.getMonth() + 1) : (today.getMonth() + 1);
+    var day = today.getDate() <= 9 ? "0" + today.getDate() : today.getDate();
+
+    var date = '';
+    if (cultureInfo == 'en-US')
+        date = year + '-' + moth + '-' + day;
+    else if (cultureInfo == 'es-ES')
+        date = day + '-' + moth + '-' + year;
+    
+    return date;
+}
+
+function FechaSorteo() {
+
+    var today = new Date();
+    var year = today.getFullYear();
+    var moth = (today.getMonth() + 1) <= 9 ? "0" + (today.getMonth() + 1) : (today.getMonth() + 1);
+    var day = today.getDate() <= 9 ? "0" + today.getDate() : today.getDate();
+    var date = year + '-' + moth + '-' + day;
+
+    return date;
+}

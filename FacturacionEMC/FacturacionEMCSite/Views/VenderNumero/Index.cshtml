@@ -23,6 +23,7 @@
                 </div>
                 <div class="col-md-6">
                     <select id="loteria"  class="form-control form-control-sm" onchange="" required></select>
+                    <input type="date" id="fechaSorteo" class="form-control form-control-sm" />
                 </div>
                 <div class="col-md-2 text-md-right">
                     <input type="button" id="addLoteria" class="btn btn-primary" value="@Resources.Add" onclick="AddLoteria();" style="width:130px"/>
@@ -103,17 +104,17 @@
                         <div class="col-md-6">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <label>Nº-64564564</label>
+                                    <label id="ticket">Nº-64564564</label>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-4">
-                                    <input type="text" id="toLoteria" class="form-control" style="width:200px">
+                                    <input type="text" id="toLoteria" class="form-control" disabled style="width:200px" />
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-4">
-                                    <textarea id="lst" class="form-control" rows="8" style="width:200px"></textarea>
+                                    <textarea id="lst" class="form-control" rows="8" disabled style="width:200px"></textarea>
                                 </div>
                             </div>
                         </div>
