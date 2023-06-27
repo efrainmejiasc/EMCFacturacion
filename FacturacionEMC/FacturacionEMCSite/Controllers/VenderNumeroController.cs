@@ -50,5 +50,36 @@ namespace FacturacionEMCSite.Controllers
         }
 
         #endregion
+
+        #region TICKET
+        [HttpPost]
+        public IActionResult GuardarTicket(string VentaNumeroDTO)
+        {
+            var response = new
+            {
+                estatus = true,
+                message = "Ticket saved successfully"
+            };
+
+            try
+            {
+                List<VentaNumeroDTO> ventaNumeros = JsonConvert.DeserializeObject<List<VentaNumeroDTO>>(VentaNumeroDTO);
+                var e = VentaNumeroDTO;
+               
+            }
+            catch(Exception ex)
+            {
+                var error = ex.Message;
+            }
+           
+
+            return Ok(response);
+        }
+
+        #endregion
     }
+
+
+
 }
+

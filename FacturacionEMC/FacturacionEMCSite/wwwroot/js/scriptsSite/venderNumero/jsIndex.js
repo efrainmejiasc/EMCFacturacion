@@ -120,9 +120,11 @@ function Imprimir() {
 
 
 function ValidarTicket() {
-    var VentaNumeroDTO = new Array();
+    var VentaNumeroDTO = [];
+    var guid = generarGUID();
     var ticket = $('#ticket').text();
     var fechaActual = FechaActual();
+    fechaActual = FormatearFechaVenta(fechaActual);
     var fechaSorteo = $('#fechaSorteo').val();
     var loterias = $('#toLoteria').val();
     var warning = cultureInfo == 'en-US' ? 'Add a lottery.' : 'Agrega una loteria.';
@@ -130,7 +132,7 @@ function ValidarTicket() {
         toastr.warning(warning);
         return false;
     }
-    warning = cultureInfo == 'en-US' ? 'Ticket is empty.' : 'El ticket no puede ser vacio.'; 
+    warning = cultureInfo == 'en-US' ? 'Ticket is empty.' : 'El ticket no puede ser vacio.';
     if (ticket === '') {
         toastr.warning(warning);
         return false;
@@ -146,8 +148,7 @@ function ValidarTicket() {
     var lines = textarea.split('\n');
     for (var i = 0; i < lines.length; i++) {
         var linea = lines[i];
-        if (linea !== '')
-        {
+        if (linea !== '') {
             for (var j = 0; j < loteriasLst.length - 1; j++) {
                 var partes = linea.split('x');
                 var numero = partes[0];
@@ -156,27 +157,51 @@ function ValidarTicket() {
                     toastr.warning(warning + i);
                     return false;
                 }
-                var x = {};
-                x.Vendedor = '';
-                x.Numero = numero;
-                x.Telefono = '';
-                x.Email = '';
-                x.Loteria = loteriasLst[j];
-                x.Activo = true;
-                x.FechaVenta = fechaActual;
-                x.FechaSorteo = fechaSorteo;
-                x.IdEmpresa = '';
-                x.Monto = valor;
-                x.ticket = ticket;
-                VentaNumeroDTO.push(x);
+                var ventaNumero = {
+                    Id: 0,
+                    Identificador: '',
+                    Vendedor: '', 
+                    Numero: parseInt(numero), 
+                    Telefono: '',
+                    Email: '', 
+                    Loteria: loteriasLst[j],
+                    Activo: true,
+                    FechaVenta: fechaActual,
+                    FechaSorteo: fechaSorteo,
+                    IdEmpresa: 0,
+                    Monto: parseFloat(valor), 
+                    Premiado: 0,
+                    TotalVendido: 0,
+                    Identificador: guid
+                };
+                VentaNumeroDTO.push(ventaNumero);
             }
-           
         }
     }
     console.log(VentaNumeroDTO);
+    $.ajax({
+        type: 'POST',
+        url: urlGuardarTicket,
+        data: { VentaNumeroDTO: JSON.stringify(VentaNumeroDTO) },
+        datatype: 'json',
+        success: function (data) {
+            if (data.estatus) {
+                if (cultureInfo == 'en-US')
+                    toastr.success("Ticket saved successfully");
+                else if (cultureInfo == 'es-ES')
+                    toastr.success("Ticket guardado correctamente");
+            }
+            else {
+                if (cultureInfo == 'en-US')
+                    toastr.error("Unexpected error");
+                else if (cultureInfo == 'es-ES')
+                    toastr.error("Error inesperado");
+            }
+        }
+    });
+
     return true;
 }
-
 
 function FechaActual() {
     var today = new Date();
@@ -203,3 +228,35 @@ function FechaSorteo() {
 
     return date;
 }
+
+function FormatearFechaVenta(f) {
+
+    var partes = f.split('-');
+
+    return partes[2] + '-' + partes[1] + '-' + partes[0]
+}
+
+function generarGUID() {
+    function s4() {
+        return Math.floor((1 + Math.random()) * 0x10000)
+            .toString(16)
+            .substring(1);
+    }
+
+    return (
+        s4() +
+        s4() +
+        '-' +
+        s4() +
+        '-' +
+        s4() +
+        '-' +
+        s4() +
+        '-' +
+        s4() +
+        s4() +
+        s4()
+    );
+}
+
+
