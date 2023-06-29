@@ -53,27 +53,30 @@ namespace FacturacionEMCSite.Controllers
 
         #region TICKET
         [HttpPost]
-        public IActionResult GuardarTicket(string VentaNumeroDTO)
+        public async Task<IActionResult> GuardarTicketAsync(string VentaNumeroDTO)
         {
-            var response = new
-            {
-                estatus = true,
-                message = "Ticket saved successfully"
-            };
-
+            var response = new RespuestaModel();
+            response.Estatus = false;
             try
             {
                 List<VentaNumeroDTO> ventaNumeros = JsonConvert.DeserializeObject<List<VentaNumeroDTO>>(VentaNumeroDTO);
-                var e = VentaNumeroDTO;
-               
+               foreach ( var x in ventaNumeros) 
+               {
+                    x.Vendedor = this.usuario.Username;
+                    x.IdEmpresa = this.usuario.IdEmpresa;
+               }
+
+                 var result = await this.clientApi.PostVentaNumeroTicketAsync(ventaNumeros);
+                 if (result.Ok)
+                 response.Estatus = true;
             }
             catch(Exception ex)
             {
                 var error = ex.Message;
             }
-           
 
-            return Ok(response);
+            return Json(response);
+
         }
 
         #endregion

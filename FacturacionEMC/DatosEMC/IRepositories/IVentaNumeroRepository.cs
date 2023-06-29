@@ -1,4 +1,5 @@
 ﻿using DatosEMC.DataModels;
+using DatosEMC.DTOs;
 using DatosEMC.Migrations;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ namespace DatosEMC.IRepositories
     public interface IVentaNumeroRepository
     {
         List<Loterias> GetLoterias();
+        NumeroTicketDTO GetNumeroTicket();
         bool DeleteVentaNumeroById(int id);
         bool DeleteVentaNumeroTicket(string ticket);
         List<VentaNumero> GetTicket(string ticket);

@@ -35,6 +35,9 @@ function AddLoteria() {
     var loteria = $('#loteria').val();
     var toLoteria = $('#toLoteria').val();
 
+    if (loteria == null || loteria == '')
+        return false;
+
    if (!toLoteria.includes(loteria)) {
         var lot = toLoteria.concat(loteria , '-');
         $('#toLoteria').val('');
@@ -80,9 +83,11 @@ function SetTicket(n, f) {
 
 function Nuevo() {
 
-    let textarea = $('#lst').val();
-    textarea = textarea.concat("\n");
-    $('#lst').val(textarea);
+    let textarea = $('#lst').val
+    if (textarea.length > 0) {
+        textarea = textarea.concat("\n");
+        $('#lst').val(textarea);
+    }
 }
 
 function Guardar() {
@@ -172,7 +177,8 @@ function ValidarTicket() {
                     Monto: parseFloat(valor), 
                     Premiado: 0,
                     TotalVendido: 0,
-                    Identificador: guid
+                    Identificador: guid,
+                    Ticket : ticket
                 };
                 VentaNumeroDTO.push(ventaNumero);
             }

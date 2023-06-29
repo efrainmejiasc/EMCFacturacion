@@ -60,8 +60,13 @@ namespace FacturacionEMCApi.Controllers
         {
             try
             {
+                var uuid = EngineTool.CreateUniqueidentifier();
                 foreach (var item in model)
-                   item.Id = 0;
+                {
+                    item.Id = 0;
+                    item.Identificador = uuid;
+                }
+                   
 
                 var genericResponse = this._ventaNumeroService.AddVentaNumeroAsync(model);
 
@@ -287,6 +292,30 @@ namespace FacturacionEMCApi.Controllers
                 var modelo = this._ventaNumeroService.GetListaVenta( fecha,loteria);
 
                 if (modelo.Count > 0)
+                    return Ok(modelo);
+                else
+                    return BadRequest(EngineService.SetGenericResponse(false, "No se encontró información"));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(EngineService.SetGenericResponse(false, ex.Message));
+            }
+        }
+
+        /// <summary>
+        /// Obtiene Nº Ticket Para Venta de Loterias - Devuelve un identificador
+        /// </summary>
+        /// <returns> Loterias </returns>
+        [HttpGet(Name = "GetNumeroTicket")]
+        [ProducesResponseType(statusCode: (int)HttpStatusCode.OK, Type = typeof(NumeroTicketDTO))]
+        [ProducesResponseType(statusCode: (int)HttpStatusCode.BadRequest, Type = typeof(GenericResponse))]
+        public IActionResult GetNumeroTicket()
+        {
+            try
+            {
+                var modelo = this._ventaNumeroService.GetNumeroTicket();
+
+                if (!string.IsNullOrEmpty(modelo.NumeroTicket))
                     return Ok(modelo);
                 else
                     return BadRequest(EngineService.SetGenericResponse(false, "No se encontró información"));

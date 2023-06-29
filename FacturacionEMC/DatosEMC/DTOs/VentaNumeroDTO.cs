@@ -22,5 +22,6 @@ namespace DatosEMC.DTOs
         public decimal Monto { get; set; }
         public int Premiado { get; set; }
         public decimal TotalVendido { get; set; }
+        public string Ticket { get; set; }
     }
 }

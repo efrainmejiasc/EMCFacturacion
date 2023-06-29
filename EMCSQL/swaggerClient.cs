@@ -5983,6 +5983,9 @@ namespace EMCApi.Client
         [Newtonsoft.Json.JsonProperty("totalVendido", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public double TotalVendido { get; set; }
 
+        [Newtonsoft.Json.JsonProperty("ticket", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string Ticket { get; set; }
+
 
     }
 

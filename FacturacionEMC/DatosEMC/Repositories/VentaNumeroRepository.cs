@@ -1,4 +1,5 @@
 ﻿using DatosEMC.DataModels;
+using DatosEMC.DTOs;
 using DatosEMC.IRepositories;
 using System;
 using System.Collections.Generic;
@@ -121,6 +122,22 @@ namespace DatosEMC.Repositories
             }
 
             return result;
+        }
+
+        public NumeroTicketDTO GetNumeroTicket()
+        {
+            var numeroTicket = new NumeroTicketDTO();
+            var t = db.VentaNumero
+                    .GroupBy(venta => venta.Ticket)
+                    .Select(grupo => grupo.Key).ToList().Count;
+
+            if (t == 0)
+                numeroTicket.NumeroTicket= "000" + "1";
+            else
+                numeroTicket.NumeroTicket = "000" + t.ToString();
+
+            return  numeroTicket;
+            
         }
 
 

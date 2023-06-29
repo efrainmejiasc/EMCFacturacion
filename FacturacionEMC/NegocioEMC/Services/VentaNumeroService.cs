@@ -43,7 +43,7 @@ namespace NegocioEMC.Services
         public GenericResponse AddVentaNumeroAsync(List<VentaNumeroDTO> lst)
         {
              var ide =   EngineTool.CreateUniqueidentifier();
-
+             var lstVentaNumero = new List<VentaNumero>();
             foreach(var model in lst)
             {
                 var x = this.mapper.Map<VentaNumero>(model);
@@ -51,10 +51,11 @@ namespace NegocioEMC.Services
                 x.FechaVenta = DateTime.Now.Date;
                 x.Activo = true;
                 x = this._ventaNumeroRepository.AddVentaNumeroAsync(x);
+                lstVentaNumero.Add(x);
             }
           
 
-            if (lst[0].Id > 0)
+            if (lstVentaNumero.Where(s => s.Id == 0).ToList().Count > 0)
                 return EngineService.SetGenericResponse(true, "La información ha sido registrada");
             else
                 return EngineService.SetGenericResponse(false, "No se pudo registrar la información");
@@ -142,6 +143,13 @@ namespace NegocioEMC.Services
 
             else
                 return EngineService.SetGenericResponse(false, "No se pudo registrar la información");
+        }
+
+        public NumeroTicketDTO GetNumeroTicket()
+        {
+            var x = this._ventaNumeroRepository.GetNumeroTicket();
+            
+            return x;
         }
     }
 }
