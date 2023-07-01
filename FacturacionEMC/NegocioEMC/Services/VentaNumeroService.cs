@@ -53,9 +53,9 @@ namespace NegocioEMC.Services
                 x = this._ventaNumeroRepository.AddVentaNumeroAsync(x);
                 lstVentaNumero.Add(x);
             }
-          
 
-            if (lstVentaNumero.Where(s => s.Id == 0).ToList().Count > 0)
+            var verificated = lstVentaNumero.Where(s => s.Id == 0).ToList().Count;
+            if (verificated == 0)
                 return EngineService.SetGenericResponse(true, "La información ha sido registrada");
             else
                 return EngineService.SetGenericResponse(false, "No se pudo registrar la información");
@@ -105,9 +105,9 @@ namespace NegocioEMC.Services
             return this.mapper.Map<List<VentaNumeroDTO>>(x);
         }
 
-        public List<VentaNumeroDTO> GetListaVenta(DateTime fecha, string loteria)
+        public List<VentaNumeroDTO> GetListaVenta(DateTime fecha, string loteria, int id)
         {
-            var x = this._ventaNumeroRepository.GetListaVenta(fecha ,loteria);
+            var x = this._ventaNumeroRepository.GetListaVenta(fecha ,loteria,id);
             var dto = this.mapper.Map<List<VentaNumeroDTO>>(x);
 
                 dto[0].TotalVendido = x.Sum(x => x.Monto);
@@ -115,9 +115,9 @@ namespace NegocioEMC.Services
             return dto;
         }
 
-        public List<VentaNumeroDTO> GetTicket( string ticket)
+        public List<VentaNumeroDTO> GetTicket( string ticket,int id)
         {
-            var x = this._ventaNumeroRepository.GetTicket(ticket);
+            var x = this._ventaNumeroRepository.GetTicket(ticket,id);
             var dto = this.mapper.Map<List<VentaNumeroDTO>>(x);
 
             dto[0].TotalVendido = x.Sum(x => x.Monto);
@@ -135,9 +135,9 @@ namespace NegocioEMC.Services
                 return EngineService.SetGenericResponse(false, "No se pudo registrar la información");
         }
 
-        public GenericResponse DeleteVentaNumeroTicket(string ticket)
+        public GenericResponse DeleteVentaNumeroTicket(string ticket,int id)
         {
-            var result = this._ventaNumeroRepository.DeleteVentaNumeroTicket(ticket);
+            var result = this._ventaNumeroRepository.DeleteVentaNumeroTicket(ticket,id);
             if (result)
                 return EngineService.SetGenericResponse(true, "La información ha sido eliminada");
 
@@ -145,9 +145,9 @@ namespace NegocioEMC.Services
                 return EngineService.SetGenericResponse(false, "No se pudo registrar la información");
         }
 
-        public NumeroTicketDTO GetNumeroTicket()
+        public NumeroTicketDTO GetNumeroTicket(int id)
         {
-            var x = this._ventaNumeroRepository.GetNumeroTicket();
+            var x = this._ventaNumeroRepository.GetNumeroTicket(id);
             
             return x;
         }

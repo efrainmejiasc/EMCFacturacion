@@ -85,15 +85,15 @@ namespace DatosEMC.Repositories
                                              OrderBy(x => x.FechaSorteo).ToList();
         }
 
-        public List<VentaNumero> GetListaVenta(DateTime fecha, string loteria)
+        public List<VentaNumero> GetListaVenta(DateTime fecha, string loteria,int id)
         {
             return db.VentaNumero.Where(x => x.FechaSorteo >= fecha && x.FechaSorteo <= fecha && 
-                                             x.Loteria == loteria).ToList();
+                                             x.Loteria == loteria && x.IdEmpresa == id).ToList();
         }
 
-        public List<VentaNumero> GetTicket(string ticket)
+        public List<VentaNumero> GetTicket(string ticket, int id)
         {
-            return db.VentaNumero.Where(x => x.Ticket == ticket).ToList();
+            return db.VentaNumero.Where(x => x.Ticket == ticket && x.IdEmpresa == id).ToList();
         }
 
         public bool DeleteVentaNumeroById(int id)
@@ -110,10 +110,10 @@ namespace DatosEMC.Repositories
             return result;
         }
 
-        public bool DeleteVentaNumeroTicket(string ticket)
+        public bool DeleteVentaNumeroTicket(string ticket,int id)
         {
             var result = false;
-            var t = this.db.VentaNumero.Where(x => x.Ticket == ticket).ToList();
+            var t = this.db.VentaNumero.Where(x => x.Ticket == ticket && x.IdEmpresa== id).ToList();
             if (t.Count > 0)
             {
                 this.db.VentaNumero.RemoveRange(t);
@@ -124,17 +124,17 @@ namespace DatosEMC.Repositories
             return result;
         }
 
-        public NumeroTicketDTO GetNumeroTicket()
+        public NumeroTicketDTO GetNumeroTicket(int id)
         {
             var numeroTicket = new NumeroTicketDTO();
-            var t = db.VentaNumero
+            var t = db.VentaNumero.Where(x => x.IdEmpresa == id)
                     .GroupBy(venta => venta.Ticket)
                     .Select(grupo => grupo.Key).ToList().Count;
 
             if (t == 0)
                 numeroTicket.NumeroTicket= "000" + "1";
             else
-                numeroTicket.NumeroTicket = "000" + t.ToString();
+                numeroTicket.NumeroTicket = "000" + (t + 1).ToString();
 
             return  numeroTicket;
             

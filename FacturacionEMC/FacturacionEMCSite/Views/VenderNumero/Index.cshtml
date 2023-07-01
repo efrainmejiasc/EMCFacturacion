@@ -12,6 +12,7 @@
 <script>
     var urlGetLoterias = '@Url.Action("GetLoterias", "VenderNumero")';
     var urlGuardarTicket = '@Url.Action("GuardarTicket", "VenderNumero")';
+    var urlGetNumeroTicket = '@Url.Action("GetNumeroTicket", "VenderNumero")';
 </script>
 
 <div class="card" style="margin-top: 5%; background-color: white; color: dimgray;">
@@ -20,21 +21,30 @@
             <h1 style="color:dimgray">@Resources.SellNumbers</h1><hr />
 
             <div class="form-group row">
-                  <div class="col-md-2 text-md-right">
+                <div class="col-md-3 text-md-right">
                     <label class="control-label">@Resources.Lottery</label>
-                    <label class="control-label">@Resources.Date</label>
-                    <label class="control-label">@Resources.Email</label>
                 </div>
                 <div class="col-md-6">
-                    <select id="loteria"  class="form-control form-control-sm" onchange="" required></select>
+                    <select id="loteria" class="form-control form-control-sm" onchange="" required></select>
+                </div>
+                <div class="col-md-1 text-md-right">
+                    <button class="btn btn-primary" onclick="AddLoteria();"><i class="bi bi-plus-circle-fill"> </i></button>
+                </div>
+                <div class="col-md-1 text-md-right">
+                    <button class="btn btn-danger" onclick="QuitLoteria();"><i class="bi bi-arrow-90deg-left"> </i></button>
+                </div>
+                <br /><br />
+                 <div class="col-md-3 text-md-right">
+                    <label class="control-label">@Resources.Date</label>
+                </div>
+                <div class="col-md-8">
                     <input type="date" id="fechaSorteo" class="form-control form-control-sm" />
+                </div>
+                <div class="col-md-3 text-md-right">
+                    <label class="control-label">@Resources.Email</label>
+                </div>
+                <div class="col-md-8">
                     <input type="text" id="email" class="form-control form-control-sm" />
-                </div>
-                <div class="col-md-2 text-md-right">
-                    <input type="button" id="addLoteria" class="btn btn-primary" value="@Resources.Add" onclick="AddLoteria();" style="width:130px"/>
-                </div>
-                <div class="col-md-2 text-md-left">
-                    <input type="button" id="quitLoteria" class="btn btn-danger" value="@Resources.Remove" onclick="QuitLoteria();" style="width:130px" />
                 </div>
             </div>
 
@@ -93,33 +103,37 @@
                         <br />
                         <div class="row">
                             <div class="col-4">
-                                <input type="button" id="nuevo" class="btn btn-primary" value="@Resources.New" style="width:122px;height:35px;" onclick="Nuevo()" />
+                                <button class="btn btn-primary" onclick="Nuevo();"><i class="bi bi-arrow-90deg-right"> </i></button>
                             </div>
                             <div class="col-4">
-                                <input type="button" id="guardar" class="btn btn-success" value="@Resources.Save" style="width:122px;height:35px;" onclick="Guardar()" />
+                              <button class="btn btn-success" onclick="Guardar();"><i class="bi bi-plus-circle-fill"> </i></button>
                             </div>
                             <div class="col-4">
-                                <input type="button" id="imprimir" class="btn btn-primary" value="@Resources.Print" style="width:122px;height:35px;" onclick="Imprimir()" />
+                                <button class="btn btn-success" onclick="Imprimir();"><i class="bi bi-printer"> </i></button>
                             </div>
                         </div>
+                       
 
                     </div>
 
                     <div id="impresionante">
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <label id="ticket"> 0001 </label>
+                                    <label>&nbsp;&nbsp;&nbsp;Nº<span id="ticket"></span></label>
+                                </div>
+                                <div class="col-md-4">
+                                    <button class="btn btn-warning" onclick="ClearForm();"><i class="bi bi-plus-circle-fill"> </i></button>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-4">
-                                    <input type="text" id="toLoteria" class="form-control" disabled style="width:200px" />
+                                    <input type="text" id="toLoteria" class="form-control" disabled style="width:210px" />
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-4">
-                                    <textarea id="lst" class="form-control" rows="8" disabled style="width:200px"></textarea>
+                                    <textarea id="lst" class="form-control" rows="8" disabled style="width:210px;height:140px;"></textarea>
                                 </div>
                             </div>
                         </div>

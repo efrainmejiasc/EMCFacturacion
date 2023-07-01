@@ -161,15 +161,15 @@ namespace FacturacionEMCApi.Controllers
         /// Eliminar registros de Venta Numero - TICKET
         /// </summary>
         /// <returns>Estado de la solicitud</returns>
-        [HttpDelete("{Ticket}", Name = "DeleteVentaNumeroTicket")]
+        [HttpDelete("{Ticket}/{IdEmpresa}", Name = "DeleteVentaNumeroTicket")]
         [ProducesResponseType(statusCode: (int)HttpStatusCode.OK, Type = typeof(GenericResponse))]
         [ProducesResponseType(statusCode: (int)HttpStatusCode.BadRequest, Type = typeof(GenericResponse))]
 
-        public IActionResult DeleteVentaNumeroTicket(string ticket)
+        public IActionResult DeleteVentaNumeroTicket(string ticket, int idEmpresa)
         {
             try
             {
-                var genericResponse = this._ventaNumeroService.DeleteVentaNumeroTicket(ticket);
+                var genericResponse = this._ventaNumeroService.DeleteVentaNumeroTicket(ticket,idEmpresa);
 
                 if (genericResponse.Ok)
                     return Ok(genericResponse);
@@ -258,14 +258,14 @@ namespace FacturacionEMCApi.Controllers
         /// Obtiene TICKET
         /// </summary>
         /// <returns> Loterias </returns>
-        [HttpGet("{ticket}", Name = "GetTicket")]
+        [HttpGet("{ticket}/{idEmpresa}", Name = "GetTicket")]
         [ProducesResponseType(statusCode: (int)HttpStatusCode.OK, Type = typeof(List<VentaNumeroDTO>))]
         [ProducesResponseType(statusCode: (int)HttpStatusCode.BadRequest, Type = typeof(GenericResponse))]
-        public IActionResult GetTicket(string ticket)
+        public IActionResult GetTicket(string ticket,int idEmpresa)
         {
             try
             {
-                var modelo = this._ventaNumeroService.GetTicket(ticket);
+                var modelo = this._ventaNumeroService.GetTicket(ticket,idEmpresa);
 
                 if (modelo.Count > 0)
                     return Ok(modelo);
@@ -282,14 +282,14 @@ namespace FacturacionEMCApi.Controllers
         /// Obtiene Lista de Ventas - TICKETS 
         /// </summary>
         /// <returns> Loterias </returns>
-        [HttpGet("{fecha}/{loteria}", Name = "GetListaVentas")]
+        [HttpGet("{fecha}/{loteria}/{idEmpresa}", Name = "GetListaVentas")]
         [ProducesResponseType(statusCode: (int)HttpStatusCode.OK, Type = typeof(List<VentaNumeroDTO>))]
         [ProducesResponseType(statusCode: (int)HttpStatusCode.BadRequest, Type = typeof(GenericResponse))]
-        public IActionResult GetListaVentas(DateTime fecha, string loteria)
+        public IActionResult GetListaVentas(DateTime fecha, string loteria,int idEmpresa)
         {
             try
             {
-                var modelo = this._ventaNumeroService.GetListaVenta( fecha,loteria);
+                var modelo = this._ventaNumeroService.GetListaVenta(fecha,loteria,idEmpresa);
 
                 if (modelo.Count > 0)
                     return Ok(modelo);
@@ -306,14 +306,14 @@ namespace FacturacionEMCApi.Controllers
         /// Obtiene Nº Ticket Para Venta de Loterias - Devuelve un identificador
         /// </summary>
         /// <returns> Loterias </returns>
-        [HttpGet(Name = "GetNumeroTicket")]
+        [HttpGet("{idEmpresa}",Name = "GetNumeroTicket")]
         [ProducesResponseType(statusCode: (int)HttpStatusCode.OK, Type = typeof(NumeroTicketDTO))]
         [ProducesResponseType(statusCode: (int)HttpStatusCode.BadRequest, Type = typeof(GenericResponse))]
-        public IActionResult GetNumeroTicket()
+        public IActionResult GetNumeroTicket(int idEmpresa)
         {
             try
             {
-                var modelo = this._ventaNumeroService.GetNumeroTicket();
+                var modelo = this._ventaNumeroService.GetNumeroTicket(idEmpresa);
 
                 if (!string.IsNullOrEmpty(modelo.NumeroTicket))
                     return Ok(modelo);

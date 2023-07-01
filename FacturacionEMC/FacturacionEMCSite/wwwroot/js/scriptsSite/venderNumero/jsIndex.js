@@ -9,7 +9,25 @@ function DocumentoListo() {
     var obje = $(document).find('#cultureInfo').prop('disabled', true);
     cultureInfo = $('#cultureInfo').val();
     $('#fechaSorteo').val(FechaSorteo());
+    GetNumeroTicket();
     GetLoterias();
+}
+
+function GetNumeroTicket() {
+
+    $.ajax({
+        type: "GET",
+        url: urlGetNumeroTicket,
+        datatype: "json",
+        success: function (data) {
+            if (data != null) {
+                $('#ticket').text(data.numeroTicket);
+            } else {
+                toastr.error('Error');
+            }
+        }
+    });
+    return false;
 }
 
 function GetLoterias() {
@@ -82,9 +100,8 @@ function SetTicket(n, f) {
 }
 
 function Nuevo() {
-
-    let textarea = $('#lst').val
-    if (textarea.length > 0) {
+    let textarea = $('#lst').val();
+    if (textarea !== '') {
         textarea = textarea.concat("\n");
         $('#lst').val(textarea);
     }
@@ -94,11 +111,13 @@ function Guardar() {
 
     if (!ValidarTicket())
         return false;
-        
+
+    setTimeout(GetNumeroTicket,10000); 
 }
 
-function Imprimir() {
-    if (ValidarTicket()) {
+async function Imprimir() {
+    var result = await  ValidarTicket();
+    if (result) {
         var ticket = $('#ticket').text();
         var toLoteria = $('#toLoteria').val();
         var lst = $('#lst').val();
@@ -124,7 +143,7 @@ function Imprimir() {
 
 
 
-function ValidarTicket() {
+async function ValidarTicket() {
     var VentaNumeroDTO = [];
     var guid = generarGUID();
     var ticket = $('#ticket').text();
@@ -132,6 +151,7 @@ function ValidarTicket() {
     fechaActual = FormatearFechaVenta(fechaActual);
     var fechaSorteo = $('#fechaSorteo').val();
     var loterias = $('#toLoteria').val();
+    var email = $('#email').val();
     var warning = cultureInfo == 'en-US' ? 'Add a lottery.' : 'Agrega una loteria.';
     if (loterias === '') {
         toastr.warning(warning);
@@ -168,7 +188,7 @@ function ValidarTicket() {
                     Vendedor: '', 
                     Numero: parseInt(numero), 
                     Telefono: '',
-                    Email: '', 
+                    Email: email, 
                     Loteria: loteriasLst[j],
                     Activo: true,
                     FechaVenta: fechaActual,
@@ -191,22 +211,26 @@ function ValidarTicket() {
         data: { VentaNumeroDTO: JSON.stringify(VentaNumeroDTO) },
         datatype: 'json',
         success: function (data) {
+            console.log(data);
             if (data.estatus) {
                 if (cultureInfo == 'en-US')
                     toastr.success("Ticket saved successfully");
                 else if (cultureInfo == 'es-ES')
                     toastr.success("Ticket guardado correctamente");
+
+                resolve(true);
             }
             else {
                 if (cultureInfo == 'en-US')
                     toastr.error("Unexpected error");
                 else if (cultureInfo == 'es-ES')
                     toastr.error("Error inesperado");
+
+                resolve(false);
             }
         }
     });
 
-    return true;
 }
 
 function FechaActual() {
@@ -264,5 +288,12 @@ function generarGUID() {
         s4()
     );
 }
+
+
+    function ClearForm() {
+        DocumentoListo();
+        $('#toLoteria').val('');
+        $('#lst').val('');
+    }
 
 

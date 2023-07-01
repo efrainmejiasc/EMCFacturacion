@@ -79,6 +79,25 @@ namespace FacturacionEMCSite.Controllers
 
         }
 
+        [HttpGet]
+
+        public async Task<IActionResult> GetNumeroTicketAsync()
+        {
+            var response = new NumeroTicketDTO();
+            try
+            {
+                response = await this.clientApi.GetNumeroTicketAsync(this.usuario.IdEmpresa);
+            }
+            catch (Exception ex)
+            {
+                var error = ex.Message;
+                response = null;
+            }
+
+            return Json(response);
+
+        }
+
         #endregion
     }
 
