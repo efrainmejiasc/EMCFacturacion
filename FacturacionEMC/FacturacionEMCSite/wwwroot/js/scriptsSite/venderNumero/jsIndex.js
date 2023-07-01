@@ -116,22 +116,24 @@ function Guardar() {
 }
 
 async function Imprimir() {
-    var result = await  ValidarTicket();
+    var result = await ValidarTicket();
     if (result) {
         var ticket = $('#ticket').text();
         var toLoteria = $('#toLoteria').val();
         var lst = $('#lst').val();
 
-        var printContents = ticket + "<br>" + toLoteria + "<br>";
+        var fechaSorteo = $('#fechaSorteo').val();
+        var printContents = '<style>@media print { @page { size: 750px 1000px; margin: 0; } body { font-size: 12px; font-family: Arial, sans-serif; margin: 20px; } }</style>';
+        printContents += ticket + "<br>" + toLoteria + "<br>";
         var lines = lst.split('\n');
         for (var i = 0; i < lines.length; i++) {
             var linea = lines[i];
             if (linea !== '') {
-                printContents = printContents + linea +  "<br>";
+                printContents += linea + "<br>";
             }
         }
 
-        printContents = printContents + FechaActual();
+        printContents += 'FA:' + FechaActual() + '<br>' + 'FS:' + fechaSorteo;
         var a = window.open('', '', 'height=500, width=500');
         a.document.write(printContents);
         a.document.close();
@@ -140,6 +142,7 @@ async function Imprimir() {
 
     return false;
 }
+
 
 
 
@@ -205,30 +208,37 @@ async function ValidarTicket() {
         }
     }
     console.log(VentaNumeroDTO);
-    $.ajax({
-        type: 'POST',
-        url: urlGuardarTicket,
-        data: { VentaNumeroDTO: JSON.stringify(VentaNumeroDTO) },
-        datatype: 'json',
-        success: function (data) {
-            console.log(data);
-            if (data.estatus) {
-                if (cultureInfo == 'en-US')
-                    toastr.success("Ticket saved successfully");
-                else if (cultureInfo == 'es-ES')
-                    toastr.success("Ticket guardado correctamente");
 
-                resolve(true);
-            }
-            else {
-                if (cultureInfo == 'en-US')
-                    toastr.error("Unexpected error");
-                else if (cultureInfo == 'es-ES')
-                    toastr.error("Error inesperado");
+    return new Promise(function (resolve, reject) {
+        $.ajax({
+            type: 'POST',
+            url: urlGuardarTicket,
+            data: { VentaNumeroDTO: JSON.stringify(VentaNumeroDTO) },
+            datatype: 'json',
+            success: function (data) {
+                console.log(data);
+                if (data.estatus) {
+                    if (cultureInfo == 'en-US')
+                        toastr.success("Ticket saved successfully");
+                    else if (cultureInfo == 'es-ES')
+                        toastr.success("Ticket guardado correctamente");
 
+                    resolve(true);
+                }
+                else {
+                    if (cultureInfo == 'en-US')
+                        toastr.error("Unexpected error");
+                    else if (cultureInfo == 'es-ES')
+                        toastr.error("Error inesperado");
+
+                    resolve(false);
+                }
+            },
+            error: function () {
+                toastr.error('ERROR...')
                 resolve(false);
             }
-        }
+        });
     });
 
 }
