@@ -7,9 +7,22 @@ $(document).ready(function () {
 
 function DocumentoListo() {
     var obje = $(document).find('#cultureInfo').prop('disabled', true);
-    cultureInfo = $('#cultureInfo').val();
+    GetCultureInfo();
     GetEmpresas();
     console.log(cultureInfo);
+}
+
+function GetCultureInfo() {
+    $.ajax({
+        type: "GET",
+        url: urlGetCultureInfo,
+        datatype: "json",
+        success: function (data) {
+            $('#cultureInfo').val(data);
+        }
+    });
+
+    return false;
 }
 
 function Login() {
@@ -19,6 +32,7 @@ function Login() {
     var userMail = $('#userMail').val();
     var password = $('#password').val();
     var confirmar = document.getElementById('confirmar').checked;
+    cultureInfo = $('#cultureInfo').val();
 
     if (empresa === null || userMail === '' || password === '' || !confirmar) {
         if (cultureInfo == 'en-US')

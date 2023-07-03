@@ -29,6 +29,10 @@ namespace FacturacionEMCSite.Controllers
         {
             return View();
         }
+        public IActionResult Contact()
+        {
+            return View();
+        }
 
         #region LOTERIAS 
 

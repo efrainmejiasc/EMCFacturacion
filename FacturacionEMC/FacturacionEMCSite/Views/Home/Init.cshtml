@@ -228,11 +228,26 @@
                                 </a>
                             </li>
 
-                            <li class="nav-item" id="venderNumero">
-                                <a class="nav-link" href="@Url.Action("Index","VenderNumero")">
-                                    <i class="bi bi-gear"></i>
-                                    <span class="menu-title"> @Resources.Bets</span>
+                            <li class="nav-item" id="_traz">
+                                <a class="nav-link" href="">
+                                    <i class="bi bi-badge-8k"></i>
+                                    <span class="menu-title">@Resources.Bets</span>
                                 </a>
+                                <ul>
+                                    <li class="nav-item" id="venderNumero">
+                                        <a class="nav-link" href="@Url.Action("Index","VenderNumero")">
+                                            <i class="bi bi-border-all"></i>
+                                            <span class="menu-title"> @Resources.SellNumbers</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item" id="consultaTicket">
+                                        <a class="nav-link" href="@Url.Action("Contact","VenderNumero")">
+                                            <i class="bi bi-card-text"></i>
+                                            <span class="menu-title"> @Resources.Sales</span>
+                                        </a>
+                                    </li>
+
+                                </ul>
                             </li>
 
                             <li class="nav-item" id="logout">
