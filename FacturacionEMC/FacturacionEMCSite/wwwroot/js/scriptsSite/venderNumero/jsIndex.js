@@ -1,9 +1,35 @@
 ﻿var cultureInfo = '';
-
+var teclasN = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+var teclasL = ['x', 'X', 'c', 'C'];
 $(document).ready(function () {
     console.log("ready!");
     setTimeout(DocumentoListo, 2000);
+
+    //$('#lst').on('blur', function () {
+    //    var inputValue = $(this).val();
+    //    var sanitizedValue = sanitizeInput(inputValue);
+    //    var valor =
+    //    $(this).val(sanitizedValue);
+    //});
+   
+    $("#email, #lst").on("keydown", function (event) {
+        var elementId = event.target.id;
+        var keyPressed = event.key;
+        if('email' === elementId)
+            console.log(elementId);
+
+        if (teclasN.includes(keyPressed))
+            SetTicket(keyPressed, null);
+        else (teclasL.includes(keyPressed))
+            SetTicket(null, keyPressed.toLowerCase());
+    });
+
 });
+
+function sanitizeInput(input) {
+    // Remueve todos los caracteres que no sean números, 'X' o 'C'
+    return input.replace(/[^0-9XC]/g, '');
+}
 
 function DocumentoListo() {
     var obje = $(document).find('#cultureInfo').prop('disabled', true);
