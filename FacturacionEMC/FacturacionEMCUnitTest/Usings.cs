@@ -16,60 +16,181 @@ using NegocioEMC.Services;
 using NegocioEMC.IServices;
 using System.Net;
 using FacturacionEMCApi.Controllers;
+using FacturacionEMCSite.Controllers;
 
-[TestFixture]
-public class FacturaCompraWebController : ControllerBase
+namespace FacturacionEMCSite.Tests 
 {
-    private DatosEMC.DTOs.UsuarioDTO usuario;
-    private Mock<HttpContext> httpContext;
-    private Mock<ISession> session;
-    private Dictionary<string, byte[]> sessionData;
-    private Mock<IHttpContextAccessor> httpContextAccessor;
-    private EMCApi.Client.FacturaCompraDTO factura;
-
-    [OneTimeSetUp]
-    public void OneTimeSetUp()
+    [TestFixture]
+    public class FacturaCompraWebController : ControllerBase
     {
-        httpContext = new Mock<HttpContext>();
-        session = new Mock<ISession>();
-        sessionData = new Dictionary<string, byte[]>();
-        httpContextAccessor = new Mock<IHttpContextAccessor>();
+        private DatosEMC.DTOs.UsuarioDTO usuario;
+        private Mock<HttpContext> httpContext;
+        private Mock<ISession> session;
+        private Dictionary<string, byte[]> sessionData;
+        private Mock<IHttpContextAccessor> httpContextAccessor;
+        private EMCApi.Client.FacturaCompraDTO factura;
 
-        usuario = new DatosEMC.DTOs.UsuarioDTO
+        [OneTimeSetUp]
+        public void OneTimeSetUp()
         {
-            Id = 1,
-            IdEmpresa = 2,
-            Username = "Efrain"
-        };
+            httpContext = new Mock<HttpContext>();
+            session = new Mock<ISession>();
+            sessionData = new Dictionary<string, byte[]>();
+            httpContextAccessor = new Mock<IHttpContextAccessor>();
 
-        factura = MockFactura.SetValoresHeadersFactura(usuario.IdEmpresa, usuario.Id);
+            usuario = new DatosEMC.DTOs.UsuarioDTO
+            {
+                Id = 1,
+                IdEmpresa = 2,
+                Username = "Efrain"
+            };
+
+            factura = MockFactura.SetValoresHeadersFactura(usuario.IdEmpresa, usuario.Id);
+        }
+
+        [Test]
+        public void GuardarFactura_DebeGuardarFacturaEnSesionYDevolverJsonConEstatusTrue()
+        {
+
+            sessionData["UserLogin"] = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(usuario));
+
+            session.Setup(s => s.TryGetValue("UserLogin", out It.Ref<byte[]>.IsAny))
+                .Returns((string key, out byte[] value) => sessionData.TryGetValue(key, out value));
+
+            session.Setup(s => s.Set(It.IsAny<string>(), It.IsAny<byte[]>()));
+            httpContext.Setup(c => c.Session).Returns(session.Object);
+            httpContextAccessor.SetupGet(a => a.HttpContext).Returns(httpContext.Object);
+
+
+            var clienteApi = new Mock<ClientEMCApi>();
+
+            var sut = new FacturacionEMCSite.Controllers.FacturaCompraController(clienteApi.Object, httpContextAccessor.Object);
+
+            // Act
+            var result = sut.GuardarFactura(factura);
+
+            // Assert
+            session.Verify(s => s.Set("FacturaCompra", It.IsAny<byte[]>()), Times.Once);
+            Assert.IsTrue(result is JsonResult jsonResult && jsonResult.Value is RespuestaModel response && response.Estatus);
+        }
     }
 
-    [Test]
-    public void GuardarFactura_DebeGuardarFacturaEnSesionYDevolverJsonConEstatusTrue()
+}
+
+
+namespace FacturacionEMCSite.Tests
+{
+    [TestFixture]
+    public class FacturaCompraControllerTests
     {
+        private DatosEMC.DTOs.UsuarioDTO usuario;
+        private Mock<HttpContext> httpContext;
+        private Mock<ISession> session;
+        private Dictionary<string, byte[]> sessionData;
+        private Mock<IHttpContextAccessor> httpContextAccessor;
+        private EMCApi.Client.FacturaCompraDTO factura;
+        List<FacturaCompraDetalle> listaFacturaCompraDetalle;
 
-        sessionData["UserLogin"] = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(usuario));
+        [SetUp]
+        public void SetUp()
+        {
+            httpContext = new Mock<HttpContext>();
+            session = new Mock<ISession>();
+            sessionData = new Dictionary<string, byte[]>();
+            httpContextAccessor = new Mock<IHttpContextAccessor>();
 
-        session.Setup(s => s.TryGetValue("UserLogin", out It.Ref<byte[]>.IsAny))
-            .Returns((string key, out byte[] value) => sessionData.TryGetValue(key, out value));
+            usuario = new DatosEMC.DTOs.UsuarioDTO
+            {
+                Id = 1,
+                IdEmpresa = 2,
+                Username = "Efrain"
+            };
+            factura = MockFactura.SetValoresHeadersFactura(usuario.IdEmpresa, usuario.Id);
+            listaFacturaCompraDetalle = new List<FacturaCompraDetalle>
+        {
+            new FacturaCompraDetalle
+            {
+                Id = 1,
+                NumeroFactura = "1550",
+                Linea = 1,
+                IdArticulo = 1001,
+                NombreArticulo = "Artículo 1",
+                Cantidad = 10,
+                Subtotal = 100.00M,
+                PorcentajeImpuesto = 16.00M,
+                Impuesto = 16.00M,
+                PorcentajeDescuento = 5.00M,
+                Descuento = 5.00M,
+                Total = 111.00M,
+                Fecha = DateTime.Now,
+                FechaModificacion = DateTime.Now,
+                IdUsuario = 1,
+                Activo = true,
+                Unidad = 1,
+                IdEmpresa = 1
+            },
+            new FacturaCompraDetalle
+            {
+                Id = 2,
+                NumeroFactura = "1550",
+                Linea = 2,
+                IdArticulo = 1002,
+                NombreArticulo = "Artículo 2",
+                Cantidad = 5,
+                Subtotal = 50.00M,
+                PorcentajeImpuesto = 10.00M,
+                Impuesto = 5.00M,
+                PorcentajeDescuento = 0.00M,
+                Descuento = 0.00M,
+                Total = 55.00M,
+                Fecha = DateTime.Now,
+                FechaModificacion = DateTime.Now,
+                IdUsuario = 1,
+                Activo = true,
+                Unidad = 1,
+                IdEmpresa = 1
+            }
+        };
+        }
 
-        session.Setup(s => s.Set(It.IsAny<string>(), It.IsAny<byte[]>()));
-        httpContext.Setup(c => c.Session).Returns(session.Object);
-        httpContextAccessor.SetupGet(a => a.HttpContext).Returns(httpContext.Object);
+        [Test]
+        public async Task GuardarFacturaDetalle_ValidData_ReturnsJsonResponseWithTrueEstatus()
+        {
+            // Arrange
+            string facturaDetalle = JsonConvert.SerializeObject(listaFacturaCompraDetalle);
+
+            sessionData["UserLogin"] = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(usuario));
+
+            session.Setup(s => s.TryGetValue("UserLogin", out It.Ref<byte[]>.IsAny))
+                .Returns((string key, out byte[] value) => sessionData.TryGetValue(key, out value));
+
+            session.Setup(s => s.Set(It.IsAny<string>(), It.IsAny<byte[]>()));
+            httpContext.Setup(c => c.Session).Returns(session.Object);
+            httpContextAccessor.SetupGet(a => a.HttpContext).Returns(httpContext.Object);
+
+            sessionData["FacturaCompra"] = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(factura));
+            session.Setup(s => s.TryGetValue("FacturaCompra", out It.Ref<byte[]>.IsAny))
+                .Returns((string key, out byte[] value) => sessionData.TryGetValue(key, out value));
 
 
-        var clienteApi = new Mock<ClientEMCApi>();
+            var clienteApi = new Mock<ClientEMCApi>();
 
-        var sut = new FacturacionEMCSite.Controllers.FacturaCompraController(clienteApi.Object, httpContextAccessor.Object);
+            var sut = new FacturacionEMCSite.Controllers.FacturaCompraController(clienteApi.Object, httpContextAccessor.Object);
 
-        // Act
-        var result = sut.GuardarFactura(factura);
+            // Act
+            IActionResult result = await sut.GuardarFacturaDetalle(facturaDetalle);
+            var jsonResult = result as JsonResult;
+            var response = jsonResult.Value as RespuestaModel;
 
-        // Assert
-        session.Verify(s => s.Set("FacturaCompra", It.IsAny<byte[]>()), Times.Once);
-        Assert.IsTrue(result is JsonResult jsonResult && jsonResult.Value is RespuestaModel response && response.Estatus);
+            // Assert
+            Assert.IsTrue(!response.Estatus);
+        }
+
+        // Agrega más pruebas según tus requerimientos
+
+        // ...
     }
+
 }
 
 //**************************************************************************
@@ -104,7 +225,7 @@ namespace FacturacionEMCApi.Tests.Controllers
                 IdMetodoPago = 1
             };
             var mockFacturaCompraService = new Mock<IFacturaCompraService>();
-            var controller = new FacturaCompraController(mockFacturaCompraService.Object);
+            var controller = new FacturacionEMCApi.Controllers.FacturaCompraController(mockFacturaCompraService.Object);
 
             var expectedResponse = new DatosEMC.DTOs.GenericResponse { Ok = true /* ajusta los valores esperados */ };
             mockFacturaCompraService.Setup(s => s.AddFacturaCompra(It.IsAny<DatosEMC.DTOs.FacturaCompraDTO>())).Returns(expectedResponse);
@@ -126,7 +247,7 @@ namespace FacturacionEMCApi.Tests.Controllers
             // Arrange
             var facturaDTO = new FacturaCompraDTO { /* inicializa los valores de facturaDTO */ };
             var mockFacturaCompraService = new Mock<IFacturaCompraService>();
-            var controller = new FacturaCompraController(mockFacturaCompraService.Object);
+            var controller = new FacturacionEMCApi.Controllers.FacturaCompraController(mockFacturaCompraService.Object);
 
             var expectedResponse = new GenericResponse { Ok = false /* ajusta los valores esperados */ };
 

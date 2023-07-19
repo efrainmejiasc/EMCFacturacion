@@ -10,31 +10,54 @@ namespace FacturacionEMCUnitTest.Mocks
     {
         public static EMCApi.Client.FacturaCompraDTO  SetValoresHeadersFactura(int idEmpresa, int idUsuario)
         {
-            var factura = new EMCApi.Client.FacturaCompraDTO();
-            factura.IdEmpresa = idEmpresa;
-            factura.IdUsuario = idUsuario;
-            factura.Activo = true;
-            factura.Subtotal = 100;
-            factura.Fecha = factura.FechaModificacion = DateTime.Now;
-            factura.Descuento = factura.PorcentajeDescuento > 0 ? factura.Subtotal - (factura.Subtotal * factura.PorcentajeDescuento * 0.01F) : 0.00F;
-            factura.Impuesto = factura.PorcentajeImpuesto > 0 ? (factura.Subtotal - factura.Descuento) - (factura.Subtotal * factura.PorcentajeImpuesto * 0.01F) : 0.00F;
-            factura.Total = factura.Total - factura.Descuento + factura.Impuesto;
-
+            var factura = new EMCApi.Client.FacturaCompraDTO()
+            {
+                Id = 1,
+                NumeroFactura = "1550",
+                IdEmpresa = 1,
+                NombreProveedor = "Proveedor A",
+                IdProveedor = 1,
+                Subtotal = 100,
+                PorcentajeImpuesto = 0.18,
+                Impuesto = 18.00,
+                PorcentajeDescuento = 0.10,
+                Descuento = 10.00,
+                Total = 108.00,
+                Fecha = DateTime.Now,
+                FechaModificacion = DateTime.Now,
+                IdUsuario = 1,
+                Activo = true,
+                IdMetodoPago = 1,
+                Rfc = "abdcestrsetr",
+                MetodoPago = "EFECTIVO"
+            };
             return factura;
 
         }
 
         public static DatosEMC.DTOs.FacturaCompraDTO SetValoresHeadersFactura()
         {
-            var factura = new DatosEMC.DTOs.FacturaCompraDTO();
-            factura.IdEmpresa = 1;
-            factura.IdUsuario = 2;
-            factura.Activo = true;
-            factura.Subtotal = 100;
-            factura.Fecha = factura.FechaModificacion = DateTime.Now;
-            factura.Descuento =0;
-            factura.Impuesto = 0;
-            factura.Total = factura.Total - factura.Descuento + factura.Impuesto;
+            var factura = new DatosEMC.DTOs.FacturaCompraDTO()
+            {
+                Id = 1,
+                NumeroFactura = "1550",
+                IdEmpresa = 1,
+                NombreProveedor = "Proveedor A",
+                IdProveedor = 1,
+                Subtotal = 100.00m,
+                PorcentajeImpuesto = 0.18m,
+                Impuesto = 18.00m,
+                PorcentajeDescuento = 0.10m,
+                Descuento = 10.00m,
+                Total = 108.00m,
+                Fecha = DateTime.Now,
+                FechaModificacion = DateTime.Now,
+                IdUsuario = 1,
+                Activo = true,
+                IdMetodoPago = 1,
+                 Rfc = "abdcestrsetr",
+                 MetodoPago ="EFECTIVO"
+            };
 
             return factura;
 
