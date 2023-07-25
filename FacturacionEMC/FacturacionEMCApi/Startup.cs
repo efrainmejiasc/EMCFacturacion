@@ -26,6 +26,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace FacturacionEMCApi
@@ -125,6 +126,9 @@ namespace FacturacionEMCApi
             });
             IMapper mapper = mapperConfig.CreateMapper();
             services.AddSingleton(mapper);
+
+            //Configuracion JSON
+            services.AddControllers().AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
             services.AddScoped<MyAppContext, MyAppContext>();
 
