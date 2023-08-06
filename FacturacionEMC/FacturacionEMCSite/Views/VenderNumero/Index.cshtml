@@ -15,135 +15,148 @@
     var urlGetNumeroTicket = '@Url.Action("GetNumeroTicket", "VenderNumero")';
 </script>
 
-<div class="card" style="margin-top: 5%; background-color: white; color: dimgray;">
-    <div class="card-body">
-        <div class="form-horizontal" style="color: dimgray;">
-            <h1 style="color:dimgray">@Resources.SellNumbers</h1><hr />
-
-            <div class="form-group row">
-                <div class="col-md-3 text-md-right">
-                    <label class="control-label">@Resources.Lottery</label>
-                </div>
-                <div class="col-md-6">
-                    <select id="loteria" class="form-control form-control-sm" onchange="" required></select>
-                </div>
-                <div class="col-md-1 text-md-right">
-                    <button class="btn btn-primary" onclick="AddLoteria();"><i class="bi bi-plus-circle-fill"> </i></button>
-                </div>
-                <div class="col-md-1 text-md-right">
-                    <button class="btn btn-danger" onclick="QuitLoteria();"><i class="bi bi-arrow-90deg-left"> </i></button>
-                </div>
-                <br /><br />
-                 <div class="col-md-3 text-md-right">
-                    <label class="control-label">@Resources.Date</label>
-                </div>
-                <div class="col-md-8">
-                    <input type="date" id="fechaSorteo" class="form-control form-control-sm" />
-                </div>
-                <div class="col-md-3 text-md-right">
-                    <label class="control-label">@Resources.Email</label>
-                </div>
-                <div class="col-md-8">
-                    <input type="text" id="email" class="form-control form-control-sm" />
-                </div>
-            </div>
-
-            <hr />
-          <div class="container">
+<div class="container">
+    <div class="card" style="margin-top: 5%; background-color: white; color: dimgray;">
+        <div class="card-body">
+            <div class="form-horizontal" style="color: dimgray;">
+                <h1 style="color:dimgray;">@Resources.SellNumbers</h1>
+                <hr />
 
                 <div class="form-group row">
                     <div class="col-md-6">
-                        <div class="row">
-                            <div class="col-4">
-                                <input type="button" id="uno" class="btn btn-light btn-lg btn-block" value="1" style="width:35px;height:35px;margin:2px;font-size:12px;" onclick="SetTicket('1','')" />
-                            </div>
-                            <div class="col-4">
-                                <input type="button" id="dos" class="btn btn-light btn-lg btn-block" value="2" style="width:35px;height:35px;margin:2px;font-size:12px;" onclick="SetTicket('2','')" />
-                            </div>
-                            <div class="col-4">
-                                <input type="button" id="tres" class="btn btn-light btn-lg btn-block" value="3" style="width:35px;height:35px;margin:2px;font-size:12px;" onclick="SetTicket('3','')" />
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-4">
-                                <input type="button" id="cuatro" class="btn btn-light btn-lg btn-block" value="4" style="width:35px;height:35px;margin:2px;font-size:12px;" onclick="SetTicket('4','')" />
-                            </div>
-                            <div class="col-4">
-                                <input type="button" id="cinco" class="btn btn-light btn-lg btn-block" value="5" style="width:35px;height:35px;margin:2px;font-size:12px;" onclick="SetTicket('5','')" />
-                            </div>
-                            <div class="col-4">
-                                <input type="button" id="seis" class="btn btn-light btn-lg btn-block" value="6" style="width:35px;height:35px;margin:2px;font-size:12px;" onclick="SetTicket('6','')" />
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-4">
-                                <input type="button" id="siete" class="btn btn-light btn-lg btn-block" value="7" style="width:35px;height:35px;margin:2px;font-size:12px;" onclick="SetTicket('7','')" />
-                            </div>
-                            <div class="col-4">
-                                <input type="button" id="ocho" class="btn btn-light btn-lg btn-block" value="8" style="width:35px;height:35px;margin:2px;font-size:12px;" onclick="SetTicket('8','')" />
-                            </div>
-                            <div class="col-4">
-                                <input type="button" id="nueve" class="btn btn-light btn-lg btn-block" value="9" style="width:35px;height:35px;margin:2px;font-size:12px;" onclick="SetTicket('9','')" />
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-4">
-                                <input type="button" id="borrar" class="btn btn-light btn-lg btn-block" value="X" style="width:35px;height:35px;margin:2px;font-size:12px;" onclick="SetTicket('','x')" />
-                            </div>
-                            <div class="col-4">
-                                <input type="button" id="cero" class="btn btn-light btn-lg btn-block" value="0" style="width:35px;height:35px;margin:2px;font-size:12px;" onclick="SetTicket('0','')" />
-                            </div>
-                            <div class="col-4">
-                                <input type="button" id="monto" class="btn btn-light btn-lg btn-block" value="C" style="width:35px;height:35px;margin:2px;font-size:12px;" onclick="SetTicket('','c')" />
-                            </div>
-                        </div>
-                        <br />
-                        <div class="row">
-                            <div class="col-4">
-                                <button class="btn btn-primary" onclick="Nuevo();"><i class="bi bi-arrow-90deg-right"> </i></button>
-                            </div>
-                            <div class="col-4">
-                              <button class="btn btn-success" onclick="Guardar();"><i class="bi bi-plus-circle-fill"> </i></button>
-                            </div>
-                            <div class="col-4">
-                                <button class="btn btn-success" onclick="Imprimir();"><i class="bi bi-printer"> </i></button>
-                            </div>
-                        </div>
-                       
-
+                        <label class="control-label">@Resources.Lottery</label>
                     </div>
+                    <div class="col-md-6">
+                        <select id="loteria" class="form-control form-control-sm" onchange="" required></select>
+                    </div>
+                </div>
 
-                    <div id="impresionante">
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <label class="control-label">@Resources.Date</label>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="date" id="fechaSorteo" class="form-control form-control-sm" />
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <label class="control-label">@Resources.Name</label>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="text" id="nombre" class="form-control form-control-sm" />
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <label class="control-label">@Resources.Email</label>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="text" id="email" class="form-control form-control-sm" />
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <label class="control-label">@Resources.PhoneNumber</label>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="text" id="telefono" class="form-control form-control-sm" />
+                    </div>
+                </div>
+
+                <hr />
+
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <input type="button" id="uno" class="btn btn-light btn-lg btn-block" value="1" style="font-size: 12px;" onclick="SetTicket('1','')" />
+                    </div>
+                    <div class="col-md-6">
+                        <input type="button" id="dos" class="btn btn-light btn-lg btn-block" value="2" style="font-size: 12px;" onclick="SetTicket('2','')" />
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <input type="button" id="tres" class="btn btn-light btn-lg btn-block" value="3" style="font-size: 12px;" onclick="SetTicket('3','')" />
+                    </div>
+                    <div class="col-md-6">
+                        <input type="button" id="cuatro" class="btn btn-light btn-lg btn-block" value="4" style="font-size: 12px;" onclick="SetTicket('4','')" />
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <input type="button" id="cinco" class="btn btn-light btn-lg btn-block" value="5" style="font-size: 12px;" onclick="SetTicket('5','')" />
+                    </div>
+                    <div class="col-md-6">
+                        <input type="button" id="seis" class="btn btn-light btn-lg btn-block" value="6" style="font-size: 12px;" onclick="SetTicket('6','')" />
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <input type="button" id="siete" class="btn btn-light btn-lg btn-block" value="7" style="font-size: 12px;" onclick="SetTicket('7','')" />
+                    </div>
+                    <div class="col-md-6">
+                        <input type="button" id="ocho" class="btn btn-light btn-lg btn-block" value="8" style="font-size: 12px;" onclick="SetTicket('8','')" />
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <input type="button" id="nueve" class="btn btn-light btn-lg btn-block" value="9" style="font-size: 12px;" onclick="SetTicket('9','')" />
+                    </div>
+                    <div class="col-md-6">
+                        <input type="button" id="borrar" class="btn btn-light btn-lg btn-block" value="X" style="font-size: 12px;" onclick="SetTicket('','x')" />
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <input type="button" id="cero" class="btn btn-light btn-lg btn-block" value="0" style="font-size: 12px;" onclick="SetTicket('0','')" />
+                    </div>
+                    <div class="col-md-6">
+                        <input type="button" id="monto" class="btn btn-light btn-lg btn-block" value="C" style="font-size: 12px;" onclick="SetTicket('','c')" />
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-4">
+                        <button class="btn btn-primary" onclick="Nuevo();"><i class="bi bi-arrow-90deg-right"> </i></button>
+                    </div>
+                    <div class="col-md-4">
+                        <button class="btn btn-success" onclick="Guardar();"><i class="bi bi-plus-circle-fill"> </i></button>
+                    </div>
+                    <div class="col-md-4">
+                        <button class="btn btn-success" onclick="Imprimir();"><i class="bi bi-printer"> </i></button>
+                    </div>
+                </div>
+
+                <div id="impresionante">
+                    <div class="form-group row">
+                        <div class="col-md-4">
+                            <label>Nº<span id="ticket"></span></label>
+                        </div>
+                        <div class="col-md-4">
+                            <button class="btn btn-warning" onclick="ClearForm();"><i class="bi bi-plus-circle-fill"> </i></button>
+                        </div>
+                    </div>
+                    <div class="form-group row">
                         <div class="col-md-12">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <label>&nbsp;&nbsp;&nbsp;Nº<span id="ticket"></span></label>
-                                </div>
-                                <div class="col-md-4">
-                                    <button class="btn btn-warning" onclick="ClearForm();"><i class="bi bi-plus-circle-fill"> </i></button>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <input type="text" id="toLoteria" class="form-control" disabled style="width:210px" />
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <textarea id="lst" class="form-control" rows="8"  style="width:210px;height:140px;"></textarea>
-                                </div>
-                            </div>
+                            <input type="text" id="toLoteria" class="form-control" disabled />
                         </div>
                     </div>
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <textarea id="lst" class="form-control" rows="8"></textarea>
+                        </div>
+                    </div>
+                </div>
 
-              </div>
-
-          </div>
-
-
+            </div>
         </div>
     </div>
 </div>

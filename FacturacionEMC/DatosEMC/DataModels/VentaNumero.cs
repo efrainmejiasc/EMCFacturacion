@@ -55,5 +55,11 @@ namespace DatosEMC.DataModels
         [Column(Order = 14, TypeName = "INT")]
         public int Premiado { get; set; }
 
+        [Column(Order = 15, TypeName = "VARCHAR(250)")]
+        public string Nombre { get; set; }
+
+        [Column(Order = 16, TypeName = "INT")]
+        public int IdVentaNumeroRango { get; set; }
+
     }
 }

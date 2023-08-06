@@ -17,9 +17,11 @@ namespace FacturacionEMCApi.Controllers
     public class VenderNumeroController : ControllerBase
     {
         private readonly IVentaNumeroService _ventaNumeroService;
-        public VenderNumeroController(IVentaNumeroService ventaNumeroService)
+        private readonly IVentaNumeroRangoService _ventaNumeroRangoService;
+        public VenderNumeroController(IVentaNumeroService ventaNumeroService, IVentaNumeroRangoService ventaNumeroRangoService)
         {
             this._ventaNumeroService = ventaNumeroService;
+            this._ventaNumeroRangoService = ventaNumeroRangoService;
         }
 
 
@@ -34,8 +36,14 @@ namespace FacturacionEMCApi.Controllers
         {
             try
             {
+                var genericResponse = new GenericResponse();
+                var rangoSorteo = this._ventaNumeroRangoService.ValidarRango(model.IdEmpresa);
+                if(rangoSorteo. Id == 0)
+                    return BadRequest(genericResponse);
+
                 model.Id = 0;
-                var genericResponse = this._ventaNumeroService.AddVentaNumeroAsync(model);
+                model.IdVentaNumeroRango = rangoSorteo.Id;
+                genericResponse = this._ventaNumeroService.AddVentaNumeroAsync(model);
 
                 if (genericResponse.Ok)
                     return Ok(genericResponse);
@@ -60,15 +68,21 @@ namespace FacturacionEMCApi.Controllers
         {
             try
             {
+                var genericResponse = new GenericResponse();
+                var rangoSorteo = this._ventaNumeroRangoService.ValidarRango(model[0].IdEmpresa);
+                if (rangoSorteo.Id == 0)
+                    return BadRequest(genericResponse);
+
                 var uuid = EngineTool.CreateUniqueidentifier();
                 foreach (var item in model)
                 {
                     item.Id = 0;
                     item.Identificador = uuid;
+                    item.IdVentaNumeroRango = rangoSorteo.Id;
                 }
                    
 
-                var genericResponse = this._ventaNumeroService.AddVentaNumeroAsync(model);
+                genericResponse = this._ventaNumeroService.AddVentaNumeroAsync(model);
 
                 if (genericResponse.Ok)
                     return Ok(genericResponse);

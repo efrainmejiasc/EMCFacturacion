@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DatosEMC.DataModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,5 +24,7 @@ namespace DatosEMC.DTOs
         public int Premiado { get; set; }
         public decimal TotalVendido { get; set; }
         public string Ticket { get; set; }
+        public string Nombre { get; set; }
+        public int IdVentaNumeroRango { get; set; }
     }
 }

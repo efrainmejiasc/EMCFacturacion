@@ -50,6 +50,7 @@ namespace DatosEMC.DataModels
 
         public virtual DbSet<VentaNumero> VentaNumero { get; set; }
         public virtual DbSet<Loterias> Loterias{ get; set; }
+        public virtual DbSet<VentaNumeroRango> VentaNumeroRango { get; set; }
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

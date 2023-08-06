@@ -12,7 +12,7 @@ $(document).ready(function () {
     //    $(this).val(sanitizedValue);
     //});
    
-    $("#email, #lst").on("keydown", function (event) {
+    $("#email, #lst","#telefono","#nombre").on("keydown", function (event) {
         var elementId = event.target.id;
         var keyPressed = event.key;
         if('email' === elementId)
@@ -37,6 +37,7 @@ function DocumentoListo() {
     $('#fechaSorteo').val(FechaSorteo());
     GetNumeroTicket();
     GetLoterias();
+    setTimeout(AddLoteria, 2000);
 }
 
 function GetNumeroTicket() {
@@ -70,6 +71,7 @@ function GetLoterias() {
             $.each(data, function (index, item) {
                 $('#loteria').append("<option value=\"" + item.id + "\">" + item.nombre + "</option>");
             });
+            $("#loteria").val('Tachira')
         }
     });
     return false;
@@ -181,6 +183,8 @@ async function ValidarTicket() {
     var fechaSorteo = $('#fechaSorteo').val();
     var loterias = $('#toLoteria').val();
     var email = $('#email').val();
+    var nombre = $('#nombre').val();
+    var telefono = $('#telefono').val();
     var warning = cultureInfo == 'en-US' ? 'Add a lottery.' : 'Agrega una loteria.';
     if (loterias === '') {
         toastr.warning(warning);
@@ -214,20 +218,21 @@ async function ValidarTicket() {
                 var ventaNumero = {
                     Id: 0,
                     Identificador: '',
-                    Vendedor: '', 
-                    Numero: parseInt(numero), 
-                    Telefono: '',
-                    Email: email, 
+                    Vendedor: '',
+                    Numero: parseInt(numero),
+                    Telefono: telefono,
+                    nombre: nombre,
+                    Email: email,
                     Loteria: loteriasLst[j],
                     Activo: true,
                     FechaVenta: fechaActual,
                     FechaSorteo: fechaSorteo,
                     IdEmpresa: 0,
-                    Monto: parseFloat(valor), 
+                    Monto: parseFloat(valor),
                     Premiado: 0,
                     TotalVendido: 0,
                     Identificador: guid,
-                    Ticket : ticket
+                    Ticket: ticket
                 };
                 VentaNumeroDTO.push(ventaNumero);
             }
@@ -328,8 +333,10 @@ function generarGUID() {
 
     function ClearForm() {
         DocumentoListo();
-        $('#toLoteria').val('');
         $('#lst').val('');
+        $('#email').val('');
+        $('#nombre').val('');
+        $('#telefono').val('');
     }
 
 
