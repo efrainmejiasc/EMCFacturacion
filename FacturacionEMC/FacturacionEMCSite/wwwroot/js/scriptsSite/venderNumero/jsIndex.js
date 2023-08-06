@@ -200,7 +200,23 @@ async function ValidarTicket() {
         toastr.warning(warning);
         return false;
     }
-    warning = cultureInfo == 'en-US' ? 'Error in number. ' : 'Error en numero. ';
+    warning = cultureInfo == 'en-US' ? 'Name is empty.' : 'El nombre no puede ser vacio.';
+    if (nombre=== '') {
+        toastr.warning(warning);
+        return false;
+    }
+    warning = cultureInfo == 'en-US' ? 'Email is empty.' : 'El email no puede ser vacio.';
+    if (email === '') {
+        toastr.warning(warning);
+        return false;
+    }
+    warning = cultureInfo == 'en-US' ? 'PhoneNumber is empty.' : 'El telefono  no puede ser vacio.';
+    if (telefono === '') {
+        toastr.warning(warning);
+        return false;
+    }
+
+
     var loteriasLst = loterias.split('-');
     var textarea = $('#lst').val();
     var lines = textarea.split('\n');
@@ -212,11 +228,13 @@ async function ValidarTicket() {
                 var numero = partes[0];
                 var valor = partes[1];
                 if (numero === '' || valor === '') {
+                    warning = cultureInfo == 'en-US' ? 'Error in number is empty. ' : 'Error en numero es vacio.';
                     toastr.warning(warning + i);
                     return false;
                 }
                 else if (parseInt(numero) < 0 || parseInt(numero) > 1000) {
-                    toastr.warning(numero + " No esta dentro del rango de numeros permitidos");
+                    warning = cultureInfo == 'en-US' ? ' Number out range interval.' : ' No esta dentro del rango de numeros permitidos';
+                    toastr.warning(numero + "");
                     return false;
                 }
                 var ventaNumero = {
