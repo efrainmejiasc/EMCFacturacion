@@ -60,6 +60,5 @@ namespace DatosEMC.DataModels
 
         [Column(Order = 16, TypeName = "INT")]
         public int IdVentaNumeroRango { get; set; }
-
     }
 }

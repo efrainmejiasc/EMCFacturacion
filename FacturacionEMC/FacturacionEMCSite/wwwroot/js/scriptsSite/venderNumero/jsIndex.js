@@ -215,6 +215,10 @@ async function ValidarTicket() {
                     toastr.warning(warning + i);
                     return false;
                 }
+                else if (parseInt(numero) < 0 || parseInt(numero) > 1000) {
+                    toastr.warning(numero + " No esta dentro del rango de numeros permitidos");
+                    return false;
+                }
                 var ventaNumero = {
                     Id: 0,
                     Identificador: '',

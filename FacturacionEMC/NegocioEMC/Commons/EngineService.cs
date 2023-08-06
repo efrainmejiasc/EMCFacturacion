@@ -10,13 +10,17 @@ namespace NegocioEMC.Commons
 {
     public class EngineService
     {
-        public static  GenericResponse SetGenericResponse(bool ok, string mensaje,int id = 0)
+        public static  GenericResponse SetGenericResponse(bool ok, string mensaje,int id = 0,List<VentaNumero> ventaNumeroDTO = null)
         {
+            if (ventaNumeroDTO == null)
+                ventaNumeroDTO = new List<VentaNumero>();
+
             var response = new GenericResponse()
             {
                 Id = id,
                 Ok = ok,
-                Mensaje = mensaje
+                Mensaje = mensaje,
+                VentaBumeroDTO = ventaNumeroDTO
             };
 
             return response;

@@ -12,8 +12,9 @@ namespace DatosEMC.IRepositories
     public interface IVentaNumeroRepository
     {
         List<Loterias> GetLoterias();
-        NumeroTicketDTO GetNumeroTicket(int id);
         bool DeleteVentaNumeroById(int id);
+        bool NumerosBloqueados(VentaNumero x);
+        NumeroTicketDTO GetNumeroTicket(int id);
         bool DeleteVentaNumeroTicket(string ticket,int id);
         List<VentaNumero> GetTicket(string ticket,int id);
         VentaNumero AddVentaNumeroAsync(VentaNumero x);

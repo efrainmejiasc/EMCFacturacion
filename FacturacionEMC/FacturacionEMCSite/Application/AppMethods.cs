@@ -22,7 +22,7 @@ namespace FacturacionEMCSite.Application
                 Peso = productoImgInfoDTO.Peso,
                 Tamaño = productoImgInfoDTO.Tamaño,
                 Descripcion = productoImgInfoDTO.Descripcion,
-                Precio = productoImgInfoDTO.Precio,
+                Precio = (double) productoImgInfoDTO.Precio,
                 IdEmpresa = idEmpresa
             };
 

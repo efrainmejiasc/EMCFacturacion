@@ -1,6 +1,7 @@
 ﻿using DatosEMC.DataModels;
 using DatosEMC.DTOs;
 using DatosEMC.IRepositories;
+using Microsoft.Extensions.Caching.Memory;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,10 +28,32 @@ namespace DatosEMC.Repositories
 
         public List<VentaNumero> AddVentaNumeroAsync(List<VentaNumero> x)
         {
-            db.VentaNumero.AddRangeAsync(x);
+            var noBloqueados = new List<VentaNumero>();
+            foreach(var item in x)
+            {
+                if (!NumerosBloqueados(item))
+                    noBloqueados.Add(item);
+            }
+
+            db.VentaNumero.AddRangeAsync(noBloqueados);
             db.SaveChanges();
 
-            return x;
+            var elementosNoEnX = noBloqueados.Where(elementoJ => x.All(elementoX => elementoX.Id != elementoJ.Id)).ToList();
+            x.AddRange(elementosNoEnX);
+
+            return noBloqueados;
+        }
+
+        public  bool NumerosBloqueados(VentaNumero x)
+        {
+            var result = false;
+            var ventaNumero = this.db.VentaNumero.Where(s => s.IdVentaNumeroRango == x.IdVentaNumeroRango
+                                                      && s.Numero == x.Numero
+                                                      && s.IdEmpresa == x.IdEmpresa).FirstOrDefault();
+            if(ventaNumero == null)
+                result = true;
+
+            return result;
         }
 
         public VentaNumero UpdateVentaNumeroAsync(VentaNumero x)

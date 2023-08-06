@@ -5882,6 +5882,14 @@
           "ticket": {
             "type": "string",
             "nullable": true
+          },
+          "nombre": {
+            "type": "string",
+            "nullable": true
+          },
+          "idVentaNumeroRango": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false

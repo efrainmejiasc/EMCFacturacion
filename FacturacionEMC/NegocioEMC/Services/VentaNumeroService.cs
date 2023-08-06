@@ -44,19 +44,33 @@ namespace NegocioEMC.Services
         {
              var ide =   EngineTool.CreateUniqueidentifier();
              var lstVentaNumero = new List<VentaNumero>();
-            foreach(var model in lst)
+             var lstVentaNumeroBloqueado = new List<VentaNumero>();
+            foreach (var model in lst)
             {
+             
                 var x = this.mapper.Map<VentaNumero>(model);
-                x.Identificador = ide;
-                x.FechaVenta = DateTime.Now.Date;
-                x.Activo = true;
-                x = this._ventaNumeroRepository.AddVentaNumeroAsync(x);
-                lstVentaNumero.Add(x);
+                if (!this._ventaNumeroRepository.NumerosBloqueados(x))
+                {
+                    x.Identificador = ide;
+                    x.FechaVenta = DateTime.Now.Date;
+                    x.Activo = true;
+                    x = this._ventaNumeroRepository.AddVentaNumeroAsync(x);
+                    lstVentaNumero.Add(x);
+                }
+                else
+                    lstVentaNumeroBloqueado.Add(x);
+
             }
 
             var verificated = lstVentaNumero.Where(s => s.Id == 0).ToList().Count;
             if (verificated == 0)
-                return EngineService.SetGenericResponse(true, "La información ha sido registrada");
+            {
+                var elementosVendidos = lstVentaNumeroBloqueado.Where(elementoJ => lstVentaNumero.All(elementoX => elementoX.Id != elementoJ.Id)).ToList();
+                lstVentaNumero.AddRange(elementosVendidos);
+
+                return EngineService.SetGenericResponse(true, "La información ha sido registrada",0, lstVentaNumero);
+            }
+
             else
                 return EngineService.SetGenericResponse(false, "No se pudo registrar la información");
         }
