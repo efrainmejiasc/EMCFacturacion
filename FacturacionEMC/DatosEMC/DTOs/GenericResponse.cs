@@ -13,7 +13,7 @@ namespace DatosEMC.DTOs
         public bool Ok { get; set; }
         public string Mensaje { get; set; }
 
-        public List<VentaNumero> VentaBumeroDTO { get; set; }
+        public List<VentaNumero> VentaNumero { get; set; }
 
     }
 }

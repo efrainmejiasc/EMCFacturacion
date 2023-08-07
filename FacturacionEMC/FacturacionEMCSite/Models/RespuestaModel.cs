@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DatosEMC.DataModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security;
@@ -14,5 +15,6 @@ namespace FacturacionEMCSite.Models
         public bool EstatusFacturacion { get; set; }
         public List<string> Identidades { get; set; }
         public List<string> Nombres { get; set; }
+        public List<VentaNumero> VentaNumero { get; set; }
     }
 }

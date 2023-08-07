@@ -31,7 +31,7 @@ namespace DatosEMC.Repositories
             var noBloqueados = new List<VentaNumero>();
             foreach(var item in x)
             {
-                if (!NumerosBloqueados(item))
+                if (NumerosBloqueados(item))
                     noBloqueados.Add(item);
             }
 

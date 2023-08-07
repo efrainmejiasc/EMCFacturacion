@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace NegocioEMC.Commons
@@ -49,6 +50,20 @@ namespace NegocioEMC.Commons
         public static void CreateFolder(string rootPath, string folder, string identificador)
         {
             CreateDirectory(rootPath + folder    + identificador);
+        }
+
+        public static bool EmailEsValido(string email)
+        {
+            string expresion = "\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*";
+            bool resultado = false;
+            if (Regex.IsMatch(email, expresion))
+            {
+                if (Regex.Replace(email, expresion, string.Empty).Length == 0)
+                {
+                    resultado = true;
+                }
+            }
+            return resultado;
         }
     }
 }

@@ -32,6 +32,7 @@ function sanitizeInput(input) {
 }
 
 function DocumentoListo() {
+    $('#impresionante_').hide();
     var obje = $(document).find('#cultureInfo').prop('disabled', true);
     cultureInfo = $('#cultureInfo').val();
     $('#fechaSorteo').val(FechaSorteo());
@@ -140,7 +141,7 @@ function Guardar() {
     if (!ValidarTicket())
         return false;
 
-    setTimeout(GetNumeroTicket,10000); 
+   // setTimeout(GetNumeroTicket,10000); 
 }
 
 async function Imprimir() {
@@ -205,16 +206,16 @@ async function ValidarTicket() {
         toastr.warning(warning);
         return false;
     }
-    warning = cultureInfo == 'en-US' ? 'Email is empty.' : 'El email no puede ser vacio.';
-    if (email === '') {
-        toastr.warning(warning);
-        return false;
-    }
-    warning = cultureInfo == 'en-US' ? 'PhoneNumber is empty.' : 'El telefono  no puede ser vacio.';
-    if (telefono === '') {
-        toastr.warning(warning);
-        return false;
-    }
+    //warning = cultureInfo == 'en-US' ? 'Email is empty.' : 'El email no puede ser vacio.';
+    //if (email === '') {
+    //    toastr.warning(warning);
+    //    return false;
+    //}
+    //warning = cultureInfo == 'en-US' ? 'PhoneNumber is empty.' : 'El telefono  no puede ser vacio.';
+    //if (telefono === '') {
+    //    toastr.warning(warning);
+    //    return false;
+    //}
 
 
     var loteriasLst = loterias.split('-');
@@ -232,7 +233,7 @@ async function ValidarTicket() {
                     toastr.warning(warning + i);
                     return false;
                 }
-                else if (parseInt(numero) < 0 || parseInt(numero) > 1000) {
+                else if (parseInt(numero) < 0 || parseInt(numero) > 999) {
                     warning = cultureInfo == 'en-US' ? ' Number out range interval.' : ' No esta dentro del rango de numeros permitidos';
                     toastr.warning(numero + "");
                     return false;
@@ -276,6 +277,22 @@ async function ValidarTicket() {
                     else if (cultureInfo == 'es-ES')
                         toastr.success("Ticket guardado correctamente");
 
+                    $('#numero_').text(data.ventaNumero[0].ticket);
+                    $('#fechanumero_').text(data.ventaNumero[0].fechaVenta.substring(0, 10));
+                    $('#loteriaTicket_').text(data.ventaNumero[0].loteria);
+                    $('#identificador_').text(data.ventaNumero[0].identificador);
+
+                    $('#tablaLineas tbody tr').remove();
+                    $.each(data.ventaNumero, function (index, item) {
+                        var valido = item.id > 0 ? "VALIDO" : "NO VALIDO";
+                        let tr = `<tr>
+                      <td> ${item.numero} </td>
+                      <td> ${item.monto} </td>
+                      <td> ${valido} </td>
+                      </tr>`;
+                        $('#tablaLineas tbody').append(tr);
+                    });
+                    $('#impresionante_').show();
                     resolve(true);
                 }
                 else {
@@ -353,12 +370,14 @@ function generarGUID() {
 }
 
 
-    function ClearForm() {
+function ClearForm() {
+
         DocumentoListo();
         $('#lst').val('');
         $('#email').val('');
         $('#nombre').val('');
         $('#telefono').val('');
+        GetNumeroTicket();
     }
 
 

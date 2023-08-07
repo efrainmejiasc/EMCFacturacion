@@ -71,8 +71,12 @@ namespace FacturacionEMCSite.Controllers
                }
 
                  var result = await this.clientApi.PostVentaNumeroTicketAsync(ventaNumeros);
-                 if (result.Ok)
-                 response.Estatus = true;
+                 if (result.Ok) 
+                 {
+                    response.VentaNumero = result.VentaNumero;
+                    response.Estatus = true; 
+                 }
+                
             }
             catch(Exception ex)
             {

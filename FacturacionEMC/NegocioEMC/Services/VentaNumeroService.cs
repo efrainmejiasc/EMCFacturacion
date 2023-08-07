@@ -5,6 +5,7 @@ using DatosEMC.IRepositories;
 using DatosEMC.Migrations;
 using NegocioEMC.Commons;
 using NegocioEMC.IServices;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -49,7 +50,7 @@ namespace NegocioEMC.Services
             {
              
                 var x = this.mapper.Map<VentaNumero>(model);
-                if (!this._ventaNumeroRepository.NumerosBloqueados(x))
+                if (this._ventaNumeroRepository.NumerosBloqueados(x))
                 {
                     x.Identificador = ide;
                     x.FechaVenta = DateTime.Now.Date;
@@ -61,6 +62,8 @@ namespace NegocioEMC.Services
                     lstVentaNumeroBloqueado.Add(x);
 
             }
+
+            //EnviarEmail(lstVentaNumero);
 
             var verificated = lstVentaNumero.Where(s => s.Id == 0).ToList().Count;
             if (verificated == 0)
@@ -164,6 +167,24 @@ namespace NegocioEMC.Services
             var x = this._ventaNumeroRepository.GetNumeroTicket(id);
             
             return x;
+        }
+
+        private bool EnviarEmail (List<VentaNumero> model)
+        {
+            if (model == null)
+                return false;
+            else if (model.Count == 0)
+                return false;
+            else if (string.IsNullOrEmpty(model[0].Email))
+                return false;
+            else if (!EngineTool.EmailEsValido(model[0].Email))
+                return false;
+
+            var body = JsonConvert.SerializeObject(model);
+            EngineEmail.EnviarMail(body, model[0].Email);
+
+            return true;
+
         }
     }
 }
