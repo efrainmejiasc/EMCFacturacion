@@ -2,7 +2,6 @@
 using DatosEMC.DataModels;
 using DatosEMC.DTOs;
 using DatosEMC.IRepositories;
-using DatosEMC.Migrations;
 using NegocioEMC.Commons;
 using NegocioEMC.IServices;
 using Newtonsoft.Json;
@@ -63,7 +62,7 @@ namespace NegocioEMC.Services
 
             }
 
-            //EnviarEmail(lstVentaNumero);
+            EnviarEmail(lstVentaNumero);
 
             var verificated = lstVentaNumero.Where(s => s.Id == 0).ToList().Count;
             if (verificated == 0)

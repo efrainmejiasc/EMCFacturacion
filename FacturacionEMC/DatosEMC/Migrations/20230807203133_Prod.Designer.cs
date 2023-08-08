@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DatosEMC.Migrations
 {
     [DbContext(typeof(MyAppContext))]
-    [Migration("20230620181525_loteria4")]
-    partial class loteria4
+    [Migration("20230807203133_Prod")]
+    partial class Prod
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -378,7 +378,6 @@ namespace DatosEMC.Migrations
             modelBuilder.Entity("DatosEMC.DataModels.Loterias", b =>
                 {
                     b.Property<string>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("VARCHAR(50)");
 
                     b.Property<string>("Nombre")
@@ -864,6 +863,9 @@ namespace DatosEMC.Migrations
                     b.Property<int>("IdEmpresa")
                         .HasColumnType("INT");
 
+                    b.Property<int>("IdVentaNumeroRango")
+                        .HasColumnType("INT");
+
                     b.Property<Guid>("Identificador")
                         .HasColumnType("UNIQUEIDENTIFIER");
 
@@ -873,7 +875,13 @@ namespace DatosEMC.Migrations
                     b.Property<decimal>("Monto")
                         .HasColumnType("MONEY");
 
+                    b.Property<string>("Nombre")
+                        .HasColumnType("VARCHAR(250)");
+
                     b.Property<int>("Numero")
+                        .HasColumnType("INT");
+
+                    b.Property<int>("Premiado")
                         .HasColumnType("INT");
 
                     b.Property<string>("Telefono")
@@ -888,6 +896,27 @@ namespace DatosEMC.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("VentaNumero");
+                });
+
+            modelBuilder.Entity("DatosEMC.DataModels.VentaNumeroRango", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INT")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("FechaFinal")
+                        .HasColumnType("DATETIME");
+
+                    b.Property<DateTime>("FechaInicial")
+                        .HasColumnType("DATETIME");
+
+                    b.Property<int>("IdEmpresa")
+                        .HasColumnType("INT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("VentaNumeroRango");
                 });
 #pragma warning restore 612, 618
         }

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DatosEMC.Migrations
 {
-    public partial class inicial : Migration
+    public partial class Prod : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -179,6 +179,18 @@ namespace DatosEMC.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_InicioFacturacion", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Loterias",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "VARCHAR(50)", nullable: false),
+                    Nombre = table.Column<string>(type: "VARCHAR(50)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Loterias", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -443,6 +455,48 @@ namespace DatosEMC.Migrations
                 {
                     table.PrimaryKey("PK_Usuario", x => x.Email);
                 });
+
+            migrationBuilder.CreateTable(
+                name: "VentaNumero",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INT", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Identificador = table.Column<Guid>(type: "UNIQUEIDENTIFIER", nullable: false),
+                    Vendedor = table.Column<string>(type: "VARCHAR(250)", nullable: true),
+                    Numero = table.Column<int>(type: "INT", nullable: false),
+                    Telefono = table.Column<string>(type: "VARCHAR(50)", nullable: true),
+                    Email = table.Column<string>(type: "VARCHAR(50)", nullable: true),
+                    Loteria = table.Column<string>(type: "VARCHAR(50)", nullable: true),
+                    Activo = table.Column<bool>(type: "BIT", nullable: false),
+                    FechaVenta = table.Column<DateTime>(type: "DATETIME", nullable: false),
+                    FechaSorteo = table.Column<DateTime>(type: "DATETIME", nullable: false),
+                    IdEmpresa = table.Column<int>(type: "INT", nullable: false),
+                    Monto = table.Column<decimal>(type: "MONEY", nullable: false),
+                    Ticket = table.Column<string>(type: "VARCHAR(50)", nullable: true),
+                    Premiado = table.Column<int>(type: "INT", nullable: false),
+                    Nombre = table.Column<string>(type: "VARCHAR(250)", nullable: true),
+                    IdVentaNumeroRango = table.Column<int>(type: "INT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_VentaNumero", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "VentaNumeroRango",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INT", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FechaInicial = table.Column<DateTime>(type: "DATETIME", nullable: false),
+                    FechaFinal = table.Column<DateTime>(type: "DATETIME", nullable: false),
+                    IdEmpresa = table.Column<int>(type: "INT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_VentaNumeroRango", x => x.Id);
+                });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -467,6 +521,9 @@ namespace DatosEMC.Migrations
 
             migrationBuilder.DropTable(
                 name: "InicioFacturacion");
+
+            migrationBuilder.DropTable(
+                name: "Loterias");
 
             migrationBuilder.DropTable(
                 name: "MetodoPago");
@@ -509,6 +566,12 @@ namespace DatosEMC.Migrations
 
             migrationBuilder.DropTable(
                 name: "Usuario");
+
+            migrationBuilder.DropTable(
+                name: "VentaNumero");
+
+            migrationBuilder.DropTable(
+                name: "VentaNumeroRango");
         }
     }
 }

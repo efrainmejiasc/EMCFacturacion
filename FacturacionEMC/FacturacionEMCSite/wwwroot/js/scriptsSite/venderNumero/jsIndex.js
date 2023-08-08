@@ -147,24 +147,32 @@ function Guardar() {
 async function Imprimir() {
     var result = await ValidarTicket();
     if (result) {
-        var ticket = $('#ticket').text();
-        var toLoteria = $('#toLoteria').val();
-        var lst = $('#lst').val();
+        //var ticket = $('#ticket').text();
+        //var toLoteria = $('#toLoteria').val();
+        //var lst = $('#lst').val();
 
-        var fechaSorteo = $('#fechaSorteo').val();
-        var printContents = '<style>@media print { @page { size: 750px 1000px; margin: 0; } body { font-size: 12px; font-family: Arial, sans-serif; margin: 20px; } }</style>';
-        printContents += ticket + "<br>" + toLoteria + "<br>";
-        var lines = lst.split('\n');
-        for (var i = 0; i < lines.length; i++) {
-            var linea = lines[i];
-            if (linea !== '') {
-                printContents += linea + "<br>";
-            }
-        }
+        //var fechaSorteo = $('#fechaSorteo').val();
+        //var printContents = '<style>@media print { @page { size: 750px 1000px; margin: 0; } body { font-size: 12px; font-family: Arial, sans-serif; margin: 20px; } }</style>';
+        //printContents += ticket + "<br>" + toLoteria + "<br>";
+        //var lines = lst.split('\n');
+        //for (var i = 0; i < lines.length; i++) {
+        //    var linea = lines[i];
+        //    if (linea !== '') {
+        //        printContents += linea + "<br>";
+        //    }
+        //}
 
-        printContents += 'FA:' + FechaActual() + '<br>' + 'FS:' + fechaSorteo;
+        //printContents += 'FA:' + FechaActual() + '<br>' + 'FS:' + fechaSorteo;
+        //var a = window.open('', '', 'height=500, width=500');
+        //a.document.write(printContents);
+        //a.document.close();
+        //a.print();
+        var divContents = document.getElementById("impresionante_").innerHTML;
         var a = window.open('', '', 'height=500, width=500');
-        a.document.write(printContents);
+        // a.document.write('<html>');
+        // a.document.write('<body > <h1>Div contents are <br>');
+        a.document.write(divContents);
+        // a.document.write('</body></html>');
         a.document.close();
         a.print();
     }
@@ -378,6 +386,10 @@ function ClearForm() {
         $('#nombre').val('');
         $('#telefono').val('');
         GetNumeroTicket();
-    }
+}
+
+function OcultarModalDetalle() {
+    $('#impresionante_').hide();
+}
 
 
