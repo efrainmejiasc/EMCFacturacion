@@ -90,19 +90,24 @@ SELECT * FROM VentaNumero
 --INSERT INTO UNIDADMEDIDA (UNIDAD, IdEmpresa, Sistema) VALUES ('Metro',2,'ES-ES')
 --INSERT INTO UNIDADMEDIDA (UNIDAD, IdEmpresa, Sistema) VALUES ('Pieza',1,'ES-ES')
 
---update StockTransito Set NombreArticulo = ' Monitor - Unit' Where id = 1 
 
 --INSERT INTO LOTERIAS VALUES ('Caracas','Caracas')
 --INSERT INTO LOTERIAS VALUES ('Tachira','Tachira')
 --INSERT INTO LOTERIAS VALUES ('Zulia','Zulia')
 
 
- -- INSERT INTO EMPRESA VALUES ('4F0EF2D3-A470-4B2D-B2EF-A9B8A8EE1777','Reparaciones CP','V-00000000','efrainmejiasc@hotmail.com','0414401526','Valencia-Venezuela',GetDate(),GetDate(),1)
-  --INSERT INTO EMPRESA VALUES ('5F0EF2D3-A470-5B2D-B2EF-A9B8A8EE1775','Servicios','V-00000000','efrainmejiasc@hotmail.com','0414401526','Valencia-Venezuela',GetDate(),GetDate(),1)
+--  INSERT INTO EMPRESA VALUES ('4F0EF2D3-A470-4B2D-B2EF-A9B8A8EE1777','Reparaciones CP','V-00000000','efrainmejiasc@hotmail.com','0414401526','Valencia-Venezuela',GetDate(),GetDate(),1)
+--  INSERT INTO EMPRESA VALUES ('5F0EF2D3-A470-5B2D-B2EF-A9B8A8EE1775','Servicios','V-00000000','efrainmejiasc@hotmail.com','0414401526','Valencia-Venezuela',GetDate(),GetDate(),1)
 
- --INSERT INTO USUARIO VALUES ('admin@hotmail.com',1,'admin','admin','admin','YWRtaW5AaG90bWFpbC5jb20xMjM0','YWRtaW4xMjM0',GetDate(),1,1)
- --INSERT INTO USUARIO VALUES ('admin2@hotmail.com',2,'admin','admin','admin','YWRtaW5AaG90bWFpbC5jb20xMjM0','YWRtaW4xMjM0',GetDate(),1,1)
- --INSERT INTO USUARIO VALUES ('efrainmejiasc@hotmail.com',2,'Efrain','Mejias','efrain','ZWZyYWlubWVqaWFzY0Bob3RtYWlsLmNvbTEyMzQ=','ZWZyYWluMTIzNA==',GetDate(),1,4)
+-- INSERT INTO USUARIO VALUES ('admin@hotmail.com',1,'admin','admin','admin','YWRtaW5AaG90bWFpbC5jb20xMjM0','YWRtaW4xMjM0',GetDate(),1,1)
+-- INSERT INTO USUARIO VALUES ('admin2@hotmail.com',2,'admin','admin','admin','YWRtaW5AaG90bWFpbC5jb20xMjM0','YWRtaW4xMjM0',GetDate(),1,1)
+-- INSERT INTO USUARIO VALUES ('efrainmejiasc@hotmail.com',2,'Efrain','Mejias','efrain','ZWZyYWlubWVqaWFzY0Bob3RtYWlsLmNvbTEyMzQ=','ZWZyYWluMTIzNA==',GetDate(),1,4)
+
+-- INSERT INTO TIPOINVENTARIO VALUES ('BODEGA')
+--INSERT INTO TIPOINVENTARIO VALUES ('TRANSITO')
+
+--INSERT INTO PROVEEDOR VALUES ('6C9A734A-8ECD-4148-A3B4-2374EAEBB555', 'Ingenieria de Software', 'V-11346727', 'Valencia-Venezuela','0424-4133677', 'efrainmejiasc@homail.com',1,GetDate(),GetDate(),1)
+--INSERT INTO CLIENTE VALUES ('6C9A734A-8ECD-4148-A3B4-2374EAEBB555', 'Efrain Mejias C', 'V-11346727', 'Valencia-Venezuela','0424-4133677', 'efrainmejiasc@homail.com',1,GetDate(),GetDate(),1)
 
 --UPDATE USUARIO SET Password = 'YWRtaW5AaG90bWFpbC5jb20xMjM0'
 --UPDATE USUARIO SET Activo = 1
@@ -112,11 +117,12 @@ SELECT * FROM VentaNumero
 --UPDATE EMPRESA SET Activo = 1
 
 
---INSERT INTO TIPOINVENTARIO VALUES ('BODEGA')
---INSERT INTO TIPOINVENTARIO VALUES ('TRANSITO')
 
---INSERT INTO PROVEEDOR VALUES ('6C9A734A-8ECD-4148-A3B4-2374EAEBB555', 'Ingenieria de Software', 'V-11346727', 'Valencia-Venezuela','0424-4133677', 'efrainmejiasc@homail.com',1,GetDate(),GetDate(),1)
---INSERT INTO CLIENTE VALUES ('6C9A734A-8ECD-4148-A3B4-2374EAEBB555', 'Efrain Mejias C', 'V-11346727', 'Valencia-Venezuela','0424-4133677', 'efrainmejiasc@homail.com',1,GetDate(),GetDate(),1)
+
+
+update StockTransito Set NombreArticulo = ' Monitor - Unit' Where id = 1 
+
+
 
 --Select * from USUARIO WHERE Password = 'ZWZyYWlubWVqaWFzY0Bob3RtYWlsLmNvbTEyMzQ='
 

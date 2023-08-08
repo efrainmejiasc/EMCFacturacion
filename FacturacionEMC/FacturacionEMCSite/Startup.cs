@@ -116,12 +116,12 @@ namespace FacturacionEMCSite
             ce.NumberFormat.CurrencyDecimalSeparator = ",";
 #if DEBUG
 
-            CultureInfo.DefaultThreadCurrentCulture = ce;
-            CultureInfo.DefaultThreadCurrentUICulture = ce;
-#else
-
             CultureInfo.DefaultThreadCurrentCulture = ci;
             CultureInfo.DefaultThreadCurrentUICulture = ci;
+#else
+
+            CultureInfo.DefaultThreadCurrentCulture = ce;
+            CultureInfo.DefaultThreadCurrentUICulture = ce;
 #endif
             app.UseRequestLocalization(new RequestLocalizationOptions
             {
