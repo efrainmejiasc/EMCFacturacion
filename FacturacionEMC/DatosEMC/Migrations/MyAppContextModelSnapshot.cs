@@ -373,6 +373,174 @@ namespace DatosEMC.Migrations
                     b.ToTable("InicioFacturacion");
                 });
 
+            modelBuilder.Entity("DatosEMC.DataModels.ListaBingo", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INT")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("Activo")
+                        .HasColumnType("BIT");
+
+                    b.Property<DateTime>("FechaCreacion")
+                        .HasColumnType("DATETIME");
+
+                    b.Property<Guid>("IdentificadorUnico")
+                        .HasColumnType("UNIQUEIDENTIFIER");
+
+                    b.Property<string>("Nombre")
+                        .HasColumnType("VARCHAR(100)");
+
+                    b.Property<int>("Numero1")
+                        .HasColumnType("INT");
+
+                    b.Property<int>("Numero10")
+                        .HasColumnType("INT");
+
+                    b.Property<int>("Numero11")
+                        .HasColumnType("INT");
+
+                    b.Property<int>("Numero12")
+                        .HasColumnType("INT");
+
+                    b.Property<int>("Numero13")
+                        .HasColumnType("INT");
+
+                    b.Property<int>("Numero14")
+                        .HasColumnType("INT");
+
+                    b.Property<int>("Numero15")
+                        .HasColumnType("INT");
+
+                    b.Property<int>("Numero16")
+                        .HasColumnType("INT");
+
+                    b.Property<int>("Numero17")
+                        .HasColumnType("INT");
+
+                    b.Property<int>("Numero18")
+                        .HasColumnType("INT");
+
+                    b.Property<int>("Numero19")
+                        .HasColumnType("INT");
+
+                    b.Property<int>("Numero2")
+                        .HasColumnType("INT");
+
+                    b.Property<int>("Numero20")
+                        .HasColumnType("INT");
+
+                    b.Property<int>("Numero21")
+                        .HasColumnType("INT");
+
+                    b.Property<int>("Numero22")
+                        .HasColumnType("INT");
+
+                    b.Property<int>("Numero23")
+                        .HasColumnType("INT");
+
+                    b.Property<int>("Numero24")
+                        .HasColumnType("INT");
+
+                    b.Property<int>("Numero25")
+                        .HasColumnType("INT");
+
+                    b.Property<int>("Numero26")
+                        .HasColumnType("INT");
+
+                    b.Property<int>("Numero27")
+                        .HasColumnType("INT");
+
+                    b.Property<int>("Numero28")
+                        .HasColumnType("INT");
+
+                    b.Property<int>("Numero29")
+                        .HasColumnType("INT");
+
+                    b.Property<int>("Numero3")
+                        .HasColumnType("INT");
+
+                    b.Property<int>("Numero30")
+                        .HasColumnType("INT");
+
+                    b.Property<int>("Numero31")
+                        .HasColumnType("INT");
+
+                    b.Property<int>("Numero32")
+                        .HasColumnType("INT");
+
+                    b.Property<int>("Numero33")
+                        .HasColumnType("INT");
+
+                    b.Property<int>("Numero34")
+                        .HasColumnType("INT");
+
+                    b.Property<int>("Numero35")
+                        .HasColumnType("INT");
+
+                    b.Property<int>("Numero36")
+                        .HasColumnType("INT");
+
+                    b.Property<int>("Numero37")
+                        .HasColumnType("INT");
+
+                    b.Property<int>("Numero38")
+                        .HasColumnType("INT");
+
+                    b.Property<int>("Numero39")
+                        .HasColumnType("INT");
+
+                    b.Property<int>("Numero4")
+                        .HasColumnType("INT");
+
+                    b.Property<int>("Numero40")
+                        .HasColumnType("INT");
+
+                    b.Property<int>("Numero41")
+                        .HasColumnType("INT");
+
+                    b.Property<int>("Numero42")
+                        .HasColumnType("INT");
+
+                    b.Property<int>("Numero43")
+                        .HasColumnType("INT");
+
+                    b.Property<int>("Numero44")
+                        .HasColumnType("INT");
+
+                    b.Property<int>("Numero45")
+                        .HasColumnType("INT");
+
+                    b.Property<int>("Numero46")
+                        .HasColumnType("INT");
+
+                    b.Property<int>("Numero47")
+                        .HasColumnType("INT");
+
+                    b.Property<int>("Numero48")
+                        .HasColumnType("INT");
+
+                    b.Property<int>("Numero5")
+                        .HasColumnType("INT");
+
+                    b.Property<int>("Numero6")
+                        .HasColumnType("INT");
+
+                    b.Property<int>("Numero7")
+                        .HasColumnType("INT");
+
+                    b.Property<int>("Numero8")
+                        .HasColumnType("INT");
+
+                    b.Property<int>("Numero9")
+                        .HasColumnType("INT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ListaBingo");
+                });
+
             modelBuilder.Entity("DatosEMC.DataModels.Loterias", b =>
                 {
                     b.Property<string>("Id")

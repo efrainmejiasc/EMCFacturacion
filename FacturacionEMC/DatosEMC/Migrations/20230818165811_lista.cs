@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DatosEMC.Migrations
 {
-    public partial class Prod : Migration
+    public partial class lista : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -179,6 +179,70 @@ namespace DatosEMC.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_InicioFacturacion", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ListaBingo",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INT", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    IdentificadorUnico = table.Column<Guid>(type: "UNIQUEIDENTIFIER", nullable: false),
+                    Nombre = table.Column<string>(type: "VARCHAR(100)", nullable: true),
+                    FechaCreacion = table.Column<DateTime>(type: "DATETIME", nullable: false),
+                    Activo = table.Column<bool>(type: "BIT", nullable: false),
+                    Numero1 = table.Column<int>(type: "INT", nullable: false),
+                    Numero2 = table.Column<int>(type: "INT", nullable: false),
+                    Numero3 = table.Column<int>(type: "INT", nullable: false),
+                    Numero4 = table.Column<int>(type: "INT", nullable: false),
+                    Numero5 = table.Column<int>(type: "INT", nullable: false),
+                    Numero6 = table.Column<int>(type: "INT", nullable: false),
+                    Numero7 = table.Column<int>(type: "INT", nullable: false),
+                    Numero8 = table.Column<int>(type: "INT", nullable: false),
+                    Numero9 = table.Column<int>(type: "INT", nullable: false),
+                    Numero10 = table.Column<int>(type: "INT", nullable: false),
+                    Numero11 = table.Column<int>(type: "INT", nullable: false),
+                    Numero12 = table.Column<int>(type: "INT", nullable: false),
+                    Numero13 = table.Column<int>(type: "INT", nullable: false),
+                    Numero14 = table.Column<int>(type: "INT", nullable: false),
+                    Numero15 = table.Column<int>(type: "INT", nullable: false),
+                    Numero16 = table.Column<int>(type: "INT", nullable: false),
+                    Numero17 = table.Column<int>(type: "INT", nullable: false),
+                    Numero18 = table.Column<int>(type: "INT", nullable: false),
+                    Numero19 = table.Column<int>(type: "INT", nullable: false),
+                    Numero20 = table.Column<int>(type: "INT", nullable: false),
+                    Numero21 = table.Column<int>(type: "INT", nullable: false),
+                    Numero22 = table.Column<int>(type: "INT", nullable: false),
+                    Numero23 = table.Column<int>(type: "INT", nullable: false),
+                    Numero24 = table.Column<int>(type: "INT", nullable: false),
+                    Numero25 = table.Column<int>(type: "INT", nullable: false),
+                    Numero26 = table.Column<int>(type: "INT", nullable: false),
+                    Numero27 = table.Column<int>(type: "INT", nullable: false),
+                    Numero28 = table.Column<int>(type: "INT", nullable: false),
+                    Numero29 = table.Column<int>(type: "INT", nullable: false),
+                    Numero30 = table.Column<int>(type: "INT", nullable: false),
+                    Numero31 = table.Column<int>(type: "INT", nullable: false),
+                    Numero32 = table.Column<int>(type: "INT", nullable: false),
+                    Numero33 = table.Column<int>(type: "INT", nullable: false),
+                    Numero34 = table.Column<int>(type: "INT", nullable: false),
+                    Numero35 = table.Column<int>(type: "INT", nullable: false),
+                    Numero36 = table.Column<int>(type: "INT", nullable: false),
+                    Numero37 = table.Column<int>(type: "INT", nullable: false),
+                    Numero38 = table.Column<int>(type: "INT", nullable: false),
+                    Numero39 = table.Column<int>(type: "INT", nullable: false),
+                    Numero40 = table.Column<int>(type: "INT", nullable: false),
+                    Numero41 = table.Column<int>(type: "INT", nullable: false),
+                    Numero42 = table.Column<int>(type: "INT", nullable: false),
+                    Numero43 = table.Column<int>(type: "INT", nullable: false),
+                    Numero44 = table.Column<int>(type: "INT", nullable: false),
+                    Numero45 = table.Column<int>(type: "INT", nullable: false),
+                    Numero46 = table.Column<int>(type: "INT", nullable: false),
+                    Numero47 = table.Column<int>(type: "INT", nullable: false),
+                    Numero48 = table.Column<int>(type: "INT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ListaBingo", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -521,6 +585,9 @@ namespace DatosEMC.Migrations
 
             migrationBuilder.DropTable(
                 name: "InicioFacturacion");
+
+            migrationBuilder.DropTable(
+                name: "ListaBingo");
 
             migrationBuilder.DropTable(
                 name: "Loterias");

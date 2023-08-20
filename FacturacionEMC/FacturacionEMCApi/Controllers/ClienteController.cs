@@ -19,7 +19,7 @@ namespace FacturacionEMCApi.Controllers
     public class ClienteController : ControllerBase
     {
 
-        IClienteService clienteService;
+        private readonly IClienteService clienteService;
         public ClienteController(IClienteService _clienteService)
         {
             clienteService = _clienteService;

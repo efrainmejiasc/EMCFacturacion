@@ -40,6 +40,7 @@ SELECT * FROM InicioFacturacion
 SELECT * FROM TrazabilidadEnvio
 SELECT * FROM LOTERIAS
 SELECT * FROM VentaNumero
+select * FROM ListaBingo
 --UPDATE TRAZABILIDADENVIO SET Dni = '11346727'
 
 --UPDATE UnidadMedida SET Sistema = 'ES-ES' WHERE Id = 10
@@ -54,7 +55,7 @@ SELECT * FROM VentaNumero
 --TRUNCATE TABLE Proveedor
 --TRUNCATE TABLE ProductoImgInfo
 --TRUNCATE TABLE VENTANumero
-
+-- TRUNCATE TABLE  ListaBingo
 --TRUNCATE TABLE Producto
 --TRUNCATE TABLE USUARIO
 
