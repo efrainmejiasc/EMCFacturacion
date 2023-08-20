@@ -191,6 +191,8 @@ namespace FacturacionEMCApi
             services.AddScoped<IListaBingoService, ListaBingoService>();
             services.AddScoped<IListaBingoRepository, ListaBingoRepository>();
 
+            services.AddScoped<ICartonPdfService, CartonPdfService>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

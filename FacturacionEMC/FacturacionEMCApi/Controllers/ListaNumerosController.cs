@@ -1,21 +1,34 @@
 ﻿using DatosEMC.DTOs;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NegocioEMC.Commons;
 using NegocioEMC.IServices;
 using System;
+using System.IO;
 using System.Net;
 
 namespace FacturacionEMCApi.Controllers
 {
     [Route("api/[controller]/[action]")]
+
     [ApiController]
     public class ListaNumerosController : ControllerBase
     {
         private readonly IListaBingoService _listaBingoService;
-        public ListaNumerosController(IListaBingoService listaBingoService)
+        private readonly IWebHostEnvironment _environment;
+        private readonly string _contentPath;
+
+        public ListaNumerosController(IListaBingoService listaBingoService,IWebHostEnvironment environment)
         {
             this._listaBingoService = listaBingoService;
+            _environment = environment;
+            _contentPath = Path.Combine(_environment.ContentRootPath, "wwwroot");
+            if (!Directory.Exists(_contentPath))
+            {
+                Directory.CreateDirectory(_contentPath);
+            }
+
         }
 
 
@@ -31,7 +44,7 @@ namespace FacturacionEMCApi.Controllers
         {
             try
             {
-                var genericResponse = this._listaBingoService.GenerarListas();
+                var genericResponse = this._listaBingoService.GenerarListas(this._contentPath);
 
                 if (genericResponse.Ok)
                     return Ok(genericResponse);

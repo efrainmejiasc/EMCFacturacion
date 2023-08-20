@@ -16,15 +16,17 @@ namespace NegocioEMC.Services
     {
         private readonly IMapper mapper;
         private readonly IListaBingoRepository listaBingoRepository;
+        private readonly ICartonPdfService cartonPdfService;
 
-        public ListaBingoService(IMapper _mapper, IListaBingoRepository _listaBingoRepository)
+        public ListaBingoService(IMapper _mapper, IListaBingoRepository _listaBingoRepository, ICartonPdfService cartonPdfService)
         {
             this.mapper = _mapper;
             this.listaBingoRepository = _listaBingoRepository;
+            this.cartonPdfService = cartonPdfService;
         }
-        public GenericResponse GenerarListas() 
+        public GenericResponse GenerarListas(string path) 
         {
-            var resultList = GenerateUniqueLists();
+            var resultList = GenerateUniqueLists(path);
 
             if (resultList.Count == 1000)
 
@@ -33,7 +35,7 @@ namespace NegocioEMC.Services
                 return EngineService.SetGenericResponse(false, "No se pudo registrar la información");
         }
 
-        private List<ListaBingoDTO> GenerateUniqueLists()
+        private List<ListaBingoDTO> GenerateUniqueLists(string path)
         {
            var resultList = new List<List<int>>();
 
@@ -46,7 +48,7 @@ namespace NegocioEMC.Services
                   resultList.Add(newList);
             }
 
-            return FromContenedor(resultList);
+            return FromContenedor(resultList,path);
         }
 
 
@@ -92,7 +94,7 @@ namespace NegocioEMC.Services
         }
 
 
-        private List<ListaBingoDTO> FromContenedor(List<List<int>> contenedor)
+        private List<ListaBingoDTO> FromContenedor(List<List<int>> contenedor, string path)
         {
             var lstBingo = new List<ListaBingo>();
             var lstBingoDTO = new List<ListaBingoDTO>();
@@ -119,6 +121,9 @@ namespace NegocioEMC.Services
             }
             this.listaBingoRepository.InsertListaBingo(lstBingo);
             lstBingoDTO  = this.mapper.Map<List<ListaBingoDTO>>(lstBingo);
+
+            this.cartonPdfService.GeneratePdf(contenedor, path);
+
             return lstBingoDTO;
         }
 

@@ -9,6 +9,6 @@ namespace NegocioEMC.IServices
 {
     public interface IListaBingoService
     {
-        GenericResponse GenerarListas();
+        GenericResponse GenerarListas(string path);
     }
 }
