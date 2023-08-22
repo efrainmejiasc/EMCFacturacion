@@ -72,7 +72,7 @@ namespace NegocioEMC.Commons
             var resultado = string.Empty;
 
             if (numero >= 0 && numero <= 99) {
-                var ceros = numero <= 9 ? "000" : "00";
+                var ceros = numero > 9 ? "00" : "000";
                 resultado = "A-" + ceros + numero.ToString(); 
             }
             else if (numero >= 100 && numero <= 199) { resultado = "B-" + "0" + numero.ToString(); }
@@ -81,8 +81,12 @@ namespace NegocioEMC.Commons
             else if (numero >= 400 && numero <= 499) { resultado = "E-" + "0" + numero.ToString(); }
             else if (numero >= 500 && numero <= 599) { resultado = "F-" + "0" + numero.ToString(); }
             else if (numero >= 600 && numero <= 699) { resultado = "G-" + "0" + numero.ToString(); }
-            else if (numero >= 700 && numero <= 199) { resultado = "H-" + "0" + numero.ToString(); }
-            else if (numero >= 800 && numero <= 999) { resultado = "I-" + "0" + numero.ToString(); }
+            else if (numero >= 700 && numero <= 799) { resultado = "H-" + "0" + numero.ToString(); }
+            else if (numero >= 800 && numero <= 899) { resultado = "I-" + "0" + numero.ToString(); }
+            else if (numero >= 900 && numero <= 999) { resultado = "J-" + "0" + numero.ToString(); }
+
+            if (string.IsNullOrEmpty(resultado))
+                SetSerieCartonBingo(numero);
 
             return resultado;
 
