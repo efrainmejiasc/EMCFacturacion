@@ -7,6 +7,7 @@ using NegocioEMC.IServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -99,6 +100,7 @@ namespace NegocioEMC.Services
             var lstBingo = new List<ListaBingo>();
             var lstBingoDTO = new List<ListaBingoDTO>();
 
+            int n = 0;
             foreach (var lista in contenedor)
             {
 
@@ -106,6 +108,7 @@ namespace NegocioEMC.Services
                 lst.IdentificadorUnico = EngineTool.CreateUniqueidentifier();
                 lst.FechaCreacion = DateTime.Now;
                 lst.Activo = true;
+                lst.Nombre = EngineTool.SetSerieCartonBingo(n);
 
                 for (int i = 0; i < lista.Count; i++)
                 {
@@ -118,6 +121,7 @@ namespace NegocioEMC.Services
                 }
 
                 lstBingo.Add(lst);
+                n++;
             }
             this.listaBingoRepository.InsertListaBingo(lstBingo);
             lstBingoDTO  = this.mapper.Map<List<ListaBingoDTO>>(lstBingo);

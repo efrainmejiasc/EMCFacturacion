@@ -40,7 +40,7 @@ SELECT * FROM InicioFacturacion
 SELECT * FROM TrazabilidadEnvio
 SELECT * FROM LOTERIAS
 SELECT * FROM VentaNumero
-select * FROM ListaBingo
+select * FROM ListaBingo Order By Nombre
 --UPDATE TRAZABILIDADENVIO SET Dni = '11346727'
 
 --UPDATE UnidadMedida SET Sistema = 'ES-ES' WHERE Id = 10
@@ -148,3 +148,54 @@ update StockTransito Set NombreArticulo = ' Monitor - Unit' Where id = 1
 
 --UPDATE PRODUCTO SET NombreProducto = 'Galletas' Where Id = 6
 SELECT * FROM PRODUCTO
+
+
+SELECT 
+Numero1,
+Numero2,
+Numero3,
+Numero4,
+Numero5,
+Numero6,
+Numero7,
+Numero8,
+Numero9,
+Numero10
+Numero11,
+Numero12 ,
+Numero13 ,
+Numero14 ,
+Numero ,
+Numero ,
+Numero ,
+Numero ,
+Numero ,
+Numero ,
+Numero ,
+Numero ,
+Numero ,
+Numero ,
+Numero ,
+Numero ,
+Numero ,
+Numero ,
+Numero ,
+Numero ,
+Numero ,
+Numero ,
+Numero ,
+Numero ,
+Numero ,
+Numero ,
+Numero ,
+Numero ,
+Numero ,
+Numero ,
+Numero ,
+Numero ,
+Numero ,
+Numero ,
+Numero ,
+Numero ,
+Numero ,
+Numero FROM ListaBingo

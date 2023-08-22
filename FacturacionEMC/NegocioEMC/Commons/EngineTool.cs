@@ -65,5 +65,27 @@ namespace NegocioEMC.Commons
             }
             return resultado;
         }
+
+
+        public static string SetSerieCartonBingo (int numero)
+        {
+            var resultado = string.Empty;
+
+            if (numero >= 0 && numero <= 99) {
+                var ceros = numero <= 9 ? "000" : "00";
+                resultado = "A-" + ceros + numero.ToString(); 
+            }
+            else if (numero >= 100 && numero <= 199) { resultado = "B-" + "0" + numero.ToString(); }
+            else if (numero >= 200 && numero <= 299) { resultado = "C-" + "0" + numero.ToString(); }
+            else if (numero >= 300 && numero <= 399) { resultado = "D-" + "0" + numero.ToString(); }
+            else if (numero >= 400 && numero <= 499) { resultado = "E-" + "0" + numero.ToString(); }
+            else if (numero >= 500 && numero <= 599) { resultado = "F-" + "0" + numero.ToString(); }
+            else if (numero >= 600 && numero <= 699) { resultado = "G-" + "0" + numero.ToString(); }
+            else if (numero >= 700 && numero <= 199) { resultado = "H-" + "0" + numero.ToString(); }
+            else if (numero >= 800 && numero <= 999) { resultado = "I-" + "0" + numero.ToString(); }
+
+            return resultado;
+
+        }
     }
 }
