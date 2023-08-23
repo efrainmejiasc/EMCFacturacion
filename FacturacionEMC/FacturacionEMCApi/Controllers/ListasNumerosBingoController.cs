@@ -67,6 +67,7 @@ namespace FacturacionEMCApi.Controllers
         /// </summary>
         /// <returns>archivo listas</returns>
         [HttpGet(Name = "CompressLatestPdfList")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(FileContentResult))]
         [ProducesResponseType(statusCode: (int)HttpStatusCode.BadRequest, Type = typeof(GenericResponse))]
         public IActionResult CompressLatestPdfList()
         {
