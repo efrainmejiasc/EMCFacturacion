@@ -126,7 +126,7 @@ namespace NegocioEMC.Services
             this.listaBingoRepository.InsertListaBingo(lstBingo);
             lstBingoDTO  = this.mapper.Map<List<ListaBingoDTO>>(lstBingo);
 
-            this.cartonPdfService.GeneratePdf(contenedor, path);
+            this.cartonPdfService.GeneratePdfNumeros(contenedor, path);
 
             return lstBingoDTO;
         }

@@ -8,7 +8,7 @@ namespace NegocioEMC.IServices
 {
     public interface ICartonPdfService
     {
-        byte[] GeneratePdf(List<List<string>> imageLists,string path);
-        byte[] GeneratePdf(List<List<int>> numberLists,string path);
+        byte[] GeneratePdfImagenes(List<List<int>> numberLists, string path);
+        byte[] GeneratePdfNumeros(List<List<int>> numberLists,string path);
     }
 }

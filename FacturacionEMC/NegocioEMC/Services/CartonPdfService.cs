@@ -18,50 +18,7 @@ namespace NegocioEMC.Services
         { 
         }
 
-        public byte[] GeneratePdf(List<List<string>> imageLists, string path)
-        {
-            MemoryStream memoryStream = new MemoryStream();
-            iTextSharp.text.Document document = new iTextSharp.text.Document();
-            PdfWriter writer = PdfWriter.GetInstance(document, memoryStream);
-
-            document.Open();
-
-            foreach (List<string> imagePaths in imageLists)
-            {
-                PdfPTable table = new PdfPTable(8);
-
-                foreach (string imagePath in imagePaths)
-                {
-                    PdfPCell cell = new PdfPCell();
-                    iTextSharp.text.Image image = iTextSharp.text.Image.GetInstance(imagePath);
-                    cell.AddElement(image);
-                    table.AddCell(cell);
-                }
-
-                for (int i = 0; i < 6; i++)
-                {
-                    for (int j = 0; j < 8; j++)
-                    {
-                        table.AddCell("Celda " + (i * 8 + j + 1));
-                    }
-                }
-
-                document.NewPage(); 
-                document.Add(table);
-            }
-
-            document.Close();
-            writer.Close();
-
-            var result = memoryStream.ToArray();
-            string pdfFileName = "\\generated_pdf_" + Guid.NewGuid().ToString() + ".pdf";
-            string pdfFilePath = path + pdfFileName;
-            System.IO.File.WriteAllBytes(pdfFilePath, result);
-
-            return result;
-        }
-
-        public byte[] GeneratePdf(List<List<int>> numberLists, string path)
+        public byte[] GeneratePdfImagenes(List<List<int>> numberLists, string path)
         {
             MemoryStream memoryStream = new MemoryStream();
             iTextSharp.text.Document document = new iTextSharp.text.Document();
@@ -69,7 +26,141 @@ namespace NegocioEMC.Services
 
             PdfPCell emptyCell = new PdfPCell(new Phrase(" "));
             emptyCell.Border = PdfPCell.NO_BORDER;
-            
+
+            document.Open();
+
+            int n = 1;
+            int indiceLista = 0;
+            foreach (List<int> numbers in numberLists)
+            {
+                PdfPTable table = new PdfPTable(9);
+
+                table.AddCell(GetImageBingo(numbers[0]));
+                table.AddCell(GetImageBingo(numbers[1]));
+                table.AddCell(GetImageBingo(numbers[2]));
+                table.AddCell(GetImageBingo(numbers[3]));
+                table.AddCell(emptyCell);
+                table.AddCell(GetImageBingo(numbers[4]));
+                table.AddCell(GetImageBingo(numbers[5]));
+                table.AddCell(GetImageBingo(numbers[6]));
+                table.AddCell(GetImageBingo(numbers[7]));
+
+                table.AddCell(GetImageBingo(numbers[8]));
+                table.AddCell(GetImageBingo(numbers[9]));
+                table.AddCell(GetImageBingo(numbers[10]));
+                table.AddCell(GetImageBingo(numbers[11]));
+                table.AddCell(emptyCell);
+                table.AddCell(GetImageBingo(numbers[12]));
+                table.AddCell(GetImageBingo(numbers[13]));
+                table.AddCell(GetImageBingo(numbers[14]));
+                table.AddCell(GetImageBingo(numbers[15]));
+
+                table.AddCell(emptyCell);
+                table.AddCell(emptyCell);
+                table.AddCell(emptyCell);
+                table.AddCell(emptyCell);
+                table.AddCell(emptyCell);
+                table.AddCell(emptyCell);
+                table.AddCell(emptyCell);
+                table.AddCell(emptyCell);
+                table.AddCell(emptyCell);
+
+                table.AddCell(GetImageBingo(numbers[16]));
+                table.AddCell(GetImageBingo(numbers[17]));
+                table.AddCell(GetImageBingo(numbers[18]));
+                table.AddCell(GetImageBingo(numbers[19]));
+                table.AddCell(emptyCell);
+                table.AddCell(GetImageBingo(numbers[20]));
+                table.AddCell(GetImageBingo(numbers[21]));
+                table.AddCell(GetImageBingo(numbers[22]));
+                table.AddCell(GetImageBingo(numbers[23]));
+
+                table.AddCell(GetImageBingo(numbers[24]));
+                table.AddCell(GetImageBingo(numbers[25]));
+                table.AddCell(GetImageBingo(numbers[26]));
+                table.AddCell(GetImageBingo(numbers[27]));
+                table.AddCell(emptyCell);
+                table.AddCell(GetImageBingo(numbers[28]));
+                table.AddCell(GetImageBingo(numbers[29]));
+                table.AddCell(GetImageBingo(numbers[30]));
+                table.AddCell(GetImageBingo(numbers[31]));
+
+                table.AddCell(emptyCell);
+                table.AddCell(emptyCell);
+                table.AddCell(emptyCell);
+                table.AddCell(emptyCell);
+                table.AddCell(emptyCell);
+                table.AddCell(emptyCell);
+                table.AddCell(emptyCell);
+                table.AddCell(emptyCell);
+                table.AddCell(emptyCell);
+
+                table.AddCell(GetImageBingo(numbers[32]));
+                table.AddCell(GetImageBingo(numbers[33]));
+                table.AddCell(GetImageBingo(numbers[34]));
+                table.AddCell(GetImageBingo(numbers[35]));
+                table.AddCell(emptyCell);
+                table.AddCell(GetImageBingo(numbers[36]));
+                table.AddCell(GetImageBingo(numbers[37]));
+                table.AddCell(GetImageBingo(numbers[38]));
+                table.AddCell(GetImageBingo(numbers[39]));
+
+                table.AddCell(GetImageBingo(numbers[40]));
+                table.AddCell(GetImageBingo(numbers[41]));
+                table.AddCell(GetImageBingo(numbers[42]));
+                table.AddCell(GetImageBingo(numbers[43]));
+                table.AddCell(emptyCell);
+                table.AddCell(GetImageBingo(numbers[44]));
+                table.AddCell(GetImageBingo(numbers[45]));
+                table.AddCell(GetImageBingo(numbers[46]));
+                table.AddCell(GetImageBingo(numbers[47]));
+
+                var titleParagraph = GetTableTitle(indiceLista);
+
+                var salto = GetSaltoLineaPdf();
+
+                if (n == 1)
+                {
+                    document.NewPage();
+                    document.Add(titleParagraph);
+                    document.Add(salto);
+                    document.Add(table);
+                    document.Add(salto);
+                    document.Add(salto);
+                    n++;
+                }
+                else if (n == 2)
+                {
+                    document.Add(titleParagraph);
+                    document.Add(salto);
+                    document.Add(table);
+                    n = 1;
+                }
+                indiceLista++;
+            }
+
+            document.Close();
+            writer.Close();
+
+            var result = memoryStream.ToArray();
+            string pdfFileName = "\\generated_pdf_" + DateTime.Now.ToString().
+                                                     Replace("/", "").Replace("-", "").
+                                                     Replace(" ", "").Replace(":", "").
+                                                     Replace(".", "") + ".pdf";
+            string pdfFilePath = path + pdfFileName;
+            System.IO.File.WriteAllBytes(pdfFilePath, result);
+
+            return result;
+        }
+
+        public byte[] GeneratePdfNumeros(List<List<int>> numberLists, string path)
+        {
+            MemoryStream memoryStream = new MemoryStream();
+            iTextSharp.text.Document document = new iTextSharp.text.Document();
+            PdfWriter writer = PdfWriter.GetInstance(document, memoryStream);
+
+            PdfPCell emptyCell = new PdfPCell(new Phrase(" "));
+            emptyCell.Border = PdfPCell.NO_BORDER;
 
             document.Open();
 
@@ -218,33 +309,15 @@ namespace NegocioEMC.Services
             return lineBreak;
         }
 
-        public List<int> InsertZerosAtPositions(List<int> numbers)
+        private PdfPCell GetImageBingo(int n)
         {
-            List<int> result = new List<int>();
+            var imagePath = string.Empty;
 
-            int[] positionsToAddZero = { 4, 13, 22, 31, 40 };
-            int currentInsertIndex = 0;
+            PdfPCell cell = new PdfPCell();
+            iTextSharp.text.Image image = iTextSharp.text.Image.GetInstance(imagePath);
+            cell.AddElement(image);
 
-            for (int i = 0; i < numbers.Count; i++)
-            {
-                if (currentInsertIndex < positionsToAddZero.Length && i == positionsToAddZero[currentInsertIndex])
-                {
-                    result.Add(0);
-                    currentInsertIndex++;
-                }
-                result.Add(numbers[i]);
-            }
-
-            // Si quedaron posiciones por agregar, agregamos ceros al final
-            while (currentInsertIndex < positionsToAddZero.Length)
-            {
-                result.Add(0);
-                currentInsertIndex++;
-            }
-
-            return result;
+            return cell;
         }
-
-
     }
 }
