@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection.Metadata;
 using System.Xml.Linq;
+using DatosEMC.DataModels;
+using DatosEMC.IRepositories;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
@@ -13,13 +16,17 @@ namespace NegocioEMC.Services
 {
     public  class CartonPdfService : ICartonPdfService
     {
-     
-        public CartonPdfService() 
+        private readonly IListaBingoRepository _listaBingoRepository;
+        private List<ImagenesBingo> imagenesBingo;
+        public CartonPdfService(IListaBingoRepository listaBingoRepository) 
         { 
+            this._listaBingoRepository = listaBingoRepository;
         }
 
         public byte[] GeneratePdfImagenes(List<List<int>> numberLists, string path)
         {
+            imagenesBingo = this._listaBingoRepository.GetImagenesBingo();
+
             MemoryStream memoryStream = new MemoryStream();
             iTextSharp.text.Document document = new iTextSharp.text.Document();
             PdfWriter writer = PdfWriter.GetInstance(document, memoryStream);
@@ -311,10 +318,10 @@ namespace NegocioEMC.Services
 
         private PdfPCell GetImageBingo(int n)
         {
-            var imagePath = string.Empty;
+            var imagenBingo = this.imagenesBingo.Where(x => x.Id == n).FirstOrDefault();
 
             PdfPCell cell = new PdfPCell();
-            iTextSharp.text.Image image = iTextSharp.text.Image.GetInstance(imagePath);
+            iTextSharp.text.Image image = iTextSharp.text.Image.GetInstance(imagenBingo.RutaImagen);
             cell.AddElement(image);
 
             return cell;

@@ -10,6 +10,7 @@ namespace DatosEMC.IRepositories
     public interface IListaBingoRepository
     {
         List<ListaBingo> GetListaBingo();
+        List<ImagenesBingo> GetImagenesBingo();
         List<ListaBingo> InsertListaBingo(List<ListaBingo> model);
     }
 }

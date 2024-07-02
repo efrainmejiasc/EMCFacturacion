@@ -33,5 +33,12 @@ namespace DatosEMC.Repositories
 
             return lista;
         }
+
+        public List<ImagenesBingo> GetImagenesBingo()
+        {
+            var lista = db.ImagenesBingo.ToList();
+
+            return lista;
+        }
     }
 }
